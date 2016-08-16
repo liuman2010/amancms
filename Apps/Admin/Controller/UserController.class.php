@@ -85,9 +85,27 @@ class UserController extends CommonController
 	  		}
 	  	}
 
+    }//f
+
+
+    // 改变用户状态
+    public function changeStatus()
+    {
+    	if(!IS_GET) $this->error("非法访问！");
+    	$userid         = I("get.id");
+    	$data['status'] = I("get.status") ? 0 : 1;
+		$result = M('User')->where(array('id'=>$userid))->save($data);
+		if($result === false){
+            $this->error('操作失败！','',1);
+        }else{
+            $this->success('操作成功','',1);
+        }
+
     }
 
 
+
+    // 删除用户
     public function del()
     {
     	// 批量删除用户

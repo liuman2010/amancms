@@ -23,7 +23,8 @@ class PublicController extends Controller
 			$authInfo        = Rbac::authenticate($map);
 
 			// 判断账户有没有被禁用
-			$userInfo = M('User')->where( array( 'username'=>$_COOKIE["username"] ) )->field( 'status' )->find(); 
+			$userInfo = M('User')->where( array( 'username'=>$_COOKIE["username"] ) )->field( 'status' )->find();
+			var_dump($userInfo);exit; 
 			
 			if($userInfo['status'] === 0)
 			{
@@ -85,12 +86,12 @@ class PublicController extends Controller
 			$authInfo        = Rbac::authenticate($map);
 
 			// 查询表单提交过来的用户名的用户信息
-			$userInfo = M('User')->where( array( 'username'=>$_COOKIE["username"] ) )->field( 'status' )->find(); 
-			
+			$userInfo = M('User')->where( array( 'username'=>$username ) )->field( 'status' )->find(); 
+
 			// 判断账户有没有被禁用
 			if( $userInfo['status'] === '0')
 			{
-				$this->error('账户已被禁用！');
+				$this->error('您的账户已被禁用！');
 			}
 			else
 			{
