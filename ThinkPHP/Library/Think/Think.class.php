@@ -85,7 +85,8 @@ class Think {
           // 加载框架底层语言包
           L(include THINK_PATH.'Lang/'.strtolower(C('DEFAULT_LANG')).'.php');
 
-          if(!APP_DEBUG){
+          if(!APP_DEBUG)
+          {
               $content  .=  "\nnamespace { Think\\Think::addMap(".var_export(self::$_map,true).");";
               $content  .=  "\nL(".var_export(L(),true).");\nC(".var_export(C(),true).');Think\Hook::import('.var_export(Hook::get(),true).');}';
               Storage::put($runtimefile,strip_whitespace('<?php '.$content));

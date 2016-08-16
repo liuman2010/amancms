@@ -23,7 +23,7 @@
 		      <label for="username" class="col-sm-3 control-label">用户名(必填)</label>
 		      <div class="col-sm-6">
 		         <input type="text" class="form-control" name='username' id="username" 
-		            placeholder="请输入用户名 例如：隔壁老王">
+		            placeholder="隔壁老王">
 		      </div>
 		   </div>
 
@@ -48,7 +48,7 @@
 		      <label for="repassword" class="col-sm-3 control-label">重复密码</label>
 		      <div class="col-sm-6">
 		         <input type="password" class="form-control" name='repassword' id="repassword" 
-		            placeholder="请再次输入密码">
+		            placeholder="再次输入密码">
 		      </div>
 		   </div>
 			
