@@ -1,0 +1,64 @@
+数组处理函数
+array('a','b','c')创建数组
+range('a','z')返回生成的条件步进数组
+array_pop($arrs)返回-删除数组中的最后一个元素 
+array_shift($arrs)返回-删除数组中的最前一个元素
+array_values($arrs)返回数组的值
+array_keys($arrs)返回数组的键
+array_push($arrs,'djkk')在数组末尾压入一个元素(入栈) 
+array_unshift($arrs,'djkk') 在数组前端添加一个元素
+----------------
+
+字符串处理函数
+strpos($string,'djkk') 搜索一个字符
+----------------
+
+文件操作函数
+opendir($path) 打开一个目录句柄
+readdir($handle)  读取句柄信息，返回当前指针
+scandir($path) 扫描一个目录 返回目录文件信息数组
+is_file($filepath) 判断是不是文件
+is_dir($filepath) 判断是不是一个目录
+file_extsis($filepath) 判断文件或者目录是否存在
+file_getconent($url)  读取资源
+file_putcontent($url) 写入资源
+file($file) 读取文件
+mkdir('amancms')  创建目录
+unlink($filepath) 删除文件
+closedir()关闭目录资源句柄
+rmdir($)删除空目录
+----------------
+
+正则相关函数
+preg_replace()
+preg_replace_all()
+
+
+
+----------------
+魔术函数
+__DIR__  返回当前的目录路径
+__FILE__ 返回当前文件的路径
+
+
+
+------------------------------------
+诺信CMS 网站权限管理设计表
+用户表 	   		nx_user
+权限表 	   		nx_access
+角色表 	   		nx_role
+节点表 	   		nx_node
+用户角色表 		nx_role_user
+
+
+------------------------------------
+
+
+
+数据库替换
+列出所有的数据表
+点击数据表 弹出所有字段
+替换这个字段里的所有内容
+
+
+用户登录流程

@@ -1,0 +1,22 @@
+*{
+	margin:0px;
+	padding:0px;
+}
+
+a{
+	text-decoration:none;
+}
+.clear{
+	clear:both;
+}
+.logo{
+	padding:5px;
+	float: left;
+}
+
+/*发表文章*/
+.article_add{
+	margin:20px;
+	width:800px;
+	height:600px;
+}

@@ -1,0 +1,65 @@
+<include file='Index/head' />
+	<div class="col-sm-12">
+		<div class="col-sm-4"></div>
+		<div class="col-sm-4"><h1 style='text-align:center;'>用户列表</h1></div>
+		<div class="col-sm-4"></div>
+	</div>
+	<div class="col-lg-12">
+		<div class="col-sm-1"></div>
+		<div class="col-sm-10"><hr></div>
+		<div class="col-sm-1"></div>
+	</div>
+	<div class="col-lg-12">
+		<table class='table table-bordered  table-hover'>
+			<tr>
+				<th>用户名</th><th>性别</th><th>所属组别</th><th>登录次数</th><th>最后登录时间</th><th>最后登录IP</th><th>最后登录地区</th><th>注册日期</th><th>操作</th>
+				
+			</tr>
+			<volist name='data' id='list'>
+			<tr>
+					<td>{$list.username}</td>
+
+					<td>
+						<switch name="list.sex" >
+							<case value="0">女</case>
+							<case value="1">男</case>
+							<default />无法判断性别
+						</switch>
+					</td>
+
+					<td>
+						<switch name="list.groupid">
+							<case value='1'>管理员</case>
+							<case value='2'>网站编辑</case>
+							<case value='3'>客服</case>
+						</switch>
+					</td>
+
+					<td>{$list.num}</td> 
+
+					<td>
+						
+						<switch name="list.last_time" >
+								<case value="0">新注册用户</case>
+								<default />{$list.last_time|date="Y-m-d H:i:s",###}
+						</switch>
+					</td> 
+
+				<td>{$list.last_ip}</td> 
+				<td>{$list.last_area}</td> 
+
+				<td>{$list.ctime|date="Y-m-d",###}</td>
+
+				<td><a class='btn btn-warning btn-xs' href="__URL__/changeStatus/id/{$list.id}/status/{$list.status}" >
+						<switch name="list.status" >
+							<case value="0">恢复</case>
+							<case value="1">禁用</case>
+							<default />无法判断状态
+						</switch>
+					</a> | <a href="__URL__/del/id/{$list.id}" class='btn btn-danger btn-xs'>删除</a>
+				</td>
+
+			</tr>
+			</volist>
+		</table>
+	</div>
