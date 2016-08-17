@@ -95,7 +95,7 @@ class PublicController extends Controller
 			}
 			else
 			{
-				// 检查是否存在改账户
+				// 检查是否存在该账户
 				if( false === $authInfo )
 				{
 					$this->error('账户不存在！');

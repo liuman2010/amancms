@@ -19,7 +19,7 @@ class UserController extends CommonController
     	$data = M('User')->select();
     	$this->assign('data',$data);
     	$this->display();
-    }
+    }//f
 
     // 显示添加用户的界面
     public function add()
@@ -33,18 +33,20 @@ class UserController extends CommonController
     	}
     	else
     	{
-	    	for ($i=0; $i < count($data); $i++) { 
+	    	for ($i=0; $i < count($data); $i++) 
+            { 
 	    		$html .= '<option value="'.$data[$i]['id'].'">'.$data[$i]['remark'].'</option>';
 	    	}
     	}
     	$this->assign('options',$html);
     	$this->display();
-    }
+    }//f
 
 
     // 插入添加的用户数据
     public function insert()
     {
+        if(!IS_POST) $this->error("非法访问！");
 	  	$data['username']	=	I("post.username");
 	  	$data['groupid']	=	I("post.groupid");
 	  	$data['password']	=	md5(I("post.password"));
@@ -64,7 +66,6 @@ class UserController extends CommonController
 	  	else
 	  	{	
 	  		// 新用户的id号
-	  		// var_dump($data);exit;
 	  		$newUserId = $user->add();
 	  		if($newUserId !== false)
 	  		{
@@ -100,8 +101,7 @@ class UserController extends CommonController
         }else{
             $this->success('操作成功','',1);
         }
-
-    }
+    }//f
 
 
 
@@ -140,12 +140,77 @@ class UserController extends CommonController
     }//f
 
 
+    // 显示用户组管理界面
+    public function group()
+    {
+        $data = M("Role")->select();
+        $this->assign('data',$data);
+        $this->display();
+    }
+
+
+    // 显示添加用户组的界面
+    public function addGroup()
+    {
+        $this->display();
+    }
+
+
+    // 插入添加的用户组数据
+    public function insertgroup()
+    {
+        if(!IS_POST) $this->error("非法访问！");
+        $data["name"]   = I("post.name");
+        $data["remark"] = I("post.remark");
+        $data["status"] = I("post.status");
+        $data["ctime"]  = time();
+
+        // 在 RoleModel 模型 验证数据
+        $Role   = D("Role");
+        $result = $Role->create($data);
+        if($result === false)
+        {   
+            $this->error($Role->getError());            
+        }
+        else
+        {   
+            $Role->add();
+            $this->success("添加用户组成功！","group",1);
+        }
+    }//f
+
+    public function delGroup()
+    {
+        if(!IS_GET) $this->error("非法访问！");
+        $groupid = I("get.id");
+        if( M('Role')->delete($groupid) )
+        {
+            $this->success("删除用户组成功！");
+        }
+        else
+        {
+            $this->error("删除用户组失败！");
+        }
+
+    }
+
+
+    // 显示我的权限
+    public function myAccess()
+    {
+        $this->display();
+    }
+
+
+
+
+
+
+
+
     // 禁止访问不存在的方法
     public function _empty($name)
     {
     	echo "没有{$name}这个操作！";
     }
-
-
-
 }//c

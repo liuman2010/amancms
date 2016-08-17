@@ -2,6 +2,7 @@
 namespace Admin\Model;
 use Think\Model;
 class UserModel extends Model {
+	
 	// 自动验证
 	protected $_validate = array(
 			array('username','unique','账号名称已经存在！',0,'unique',1),
