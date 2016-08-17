@@ -23,21 +23,9 @@ class UserController extends CommonController
 
     // 显示添加用户的界面
     public function add()
-    {
-    	$html =  '';
-    	$data = M("Role")->field('id,remark')->select();
-    	// 如果没有用户角色数据
-    	if( empty($data) )
-    	{
-    		$html = '<option value="null">请检查Role表是否存在！</option>';
-    	}
-    	else
-    	{
-	    	for ($i=0; $i < count($data); $i++) 
-            { 
-	    		$html .= '<option value="'.$data[$i]['id'].'">'.$data[$i]['remark'].'</option>';
-	    	}
-    	}
+    {   
+        // 获取所有角色
+        $html = D('Role')->getRoles();
     	$this->assign('options',$html);
     	$this->display();
     }//f
@@ -67,7 +55,7 @@ class UserController extends CommonController
 	  	{	
 	  		// 新用户的id号
 	  		$newUserId = $user->add();
-	  		if($newUserId !== false)
+	  		if( $newUserId !== false )
 	  		{
 	  			$newUserData['role_id']  = $data["groupid"];
 	  			$newUserData['user_id']  = $newUserId;
@@ -195,10 +183,14 @@ class UserController extends CommonController
     }
 
 
-    // 显示我的权限
-    public function myAccess()
-    {
-        $this->display();
+    // 显示我的权限情况
+    public function myNode()
+    {   
+        // 所有的操作节点
+        // var_dump($_SESSION);
+        $nodeInfo = D('Node')->select();
+        $this->assign('nodeInfo',$nodeInfo);
+        $this->display('myNode');
     }
 
 
