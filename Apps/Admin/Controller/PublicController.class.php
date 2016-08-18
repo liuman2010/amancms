@@ -24,7 +24,6 @@ class PublicController extends Controller
 
 			// 判断账户有没有被禁用
 			$userInfo = M('User')->where( array( 'username'=>$_COOKIE["username"] ) )->field( 'status' )->find();
-			var_dump($userInfo);exit; 
 			
 			if($userInfo['status'] === 0)
 			{
@@ -114,6 +113,9 @@ class PublicController extends Controller
 					}
 					
 					$_SESSION[C('USER_AUTH_KEY')] = $authInfo['id'];
+
+					// 保存当前登录成功的用户名
+					$_SESSION['currentUserName'] = $authInfo['username'];
 					// 缓存访问权限
 					Rbac::saveAccessList(); 
 					$this->success('登录成功！',U('Index/index'),1);

@@ -20,8 +20,24 @@ class IndexController extends CommonController
         $this->display($FunName);
     }
 
+
+    // 系统设置
+    public function sysconfig()
+    {
+        echo '系统设置';
+    }
+
+
+    // 数据库替换
+    public function replace()
+    {
+        echo '数据库替换';
+    }
+
+
      // 后台主页右边区域内容
-    public function main(){
+    public function main()
+    {
 
         // 获得天气预报
         $data = $this->getWeatherData();
@@ -41,7 +57,7 @@ class IndexController extends CommonController
         $info = $this->getInfo();
         $this->assign('info',$info);
         $this->display();
-    }
+    }//f
 
 
     /**
@@ -52,7 +68,8 @@ class IndexController extends CommonController
      * @http://api.map.baidu.com/telematics/v3/weather?location=%E5%B9%BF%E5%B7%9E&output=json&ak=4c9dcc281e73f6511fa0107a1502266c
      * @return Array $data
     */
-    public function getWeatherData($city='广州'){
+    public function getWeatherData($city='广州')
+    {
         // 默认地区
         $area = urldecode($city);
         $url  = "http://api.map.baidu.com/telematics/v3/weather?location={$area}&output=json&ak=4c9dcc281e73f6511fa0107a1502266c";

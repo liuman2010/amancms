@@ -11,6 +11,7 @@ array_unshift($arrs,'djkk') 在数组前端添加一个元素
 
 字符串处理函数
 strpos($string,'djkk') 搜索一个字符
+
 ----------------
 
 文件操作函数
@@ -30,8 +31,9 @@ rmdir($)删除空目录
 ----------------
 
 正则相关函数
-preg_replace()
-preg_replace_all()
+preg_replace()返回一个匹配的数组
+preg_replace_all() 返回匹配的二维数组
+preg_match('/[a-z]{1,18}/',$str);  匹配返回1 
 
 
 
@@ -41,14 +43,67 @@ __DIR__  返回当前的目录路径
 __FILE__ 返回当前文件的路径
 
 
+------------------------------------
+【诺信网站管理系统】
+------------------------------------
+系统功能
+CMS
+网站内容管理
+
+Kefu
+网站在线客服
+
+CRM
+客户关系管理
 
 ------------------------------------
+
 诺信CMS 网站权限管理设计表
-用户表 	   		nx_user
-权限表 	   		nx_access
-角色表 	   		nx_role
-节点表 	   		nx_node
-用户角色表 		nx_role_user
+
+【用户表】nx_user    存放用户名称密码
+id  username  password
+1   admin     123qwe
+2   xiaozhou  123456
+3   xiaowu    123qwe
+4   liuman    123qwe
+
+
+【角色表】nx_role    存放角色
+1 admin    管理员
+2 kefu     客服
+3 webadmin 网站编辑
+
+
+【用户角色表】nx_role_user
+id role_id  user_id
+1  1        1          用户id为1的admin     对应的  角色id为1管理员
+2  1        2		   用户id为2的xiaozhou  对应的  角色id为2网站编辑
+3  3        3		   用户id为3的xiaowu    对应的  角色id为3客服
+4  2        4		   用户id为3的liuman    对应的  角色id为1管理员
+
+
+【节点表】nx_node    存放操作节点
+id    name    		 title            	status    remark    pid    level
+
+1     Admin   		 网站后台模块     	1         null      0      1
+2     Index   		 后台Index控制器  	1         null      1      2
+3     index   		 显示后台首页框架 	1         null      2      3
+4     top     		 显示顶部菜单栏   	1         null      2      3
+5     CmsMenu        显示网站管理菜单   1  		  null  	2	   3
+6     main           显示右边主体内容   1  	      null  	2	   3
+7     sysMenu        显示系统管理菜单   1  	      null  	2	   3
+8     User           后台User控制器  	1  	      null  	0      2
+9     index          显示用户列表  	    1  		  null  	8      3
+10    add            添加用户的界面  	1  		  null  	8  	   3
+11    insert         新增一个用户  	    1  		  null  	8  	   3
+12    del            删除一个用户  	    1  		  null  	8  	   3
+
+
+【权限表】nx_access  存放角色节点关系
+role_id node_id
+3       1       角色id为3的网络编辑		拥有 操作节点id为1    的权限 
+
+
 
 
 ------------------------------------
@@ -62,3 +117,5 @@ __FILE__ 返回当前文件的路径
 
 
 用户登录流程
+
+

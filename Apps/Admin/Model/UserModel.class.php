@@ -12,6 +12,6 @@ class UserModel extends Model {
 			array('repassword','password','确认密码不相同！',0,'confirm'),
 			array('email','email','邮箱格式不正确！'),
 		);
-
+	
 
 }//c
