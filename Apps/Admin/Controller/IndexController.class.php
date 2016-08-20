@@ -11,13 +11,25 @@ namespace Admin\Controller;
 use Think\Controller;
 class IndexController extends CommonController 
 {
-  	/**
-     * @Function 显示对应的方法的模板
-     * @param    string $FunName  方法名称  
-     * @return   output 模板文件内容
-     */
-    public function _empty($FunName){
-        $this->display($FunName);
+
+    // 显示后台首页模板
+  	public function index()
+    {
+        $this->display();
+    }
+
+
+    // 显示后台顶部模板
+    public function top()
+    {
+        $this->display();
+    }
+
+
+    // 显示后台底部信息栏
+    public function footer() 
+    {
+        $this->display();
     }
 
 
@@ -151,8 +163,15 @@ class IndexController extends CommonController
     public function refresh()
     {
         $path   = './Apps/Runtime';
+        $this->t();
+        exit;
         $status = $this->delDir($path);
         echo '更新成功！';
+    }
+
+    public function t()
+    {
+        $this->display('index');
     }
 
     // 删除缓存目录

@@ -2,7 +2,7 @@
 
 namespace Admin\Controller;
 use Think\Controller;
-class ArticleController extends Controller 
+class ArticleController extends CommonController 
 {
   	
   	// 显示文章列表

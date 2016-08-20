@@ -46,7 +46,7 @@ class PublicController extends Controller
 
 				// 缓存访问权限
 				Rbac::saveAccessList();
-				$this->success('您已经登录过了！正在跳转到后台首页....',U('Index/index'),3);
+				$this->success('您已经登录过了！正在跳转到后台首页....',U('Index/view/name/index'),3);
 
 			}
 
@@ -66,7 +66,7 @@ class PublicController extends Controller
 		if(!IS_POST) $this->error( '非法访问！' );
 		$username    = trim( I('post.username') );
 		$password    = trim( I('post.password') );
-		$code        = trim( I('post.code')     );
+		$code        = trim( I('post.code'));
 
 		// 如果存在空的参数
 		if( $username === '' or $password === '' or $verify === '' )
@@ -117,8 +117,8 @@ class PublicController extends Controller
 					// 保存当前登录成功的用户名
 					$_SESSION['currentUserName'] = $authInfo['username'];
 					// 缓存访问权限
-					Rbac::saveAccessList(); 
-					$this->success('登录成功！',U('Index/index'),1);
+					$s = Rbac::saveAccessList(); 
+					$this->success('登录成功！',U('Index/view/name/index'),1);
 				}
 
 			}
@@ -168,7 +168,7 @@ class PublicController extends Controller
     public function test()
     {
     	$info = M('User')->select();
-    	var_dump($info);
+    	var_dump($_SESSION['_ACCESS_LIST']);
     }
 
 
