@@ -34,3 +34,6 @@ ERR: 模板不存在:./Apps/Admin/View/Index/footer.html
 [ 2016-08-22T23:08:05+08:00 ] 127.0.0.1 /admin.php/index/footer.html
 ERR: 模板不存在:./Apps/Admin/View/Index/footer.html
 
+[ 2016-08-22T23:11:51+08:00 ] 127.0.0.1 /admin.php/index/footer.html
+ERR: 模板不存在:./Apps/Admin/View/Index/footer.html
+
