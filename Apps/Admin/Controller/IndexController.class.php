@@ -11,28 +11,142 @@ namespace Admin\Controller;
 use Think\Controller;
 class IndexController extends CommonController 
 {
-  	/**
-     * @Function 显示对应的方法的模板
-     * @param    string $FunName  方法名称  
-     * @return   output 模板文件内容
-     */
-    public function _empty($FunName){
-        $this->display($FunName);
+
+    // 显示后台首页模板
+  	public function index()
+    {
+        $this->display();
     }
 
 
-    // 系统设置
+    // 显示后台顶部模板
+    public function top()
+    {
+        $this->display();
+    }
+
+
+    // 显示后台底部信息栏
+    public function footer() 
+    {
+        $this->display();
+    }
+
+
+    // 显示菜单容器
+    public function menu() 
+    {
+        $this->display();
+    }
+
+
+    // 显示系统管理菜单
+    public function sysMenu()
+    {
+        $this->display();
+    }
+
+
+    // 显示网站管理菜单
+    public function siteMenu()
+    {
+        $this->display();
+    }
+
+    // 显示网站在线客服菜单
+    public function kefuMenu()
+    {
+        $this->display();
+    }
+
+    // 显示网站留言系统菜单
+    public function msgMenu()
+    {
+        $this->display();
+    }
+
+
+    // 显示系统设置模板
     public function sysconfig()
     {
-        echo '系统设置';
+        
+        $data['DOMAINS']            =        C('DOMAINS');
+        $data['IP_ADDER']           =        C('IP_ADDER');
+        $data['DEFAULT_TPL']        =        C('DEFAULT_TPL');
+        $data['WATER_MARK']         =        C('WATER_MARK');
+        $data['WATER_POSITION']     =        C('WATER_POSITION');
+        $data['HTML_CACHE_ON']      =        C('HTML_CACHE_ON');
+        $data['HTML_FILE_SUFFIX']   =        C('HTML_FILE_SUFFIX');
+        $data['HTML_CACHE_TIME']    =        C('HTML_CACHE_TIME');
+        $data['IMG_WIDTH']          =        C('IMG_WIDTH');
+        $data['IMG_HEIGHT']         =        C('IMG_HEIGHT');
+        $data['MAX_SIZE']           =        C('MAX_SIZE');
+        $data['DB_TYPE']            =        C('DB_TYPE');
+        $data['DB_HOST']            =        C('DB_HOST');
+        $data['DB_NAME']            =        C('DB_NAME');
+        $data['DB_USER']            =        C('DB_USER');
+        $data['DB_PWD']             =        C('DB_PWD');
+        $data['DB_PORT']            =        C('DB_PORT');
+        $data['DB_PREFIX']          =        C('DB_PREFIX');
+        $data['DB_CHARSET']         =        C('DB_CHARSET');
+        $data['DB_DEBUG']           =        C('DB_DEBUG');
+        $this->assign('data',$data);
+        var_dump($data);
+        $this->display();
+    }
+
+    // 系统设置
+    public function setConfig()
+    {
+        // 公共配置文件
+        $file = COMMON_PATH.'Conf/config.php';
+
+        // 读取配置文件
+        $configStr = file_get_contents('./Apps/Common/Conf/config.php');
+
+        // 匹配各项配置
+        $n = preg_match_all('/\'(.*)?\'\s*=>\s*\'(.*)?\',/', $configStr, $m);
+
+        // 遍历表单提交过来的的需要修改的数据
+        foreach ($_POST as $key => $value) 
+        {
+            // 替换表单提交过来的新数据
+            $configStr = preg_replace("/\'{$key}\'\s*=>\s*\'(.*)?\'/", "'{$key}'=>'{$value}'", $configStr);
+        }
+        // var_dump($configStr);exit;
+        if(file_put_contents( $file, $configStr) )
+        {   
+            // 删除一下缓存文件夹
+            $path   = RUNTIME_PATH;
+            $this->delDir($path);
+            $this->success('修改成功！');
+        }
+        else
+        {
+            $this->error('修改失败！');
+        }
+
+
+
     }
 
 
-    // 数据库替换
-    public function replace()
+
+    // 显示数据库替换模板
+    public function showTables()
     {
         echo '数据库替换';
     }
+
+    
+
+    // 数据库替换
+    public function replaceData()
+    {
+        echo '数据库替换';
+    }
+
+
 
 
      // 后台主页右边区域内容
@@ -68,7 +182,7 @@ class IndexController extends CommonController
      * @http://api.map.baidu.com/telematics/v3/weather?location=%E5%B9%BF%E5%B7%9E&output=json&ak=4c9dcc281e73f6511fa0107a1502266c
      * @return Array $data
     */
-    public function getWeatherData($city='广州')
+    private function getWeatherData($city='广州')
     {
         // 默认地区
         $area = urldecode($city);
@@ -95,7 +209,7 @@ class IndexController extends CommonController
      * @param  array  $data 参数容器
      * @return array  $data 返回参数数组      
      */
-    public function getInfo()
+    private function getInfo()
     {
         $Msg = null;
 
@@ -150,14 +264,18 @@ class IndexController extends CommonController
     // 一键更新网站
     public function refresh()
     {
-        $path   = './Apps/Runtime';
-        $status = $this->delDir($path);
+        $path   = RUNTIME_PATH;
+        $html = $this->delDir($path);
+        echo $html;
         echo '更新成功！';
     }
 
+
+
     // 删除缓存目录
-    public function delDir($path)
+    private function delDir($path)
     {   
+        global $html;
         // 如果能打开这个目录句柄
         if( $handle = opendir($path) )
         {
@@ -182,7 +300,7 @@ class IndexController extends CommonController
                     if( is_int(strpos( $filename,'log' )) ) continue;
                     if(unlink($filePath))
                     {
-                        echo "<span style='color:red'>已删除缓存文件:　".$filename."</span><br>";
+                        $html .= "<span style='color:red'>已删除缓存文件:　".$filename."</span><br>";
                     }
                 }
             }//w
@@ -193,12 +311,12 @@ class IndexController extends CommonController
             {
                 if(rmdir($path))
                 {
-                    echo "<span style='color:green'>已删除缓存目录:　".$path."</span><br>"; 
+                    $html .= "<span style='color:green'>已删除缓存目录:　".$path."</span><br>"; 
                 }
             }
 
         } 
-       
+    return $html;
     }//f
    
 

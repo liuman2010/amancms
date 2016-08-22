@@ -2,7 +2,7 @@
 
 namespace Admin\Controller;
 use Think\Controller;
-class ColumnController extends Controller 
+class ColumnController extends CommonController 
 {
   	
   	// 显示栏目列表

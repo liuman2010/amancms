@@ -43,7 +43,7 @@
         <ul class="list-group">
   			<li class="list-group-item"><a href="<?php echo U('Index/main');?>" target="main">系统状态</a></li>
         <li class="list-group-item"><a href="<?php echo U('Index/sysconfig');?>" target="main">系统设置</a></li>
-        <li class="list-group-item"><a href="<?php echo U('Index/replace');?>" target="main">数据批量替换</a></li>
+        <li class="list-group-item"><a href="<?php echo U('Index/replaceData');?>" target="main">数据批量替换</a></li>
         <li class="list-group-item"><a href="<?php echo U('Index/refresh');?>" target="main">更新网站缓存</a></li>
   		</ul>
       </div>

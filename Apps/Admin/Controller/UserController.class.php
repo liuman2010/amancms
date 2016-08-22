@@ -21,6 +21,7 @@ class UserController extends CommonController
     	$this->display();
     }//f
 
+
     // 显示添加用户的界面
     public function add()
     {   
@@ -172,6 +173,8 @@ class UserController extends CommonController
         }
     }//f
 
+
+    // 删除用户组
     public function delGroup()
     {
         if(!IS_GET) $this->error("非法访问！");
@@ -192,15 +195,13 @@ class UserController extends CommonController
     public function myNode()
     {   
         // 所有的操作节点
-        $nodeInfo = D('Node')->select();
+        $nodeInfo = D('Node')->order('sort')->select();
         $this->assign('nodeInfo',$nodeInfo);
         $this->display('myNode');
     }
 
 
 
-    public function _empty($name)
-    {
-    	echo "没有{$name}这个操作！";
-    }
+
+
 }//c
