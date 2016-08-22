@@ -69,13 +69,46 @@ class IndexController extends CommonController
     // 显示系统设置模板
     public function sysconfig()
     {
-        echo '系统设置';
+        
+        $data['DOMAINS']            =        C('DOMAINS');
+        $data['IP_ADDER']           =        C('IP_ADDER');
+        $data['DEFAULT_TPL']        =        C('DEFAULT_TPL');
+        $data['WATER_MARK']         =        C('WATER_MARK');
+        $data['HTML_CACHE_ON']      =        C('HTML_CACHE_ON');
+        $this->assign('data',$data);
+        $this->display();
     }
 
     // 系统设置
     public function setConfig()
     {
-        echo '系统设置';
+        // 公共配置文件
+        $file = COMMON_PATH.'Conf/config.php';
+
+        // 读取配置文件
+        $configStr = file_get_contents('./Apps/Common/Conf/config.php');
+
+        // 匹配各项配置
+        $n = preg_match_all('/\'(.*)?\'\s*=>\s*\'(.*)?\',/', $configStr, $m);
+
+        // 遍历表单提交过来的的需要修改的数据
+        foreach ($_POST as $key => $value) 
+        {
+            // 替换表单提交过来的新数据
+            $configStr = preg_replace("/\'{$key}\'\s*=>\s*\'(.*)?\'/", "'{$key}'=>'{$value}'", $configStr);
+        }
+        // var_dump($configStr);exit;
+        if(file_put_contents( $file, $configStr) )
+        {
+            $this->success('修改成功！');
+        }
+        else
+        {
+            $this->error('修改失败！');
+        }
+
+
+
     }
 
 
