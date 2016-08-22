@@ -33,18 +33,68 @@ class IndexController extends CommonController
     }
 
 
-    // 系统设置
+    // 显示菜单容器
+    public function menu() 
+    {
+        $this->display();
+    }
+
+
+    // 显示系统管理菜单
+    public function sysMenu()
+    {
+        $this->display();
+    }
+
+
+    // 显示网站管理菜单
+    public function siteMenu()
+    {
+        $this->display();
+    }
+
+    // 显示网站在线客服菜单
+    public function kefuMenu()
+    {
+        $this->display();
+    }
+
+    // 显示网站留言系统菜单
+    public function msgMenu()
+    {
+        $this->display();
+    }
+
+
+    // 显示系统设置模板
     public function sysconfig()
     {
         echo '系统设置';
     }
 
+    // 系统设置
+    public function setConfig()
+    {
+        echo '系统设置';
+    }
 
-    // 数据库替换
-    public function replace()
+
+
+    // 显示数据库替换模板
+    public function showTables()
     {
         echo '数据库替换';
     }
+
+    
+
+    // 数据库替换
+    public function replaceData()
+    {
+        echo '数据库替换';
+    }
+
+
 
 
      // 后台主页右边区域内容
@@ -80,7 +130,7 @@ class IndexController extends CommonController
      * @http://api.map.baidu.com/telematics/v3/weather?location=%E5%B9%BF%E5%B7%9E&output=json&ak=4c9dcc281e73f6511fa0107a1502266c
      * @return Array $data
     */
-    public function getWeatherData($city='广州')
+    private function getWeatherData($city='广州')
     {
         // 默认地区
         $area = urldecode($city);
@@ -107,7 +157,7 @@ class IndexController extends CommonController
      * @param  array  $data 参数容器
      * @return array  $data 返回参数数组      
      */
-    public function getInfo()
+    private function getInfo()
     {
         $Msg = null;
 
@@ -163,19 +213,14 @@ class IndexController extends CommonController
     public function refresh()
     {
         $path   = './Apps/Runtime';
-        $this->t();
-        exit;
         $status = $this->delDir($path);
         echo '更新成功！';
     }
 
-    public function t()
-    {
-        $this->display('index');
-    }
+
 
     // 删除缓存目录
-    public function delDir($path)
+    private function delDir($path)
     {   
         // 如果能打开这个目录句柄
         if( $handle = opendir($path) )

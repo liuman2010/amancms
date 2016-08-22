@@ -46,7 +46,7 @@ class PublicController extends Controller
 
 				// 缓存访问权限
 				Rbac::saveAccessList();
-				$this->success('您已经登录过了！正在跳转到后台首页....',U('Index/view/name/index'),3);
+				$this->success('您已经登录过了！正在跳转到后台首页....',U('Index/index'),3);
 
 			}
 
@@ -118,7 +118,7 @@ class PublicController extends Controller
 					$_SESSION['currentUserName'] = $authInfo['username'];
 					// 缓存访问权限
 					$s = Rbac::saveAccessList(); 
-					$this->success('登录成功！',U('Index/view/name/index'),1);
+					$this->success('登录成功！',U('Index/index'),1);
 				}
 
 			}

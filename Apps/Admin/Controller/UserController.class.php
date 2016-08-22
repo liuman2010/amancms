@@ -21,6 +21,7 @@ class UserController extends CommonController
     	$this->display();
     }//f
 
+
     // 显示添加用户的界面
     public function add()
     {   
@@ -201,8 +202,6 @@ class UserController extends CommonController
 
 
 
-    public function _empty($name)
-    {
-    	echo "没有{$name}这个操作！";
-    }
+
+
 }//c

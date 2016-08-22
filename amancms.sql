@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016-08-20 11:59:45
+-- Generation Time: 2016-08-22 08:46:32
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS `nx_access` (
   PRIMARY KEY (`id`),
   KEY `groupId` (`role_id`),
   KEY `nodeId` (`node_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
 
 --
 -- 转存表中的数据 `nx_access`
@@ -48,9 +48,48 @@ INSERT INTO `nx_access` (`id`, `role_id`, `node_id`, `level`, `pid`, `module`) V
 (3, 1, 3, 3, 2, NULL),
 (4, 1, 4, 3, 2, NULL),
 (5, 1, 5, 3, 2, NULL),
-(6, 1, 5, 3, 2, NULL),
+(6, 1, 6, 3, 2, NULL),
 (7, 1, 7, 3, 2, NULL),
-(8, 1, 8, 3, 2, NULL);
+(8, 1, 8, 3, 2, NULL),
+(9, 1, 9, 3, 2, NULL),
+(10, 1, 10, 3, 2, NULL),
+(11, 1, 11, 3, 2, NULL),
+(12, 1, 12, 2, 1, NULL),
+(13, 1, 13, 3, 12, NULL),
+(14, 1, 14, 3, 12, NULL),
+(15, 1, 15, 3, 12, NULL),
+(16, 1, 16, 3, 12, NULL),
+(17, 1, 17, 3, 12, NULL),
+(18, 1, 18, 3, 12, NULL),
+(19, 1, 19, 3, 12, NULL),
+(20, 1, 20, 3, 12, NULL),
+(21, 1, 21, 3, 12, NULL),
+(22, 1, 22, 3, 12, NULL),
+(23, 1, 23, 3, 2, NULL),
+(24, 3, 1, 1, 0, NULL),
+(25, 3, 2, 2, 1, NULL),
+(26, 3, 3, 3, 12, NULL),
+(27, 3, 4, 3, 12, NULL),
+(28, 3, 5, 3, 12, NULL),
+(29, 3, 6, 3, 12, NULL),
+(30, 3, 8, 3, 12, NULL),
+(31, 3, 10, 3, 12, NULL),
+(32, 3, 11, 3, 12, NULL),
+(33, 3, 12, 2, 1, NULL),
+(34, 3, 13, 3, 12, NULL),
+(35, 3, 14, 3, 12, NULL),
+(36, 3, 18, 3, 12, NULL),
+(37, 3, 19, 3, 12, NULL),
+(38, 3, 22, 3, 12, NULL),
+(39, 1, 24, 3, 2, NULL),
+(40, 1, 25, 3, 2, NULL),
+(41, 1, 26, 3, 2, NULL),
+(42, 3, 23, 3, 2, NULL),
+(43, 3, 24, 3, 2, NULL),
+(44, 3, 25, 3, 2, NULL),
+(45, 3, 26, 3, 2, NULL),
+(46, 3, 27, 3, 2, NULL),
+(47, 1, 27, 3, 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -983,7 +1022,7 @@ CREATE TABLE IF NOT EXISTS `nx_node` (
   `title` varchar(50) DEFAULT NULL,
   `status` tinyint(1) DEFAULT '0',
   `remark` varchar(255) DEFAULT NULL,
-  `sort` smallint(6) unsigned DEFAULT NULL,
+  `sort` varchar(20) DEFAULT '0',
   `pid` smallint(6) unsigned NOT NULL,
   `level` tinyint(1) unsigned NOT NULL,
   PRIMARY KEY (`id`),
@@ -991,44 +1030,40 @@ CREATE TABLE IF NOT EXISTS `nx_node` (
   KEY `pid` (`pid`),
   KEY `status` (`status`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
 
 --
 -- 转存表中的数据 `nx_node`
 --
 
 INSERT INTO `nx_node` (`id`, `name`, `title`, `status`, `remark`, `sort`, `pid`, `level`) VALUES
-(1, 'Admin', '网站后台模块', 1, NULL, 1, 0, 1),
-(2, 'Index', '后台Index控制器', 1, NULL, 2, 1, 2),
-(3, 'index', '显示方法模板', 1, NULL, 3, 2, 3),
-(5, 'getWeatherData', '获取未来5天的天气预报', 1, NULL, 5, 2, 3),
-(4, 'main', '后台主页右边区域内容', 1, NULL, 4, 2, 3),
-(6, 'getInfo', '获得系统和服务器信息', 1, NULL, 6, 2, 3),
-(7, 'refresh', '一键更新网站', 1, NULL, 7, 2, 3),
-(8, 'delDir', '删除缓存目录', 1, NULL, 8, 2, 3),
-(9, 'User', '用户控制器', 1, NULL, 99, 1, 2),
-(10, 'add', '显示添加用户的界面', 1, NULL, NULL, 9, 3),
-(11, 'insert', '插入添加的用户数据', 1, NULL, NULL, 9, 3),
-(12, 'changeStatus', '改变用户状态', 1, NULL, NULL, 9, 3),
-(13, 'del', '删除用户', 1, NULL, NULL, 9, 3),
-(14, 'group', '显示用户组管理界面', 1, NULL, NULL, 9, 3),
-(15, 'addGroup', '显示添加用户组的界面', 1, NULL, NULL, 9, 3),
-(16, 'insertgroup', '插入添加的用户组数据', 1, NULL, NULL, 9, 3),
-(17, 'delGroup', '删除用户组', 1, NULL, NULL, 9, 3),
-(18, 'myNode', '显示我的权限情况', 1, NULL, NULL, 9, 3),
-(19, '_empty', '显示方法模板', 1, NULL, NULL, 9, 3),
-(20, 'Column', '栏目控制器', 1, NULL, NULL, 1, 2),
-(21, 'index', '显示栏目列表', 1, NULL, NULL, 20, 3),
-(22, 'add', '显示添加栏目界面', 1, NULL, NULL, 20, 3),
-(23, 'mod', '显示修改栏目界面', 1, NULL, NULL, 20, 3),
-(24, 'insert', '新增或修改栏目内容', 1, NULL, NULL, 20, 3),
-(25, 'del', '删除一个或多个栏目', 1, NULL, NULL, 20, 3),
-(26, 'Article', '文章控制器', 1, NULL, NULL, 1, 2),
-(27, 'index', '显示文章列表', 1, NULL, NULL, 21, 3),
-(28, 'add', '显示添加文章界面', 1, NULL, NULL, 21, 3),
-(29, 'mod', '显示修改文章界面', 1, NULL, NULL, 21, 3),
-(30, 'insert', '新增或修改文章内容', 1, NULL, NULL, 21, 3),
-(31, 'del', '删除一个或多个文章', 1, NULL, NULL, 21, 3);
+(1, 'Admin', '后台模块', 1, NULL, '0', 0, 1),
+(2, 'Index', '后台首页控制器', 1, NULL, '1-1', 1, 2),
+(3, 'index', '显示后台首页模板', 1, NULL, '1-2', 2, 3),
+(4, 'top', '显示后台顶部模板', 1, NULL, '1-3', 2, 3),
+(5, 'footer', '显示后台底部信息栏', 1, NULL, '1-4', 2, 3),
+(6, 'sysconfig', '显示系统设置模板', 1, NULL, '1-5', 2, 3),
+(7, 'setConfig', '系统设置', 1, NULL, '1-6', 2, 3),
+(8, 'showTables', '显示数据库替换模板', 1, NULL, '1-7', 2, 3),
+(9, 'replaceData', '数据库替换', 1, NULL, '1-8', 2, 3),
+(10, 'main', '后台主页右边区域内容', 1, NULL, '1-9', 2, 3),
+(11, 'refresh', '一键更新网站', 1, NULL, '1-10', 2, 3),
+(12, 'User', 'User用户管理控制器', 1, NULL, '2-1', 1, 2),
+(13, 'index', '显示所有用户信息', 1, NULL, '2-2', 12, 3),
+(14, 'add', '显示添加用户的界面', 1, NULL, '2-3', 12, 3),
+(15, 'insert', '插入添加的用户数据', 1, NULL, '2-4', 12, 3),
+(16, 'changeStatus', '改变用户状态', 1, NULL, '2-5', 12, 3),
+(17, 'del', '删除用户', 1, NULL, '2-6', 12, 3),
+(18, 'group', '显示用户组管理界面', 1, NULL, '2-7', 12, 3),
+(19, 'addGroup', '显示添加用户组的界面', 1, NULL, '2-8', 12, 3),
+(20, 'insertgroup', '插入添加的用户组数据', 1, NULL, '2-9', 12, 3),
+(21, 'delGroup', '删除用户组', 1, NULL, '2-10', 12, 3),
+(22, 'myNode', '显示我的权限情况', 1, NULL, '2-11', 12, 3),
+(23, 'sysMenu', '显示系统管理菜单', 1, NULL, '1-11', 2, 3),
+(24, 'siteMenu', '显示网站管理菜单', 1, NULL, '1-12', 2, 3),
+(25, 'kefuMenu', '显示网站在线客服菜单', 1, NULL, '1-13', 2, 3),
+(26, 'msgMenu', '显示网站留言系统菜单', 1, NULL, '1-14', 2, 3),
+(27, 'menu', '显示菜单容器', 1, NULL, '1-15', 2, 3);
 
 -- --------------------------------------------------------
 

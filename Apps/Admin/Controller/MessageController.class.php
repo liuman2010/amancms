@@ -2,7 +2,7 @@
 
 namespace Admin\Controller;
 use Think\Controller;
-class MessageController extends Controller 
+class MessageController extends CommonController 
 {
   	
   	// 显示我的留言版
