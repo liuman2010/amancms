@@ -193,16 +193,21 @@
 		         <td><h4>水印位置:</h4></td>
 		         <td>
 		         	<p>
-		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="7" value="7">顶部左上</label><label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="8" value="8">顶部居中</label><label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="9" value="9">顶部右上</label>
+		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="p7" value="7">顶部左上</label>
+		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="p8" value="8">顶部居中</label>
+		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="p9" value="9">顶部右上</label>
 		         	</p>
 		         	<p>
-		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="1" value="4">中部左边</label><label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="1" value="5">中部居中</label><label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="1" value="6">中部右边</label>
+		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="p4" value="4">中部左边</label>
+		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="p5" value="5">中部居中</label>
+		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="p6" value="6">中部右边</label>
 		         	</p>
 		         	<p>
-		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="1" value="1">底部左边</label><label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="1" value="2">底部居中</label><label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="1" value="3" >底部右边</label>
+		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="p1" value="1">底部左边</label>
+		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="p2" value="2">底部居中</label>
+		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="p3" value="3" >底部右边</label>
 		         		<script>
-		         		alert(1);
-		         			$('.7').attr("checked");
+		         			$(".p{$data.WATER_POSITION}").attr({"checked":"checked"});
 		         		</script>
 		         	</p>
 		         </td>

@@ -78,6 +78,7 @@ class IndexController extends CommonController
         $data['HTML_CACHE_ON']      =        C('HTML_CACHE_ON');
         $data['HTML_FILE_SUFFIX']   =        C('HTML_FILE_SUFFIX');
         $data['HTML_CACHE_TIME']    =        C('HTML_CACHE_TIME');
+        $data['ALLOW_TYPE']         =        C('ALLOW_TYPE');
         $data['IMG_WIDTH']          =        C('IMG_WIDTH');
         $data['IMG_HEIGHT']         =        C('IMG_HEIGHT');
         $data['MAX_SIZE']           =        C('MAX_SIZE');
@@ -91,7 +92,6 @@ class IndexController extends CommonController
         $data['DB_CHARSET']         =        C('DB_CHARSET');
         $data['DB_DEBUG']           =        C('DB_DEBUG');
         $this->assign('data',$data);
-        var_dump($data);
         $this->display();
     }
 
@@ -113,7 +113,6 @@ class IndexController extends CommonController
             // 替换表单提交过来的新数据
             $configStr = preg_replace("/\'{$key}\'\s*=>\s*\'(.*)?\'/", "'{$key}'=>'{$value}'", $configStr);
         }
-        // var_dump($configStr);exit;
         if(file_put_contents( $file, $configStr) )
         {   
             // 删除一下缓存文件夹

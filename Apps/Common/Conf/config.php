@@ -6,8 +6,8 @@ return array(
 	'IP_ADDER'=>'192.168.2.254',
 	'DEFAULT_TPL'=>'default',
 	'WATER_MARK'=>'true',
-	'WATER_POSITION'=>'7',
-	'ALLOW_TYPE'=>'',
+	'WATER_POSITION'=>'3',
+	'ALLOW_TYPE'=>'gif|png|jpg|jpeg',
 	'IMG_WIDTH'=>'320',
 	'IMG_HEIGHT'=>'180',
 	'MAX_SIZE'=>'20480',
@@ -27,7 +27,7 @@ return array(
 	// 'DB_PARAMS' =>  array(), // 数据库连接参数
 	'DB_PREFIX'=>'nx_', // 数据库表前缀 
 	'DB_CHARSET'=>'utf8', // 字符集
-	'DB_DEBUG'=>'true', // 数据库调试模式 开启后可以记录SQL日志
+	'DB_DEBUG'=>'false', // 数据库调试模式 开启后可以记录SQL日志
 
 
 	// 模板路径替换规则
