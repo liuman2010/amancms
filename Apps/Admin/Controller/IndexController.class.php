@@ -78,6 +78,7 @@ class IndexController extends CommonController
         $data['HTML_CACHE_ON']      =        C('HTML_CACHE_ON');
         $data['HTML_FILE_SUFFIX']   =        C('HTML_FILE_SUFFIX');
         $data['HTML_CACHE_TIME']    =        C('HTML_CACHE_TIME');
+        $data['ALLOW_TYPE']         =        C('ALLOW_TYPE');
         $data['IMG_WIDTH']          =        C('IMG_WIDTH');
         $data['IMG_HEIGHT']         =        C('IMG_HEIGHT');
         $data['MAX_SIZE']           =        C('MAX_SIZE');
@@ -91,7 +92,6 @@ class IndexController extends CommonController
         $data['DB_CHARSET']         =        C('DB_CHARSET');
         $data['DB_DEBUG']           =        C('DB_DEBUG');
         $this->assign('data',$data);
-        var_dump($data);
         $this->display();
     }
 
@@ -113,7 +113,6 @@ class IndexController extends CommonController
             // 替换表单提交过来的新数据
             $configStr = preg_replace("/\'{$key}\'\s*=>\s*\'(.*)?\'/", "'{$key}'=>'{$value}'", $configStr);
         }
-        // var_dump($configStr);exit;
         if(file_put_contents( $file, $configStr) )
         {   
             // 删除一下缓存文件夹
@@ -134,16 +133,36 @@ class IndexController extends CommonController
 
     // 显示数据库替换模板
     public function showTables()
-    {
-        echo '数据库替换';
+    {   
+
+        // 实例化一个model对象 没有对应任何数据表
+        $model   = new \Think\Model();
+        $dbName  = C('DB_NAME'); 
+        $tablesArrs    = $model->query("show tables from {$dbName}");
+        $this->assign('data',$tablesArrs);
+        $this->display();
     }
 
-    
+
 
     // 数据库替换
     public function replaceData()
     {
-        echo '数据库替换';
+        if(IS_AJAX){
+            $tableName      = I("post.tableName");
+            $model = new \Think\Model();
+            $data = $model->query("SHOW COLUMNS FROM {$tableName}");
+            $fields = array_column($data,"field");
+            $this->ajaxReturn($fields);
+        }
+        else
+        {
+             // UPDATE `gc3yrrsbjv_cms`.`nx_article` SET `content` = REPLACE(`content`, 'controls=""', 'controls="controls" autoplay="autoplay"') WHERE `content` LIKE '%controls=""%';
+            if(IS_POST)
+            {
+                echo 1;
+            }
+        }
     }
 
 
@@ -267,7 +286,7 @@ class IndexController extends CommonController
         $path   = RUNTIME_PATH;
         $html = $this->delDir($path);
         echo $html;
-        echo '更新成功！';
+        $this->redirect('Index/main','',3,'<span style="color:green">一键更新成功！</span><br>页面跳转中...请稍后...');
     }
 
 

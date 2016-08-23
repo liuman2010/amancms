@@ -1,0 +1,39 @@
+<include file='Public/head' />
+
+
+	<div class="col-lg-2">
+		<table class='table table-bordered  table-hover'>
+			<caption><h1>数据库表</h1></caption>
+			<tr><th>数据库名</th></tr>
+			<volist name='data' id='list'>
+				<tr>
+					<td>{$list.title}</td>
+				</tr>
+			</volist>
+		</table>
+					<a href="__URL__/blackup" class='btn btn-success'>一键备份</a>  <a href="__URL__/index" class='btn btn-danger'>返回</a>
+		<br>
+		<br>
+		</div>
+
+	</div>
+	<div class="col-lg-10">
+		<table class='table table-bordered  table-hover'>
+			<caption><h1>数据库备份列表</h1></caption>
+			<tr>
+				<th>文件路径</th>
+				<th>创建时间</th>
+				<th>操作</th>
+			</tr>
+			<volist name='fileNames' id='list'>
+				<tr>
+					<td>{$list.path}</td>
+					<td>{$list.ctime|date="Y-m-d H:i:s",###}</td>
+					<td>
+						<a href="__URL__/restore/filename/{$list.path}" class='btn btn-warning btn-xs'>一键还原</a> | 
+						<a href="__URL__/del/filename/{$list.path}" class='btn btn-danger btn-xs'>删除</a>
+					</td>
+				</tr>
+			</volist>
+		</table>
+	</div>	

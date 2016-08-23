@@ -19,6 +19,10 @@ define('APP_PATH','./Apps/');
 
 // 绑定Home目录 不绑定的话RBAC限制不了这个模块
 define("BIND_MODULE","Home");
+
+// 定义运行时目录
+define('RUNTIME_PATH','./Runtime/');
+
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';
 

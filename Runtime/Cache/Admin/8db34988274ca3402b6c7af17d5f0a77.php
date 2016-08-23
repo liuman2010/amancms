@@ -1,5 +1,18 @@
-<include file='Index/head' />
-<form action="__URL__/setConfig" method='post' >
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
+   <title>诺信网站管理系统 V2.0</title>
+   <script type="text/javascript" src="/Public/static/js/jquery.min.js"></script>
+   <script type="text/javascript" src="/Public/static/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="/Public/static/css/main.css" />
+   <link rel="stylesheet" type="text/css" href="/Public/static/css/bootstrap.min.css" />
+</head>
+<body>
+
+<form action="/admin.php/index/setConfig" method='post' >
 <div class="col-xs-12">
 	<div class="col-xs-1"></div>
 	<div class="col-xs-8">
@@ -14,31 +27,31 @@
 		   <tbody>
 		      <tr>
 		         <td><h4>网站域名:</h4></td>
-		         <td><input type="text" class="form-control" name='DOMAINS' value="{$data.DOMAINS}"></td>
+		         <td><input type="text" class="form-control" name='DOMAINS' value="<?php echo ($data["DOMAINS"]); ?>"></td>
 		      </tr>
 
 		      <tr>
 		         <td><h4>IP地址:</h4></td>
-		         <td><input type="text" class="form-control" name='IP_ADDER' value="{$data.IP_ADDER}"></td>
+		         <td><input type="text" class="form-control" name='IP_ADDER' value="<?php echo ($data["IP_ADDER"]); ?>"></td>
 		      </tr>	
 
 		      <tr>
 		         <td><h4>前台默认模板:</h4></td>
-		         <td><input type="text" class="form-control" name='DEFAULT_TPL' value="{$data.DEFAULT_TPL}"></td>
+		         <td><input type="text" class="form-control" name='DEFAULT_TPL' value="<?php echo ($data["DEFAULT_TPL"]); ?>"></td>
 		      </tr>	
 
 		      <tr>
 		         <td><h4>开启静态缓存:</h4></td>
-		         <td><input type="text" class="form-control" name='HTML_CACHE_ON' value="{$data.HTML_CACHE_ON}"></td>
+		         <td><input type="text" class="form-control" name='HTML_CACHE_ON' value="<?php echo ($data["HTML_CACHE_ON"]); ?>"></td>
 		      </tr>	
 		      
 		     <tr>
 		         <td><h4>缓存有效期(秒):</h4></td>
-		         <td><input type="text" class="form-control" name='HTML_CACHE_TIME' value="{$data.HTML_CACHE_TIME}"></td>
+		         <td><input type="text" class="form-control" name='HTML_CACHE_TIME' value="<?php echo ($data["HTML_CACHE_TIME"]); ?>"></td>
 		      </tr>	
 			<tr>
 		         <td><h4>缓存文件后缀:</h4></td>
-		         <td><input type="text" class="form-control" name='HTML_FILE_SUFFIX' value="{$data.HTML_FILE_SUFFIX}"></td>
+		         <td><input type="text" class="form-control" name='HTML_FILE_SUFFIX' value="<?php echo ($data["HTML_FILE_SUFFIX"]); ?>"></td>
 		      </tr>	
 
 
@@ -70,60 +83,56 @@
 		   <tbody>
 		      <tr>
 		         <td><h4>链接类型:</h4></td>
-		         <td><input type="text" class="form-control" name='DB_TYPE' value="{$data.DB_TYPE}"></td>
+		         <td><input type="text" class="form-control" name='DB_TYPE' value="<?php echo ($data["DB_TYPE"]); ?>"></td>
 		      </tr>
 		      <tr>
 		         <td><h4>服务器:</h4></td>
-		         <td><input type="text" class="form-control" name='DB_HOST' value="{$data.DB_HOST}"></td>
+		         <td><input type="text" class="form-control" name='DB_HOST' value="<?php echo ($data["DB_HOST"]); ?>"></td>
 		      </tr>
 
 		      <tr>
 		         <td><h4>用户名:</h4></td>
-		         <td><input type="text" class="form-control" name='DB_USER' value="{$data.DB_USER}"></td>
+		         <td><input type="text" class="form-control" name='DB_USER' value="<?php echo ($data["DB_USER"]); ?>"></td>
 		      </tr>	
 
 		      <tr>
 		         <td><h4>数据库名:</h4></td>
-		         <td><input type="text" class="form-control" name='DB_NAME' value="{$data.DB_NAME}"></td>
+		         <td><input type="text" class="form-control" name='DB_NAME' value="<?php echo ($data["DB_NAME"]); ?>"></td>
 		      </tr>	
 
 		      <tr>
 		         <td><h4>密码:</h4></td>
-		         <td><input type="text" class="form-control" name='DB_PWD' value="{$data.DB_PWD}"></td>
+		         <td><input type="text" class="form-control" name='DB_PWD' value="<?php echo ($data["DB_PWD"]); ?>"></td>
 		      </tr>
 
 		      <tr>
 		         <td><h4>端口:</h4></td>
-		         <td><input type="text" class="form-control" name='DB_PORT' value="{$data.DB_PORT}"></td>
+		         <td><input type="text" class="form-control" name='DB_PORT' value="<?php echo ($data["DB_PORT"]); ?>"></td>
 		      </tr>
 
 		      <tr>
 		         <td><h4>前缀:</h4></td>
-		         <td><input type="text" class="form-control" name='DB_PREFIX' value="{$data.DB_PREFIX}"></td>
+		         <td><input type="text" class="form-control" name='DB_PREFIX' value="<?php echo ($data["DB_PREFIX"]); ?>"></td>
 		      </tr>
 
 		      <tr>
 		         <td><h4>链接编码:</h4></td>
-		         <td><input type="text" class="form-control" name='DB_CHARSET' value="{$data.DB_CHARSET}"></td>
+		         <td><input type="text" class="form-control" name='DB_CHARSET' value="<?php echo ($data["DB_CHARSET"]); ?>"></td>
 		      </tr>
 
 		      <tr>
 		         <td><h4>调试模式:</h4></td>
 		            <td>
-			         	<switch name='data.DB_DEBUG'>
-
-			         		<case value='true'>
-							   	<label>
+			         	<?php switch($data["DB_DEBUG"]): case "true": ?><label>
 							      <input type="radio" name="DB_DEBUG" 
 							         value="true" checked> 开启
 							   </label>
 							   	<label>
 							      <input type="radio" name="DB_DEBUG" 
 							         value="false"> 关闭
-							   </label>
-							   </case>
+							   </label><?php break;?>
 
-			         		<default />
+			         		<?php default: ?>
 							   	<label>
 							      <input type="radio" name="DB_DEBUG" 
 							         value="true" > 开启
@@ -131,9 +140,7 @@
 							   	<label>
 							      <input type="radio" name="DB_DEBUG" 
 							         value="false" checked> 关闭
-							   </label>
-
-			         	</switch>
+							   </label><?php endswitch;?>
 					</td>
 		      </tr>
 
@@ -163,20 +170,16 @@
 		         <td><h4>水印设置:</h4></td>
 		         <td>
 					   	
-					   <switch name='data.WATER_MARK'>
-
-			         		<case value='true'>
-							   	<label>
+					   <?php switch($data["WATER_MARK"]): case "true": ?><label>
 							      <input type="radio" name="WATER_MARK" 
 							         value="true" checked> 开启
 							   </label>
 							   	<label>
 							      <input type="radio" name="WATER_MARK" 
 							         value="false"> 关闭
-							   </label>
-							   </case>
+							   </label><?php break;?>
 
-			         		<default />
+			         		<?php default: ?>
 							   	<label>
 							      <input type="radio" name="WATER_MARK" 
 							         value="true" > 开启
@@ -184,9 +187,7 @@
 							   	<label>
 							      <input type="radio" name="WATER_MARK" 
 							         value="false" checked> 关闭
-							   </label>
-
-			         	</switch>
+							   </label><?php endswitch;?>
 				</td>
 		      </tr>
 		      <tr>
@@ -207,29 +208,29 @@
 		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="p2" value="2">底部居中</label>
 		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="p3" value="3" >底部右边</label>
 		         		<script>
-		         			$(".p{$data.WATER_POSITION}").attr({"checked":"checked"});
+		         			$(".p<?php echo ($data["WATER_POSITION"]); ?>").attr({"checked":"checked"});
 		         		</script>
 		         	</p>
 		         </td>
 		      </tr>
 		      <tr>
 		         <td><h4>允许上传的类型:</h4></td>
-		         <td><input type="text" class="form-control" name='ALLOW_TYPE' value="{$data.ALLOW_TYPE}"></td>
+		         <td><input type="text" class="form-control" name='ALLOW_TYPE' value="<?php echo ($data["ALLOW_TYPE"]); ?>"></td>
 		      </tr>
 
 		      <tr>
 		         <td><h4>缩略图宽度:</h4></td>
-		         <td><input type="text" class="form-control" name='IMG_WIDTH' value="{$data.IMG_WIDTH}"></td>
+		         <td><input type="text" class="form-control" name='IMG_WIDTH' value="<?php echo ($data["IMG_WIDTH"]); ?>"></td>
 		      </tr>	
 
 		      <tr>
 		         <td><h4>缩略图高度:</h4></td>
-		         <td><input type="text" class="form-control" name='IMG_HEIGHT' value="{$data.IMG_HEIGHT}"></td>
+		         <td><input type="text" class="form-control" name='IMG_HEIGHT' value="<?php echo ($data["IMG_HEIGHT"]); ?>"></td>
 		      </tr>	
 
 		      <tr>
 		         <td><h4>最大上传限制(Kb):</h4></td>
-		         <td><input type="text" class="form-control" name='MAX_SIZE' value="{$data.MAX_SIZE}"></td>
+		         <td><input type="text" class="form-control" name='MAX_SIZE' value="<?php echo ($data["MAX_SIZE"]); ?>"></td>
 		      </tr>	
 				
 		   </tbody>
@@ -243,7 +244,7 @@
 <div class="col-xs-12 submit" style=' width: 100%;position: fixed;bottom: 0px;left: 0px;margin-bottom: 5px;'>
 	<div class="col-xs-1"></div>
 	<div class="col-xs-2">
-		<button class='btn btn-success'>保存</button> <a href="__URL__/" class='btn btn-danger'>返回</a>
+		<button class='btn btn-success'>保存</button> <a href="/admin.php/index/" class='btn btn-danger'>返回</a>
 	</div>
 </div>
 
