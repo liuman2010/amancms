@@ -133,16 +133,41 @@ class IndexController extends CommonController
 
     // 显示数据库替换模板
     public function showTables()
-    {
-        echo '数据库替换';
+    {   
+
+        // 实例化一个model对象 没有对应任何数据表
+        $model   = new \Think\Model();
+        $dbName  = C('DB_NAME'); 
+        $tablesArrs    = $model->query("show tables from {$dbName}");
+        $this->assign('data',$tablesArrs);
+        $this->display();
     }
 
-    
+    // // 获取该数据表的所有字段
+    // public function getColumnsList()
+    // {
+
+    // }
 
     // 数据库替换
     public function replaceData()
     {
-        echo '数据库替换';
+        if(IS_AJAX){
+            $tableName      = I("post.tableName");
+            $tableName      = 'nx_user';
+            $model = new \Think\Model();
+            $data = $model->query("SHOW COLUMNS FROM {$tableName}");
+            $fields = array_column($data,"field");
+            $this->ajaxReturn($fields);
+        }
+        else
+        {
+             // UPDATE `gc3yrrsbjv_cms`.`nx_article` SET `content` = REPLACE(`content`, 'controls=""', 'controls="controls" autoplay="autoplay"') WHERE `content` LIKE '%controls=""%';
+            if(IS_POST)
+            {
+                echo 1;
+            }
+        }
     }
 
 
@@ -266,7 +291,7 @@ class IndexController extends CommonController
         $path   = RUNTIME_PATH;
         $html = $this->delDir($path);
         echo $html;
-        echo '更新成功！';
+        $this->redirect('Index/main','',3,'<span style="color:green">一键更新成功！</span><br>页面跳转中...请稍后...');
     }
 
 
