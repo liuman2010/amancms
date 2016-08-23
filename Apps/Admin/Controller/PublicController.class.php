@@ -34,7 +34,7 @@ class PublicController extends Controller
 				// 比较 COOKIE的用户密码 和 查询数据库返回的用户密码
 				if( $_COOKIE["password"] != $userInfo['password'] )
 				{
-					$this->error('cookie中的密码错误！请重新登录吧！',"Public/login");
+					$this->error('cookie中的密码错误！请重新登录吧！',U("Public/login"));
 				}
 
 				$_SESSION[ C('USER_AUTH_KEY') ]  = $userInfo['id'];
@@ -137,11 +137,11 @@ class PublicController extends Controller
 			unset( $_SESSION[C('USER_AUTH_KEY')] );
 			unset( $_SESSION );
 			session_destroy();
-			$this->success('退出成功！');
+			$this->success('退出成功！',U("Public/login",1));
 		}
 		else
 		{
-			$this->error('您还没登录！3秒后转去登录页面','login',3);
+			$this->error('您还没登录！3秒后转去登录页面',U("Public/login",1));
 		}
 	}//f
   	
@@ -165,11 +165,7 @@ class PublicController extends Controller
 	}//f
 
 
-    public function test()
-    {
-    	$info = M('User')->select();
-    	var_dump($_SESSION['_ACCESS_LIST']);
-    }
+
 
 
 }//c

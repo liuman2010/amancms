@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<form action="/admin.php/Index/setConfig" method='post' >
+<form action="/admin.php/index/setConfig" method='post' >
 <div class="col-sm-12">
 	<div class="col-sm-1"></div>
 	<div class="col-sm-8">
@@ -107,7 +107,7 @@
 
 		      <tr>
 		         <td><h4>端口:</h4></td>
-		         <td><input type="text" class="form-control" name='DB_ROOT' value="<?php echo ($data["DB_ROOT"]); ?>"></td>
+		         <td><input type="text" class="form-control" name='DB_PORT' value="<?php echo ($data["DB_PORT"]); ?>"></td>
 		      </tr>
 
 		      <tr>
@@ -122,24 +122,25 @@
 
 		      <tr>
 		         <td><h4>调试模式:</h4></td>
-		               <td>
-		         	<?php switch($data["DB_DEBUG"]): case "true": ?><label>
-						      <input type="radio" name="DEBUG" id="DEBUG" 
-						         value="1" checked> 开启
-						   </label>
-						   	<label>
-						      <input type="radio" name="DEBUG" id="DEBUG" 
-						         value="0"> 关闭
-						   </label><?php break;?>
-		         		<?php default: ?>
-						   	<label>
-						      <input type="radio" name="DEBUG" id="DEBUG" 
-						         value="1" > 开启
-						   </label>
-						   	<label>
-						      <input type="radio" name="DEBUG" id="DEBUG" 
-						         value="0" checked> 关闭
-						   </label><?php endswitch;?>
+		            <td>
+			         	<?php switch($data["DB_DEBUG"]): case "true": ?><label>
+							      <input type="radio" name="DB_DEBUG" 
+							         value="true" checked> 开启
+							   </label>
+							   	<label>
+							      <input type="radio" name="DB_DEBUG" 
+							         value="false"> 关闭
+							   </label><?php break;?>
+
+			         		<?php default: ?>
+							   	<label>
+							      <input type="radio" name="DB_DEBUG" 
+							         value="true" > 开启
+							   </label>
+							   	<label>
+							      <input type="radio" name="DB_DEBUG" 
+							         value="false" checked> 关闭
+							   </label><?php endswitch;?>
 					</td>
 		      </tr>
 
@@ -169,42 +170,47 @@
 		         <td><h4>水印设置:</h4></td>
 		         <td>
 					   	
-					   <?php switch($data["WATER_MARK"]): case "1": ?><label>
-							      <input type="radio" name="WATER_MARK" id="WATER_MARK" 
-							         value="1" checked> 开启
+					   <?php switch($data["WATER_MARK"]): case "true": ?><label>
+							      <input type="radio" name="WATER_MARK" 
+							         value="true" checked> 开启
 							   </label>
 							   	<label>
-							      <input type="radio" name="WATER_MARK" id="WATER_MARK" 
-							         value="0"> 关闭
+							      <input type="radio" name="WATER_MARK" 
+							         value="false"> 关闭
 							   </label><?php break;?>
 
-							<?php case "0": ?><label>
-							      <input type="radio" name="WATER_MARK" id="WATER_MARK" 
-							         value="1" > 开启
+			         		<?php default: ?>
+							   	<label>
+							      <input type="radio" name="WATER_MARK" 
+							         value="true" > 开启
 							   </label>
 							   	<label>
-							      <input type="radio" name="WATER_MARK" id="WATER_MARK" 
-							         value="0" checked> 关闭
-							   </label><?php break; endswitch;?>
+							      <input type="radio" name="WATER_MARK" 
+							         value="false" checked> 关闭
+							   </label><?php endswitch;?>
 				</td>
 		      </tr>
 		      <tr>
 		         <td><h4>水印位置:</h4></td>
 		         <td>
 		         	<p>
-		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" id="WATER_POSITION" value="7">顶部左上</label><label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" id="WATER_POSITION" value="8">顶部居中</label><label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" id="WATER_POSITION" value="9">顶部右上</label>
+		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="7" value="7">顶部左上</label><label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="8" value="8">顶部居中</label><label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="9" value="9">顶部右上</label>
 		         	</p>
 		         	<p>
-		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" id="WATER_POSITION" value="4">中部左边</label><label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" id="WATER_POSITION" value="5">中部居中</label><label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" id="WATER_POSITION" value="6">中部右边</label>
+		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="1" value="4">中部左边</label><label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="1" value="5">中部居中</label><label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="1" value="6">中部右边</label>
 		         	</p>
 		         	<p>
-		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" id="WATER_POSITION" value="1">底部左边</label><label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" id="WATER_POSITION" value="2">底部居中</label><label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" id="WATER_POSITION" value="3" checked>底部右边</label>
+		         		<label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="1" value="1">底部左边</label><label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="1" value="2">底部居中</label><label>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="WATER_POSITION" class="1" value="3" >底部右边</label>
+		         		<script>
+		         		alert(1);
+		         			$('.7').attr("checked");
+		         		</script>
 		         	</p>
 		         </td>
 		      </tr>
 		      <tr>
 		         <td><h4>允许上传的类型:</h4></td>
-		         <td><input type="text" class="form-control" name='ALLOW_TYPE' value="jpg|gif|png"></td>
+		         <td><input type="text" class="form-control" name='ALLOW_TYPE' value="<?php echo ($data["ALLOW_TYPE"]); ?>"></td>
 		      </tr>
 
 		      <tr>
@@ -237,7 +243,7 @@
 <div class="col-sm-12 submit" style=' width: 100%;position: fixed;bottom: 0px;left: 0px;margin-bottom: 5px;'>
 	<div class="col-sm-1"></div>
 	<div class="col-sm-2">
-		<button class='btn btn-success'>提交修改</button>　　<a href="/admin.php/Index/" class='btn btn-danger'>返回</a>
+		<button class='btn btn-success'>提交修改</button>　　<a href="/admin.php/index/" class='btn btn-danger'>返回</a>
 	</div>
 </div>
 

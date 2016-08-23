@@ -74,8 +74,24 @@ class IndexController extends CommonController
         $data['IP_ADDER']           =        C('IP_ADDER');
         $data['DEFAULT_TPL']        =        C('DEFAULT_TPL');
         $data['WATER_MARK']         =        C('WATER_MARK');
+        $data['WATER_POSITION']     =        C('WATER_POSITION');
         $data['HTML_CACHE_ON']      =        C('HTML_CACHE_ON');
+        $data['HTML_FILE_SUFFIX']   =        C('HTML_FILE_SUFFIX');
+        $data['HTML_CACHE_TIME']    =        C('HTML_CACHE_TIME');
+        $data['IMG_WIDTH']          =        C('IMG_WIDTH');
+        $data['IMG_HEIGHT']         =        C('IMG_HEIGHT');
+        $data['MAX_SIZE']           =        C('MAX_SIZE');
+        $data['DB_TYPE']            =        C('DB_TYPE');
+        $data['DB_HOST']            =        C('DB_HOST');
+        $data['DB_NAME']            =        C('DB_NAME');
+        $data['DB_USER']            =        C('DB_USER');
+        $data['DB_PWD']             =        C('DB_PWD');
+        $data['DB_PORT']            =        C('DB_PORT');
+        $data['DB_PREFIX']          =        C('DB_PREFIX');
+        $data['DB_CHARSET']         =        C('DB_CHARSET');
+        $data['DB_DEBUG']           =        C('DB_DEBUG');
         $this->assign('data',$data);
+        var_dump($data);
         $this->display();
     }
 
@@ -99,7 +115,10 @@ class IndexController extends CommonController
         }
         // var_dump($configStr);exit;
         if(file_put_contents( $file, $configStr) )
-        {
+        {   
+            // 删除一下缓存文件夹
+            $path   = RUNTIME_PATH;
+            $this->delDir($path);
             $this->success('修改成功！');
         }
         else
@@ -245,8 +264,9 @@ class IndexController extends CommonController
     // 一键更新网站
     public function refresh()
     {
-        $path   = './Apps/Runtime';
-        $status = $this->delDir($path);
+        $path   = RUNTIME_PATH;
+        $html = $this->delDir($path);
+        echo $html;
         echo '更新成功！';
     }
 
@@ -255,6 +275,7 @@ class IndexController extends CommonController
     // 删除缓存目录
     private function delDir($path)
     {   
+        global $html;
         // 如果能打开这个目录句柄
         if( $handle = opendir($path) )
         {
@@ -279,7 +300,7 @@ class IndexController extends CommonController
                     if( is_int(strpos( $filename,'log' )) ) continue;
                     if(unlink($filePath))
                     {
-                        echo "<span style='color:red'>已删除缓存文件:　".$filename."</span><br>";
+                        $html .= "<span style='color:red'>已删除缓存文件:　".$filename."</span><br>";
                     }
                 }
             }//w
@@ -290,12 +311,12 @@ class IndexController extends CommonController
             {
                 if(rmdir($path))
                 {
-                    echo "<span style='color:green'>已删除缓存目录:　".$path."</span><br>"; 
+                    $html .= "<span style='color:green'>已删除缓存目录:　".$path."</span><br>"; 
                 }
             }
 
         } 
-       
+    return $html;
     }//f
    
 

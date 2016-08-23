@@ -3,14 +3,14 @@ return array(
   
 	// 自定义配置     
 	'DOMAINS'=>'www.baidu.com',
-	'IP_ADDER'=>'192.168.1.1',
+	'IP_ADDER'=>'192.168.2.254',
 	'DEFAULT_TPL'=>'default',
-	'WATER_MARK'=>'amancms',
-	'WATER_POSITION'=>'3',
-	'ALLOW_TYPE'=>'jpg|gif|png',
-	'IMG_WIDTH'=>'',
-	'IMG_HEIGHT'=>'',
-	'MAX_SIZE'=>'',
+	'WATER_MARK'=>'true',
+	'WATER_POSITION'=>'7',
+	'ALLOW_TYPE'=>'',
+	'IMG_WIDTH'=>'320',
+	'IMG_HEIGHT'=>'180',
+	'MAX_SIZE'=>'20480',
 
     // 模板渲染配置
 	'TMPL_L_DELIM'=>'{',
@@ -18,16 +18,16 @@ return array(
 
 
 	//数据库配置信息
-	'DB_TYPE'=>'', // 数据库类型
-	'DB_HOST'=>'', // 服务器地址
-	'DB_NAME'=>'', // 数据库名
-	'DB_USER'=>'', // 用户名
-	'DB_PWD'=>'', // 密码
+	'DB_TYPE'=>'mysqli', // 数据库类型
+	'DB_HOST'=>'localhost', // 服务器地址
+	'DB_NAME'=>'amancms', // 数据库名
+	'DB_USER'=>'root', // 用户名
+	'DB_PWD'=>'123qwe', // 密码
 	'DB_PORT'   => 3306, // 端口
 	// 'DB_PARAMS' =>  array(), // 数据库连接参数
-	'DB_PREFIX'=>'', // 数据库表前缀 
-	'DB_CHARSET'=>'', // 字符集
-	'DB_DEBUG'  =>  'true', // 数据库调试模式 开启后可以记录SQL日志
+	'DB_PREFIX'=>'nx_', // 数据库表前缀 
+	'DB_CHARSET'=>'utf8', // 字符集
+	'DB_DEBUG'=>'true', // 数据库调试模式 开启后可以记录SQL日志
 
 
 	// 模板路径替换规则
@@ -41,9 +41,9 @@ return array(
 
 
 	// 缓存设置
-	'HTML_CACHE_ON'=>'false', // 开启静态缓存
+	'HTML_CACHE_ON'=>'true', // 开启静态缓存
 	'HTML_CACHE_TIME'   =>    60,   // 全局静态缓存有效期（秒）
-	'HTML_FILE_SUFFIX'=>'', // 设置静态缓存文件后缀
+	'HTML_FILE_SUFFIX'=>'.shtml', // 设置静态缓存文件后缀
 	'HTML_CACHE_RULES'  =>     array(  // 定义静态缓存规则
 	),
 
@@ -57,9 +57,9 @@ return array(
 	'USER_AUTH_GATEWAY'	        =>	'/Public/login',			// 默认认证网关
 	'NOT_AUTH_MODULE'		    =>	'Public',					// 默认无需认证模块
 	'REQUIRE_AUTH_MODULE'       =>	'',							// 默认需要认证模块
-	'NOT_AUTH_ACTION'		    =>	'login',					// 默认无需认证操作 登录、检查登录、退出登录、验证码
+	'NOT_AUTH_ACTION'		    =>	'',							// 默认无需认证操作 登录、检查登录、退出登录、验证码
 	'REQUIRE_AUTH_ACTION'       =>	'',							// 默认需要认证操作
-    'GUEST_AUTH_ON'             =>	'false',    					// 是否开启游客授权访问
+    'GUEST_AUTH_ON'             =>	'false',					// 是否开启游客授权访问
     'GUEST_AUTH_ID'             =>	0,     						// 游客的用户ID
     'RBAC_ERROR_PAGE' 			=>	'/Public/Forbidden.html',   // 定义错误提示页面
     "RBAC_ROLE_TABLE" 			=>	'nx_role',            		// 角色表名称(必配)
