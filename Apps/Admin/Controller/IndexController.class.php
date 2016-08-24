@@ -162,7 +162,8 @@ class IndexController extends CommonController
     public function replaceData()
     {
         $model = new \Think\Model();
-        if(IS_AJAX){
+        if(IS_AJAX)
+        {
             $tableName      = I("post.tableName");
             $data = $model->query("SHOW COLUMNS FROM {$tableName}");
             $fields = array_column($data,"field");
@@ -190,28 +191,38 @@ class IndexController extends CommonController
                 
                 // 模糊匹配条件
                 $like          = I("post.like");
+
+                // var_dump($_POST);exit;
+                // UPDATE `amancms`.`nx_article` SET `content` = REPLACE(`content`, 'video', 'aman') WHERE `content` LIKE '%video%' COLLATE utf8mb4_bin
+                $replace               = "UPDATE {$tableName} SET {$columnName}= REPLACE({$columnName},'{$before}','{$after}') WHERE {$columnName} LIKE '{$before}'";
+                $likeReplace           = "UPDATE {$tableName} SET {$columnName}= REPLACE({$columnName},'{$like}','{$after}') WHERE {$columnName} LIKE '%{$like}%'";
+                // echo $likeReplace;exit;
+                // $likeReplace   = "UPDATE {$tableName} SET {$columnName}= '{$after}' WHERE {$columnName} LIKE '%{$like}%'";
                 
-                $replace       = "UPDATE {$tableName} SET {$columnName}= REPLACE({$columnName},'{$before}','{$after}') WHERE {$columnName}='{$before}'";
-                $likeReplace   = "UPDATE {$tableName} SET {$columnName}= '{$after}' WHERE {$columnName} LIKE '%{$like}%'";
-                
+                // echo $likeReplace;exit;
                 // 执行替换语句
                 if(empty($like))
                 {
-                    $status        = $model->execute($replace);
+                    $n = $model->execute($replace);
                 }
                 else
                 {
-                    $status        = $model->execute($likeReplace);
+                    $n = $model->execute($likeReplace);
+                }
+                
+                if($n == 0)
+                {
+                    $this->error("替换失败！","showTables",3);
+                }
+                else
+                {
+                    $this->success("替换成功！共有{$n}条数据被替换！","showTables",3);
                 }
 
-                //$status = $model->execute('UPDATE `{$databaseName}`.`{$tableName}` SET `{$columnName}` = REPLACE(`{$columnName}`, "{$before}","{$after}") WHERE `{$columnName}` LIKE "%{$before}%" ');
-                //$status = $model->execute("UPDATE nx_user SET email= 'default@qq.com' WHERE email LIKE  ''");
-                //$status = $model->query("SELECT * FROM nx_user WHERE id>4 ");
-                // UPDATE nx_user SET username = replace(username, 'aman', 'djkk') WHERE id>0; 
-                var_dump($status);
             }
         }
-    }
+
+    }//f
 
 
 

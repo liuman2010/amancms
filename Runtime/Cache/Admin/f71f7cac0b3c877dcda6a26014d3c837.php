@@ -1,4 +1,17 @@
-<include file='Index/head' />
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
+   <title>诺信网站管理系统 V2.0</title>
+   <script type="text/javascript" src="/Public/static/js/jquery.min.js"></script>
+   <script type="text/javascript" src="/Public/static/js/bootstrap.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="/Public/static/css/main.css" />
+   <link rel="stylesheet" type="text/css" href="/Public/static/css/bootstrap.min.css" />
+</head>
+<body>
+
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="row">
@@ -10,9 +23,7 @@
 							<div class="col-xs-12">
 								<select  class='form-control select_column'>
 									<option value="all" class="form-control">在所有数据表中</option>
-									<volist name='data' id='list'>
-											<option value="{$list.tables_in_amancms}" class="form-control">在{$list.tables_in_amancms}表中</option>
-									</volist>
+									<?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><option value="<?php echo ($list["tables_in_amancms"]); ?>" class="form-control">在<?php echo ($list["tables_in_amancms"]); ?>表中</option><?php endforeach; endif; else: echo "" ;endif; ?>
 								</select>
 
 							</div>
@@ -20,15 +31,13 @@
 				<br>
 					<div class="row">
 						<div class="col-xs-12">
-							<form action='__URL__/replaceData' method='post' class="form-horizontal" role="form">
-							<input type="hidden" class='tableName' name="tableName" value="{$firstTableName}" />
+							<form action='/admin.php/index/replaceData' method='post' class="form-horizontal" role="form">
+							<input type="hidden" class='tableName' name="tableName" value="<?php echo ($firstTableName); ?>" />
 							<div class="form-group">
 							      <label for="column" class="col-xs-3 control-label">替换的字段：</label>
 								      <div class="col-xs-9">
 								        	<select name="columnName" id="column" class='form-control'>
-								        		<volist name="firstData" id='list'>
-								        			<option value="{$list}">{$list}</option>
-								        		</volist>
+								        		<?php if(is_array($firstData)): $i = 0; $__LIST__ = $firstData;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><option value="<?php echo ($list); ?>"><?php echo ($list); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
 								        	</select>
 								      </div>
 							   </div>
@@ -62,7 +71,7 @@
 							   <div class="form-group">
 							      <div class="col-xs-offset-2 col-xs-10">
 							         <button type="submit" class="btn btn-success"><span class='glyphicon glyphicon-ok'></span> 提交</button>
-							         <a href="{:U('Index/showTables')}" type="reset"  class="btn btn-info"><span class='glyphicon glyphicon-refresh'></span> 重置</a>
+							         <a href="<?php echo U('Index/showTables');?>" type="reset"  class="btn btn-info"><span class='glyphicon glyphicon-refresh'></span> 重置</a>
 							      </div>
 							   </div>
 
@@ -94,7 +103,7 @@
 		var tableName = $(this).val();
 		$(".tableName").val(tableName);
 		// 获取该数据表的所有字段
-		$.post("__URL__/replaceData",{"tableName":tableName},
+		$.post("/admin.php/index/replaceData",{"tableName":tableName},
 					function(data)
 					{
 						var options;

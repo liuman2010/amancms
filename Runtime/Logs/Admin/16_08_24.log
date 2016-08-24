@@ -1,0 +1,12 @@
+[ 2016-08-24T17:58:26+08:00 ] ::1 /admin.php/index/replaceData
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'all' at line 1
+ [ SQL语句 ] : SHOW COLUMNS FROM all
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'all' at line 1
+ [ SQL语句 ] : SHOW COLUMNS FROM all
+
+[ 2016-08-24T18:00:49+08:00 ] ::1 /admin.php/index/replaceData
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'all' at line 1
+ [ SQL语句 ] : SHOW COLUMNS FROM all
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'all' at line 1
+ [ SQL语句 ] : SHOW COLUMNS FROM all
+

@@ -29,7 +29,7 @@ return array(
 	// 'DB_PARAMS' =>  array(), // 数据库连接参数
 	'DB_PREFIX'=>'nx_', // 数据库表前缀 
 	'DB_CHARSET'=>'utf8', // 字符集
-	'DB_DEBUG'=>'true', // 数据库调试模式 开启后可以记录SQL日志
+	'DB_DEBUG'=>'false', // 数据库调试模式 开启后可以记录SQL日志
 
 
 	// 模板路径替换规则
