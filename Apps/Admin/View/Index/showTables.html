@@ -13,41 +13,34 @@
 											<option value="{$list.tables_in_amancms}" class="form-control">{$list.tables_in_amancms}</option>
 									</volist>
 								</select>
-									<script>
-									$(".select_column").change(function(data){
-										var tableName = $(this).val();
-										// 获取该数据表的所有字段
-										$.post("__URL__/replaceData",{"tableName":tableName},
-													function(data)
-													{
-														var options;
-														for (var i = 0 ; i <= data.length - 1; i++) {
-															options += "<option value='"+data[i]+"'>"+data[i]+"</option>"
-														};
-														$("#column").html(options);
-													}
-											  );
-									});
-								
-								</script>
+
 							</div>
 						</div>
 				<br>
 					<div class="row">
 						<div class="col-xs-12">
-							<form action='__URL__/doReplace' method='post' class="form-horizontal" role="form">
-							<input type="hidden" id='tableName' name="tableName" value="" />
+							<form action='__URL__/replaceData' method='post' class="form-horizontal" role="form">
+							<input type="hidden" class='tableName' name="tableName" value="{$firstTableName}" />
 							<div class="form-group">
-							      <label for="column" class="col-xs-3 control-label">替换的字段：</label>
+							      <label for="column" class="col-xs-3 control-label">被替换的字段：</label>
 								      <div class="col-xs-9">
-								        	<select name="column" id="column" class='form-control'>
-								        		<option value="null">请选择数据表</option>
+								        	<select name="columnName" id="column" class='form-control'>
+								        		<volist name="firstData" id='list'>
+								        			<option value="{$list}">{$list}</option>
+								        		</volist>
 								        	</select>
 								      </div>
 							   </div>
 
+							   <div class="form-group like_v">
+							      <label for="after" class="col-xs-3 control-label">模糊匹配条件：</label>
+								      <div class="col-xs-9">
+								   			<input type="text" class="form-control like" name='like'  
+							            placeholder="例如：@qq.com  匹配所有QQ邮箱">
+							      	  </div>
+							   </div>
 
-							   <div class="form-group">
+							   <div class="form-group before_v">
 							      <label for="before" class="col-xs-3 control-label">替　换　前：</label>
 							      <div class="col-xs-9">
 							         <input type="text" class="form-control" name='before' id="before" 
@@ -56,18 +49,19 @@
 							   </div>
 
 
-								<div class="form-group">
+								<div class="form-group after_v">
 							      <label for="after" class="col-xs-3 control-label">替　换　后：</label>
 								      <div class="col-xs-9">
 								   			<input type="text" class="form-control" name='after' id="after" 
 							            placeholder="替换后的内容">
 							      	  </div>
 							   </div>
+
 							   
 							   <div class="form-group">
 							      <div class="col-xs-offset-2 col-xs-10">
 							         <button type="submit" class="btn btn-success"><span class='glyphicon glyphicon-ok'></span> 提交</button>
-							         <button type="reset"  class="btn btn-info"><span class='glyphicon glyphicon-refresh'></span> 重置</button>
+							         <a href="{:U('Index/showTables')}" type="reset"  class="btn btn-info"><span class='glyphicon glyphicon-refresh'></span> 重置</a>
 							      </div>
 							   </div>
 
@@ -78,8 +72,35 @@
 				</div>
 
 				<div class="col-xs-6">
-					数据库备份、还原
+					<!-- 数据库备份、还原 -->
 				</div>
 			</div>
 		</div>
 </div>
+
+<!-- 动态加载数据表字段  -->
+<script>
+	$(".like").focus(function(){
+		$(".before_v").fadeOut("slow");
+	});
+
+	$("#before").focus(function(){
+		$(".like_v").fadeOut("slow");
+	});
+
+	$(".select_column").change(function(data){
+		var tableName = $(this).val();
+		$(".tableName").val(tableName);
+		// 获取该数据表的所有字段
+		$.post("__URL__/replaceData",{"tableName":tableName},
+					function(data)
+					{
+						var options;
+						for (var i = 0 ; i <= data.length - 1; i++) {
+							options += "<option value='"+data[i]+"'>"+data[i]+"</option>"
+						};
+						$("#column").html(options);
+					}
+			  );
+	});
+</script>

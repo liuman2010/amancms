@@ -12,14 +12,16 @@ return array(
 	'IMG_HEIGHT'=>'180',
 	'MAX_SIZE'=>'20480',
 
-    // 模板渲染配置
+
+    // 系统配置
 	'TMPL_L_DELIM'=>'{',
 	'TEMP_R_DELIM'=>'}',
+	// 'SHOW_PAGE_TRACE' =>true,
 
 
 	//数据库配置信息
 	'DB_TYPE'=>'mysqli', // 数据库类型
-	'DB_HOST'=>'localhost', // 服务器地址
+	'DB_HOST'=>'127.0.0.1', // 服务器地址
 	'DB_NAME'=>'amancms', // 数据库名
 	'DB_USER'=>'root', // 用户名
 	'DB_PWD'=>'123qwe', // 密码
@@ -27,7 +29,7 @@ return array(
 	// 'DB_PARAMS' =>  array(), // 数据库连接参数
 	'DB_PREFIX'=>'nx_', // 数据库表前缀 
 	'DB_CHARSET'=>'utf8', // 字符集
-	'DB_DEBUG'=>'false', // 数据库调试模式 开启后可以记录SQL日志
+	'DB_DEBUG'=>'true', // 数据库调试模式 开启后可以记录SQL日志
 
 
 	// 模板路径替换规则

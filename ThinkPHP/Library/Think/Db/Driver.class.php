@@ -338,6 +338,7 @@ abstract class Driver {
         if($this->PDOStatement) {
             $error = $this->PDOStatement->errorInfo();
             $this->error = $error[1].':'.$error[2];
+        // var_dump($this->PDOStatement);
         }else{
             $this->error = '';
         }

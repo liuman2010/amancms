@@ -138,8 +138,21 @@ class IndexController extends CommonController
         // 实例化一个model对象 没有对应任何数据表
         $model   = new \Think\Model();
         $dbName  = C('DB_NAME'); 
-        $tablesArrs    = $model->query("show tables from {$dbName}");
+        
+        // 获取所有数据表字段信息
+        $tablesArrs    =  $model->query("show tables from {$dbName}");
         $this->assign('data',$tablesArrs);
+
+
+        // 获得第一个数据表表
+        $first = array_shift($tablesArrs);
+        $tableName  = $first['tables_in_amancms'];
+
+        $firstData = $model->query("SHOW COLUMNS FROM {$tableName}");
+        $fields    = array_column($firstData,"field");
+        $this->assign('firstData',$fields);
+        $this->assign('firstTableName',$tableName);
+
         $this->display();
     }
 
@@ -148,9 +161,9 @@ class IndexController extends CommonController
     // 数据库替换
     public function replaceData()
     {
+        $model = new \Think\Model();
         if(IS_AJAX){
             $tableName      = I("post.tableName");
-            $model = new \Think\Model();
             $data = $model->query("SHOW COLUMNS FROM {$tableName}");
             $fields = array_column($data,"field");
             $this->ajaxReturn($fields);
@@ -159,8 +172,43 @@ class IndexController extends CommonController
         {
              // UPDATE `gc3yrrsbjv_cms`.`nx_article` SET `content` = REPLACE(`content`, 'controls=""', 'controls="controls" autoplay="autoplay"') WHERE `content` LIKE '%controls=""%';
             if(IS_POST)
-            {
-                echo 1;
+            {   
+                // 数据库名
+                $databaseName  = C("DB_NAME");
+                
+                // 数据表
+                $tableName     = I("post.tableName");
+
+                // 字段
+                $columnName    = I("post.columnName");
+
+                // 替换前
+                $before        = I("post.before");
+
+                // 替换后
+                $after         = I("post.after");
+                
+                // 模糊匹配条件
+                $like          = I("post.like");
+                
+                $replace       = "UPDATE {$tableName} SET {$columnName}= REPLACE({$columnName},'{$before}','{$after}') WHERE {$columnName}='{$before}'";
+                $likeReplace   = "UPDATE {$tableName} SET {$columnName}= '{$after}' WHERE {$columnName} LIKE '%{$like}%'";
+                
+                // 执行替换语句
+                if(empty($like))
+                {
+                    $status        = $model->execute($replace);
+                }
+                else
+                {
+                    $status        = $model->execute($likeReplace);
+                }
+
+                //$status = $model->execute('UPDATE `{$databaseName}`.`{$tableName}` SET `{$columnName}` = REPLACE(`{$columnName}`, "{$before}","{$after}") WHERE `{$columnName}` LIKE "%{$before}%" ');
+                //$status = $model->execute("UPDATE nx_user SET email= 'default@qq.com' WHERE email LIKE  ''");
+                //$status = $model->query("SELECT * FROM nx_user WHERE id>4 ");
+                // UPDATE nx_user SET username = replace(username, 'aman', 'djkk') WHERE id>0; 
+                var_dump($status);
             }
         }
     }
