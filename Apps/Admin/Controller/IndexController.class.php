@@ -192,12 +192,8 @@ class IndexController extends CommonController
                 // 模糊匹配条件
                 $like          = I("post.like");
 
-                // var_dump($_POST);exit;
-                // UPDATE `amancms`.`nx_article` SET `content` = REPLACE(`content`, 'video', 'aman') WHERE `content` LIKE '%video%' COLLATE utf8mb4_bin
-                $replace               = "UPDATE {$tableName} SET {$columnName}= REPLACE({$columnName},'{$before}','{$after}') WHERE {$columnName} LIKE '{$before}'";
+                $replace               = "UPDATE {$tableName} SET {$columnName}= REPLACE({$columnName},'{$before}','{$after}') WHERE {$columnName}='{$before}'";
                 $likeReplace           = "UPDATE {$tableName} SET {$columnName}= REPLACE({$columnName},'{$like}','{$after}') WHERE {$columnName} LIKE '%{$like}%'";
-                // echo $likeReplace;exit;
-                // $likeReplace   = "UPDATE {$tableName} SET {$columnName}= '{$after}' WHERE {$columnName} LIKE '%{$like}%'";
                 
                 // echo $likeReplace;exit;
                 // 执行替换语句

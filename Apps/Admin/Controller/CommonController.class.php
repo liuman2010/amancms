@@ -32,7 +32,7 @@ class CommonController extends Controller
           // 6.登陆，没有权限， 如果有错误页面则定向
           if ( C('USER_AUTH_GATEWAY') ) {
             // 定义权限错误页面
-            redirect( PHP_FILE.C('USER_AUTH_GATEWAY') );
+            redirect( C('RBAC_ERROR_PAGE') );
           } 
           //7.没有定义错误页面定向，跳到登陆页面
           else{

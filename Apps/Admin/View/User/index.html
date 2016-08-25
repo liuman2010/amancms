@@ -12,7 +12,7 @@
 	<div class="col-lg-12">
 		<table class='table table-bordered  table-hover'>
 			<tr>
-				<th>用户名</th><th>性别</th><th>所属组别</th><th>登录次数</th><th>最后登录时间</th><th>最后登录IP</th><th>最后登录地区</th><th>注册日期</th><th>操作</th>
+				<th>用户名</th><th>性别</th><th>所属组别</th><th>用户状态</th><th>登录次数</th><th>最后登录时间</th><th>最后登录IP</th><th>最后登录地区</th><th>注册日期</th><th>操作</th>
 				
 			</tr>
 			<volist name='data' id='list'>
@@ -35,6 +35,11 @@
 						</switch>
 					</td>
 
+					<td><switch name="list.status" >
+							<case value="0">已禁用</case>
+							<case value="1">已开启</case>
+							<default />无法判断状态
+						</switch></td> 
 					<td>{$list.num}</td> 
 
 					<td>
@@ -50,10 +55,10 @@
 
 				<td>{$list.ctime|date="Y-m-d",###}</td>
 
-				<td><a class='btn btn-warning btn-xs' href="__URL__/changeStatus/id/{$list.id}/status/{$list.status}" >
+				<td><a href="__URL__/changeStatus/id/{$list.id}/status/{$list.status}" >
 						<switch name="list.status" >
-							<case value="0">恢复</case>
-							<case value="1">禁用</case>
+							<case value="0"><p class='btn btn-success btn-xs'>恢复</p></case>
+							<case value="1"><p class='btn btn-warning btn-xs'>禁用</p></case>
 							<default />无法判断状态
 						</switch>
 					</a> | <a href="__URL__/del/id/{$list.id}" class='btn btn-danger btn-xs'>删除</a>
