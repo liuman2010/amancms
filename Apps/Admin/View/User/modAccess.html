@@ -1,0 +1,67 @@
+<include file='Index/head' />
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="col-xs-4"></div>
+			<div class="col-xs-4"><h1 class="text-center">{$Think.session.currentUserName}拥有的权限</h1> </div>
+			<div class="col-xs-4"></div>
+			
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12"><hr></div>
+	</div>
+
+	<div class="col-xs-12">
+			<form action="__URL__/updateAccess" method='post'>
+				<table class='table table-bordered  table-hover'>
+					<tr>
+						<th>节点ID号</th><th>等级</th><th>父ID</th><th>操作名</th><th>备注</th> <th>开启状态</th><th>拥有权限</th><th>操作</th>
+					</tr>
+					<input type="hidden" name='username' value='{$username}'>
+					<input type="hidden" name='group_id' value='{$group_id}'>
+					<volist name='data' id='list'>
+						<tr>
+							<td>{$list.id}</td>
+							<td>
+								<switch name='list.level'>
+									<case value='1'><span class="label label-warning">项目</span></case>
+									<case value='2'><span class="label label-info">模块</span></case>
+									<case value='3'><span class="label label-success">操作</span></case>
+									<default /> 无法判断
+								</switch>
+							</td>
+							<td>{$list.pid}</td>
+							<td>{$list.name}</td><td>{$list.title}</td> <td>
+								<switch name="list.status" >
+									<case value="1">已开启</case>
+									<case value="0">已关闭</case>
+									<default />无法判断状态
+								</switch>
+							</td>
+							<td>
+								<label for="isTrue" class='control-label'></label>
+								<label>
+							      <input type="checkbox" name="id" id="isTrue" 
+							         value="{$list.id}" {$list.checked}>&nbsp;是
+							   </label>
+							</td>
+							<td>
+								<switch name="list.status" >
+									<case value="0"><a href="__URL__/changeNodeStatus/username/{$username}/status/{$list.status}/id/{$list.id}" class='btn btn-success btn-xs'>开启</a></case>
+									<case value="1"><a href="__URL__/changeNodeStatus/username/{$username}/status/{$list.status}/id/{$list.id}" class='btn btn-danger btn-xs'>关闭</a></case>
+									<default />无法判断状态
+								</switch>
+							</td>
+						</tr>
+					</volist>
+				</table>
+	</div>
+
+
+<!-- 	<div class="col-xs-12">
+		<button type="submit" class="btn btn-success"><span class='glyphicon glyphicon-ok'></span> 保存</button>
+		<a href="__URL__/index" class="btn btn-danger"><span class='glyphicon glyphicon-remove'></span> 返回</a>
+	</div> -->
+
+
+</form>

@@ -1,7 +1,11 @@
 <?php
- 	/**
- 	 * 用户登录类
- 	 */
+    /**
+     * @author   刘满 
+     * @email   635549913@qq.com
+     * @Data     2016-08-26 11:40:45
+     * @Function 后台登录控制器
+     * @Vsersion 3.0
+     */
 namespace Admin\Controller;
 use Think\Controller;
 use Org\Util\Rbac;
@@ -16,48 +20,11 @@ class PublicController extends Controller
 	// 显示登录首页
 	public function login()
 	{	
-		// 检查是否存在cookie
-		if( isset( $_COOKIE["username"] ) )
-		{
-			$map["username"] = $_COOKIE["username"];
-			$authInfo        = Rbac::authenticate($map);
-
-			// 判断账户有没有被禁用
-			$userInfo = M('User')->where( array( 'username'=>$_COOKIE["username"] ) )->field( 'status' )->find();
-			
-			if($userInfo['status'] === 0)
-			{
-				$this->error( '账户已被禁用！' );
-			}
-			else
-			{
-				// 比较 COOKIE的用户密码 和 查询数据库返回的用户密码
-				if( $_COOKIE["password"] != $userInfo['password'] )
-				{
-					$this->error('cookie中的密码错误！请重新登录吧！',U("Public/login"));
-				}
-
-				$_SESSION[ C('USER_AUTH_KEY') ]  = $userInfo['id'];
-				// 验证是不是超级管理员登录
-				if( $userInfo["username"]  == 'admin' )
-				{
-					$_SESSION['admin'] = true;
-				}
-
-				// 缓存访问权限
-				Rbac::saveAccessList();
-				$this->success('您已经登录过了！正在跳转到后台首页....',U('Index/index'),3);
-
-			}
-
-		}
-		else
-		{
-			// 不存在cookie就直接显示登录界面
-			$this->display();
-		}
-
+		// 不存在cookie就直接显示登录界面
+		$this->display();
 	}
+
+
 
 
 	// 检查登录
@@ -80,7 +47,7 @@ class PublicController extends Controller
 			// 检查验证码是否正确
 			if( false === $verify->check($code) ) $this->error( '验证码错误！','login',1);
 
-			// 调用 检查用户信息 方法 
+			// 调用 检查用户信息
 			$this->checkUser($username,$password);
 		}
 
@@ -126,7 +93,7 @@ class PublicController extends Controller
 					$_SESSION[C('USER_AUTH_KEY')] = $authInfo['id'];
 
 					// 保存当前登录成功的用户名
-					$_SESSION['currentUserName'] = $authInfo['username'];
+					$_SESSION['currentUserName']  = $authInfo['username'];
 					// 缓存访问权限
 					$s = Rbac::saveAccessList(); 
 					$this->success('登录成功！',U('Index/index'),1);

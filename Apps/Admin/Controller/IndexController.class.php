@@ -69,7 +69,6 @@ class IndexController extends CommonController
     // 显示系统设置模板
     public function sysconfig()
     {
-        
         $data['DOMAINS']            =        C('DOMAINS');
         $data['IP_ADDER']           =        C('IP_ADDER');
         $data['DEFAULT_TPL']        =        C('DEFAULT_TPL');
@@ -171,7 +170,6 @@ class IndexController extends CommonController
         }
         else
         {
-             // UPDATE `gc3yrrsbjv_cms`.`nx_article` SET `content` = REPLACE(`content`, 'controls=""', 'controls="controls" autoplay="autoplay"') WHERE `content` LIKE '%controls=""%';
             if(IS_POST)
             {   
                 // 数据库名

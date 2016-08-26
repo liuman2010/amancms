@@ -202,6 +202,37 @@ class UserController extends CommonController
 
 
 
+    // 编辑用户组权限
+    public function modAccess()
+    {
+        // 首先判断是否是超级超级管理员
+        if($_SESSION['admin'] === true)
+        {
+            $data = M("Node")->select();
+            // var_dump($data);   
+            $this->assign("data",$data);
+            $this->display();         
+        }
+        else
+        {
+            $userId = $_SESSION["authId"];
+            echo '你是谁？';
+            var_dump($_SESSION);
+        } 
+            // 是，显示拥有所有权限
+        // 根据group_id用户组id去查询属于什么角色
+        // 查询该角色拥有的权限 返回一个node_id操作节点数组
+        // 显示到前端模板
+
+    }//f
+
+
+
+    // ajax方式更新用户组权限
+    public function updateAccess()
+    {
+        echo 'ok';
+    }
 
 
 }//c
