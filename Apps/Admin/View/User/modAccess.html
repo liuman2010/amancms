@@ -1,9 +1,9 @@
 <include file='Index/head' />
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="col-xs-4"></div>
-			<div class="col-xs-4"><h1 class="text-center">{$Think.session.currentUserName}拥有的权限</h1> </div>
-			<div class="col-xs-4"></div>
+			<div class="col-xs-2"></div>
+			<div class="col-xs-8"><h1 class="text-center">【{$groupName}】组拥有的权限</h1> </div>
+			<div class="col-xs-2"></div>
 			
 		</div>
 	</div>
@@ -11,14 +11,32 @@
 		<div class="col-xs-12"><hr></div>
 	</div>
 
+
+<style>
+	.postinfo{
+		width:380px;
+		position: fixed;
+		left:40%;
+		top:45%;
+		z-index: 99999;
+		display: none;
+	}
+</style>
+<div class='postinfo'>
+	<div class=" alert alert-success alert-dismissable" > 
+            <button type="button" class="close" data-dismiss="alert" 
+                    aria-hidden="true"> 
+                &times; 
+            </button> 
+            操作成功！权限已更新！ 
+</div> 
+</div>
 	<div class="col-xs-12">
 			<form action="__URL__/updateAccess" method='post'>
 				<table class='table table-bordered  table-hover'>
 					<tr>
 						<th>节点ID号</th><th>等级</th><th>父ID</th><th>操作名</th><th>备注</th> <th>开启状态</th><th>拥有权限</th><th>操作</th>
 					</tr>
-					<input type="hidden" name='username' value='{$username}'>
-					<input type="hidden" name='group_id' value='{$group_id}'>
 					<volist name='data' id='list'>
 						<tr>
 							<td>{$list.id}</td>
@@ -41,14 +59,14 @@
 							<td>
 								<label for="isTrue" class='control-label'></label>
 								<label>
-							      <input type="checkbox" name="id" id="isTrue" 
+							      <input type="checkbox" name="node_id"  id="isTrue" 
 							         value="{$list.id}" {$list.checked}>&nbsp;是
 							   </label>
 							</td>
 							<td>
 								<switch name="list.status" >
-									<case value="0"><a href="__URL__/changeNodeStatus/username/{$username}/status/{$list.status}/id/{$list.id}" class='btn btn-success btn-xs'>开启</a></case>
-									<case value="1"><a href="__URL__/changeNodeStatus/username/{$username}/status/{$list.status}/id/{$list.id}" class='btn btn-danger btn-xs'>关闭</a></case>
+									<case value="0"><a href="__URL__/changeNodeStatus/id/{$list.id}/status/1" class='btn btn-success btn-defalut'>开启</a></case>
+									<case value="1"><a href="__URL__/changeNodeStatus/id/{$list.id}/status/0" class='btn btn-danger btn-defalut'>关闭</a></case>
 									<default />无法判断状态
 								</switch>
 							</td>
@@ -57,11 +75,31 @@
 				</table>
 	</div>
 
-
-<!-- 	<div class="col-xs-12">
-		<button type="submit" class="btn btn-success"><span class='glyphicon glyphicon-ok'></span> 保存</button>
-		<a href="__URL__/index" class="btn btn-danger"><span class='glyphicon glyphicon-remove'></span> 返回</a>
-	</div> -->
-
-
 </form>
+
+<script>
+	$(function(){
+
+		// 动态更新角色权限
+		$("input[name='node_id']").click(function(){
+			$(".postinfo").fadeIn("fast");
+			// 当前点击的节点id
+			var index   = $(this).val();
+			var role_id = {$roleId};
+			// ajax更改权限表
+			$.post("__URL__/updateAccess",{node_id:index,role_id:role_id},function(data){
+				if(data == 0)
+				{
+					alert("服务器返回错误！");
+				}
+			});
+
+			setTimeout(function(){
+				$(".postinfo").fadeOut(1888);
+			},2000);
+		});
+
+
+
+	});//c
+</script>

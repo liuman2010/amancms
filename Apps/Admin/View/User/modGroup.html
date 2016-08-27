@@ -1,0 +1,49 @@
+<include file='Index/head' />
+
+<div class="col-sm-10">
+	<h1>修改用户组信息</h1>
+	<hr>
+	<div class="col-sm-4">
+		<form action='__URL__/updateGroup' method='post' class="form-horizontal" role="form">
+		
+		   <div class="form-group">
+		      <label for="name" class="col-sm-3">组名：</label>
+		      <div class="col-sm-9">
+		         <input type="hidden" class="form-control" name='id' id="id"   value='{$data.id}'>
+		         <input type="text" class="form-control" name='name' id="name" value='{$data.name}'>
+		      </div>
+		   </div>
+			
+			<div class="form-group">
+		      <label for="remark" class="col-sm-3">备注：</label>
+		      <div class="col-sm-9">
+		         <input type="text" class="form-control" name='remark' id="remark" value='{$data.remark}'>
+		      </div>
+		   </div>
+
+		   <div class="form-group">
+		      <label for="status" class="col-sm-3">状态：</label>
+			       	<switch name='data.status'>
+			       		<case value='1'><div class="col-sm-3"><label><input type="radio" name="status" id="status" value="1" checked> 开启</label></div> <div class="col-sm-3"><label><input type="radio" name="status" id="status" value="0"> 关闭</label></div></case>
+			       		<case value='0'><div class="col-sm-3"><label><input type="radio" name="status" id="status" value="1"> 开启</label></div> <div class="col-sm-3"><label><input type="radio" name="status" id="status" value="0"  checked> 关闭</label></div></case>
+			       		</default> 无法判断
+			       	</switch>
+
+		   </div>
+
+
+		   <div class="form-group">
+		      <div class="col-sm-11">
+		      	<div class="col-sm-3"></div>
+		      	<div class="col-sm-4">
+			         <button type="submit" class="btn btn-success"><span class='glyphicon glyphicon-ok'></span> 提交</button>
+		      	</div>
+		      	<div class="col-sm-4">
+		      		<a href="__URL__/Group" class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span> 返回</a>
+		      	</div>
+		      </div>
+		   </div>
+
+		</form>
+	</div>
+</div>

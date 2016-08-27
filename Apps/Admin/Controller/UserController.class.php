@@ -11,7 +11,7 @@
 namespace Admin\Controller;
 use Think\Controller;
 class UserController extends CommonController 
-{
+{   
   	
 	// 显示所有用户信息
     public function index()
@@ -72,7 +72,7 @@ class UserController extends CommonController
 	  			{
 	  			 	$this->error("添加角色用户关系对应表role_user时发生错误！");
 	  			}
-	  			$this->success("添加新用户成功！用户ID号:{$newUserId}",'index',5);
+	  			$this->success("添加新用户成功！用户ID号:{$newUserId}",'index',1);
 	  		}
 	  		else
 	  		{
@@ -191,48 +191,124 @@ class UserController extends CommonController
     }
 
 
-    // 显示我的权限情况
-    public function myNode()
-    {   
-        // 所有的操作节点
-        $nodeInfo = D('Node')->order('sort')->select();
-        $this->assign('nodeInfo',$nodeInfo);
-        $this->display('myNode');
+
+    // 查询该用户id对应的角色id
+    private function getRoleId($userId)
+    {
+        $userInfo = M('Role_user')->where( array('user_id'=>$userId) )->find();
+        $roleId   = $userInfo['role_id'];
+        return $roleId;
     }
 
-
+    // 查询该角色的信息
+    private function getRoleInfo($Role_id)
+    {
+        $roleInfo = M('Role')->where( array('role_id'=>$Role_id) )->find();
+        return $roleInfo;
+    }
 
     // 编辑用户组权限
     public function modAccess()
     {
-        // 首先判断是否是超级超级管理员
-        if($_SESSION['admin'] === true)
-        {
-            $data = M("Node")->select();
-            // var_dump($data);   
-            $this->assign("data",$data);
-            $this->display();         
+
+        // 角色ID
+        $roleId   = I("get.role_id");
+        // 角色标识符
+        $remark   = I("get.remark");
+
+        $node = M("Node");
+        // 所有的操作节点
+        $allNodeData = $node->order('id')->select();
+
+
+        // 查询角色权限对应表access 该角色拥有的权限 返回一个node_id操作节点数组
+        $userNodeData = M('Access')->where( array('role_id'=>$roleId) )->field('node_id')->select();
+
+        $userIds = array_column($userNodeData,'node_id');
+        $nodeIds = array_column($allNodeData,'id');
+
+        // 得到用户没有的权限id  array_diff 比较数组的差集
+        $ids = array_values(array_diff($nodeIds, $userIds));
+
+        // 遍历节点id 
+        for ($i=0; $i < count($allNodeData); $i++) 
+        {   
+            if( in_array($allNodeData[$i]['id'],$ids) )
+            {
+                $allNodeData[$i]['checked'] = '';
+            }
+            else
+            {
+                $allNodeData[$i]['checked'] = 'checked';
+            }   
         }
-        else
-        {
-            $userId = $_SESSION["authId"];
-            echo '你是谁？';
-            var_dump($_SESSION);
-        } 
-            // 是，显示拥有所有权限
-        // 根据group_id用户组id去查询属于什么角色
-        // 查询该角色拥有的权限 返回一个node_id操作节点数组
-        // 显示到前端模板
 
+        $this->assign('data',$allNodeData);
+        $this->assign('groupName',$remark);
+        $this->assign('roleId',$roleId);
+        $this->display();         
     }//f
-
 
 
     // ajax方式更新用户组权限
     public function updateAccess()
+    {   
+        // if(!IS_AJAX or !IS_POST) $this->error("不是ajax请求");
+        $node   = M("Node");
+        $roleId = I("post.role_id");
+        $nodeId = I("post.node_id");
+
+        // 查询权限表里是否存在
+        $nodeIdStatus = M("Access")->where( array('role_id'=>$roleId , 'node_id'=>$nodeId) )->find();
+
+        if(!empty($nodeIdStatus))
+        {   
+            $result = M("Access")->where( array('role_id'=>$roleId, 'node_id'=>$nodeId) )->delete();
+            if($result == 0) echo 0;
+        }
+        else
+        {
+            // 查询该节点的信息
+            $nodeInfo = $node->where( array("id"=>$nodeId) )->find();
+
+            // 新增的权限对应关系数据
+            $data['role_id'] = $roleId;
+            $data['node_id'] = $nodeId;
+            $data['level']   = $nodeInfo['level'];
+            $data['pid']     = $nodeInfo['pid'];
+
+            // 插入到数据库
+            $result = M("Access")->data($data)->add();
+            if($result == 0) echo 0;
+        } 
+        echo 1;
+    }//f
+
+    // 更改操作节点状态
+    public function changeNodeStatus()
     {
-        echo 'ok';
+       $id = I("get.id");
+       $data["status"] = I("get.status");
+       if(M("Node")->where(array("id"=>$id))->save($data))
+       {
+         $this->success('操作成功！');
+       }
     }
 
+
+    // 显示修改用户组信息模板
+    public function  modGroup()
+    {   
+        $data = M("Role")->where( array("id"=>I("get.role_id")) )->find();
+        $this->assign("data",$data);
+        $this->display();
+    }
+
+
+    // 修改用户信息
+    public function updateGroup()
+    {
+
+    }
 
 }//c

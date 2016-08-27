@@ -190,6 +190,8 @@ class IndexController extends CommonController
                 // 模糊匹配条件
                 $like          = I("post.like");
 
+                if(empty($before) and empty($like) ) $this->error('搜索条件不能为空');
+
                 $replace               = "UPDATE {$tableName} SET {$columnName}= REPLACE({$columnName},'{$before}','{$after}') WHERE {$columnName}='{$before}'";
                 $likeReplace           = "UPDATE {$tableName} SET {$columnName}= REPLACE({$columnName},'{$like}','{$after}') WHERE {$columnName} LIKE '%{$like}%'";
                 
@@ -369,7 +371,7 @@ class IndexController extends CommonController
                 if( is_file($filePath) )
                 {   
                     // 判断是否是日志文件
-                    if( is_int(strpos( $filename,'log' )) ) continue;
+                    // if( is_int(strpos( $filename,'log' )) ) continue;
                     if(unlink($filePath))
                     {
                         $html .= "<span style='color:red'>已删除缓存文件:　".$filename."</span><br>";

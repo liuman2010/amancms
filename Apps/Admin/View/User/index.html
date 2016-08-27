@@ -57,11 +57,11 @@
 
 				<td><a href="__URL__/changeStatus/id/{$list.id}/status/{$list.status}" >
 						<switch name="list.status" >
-							<case value="0"><p class='btn btn-success btn-xs'>恢复</p></case>
-							<case value="1"><p class='btn btn-warning btn-xs'>禁用</p></case>
+							<case value="0"><p class='btn btn-success btn-default'>恢复</p></case>
+							<case value="1"><p class='btn btn-warning btn-default'>禁用</p></case>
 							<default />无法判断状态
 						</switch>
-					</a> | <a href="__URL__/del/id/{$list.id}" class='btn btn-danger btn-xs'>删除</a>
+					</a> | <a href="__URL__/del/id/{$list.id}" class='btn btn-danger btn-default'>删除</a>
 				</td>
 
 			</tr>
