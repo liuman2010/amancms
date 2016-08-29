@@ -9,7 +9,7 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<select  class='form-control select_column'>
-									<option value="all" class="form-control">在所有数据表中</option>
+									<option value="all" class="form-control">下拉选择数据表</option>
 									<volist name='data' id='list'>
 											<option value="{$list.tables_in_amancms}" class="form-control">在{$list.tables_in_amancms}</option>
 									</volist>
@@ -37,7 +37,7 @@
 							      <label for="after" class="col-xs-3 control-label">查找并替换：</label>
 								      <div class="col-xs-9">
 								   			<input type="text" class="form-control like" name='like'   
-							            placeholder="例如：@qq.com  匹配所有QQ邮箱">
+							            placeholder="">
 							      	  </div>
 							   </div>
 
@@ -45,7 +45,7 @@
 							      <label for="before" class="col-xs-3 control-label">替　换　前：</label>
 							      <div class="col-xs-9">
 							         <input type="text" class="form-control" name='before' id="before" 
-							            placeholder="替换前的内容">
+							            placeholder="">
 							      </div>
 							   </div>
 
@@ -54,7 +54,7 @@
 							      <label for="after" class="col-xs-3 control-label">替　换　后：</label>
 								      <div class="col-xs-9">
 								   			<input type="text" class="form-control" name='after' id="after" 
-							            placeholder="替换后的内容">
+							            placeholder="">
 							      	  </div>
 							   </div>
 
@@ -79,6 +79,11 @@
 		</div>
 </div>
 
+<div class="row">
+	<div class="col-xs-1"></div>
+	<div class="col-xs-11"><h2><span class="label label-danger label-lg">　此操作极度危险！建议请先备份数据库再替换！　</span></h2></div>
+
+</div>
 <!-- 动态加载数据表字段  -->
 <script>
 	$(".like").focus(function(){

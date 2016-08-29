@@ -102,10 +102,6 @@ class UserController extends CommonController
     // 删除用户
     public function del()
     {
-    	// 批量删除用户
-    	// $ids = array(14,15,16,34,66,234234,18,19,20,21,234);
-    	// $ids = implode(",",$ids);
-
     	if(!IS_GET) $this->error('非法访问！');
 
     	// 删除单个用户
@@ -182,6 +178,8 @@ class UserController extends CommonController
         if( M('Role')->delete($groupid) )
         {
             $this->success("删除用户组成功！");
+            // 删除用户组后要删除该用户组的权限表数据
+            M("Access")->where( array("role_id"=>$groupid) )->delete();
         }
         else
         {
@@ -253,7 +251,7 @@ class UserController extends CommonController
     // ajax方式更新用户组权限
     public function updateAccess()
     {   
-        // if(!IS_AJAX or !IS_POST) $this->error("不是ajax请求");
+        if(!IS_AJAX or !IS_POST) $this->error("非法请求！");
         $node   = M("Node");
         $roleId = I("post.role_id");
         $nodeId = I("post.node_id");

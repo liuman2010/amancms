@@ -2,11 +2,11 @@
 return array(
   
 	// 自定义配置     
-	'DOMAINS'=>'www.baidu.com',
+	'DOMAINS'=>'localhost',
 	'IP_ADDER'=>'192.168.2.254',
 	'DEFAULT_TPL'=>'default',
 	'WATER_MARK'=>'false',
-	'WATER_POSITION'=>'3',
+	'WATER_POSITION'=>'5',
 	'ALLOW_TYPE'=>'gif|png|jpg|jpeg',
 	'IMG_WIDTH'=>'320',
 	'IMG_HEIGHT'=>'180',
@@ -29,7 +29,7 @@ return array(
 	// 'DB_PARAMS' =>  array(), // 数据库连接参数
 	'DB_PREFIX'=>'nx_', // 数据库表前缀 
 	'DB_CHARSET'=>'utf8', // 字符集
-	'DB_DEBUG'=>'false', // 数据库调试模式 开启后可以记录SQL日志
+	'DB_DEBUG'=>'true', // 数据库调试模式 开启后可以记录SQL日志
 
 
 	// 模板路径替换规则

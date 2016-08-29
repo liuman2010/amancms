@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2016-08-27 11:26:02
+-- Generation Time: 2016-08-29 08:03:51
 -- 服务器版本： 5.6.17
 -- PHP Version: 5.5.12
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `nx_access` (
 --
 
 INSERT INTO `nx_access` (`role_id`, `node_id`, `level`, `pid`, `module`) VALUES
-(5, 6, 3, 2, NULL),
+(1, 1, 1, 0, NULL),
 (1, 2, 2, 1, NULL),
 (1, 3, 3, 2, NULL),
 (1, 4, 3, 2, NULL),
@@ -68,54 +68,43 @@ INSERT INTO `nx_access` (`role_id`, `node_id`, `level`, `pid`, `module`) VALUES
 (1, 25, 3, 2, NULL),
 (1, 26, 3, 2, NULL),
 (1, 27, 3, 2, NULL),
-(1, 27, 3, 2, NULL),
+(1, 28, 3, 12, NULL),
+(1, 29, 3, 12, NULL),
 (3, 1, 1, 0, NULL),
 (3, 2, 2, 1, NULL),
-(3, 4, 3, 12, NULL),
-(3, 5, 3, 12, NULL),
-(3, 6, 3, 12, NULL),
-(3, 28, 3, 12, NULL),
-(3, 10, 3, 12, NULL),
+(3, 3, 3, 2, NULL),
+(3, 4, 3, 2, NULL),
+(3, 5, 3, 2, NULL),
+(3, 6, 3, 2, NULL),
+(3, 8, 3, 2, NULL),
+(3, 10, 3, 2, NULL),
 (3, 11, 3, 2, NULL),
 (3, 12, 2, 1, NULL),
 (3, 13, 3, 12, NULL),
 (3, 14, 3, 12, NULL),
 (3, 18, 3, 12, NULL),
 (3, 19, 3, 12, NULL),
-(3, 22, 3, 12, NULL),
 (3, 23, 3, 2, NULL),
 (3, 24, 3, 2, NULL),
 (3, 25, 3, 2, NULL),
 (3, 26, 3, 2, NULL),
 (3, 27, 3, 2, NULL),
-(3, 29, 3, 12, NULL),
-(3, 7, 3, 2, NULL),
-(3, 8, 3, 2, NULL),
-(3, 9, 3, 2, NULL),
-(1, 28, 3, 12, NULL),
-(1, 29, 3, 12, NULL),
-(2, 1, 1, 0, NULL),
-(3, 3, 3, 2, NULL),
-(5, 1, 1, 0, NULL),
-(5, 4, 3, 2, NULL),
-(5, 15, 3, 12, NULL),
-(5, 2, 2, 1, NULL),
-(5, 8, 3, 2, NULL),
-(5, 9, 3, 2, NULL),
-(5, 10, 3, 2, NULL),
-(5, 11, 3, 2, NULL),
-(5, 12, 2, 1, NULL),
-(5, 13, 3, 12, NULL),
-(5, 23, 3, 2, NULL),
-(5, 24, 3, 2, NULL),
-(5, 22, 3, 12, NULL),
-(5, 7, 3, 2, NULL),
-(5, 17, 3, 12, NULL),
-(5, 25, 3, 2, NULL),
-(5, 14, 3, 12, NULL),
-(5, 21, 3, 12, NULL),
-(5, 26, 3, 2, NULL),
-(5, 3, 3, 2, NULL);
+(2, 23, 3, 2, NULL),
+(2, 24, 3, 2, NULL),
+(2, 25, 3, 2, NULL),
+(2, 26, 3, 2, NULL),
+(2, 27, 3, 2, NULL),
+(2, 11, 3, 2, NULL),
+(2, 10, 3, 2, NULL),
+(2, 9, 3, 2, NULL),
+(2, 8, 3, 2, NULL),
+(2, 7, 3, 2, NULL),
+(2, 6, 3, 2, NULL),
+(2, 5, 3, 2, NULL),
+(2, 4, 3, 2, NULL),
+(2, 3, 3, 2, NULL),
+(2, 2, 2, 1, NULL),
+(2, 1, 1, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -1083,7 +1072,6 @@ INSERT INTO `nx_node` (`id`, `name`, `title`, `status`, `remark`, `sort`, `pid`,
 (19, 'addGroup', '显示添加用户组的界面', 1, NULL, '2-8', 12, 3),
 (20, 'insertgroup', '插入添加的用户组数据', 1, NULL, '2-9', 12, 3),
 (21, 'delGroup', '删除用户组', 1, NULL, '2-10', 12, 3),
-(22, 'myNode', '显示我的权限情况', 1, NULL, '2-11', 12, 3),
 (23, 'sysMenu', '显示系统管理菜单', 1, NULL, '1-11', 2, 3),
 (24, 'siteMenu', '显示网站管理菜单', 1, NULL, '1-12', 2, 3),
 (25, 'kefuMenu', '显示网站在线客服菜单', 1, NULL, '1-13', 2, 3),
@@ -1155,7 +1143,7 @@ CREATE TABLE IF NOT EXISTS `nx_role` (
   PRIMARY KEY (`id`),
   KEY `pid` (`pid`),
   KEY `status` (`status`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- 转存表中的数据 `nx_role`
@@ -1164,7 +1152,7 @@ CREATE TABLE IF NOT EXISTS `nx_role` (
 INSERT INTO `nx_role` (`id`, `name`, `pid`, `status`, `remark`, `ctime`) VALUES
 (1, 'admin', NULL, 1, '管理员', 1471509458),
 (2, 'webadmin', NULL, 1, '网络编辑', 1471509483),
-(3, 'kefu', NULL, 0, '客服', 1471509493);
+(3, 'kefu', NULL, 1, '客服', 1471509493);
 
 -- --------------------------------------------------------
 
@@ -1188,7 +1176,7 @@ INSERT INTO `nx_role_user` (`role_id`, `user_id`) VALUES
 (1, '2'),
 (3, '3'),
 (3, '4'),
-(1, '5'),
+(3, '5'),
 (3, '6'),
 (3, '7');
 
@@ -1214,20 +1202,20 @@ CREATE TABLE IF NOT EXISTS `nx_user` (
   `login_status` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- 转存表中的数据 `nx_user`
 --
 
 INSERT INTO `nx_user` (`id`, `username`, `groupid`, `password`, `sex`, `ctime`, `last_time`, `last_ip`, `last_area`, `email`, `num`, `status`, `login_status`) VALUES
-(1, 'admin', '1', '46f94c8de14fb36680850768ff1b7f2a', 1, '1970-01-01', '0', '本地局域网', '广州诺信科技', 'test@test.com', 0, 1, 0),
-(2, 'liuman', '1', '46f94c8de14fb36680850768ff1b7f2a', 1, '1471509529', '0', '本地局域网', '广州诺信科技', 'liuman@qq.com', 0, 1, 0),
-(3, '小周', '3', '46f94c8de14fb36680850768ff1b7f2a', 1, '1471509567', '0', '本地局域网', '广州诺信科技', 'xiaozhou@qq.com', 0, 1, 0),
-(4, '众宜', '3', '46f94c8de14fb36680850768ff1b7f2a', 0, '1471509610', '0', '本地局域网', '广州诺信科技', 'zhongyi@qq.com', 0, 1, 0),
-(5, '永胜', '1', '46f94c8de14fb36680850768ff1b7f2a', 0, '1471509657', '0', '本地局域网', '广州诺信科技', 'yongsheng@qq.com', 0, 1, 0),
-(6, 'djkk', '3', '46f94c8de14fb36680850768ff1b7f2a', 1, '1472269881', '0', '本地局域网', '广州诺信科技', 'test@qq.com', 0, 1, 0),
-(7, '盈科', '3', '46f94c8de14fb36680850768ff1b7f2a', 0, '1472279240', '0', '本地局域网', '广州诺信科技', 'yingke@qq.com', 0, 1, 0);
+(1, 'admin', '1', '46f94c8de14fb36680850768ff1b7f2a', 1, '1970-01-01', '1472450588', '本地局域网', '广东省广州市', 'test@test.com', 1, 1, 1),
+(2, 'liuman', '1', '46f94c8de14fb36680850768ff1b7f2a', 1, '1471509529', '1472438948', '本地局域网', '广东省广州市', 'liuman@qq.com', 0, 1, 1),
+(3, '小周', '3', '46f94c8de14fb36680850768ff1b7f2a', 1, '1471509567', '1472438947', '本地局域网', '广州诺信科技', 'xiaozhou@qq.com', 0, 1, 0),
+(4, '众宜', '3', '46f94c8de14fb36680850768ff1b7f2a', 0, '1471509610', '1472438946', '本地局域网', '广州诺信科技', 'zhongyi@qq.com', 0, 1, 0),
+(5, '永胜', '1', '46f94c8de14fb36680850768ff1b7f2a', 0, '1471509657', '1472440781', '本地局域网', '广东省广州市', 'yongsheng@qq.com', 0, 1, 1),
+(6, '科讯', '3', '46f94c8de14fb36680850768ff1b7f2a', 1, '1472269881', '1472450362', '本地局域网', '广东省广州市', 'test@qq.com', 0, 1, 0),
+(7, '盈科', '3', '46f94c8de14fb36680850768ff1b7f2a', 0, '1472279240', '1472450398', '本地局域网', '广东省广州市', 'yingke@qq.com', 1, 1, 0);
 
 -- --------------------------------------------------------
 

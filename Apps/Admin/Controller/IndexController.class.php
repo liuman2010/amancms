@@ -226,7 +226,6 @@ class IndexController extends CommonController
      // 后台主页右边区域内容
     public function main()
     {
-
         // 获得天气预报
         $data = $this->getWeatherData();
         // 如果没有错误 且请求成功返回数据
@@ -243,36 +242,32 @@ class IndexController extends CommonController
 
         // 获得系统和服务器信息
         $info = $this->getInfo();
+        // var_dump($info);
         $this->assign('info',$info);
         $this->display();
     }//f
 
 
     /**
-     * @Function: 百度天气API   获取未来5天的天气预报
+     * 百度天气API   获取未来5天的天气预报
      * @author 刘满
-     * @param  string  $city 城市名称 : 广州
+     * @param  string  $city 城市名称 : 默认广州
      * @email  635549913@qq.com
      * @http://api.map.baidu.com/telematics/v3/weather?location=%E5%B9%BF%E5%B7%9E&output=json&ak=4c9dcc281e73f6511fa0107a1502266c
      * @return Array $data
     */
     private function getWeatherData($city='广州')
-    {
-        // 默认地区
+    {   
         $area = urldecode($city);
         $url  = "http://api.map.baidu.com/telematics/v3/weather?location={$area}&output=json&ak=4c9dcc281e73f6511fa0107a1502266c";
-        // 超时时间
-        $timeout = 5;
-        
-        $ch = curl_init();
-        curl_setopt($ch,CURLOPT_URL,$url);
-        // 将结果返回 不自动输出
-        curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-        curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,$timeout);
-        
-        // 获得返回的数据
-        $data = json_decode(curl_exec($ch),true);
-        curl_close($ch);
+        /**
+         * @param  $url     string 请求的地址
+         * @param  $data    array  请求的数据
+         * @param  $cookie  string 请求的cookie
+         * @param  $timeout int    请求超时秒数 默认5
+         * @return curl_exec的结果
+         */
+        $data = curl($url,'',true);
         return $data;
     }
 
@@ -285,8 +280,6 @@ class IndexController extends CommonController
      */
     private function getInfo()
     {
-        $Msg = null;
-
         // 链接数据库
         $mysql = mysqli_connect(C('database.hostname'),C('database.username'),C('database.password'));
         if(is_object($mysql))
@@ -297,11 +290,8 @@ class IndexController extends CommonController
         {
             $msg .= '数据库链接失败！请检查用户名和密码是否正确！<br>';
         }
-
         // 检查GD图像处理库
         $gd_info = gd_info();
-
-
         $data['PHP_OS']            = PHP_OS;
         $data['SERVER_SOFTWARE']   = $_SERVER["SERVER_SOFTWARE"];
         $data['maxSize']           = ini_get('post_max_size')      ? ini_get('post_max_size')            : '<span class="label label-danger">禁止上传数据</span>' ;
@@ -310,26 +300,20 @@ class IndexController extends CommonController
         $data['curlStatus']        = function_exists('curl_init')         ? '<span class="glyphicon glyphicon-ok"></span> 支持' : '<span class="glyphicon glyphicon-remove"></span> 不支持' ;
         $data['fileGetStatus']     = function_exists('file_get_contents') ? '<span class="glyphicon glyphicon-ok"></span> 支持' : '<span class="glyphicon glyphicon-remove"></span> 不支持' ;
         $data['phpVersion']        = PHP_VERSION; 
-
-        // dump($data);exit;
-        // 获取备份文件的信息
-        // $path = './Public/blackup/';
-        // $dir = opendir($path);
-        // while($row = readdir($dir)){
-        //     if($row !== '.' && $row !== '..'){
-        //         $filectime[] = filectime($path.$row);
-        //     }
-        // }
-        // $lastUserInfo = session('lastUserInfo');
-        
         // 系统信息数组
-        
-        // $data['userConut()']       = session('userConut()');
-        // $data['blackupTime']       = $filectime                    ? date("Y-m-d H:i:s",end($filectime)) : '<span class="label label-danger">没有备份数据！</span>';
-        // $data['lastUsername']      = $lastUserInfo['username'];
-        // $data['lastTime']          = $lastUserInfo['last_time'];
-        // $data['lastArea']          = $lastUserInfo['last_area'];
-        
+        $data['DOMAINS']           = C("DOMAINS");
+        $data['IP_ADDER']          = C("IP_ADDER");
+        // 用户总数
+        $userCount = M("user")->count();
+        $data['userCount']         =  $userCount;
+        $currentUserInfo = M("user")->where(array("username"=>$_SESSION["currentUserName"]))->find();
+        $data['num']      = $currentUserInfo['num'];
+        // 最后一位登录的用户的信息
+        $usersInfo = M('user')->order('last_time')->select();
+        $lastUserInfo = end($usersInfo);
+        $data['lastUsername']      = $lastUserInfo['username'];
+        $data['lastTime']          = $lastUserInfo['last_time'];
+        $data['lastArea']          = $lastUserInfo['last_area'];
         return $data;
     }
 

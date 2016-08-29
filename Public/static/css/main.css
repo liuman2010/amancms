@@ -9,33 +9,14 @@ body{
 }
 
 }
-.box{
-	padding-left: 10px;
+.system_info{
+	margin-top: 50px;
 }
-.weather{
-	width:250px;
-	float: left;
+
+.system_info li{
+	list-style-type:none;
+	line-height: 35px;
 }
-.system{
-	width: 500px;
-	height: 300px;
-	float: left;
-	margin-left: 70px;
-}
-.system .status{
-	width: 350px;
-	float: left;
-}
-.system .status li{
-	list-style: none;
-	width: 350px;
-	float: left;
-}
-.system .status li p{
-	width: 350px;
-	height:25px;
-	float: left;
-}
-.right{
+.system_info li .right{
 	float: right;
 }
