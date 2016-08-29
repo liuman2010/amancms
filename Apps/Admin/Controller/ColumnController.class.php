@@ -7,9 +7,10 @@ class ColumnController extends CommonController
   	
   	// 显示栏目列表
   	public function index()
-  	{
-  		$data = M("Column")->select();
-      var_dump($data);
+  	{ 
+  		$data = M("Column")->field("id,pid,path,title,description,display,concat(path,'-',id) as amanpath")->order('amanpath')->select();
+      $this->assign("data",$data);
+      $this->display();
   	}
 
   	// 显示添加栏目界面
@@ -30,7 +31,7 @@ class ColumnController extends CommonController
     // 显示修改栏目界面
     public function mod()
     {
-      echo '修改栏目';
+      $this->display();
     }
 
 
@@ -44,15 +45,12 @@ class ColumnController extends CommonController
       {
         // 表单提交过来的已经选择的父栏目id
         $data['pid']          = I("post.pid");
-
         // 根据表单提交过来的父栏目id查找他的路径
         $parentData          = M("Column")->where(array("id"=>$data['pid']))->find();
         $data['path']        = $parentData['path'].'-'.$data['pid'];
         $data['title']       = I("post.title");
         $data['description'] = I("post.description");
         $data['display']     = I("post.display");
-        // var_dump($data);
-        // exit;
         $result = M("Column")->data($data)->add();
         if( false === $result)
         {
@@ -64,14 +62,30 @@ class ColumnController extends CommonController
         }
       }
 
+      // 修改栏目信息
+      if($type == 'mod')
+      {
+
+      }
+
     }//f
 
 
     // 删除一个或多个栏目
     public function del()
     {
-    	echo '删除一个或多个栏目';
-    }
+      $id  = I("get.id");
+      $ids = I("post.ids");
+      if( is_array($ids) && !empty($ids) ) $id = implode(',', $ids);
+      if(M("Column")->delete($id))
+      {
+        $this->success("删除成功！");
+      }
+      else
+      {
+        $this->error("删除失败！");
+      }
+    }//f
 
 
 
