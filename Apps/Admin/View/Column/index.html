@@ -11,14 +11,14 @@
 				<table class='table   table-bordered  table-hover'>
 						<caption></caption>
 						<tr>
-							<th><a class='all_select'>全选</a></th><th>栏目名称</th><th>栏目简介</th><th>是否显示</th><th>创建时间</th><th>操　　作</th>
+							<th><a href="javascript:void(0);" id='selectAll'>全选</a>/<a href="javascript:void(0);" class='un_select'>反选</a></th><th>栏目名称</th><th>栏目简介</th><th>是否显示</th><th>创建时间</th><th>操　　作</th>
 						</tr>
 						
 
 					<volist name='data' id='list'>
 
 						<tr>
-							<td style="width:80px;"><input id='id' type="checkbox" class='id' name='ids[]' value='{$list.id}' /></td>
+							<td style="width:80px;"><input id='id' type="checkbox" class='id attr removeAttr' name='ids[]' value='{$list.id}' /></td>
 							<td><a href="__URL__/mod/id/{$list.id}">{$list.title}</a></td>
 							<td>{$list.description}</td>
 							<td class='display'> 
@@ -39,14 +39,15 @@
 	</div>
 	
 <script>
-			$(".all_select").toggle(
-			  function () {
-			    alert(1);
-			  },
-			  function () {
-			    alert(2);
-			  }
-			);
+			$(function(){
+			    $('#selectAll').click(function(){
+			         $("[type='checkbox']").attr("checked",'true');//全选
+			    });
+
+			    $('.un_select').click(function(){
+			    	$("[type='checkbox']").removeAttr("checked");//取消全选
+			    });
+			});
 </script>
 </body>
 </html>

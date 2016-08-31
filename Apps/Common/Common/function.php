@@ -7,7 +7,7 @@
 	 * @param  $toArray 	boolean 	返回的执行结果是否转为数组
 	 * @param  $cookie  	string  	请求的cookie
 	 * @param  $timeout 	int     	请求超时秒数 默认5
-	 * @return curl_exec的执行结果
+	 * @return curl_exec的执行结果 | $result array
 	 */
 	function curl($url,$data=null,$toArray=false,$cookie,$timeout=5)
 	{

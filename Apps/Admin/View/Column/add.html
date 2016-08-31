@@ -8,10 +8,10 @@
 			   <div class="form-group">
 			      <label for="firstname" class="col-sm-4 control-label">选择父栏目</label>
 			      <div class="col-sm-6">
-				      <select class="form-control" name='pid'>
+				      <select class="form-control" name='id'>
 					        <option value="0">|--根目录--</option>
 					      	<volist name="data" id="list">
-					        	<option value="{$list.id}">|-{$list.title}</option>
+					        	<option class="opt_{$list.id}" value="{$list.id}">|-{$list.title}</option>
 					      	</volist>
 				      </select>
 			      </div>
@@ -29,7 +29,7 @@
 			   <div class="form-group">
 			      <label for="firstname" class="col-sm-4 control-label">栏目描述</label>
 			      <div class="col-sm-8">
-			          <textarea class="form-control" name='description' rows="3" placeholder="请输入栏目介绍"></textarea>
+			          <textarea class="form-control" name='description' rows='8' placeholder="请输入栏目介绍"></textarea>
 			      </div>
 			   </div>
   
@@ -40,7 +40,7 @@
 					      	<div class="col-sm-4"> 
 					      		<label for="remeber"></label>
 					      		<label >
-					      			<input type="checkbox" {$Think.session.checked} name='remeber' value='true'>记住父栏目
+					      			<input type="checkbox" {$Think.session.remeber_select_column} name='remeber_select_column' value='true'>记住父栏目
 					      		</label> 
 					      	</div>
 
@@ -65,3 +65,6 @@
 	</div>
 
 </div>
+<script>
+	$(".opt_{$Think.session.remeber_select_id}").attr("selected",true);
+</script>

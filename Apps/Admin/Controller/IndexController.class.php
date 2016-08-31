@@ -191,11 +191,10 @@ class IndexController extends CommonController
                 $like          = I("post.like");
 
                 if(empty($before) and empty($like) ) $this->error('搜索条件不能为空');
-
                 $replace               = "UPDATE {$tableName} SET {$columnName}= REPLACE({$columnName},'{$before}','{$after}') WHERE {$columnName}='{$before}'";
                 $likeReplace           = "UPDATE {$tableName} SET {$columnName}= REPLACE({$columnName},'{$like}','{$after}') WHERE {$columnName} LIKE '%{$like}%'";
                 
-                // echo $likeReplace;exit;
+                echo $likeReplace;exit;
                 // 执行替换语句
                 if(empty($like))
                 {

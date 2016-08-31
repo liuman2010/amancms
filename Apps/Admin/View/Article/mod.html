@@ -1,0 +1,124 @@
+<include file='Public/head' />
+<body>
+    <form name='mod' class="form-horizontal" role="form" method='post' action='__URL__/insert' enctype='multipart/form-data'>
+    <input type="hidden" name='id' value='{$data.id}'>
+    <input type="hidden" name='sub' value='mod'>
+		<div class="col-sm-12">
+			<div class="col-sm-10">
+				<h1>修改文章</h1><hr>
+			</div>
+		</div>
+    <div class="col-sm-12">
+    	<div class="col-sm-5">
+    		<div class="form-group">
+		      <label for="title" class="col-sm-2 control-label">标题:</label>
+		      <div class="col-sm-6">
+		         <input type="text" class="form-control" name="title"  value='{$data.title}'>
+		      </div>
+		   </div>
+    	</div>
+    </div>
+
+
+     <div class="col-sm-12">
+    	<div class="col-sm-5">
+    		<div class="form-group">
+		      <label for="pid" class="col-sm-2 control-label">栏目:</label>
+		      <div class="col-sm-6">
+		         <select name="pid" id="" class='form-control'>
+		         	{$optionHtml}
+		         </select>
+		      </div>
+		   </div>
+    	</div>
+    </div>
+
+    <div class="col-sm-12">
+        <div class="col-sm-10">
+            <div class="form-group">
+              <label for="pic" class="col-sm-1 control-label">缩略图</label>
+              <div class="col-sm-3">
+                 <input type="text" class="form-control" name="pic" value='{$data.thumbpic}'>
+              </div>
+
+              <div class="col-sm-3">
+                 <input type="file"  class="form-control" name="pic" >
+              </div>
+           </div>
+        </div>
+    </div>    
+
+    <div class="col-sm-12">
+        <div class="col-sm-5">
+            <div class="form-group">
+              <label for="summary" class="col-sm-2 control-label"></label>
+              <div class="col-sm-6">
+                 <img src="{$data.thumbpic}" alt="{$data.title}" width='180'>  
+              </div>
+           </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+    	<div class="col-sm-10">
+    		<div class="form-group">
+		      <label for="summary" class="col-sm-1 control-label">简介:</label>
+		      <div class="col-sm-8">
+		         <textarea  rows='4' class="form-control" name="summary" >{$data.summary}</textarea>
+		      </div>
+		   </div>
+    	</div>
+    </div>
+
+
+    <div class="col-sm-12">
+        <div class="col-sm-5">
+            <div class="form-group">
+                <label for="summary" class="col-sm-2 control-label">默认:</label>
+                <div class="col-sm-10">
+                     <div class="checkbox">
+                        <label>
+                           <input type="checkbox" checked  name='wget' value='true'> 下载图片保存到本地
+                        </label>
+                     </div>
+                </div>
+           </div>
+        </div>
+    </div>
+
+
+    <div class="col-sm-12">
+    	<div class="col-sm-10">
+         <script id="editor"  type="text/plain" style="width:100%;height:300px;"> {$data.content} </script>
+    	</div>
+
+    </div>
+
+
+<div class="col-sm-12">
+	<div class="col-sm-8">
+		<br>
+		<button class='btn btn-primary'>提交</button>
+    <a class='btn btn-primary' onclick='clearLocalData()'>清空草稿箱</a>
+  </div>
+  <div class="col-sm-4"></div>
+</div>
+
+</form>
+    <script type="text/javascript" charset="utf-8" src="__ROOT__/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__ROOT__/ueditor/ueditor.all.js"> </script>
+    <script type="text/javascript">
+
+        //实例化编辑器
+        //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+        var ue = UE.getEditor('editor');
+        function setContent(isAppendTo) {
+            var arr = [];
+            UE.getEditor('editor').setContent('　', isAppendTo);
+        }
+        setTimeout(function() {
+         setContent(true);
+        }, 500);
+    </script>
+</body>
+</html>

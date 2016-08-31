@@ -101,9 +101,9 @@ class PublicController extends Controller
 					$_SESSION[C('USER_AUTH_KEY')] = $authInfo['id'];
 
 					// 保存当前的用户名密码到当前回话中，超过一个月就过期 3600*24*7*4
-					cookie("PHPSESSID",$_COOKIE["PHPSESSID"],3600*4);
-					session(array('name'=>'currentUserName','expire'=>3600*4));
-					session(array('name'=>'currentPassWord','expire'=>3600*4));
+					cookie("PHPSESSID",$_COOKIE["PHPSESSID"],3600*8);
+					session(array('name'=>'currentUserName','expire'=>3600*8));
+					session(array('name'=>'currentPassWord','expire'=>3600*8));
 					session("currentUserName",$username);
 					session("currentPassWord",$password);
 
@@ -191,9 +191,8 @@ class PublicController extends Controller
 
 	public function test()
 	{
-		$userInfo = M('user')->order('last_time')->select();
-		$lastUserInfo = end($userInfo);
-		var_dump($lastUserInfo);
+		$data = D('column')->getColumns();
+		echo $data;
 	}
 
 

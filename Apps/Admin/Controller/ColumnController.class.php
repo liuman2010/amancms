@@ -8,29 +8,39 @@ class ColumnController extends CommonController
   	// 显示栏目列表
   	public function index()
   	{ 
-  		$data = M("Column")->field("id,pid,path,title,description,display,concat(path,'-',id) as amanpath")->order('amanpath')->select();
+  		$data = M("Column")->field("id,pid,path,title,ctime,description,display,concat(path,'-',id) as amanpath")->order('amanpath')->select();
       $this->assign("data",$data);
       $this->display();
   	}
 
+
   	// 显示添加栏目界面
     public function add()
     {
-      $data = M("Column")->field("id,pid,path,title,concat(path,'-',id) as amanpath")->order('amanpath')->select();
-        for ($i=0; $i < count($data); $i++) 
-        {
-          // 有多少个-横杆就复制多少个空格
-          $n    = substr_count($data[$i]["amanpath"], '-');
-          $nbsp = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-', $n-1);
-          $data[$i]["title"] = $nbsp.$data[$i]["title"];
-        }
-      $this->assign('data',$data);
+      $this->assign('data',D("Column")->getColumns());
       $this->display();
     }
 
     // 显示修改栏目界面
     public function mod()
     {
+      $column = D("column");
+
+      $id   =  I("get.id");
+      // 要操作的栏目的信息
+      $data = $column->where(array("id"=>$id))->find();
+      // 根据他的父id去查新信息
+      $ParentData = $column->where( array('id'=>$data['pid']) )->find();
+
+
+      if($data['pid'] == 0)
+      {
+        $ParentData['id']       = 0;
+        $ParentData['title']    = '根目录';
+      }
+      $this->assign('data',$data);
+      $this->assign('select_id',$data['pid']);
+      $this->assign('cloumnsData',$column->getColumns());
       $this->display();
     }
 
@@ -38,20 +48,44 @@ class ColumnController extends CommonController
     // 新增或修改栏目内容
     public function insert()
     { 
+      $column = M("column");
       // 提交类型
-      $type = I("post.type");
+      $type    = I("post.type");
+
       // 如果是添加栏目
       if($type == 'add')
       {
-        // 表单提交过来的已经选择的父栏目id
-        $data['pid']          = I("post.pid");
-        // 根据表单提交过来的父栏目id查找他的路径
-        $parentData          = M("Column")->where(array("id"=>$data['pid']))->find();
-        $data['path']        = $parentData['path'].'-'.$data['pid'];
+        // 表单提交过来的已经选择的栏目id
+        $id                  = I("post.id");
+        $data['ctime']       = time();
         $data['title']       = I("post.title");
         $data['description'] = I("post.description");
         $data['display']     = I("post.display");
-        $result = M("Column")->data($data)->add();
+
+        // 根据表单提交过来的栏目id查找他父栏目的路径
+        $parentData          = $column->where(array("id"=>$id))->find();
+        if($id == 0)
+        {
+          $data['pid']       = '0';
+          $data['path']      = '0';
+        }
+        else
+        {
+          $data['pid']       = $id;
+          $data['path']      = $parentData['path'].'-'.$id;
+        }
+
+        if( I("post.remeber_select_column") == 'true')
+        {
+          session("remeber_select_column","checked");
+          session("remeber_select_id",$id);
+        }
+        else
+        {
+          session("remeber_select_column",null);
+          session("remeber_select_id",null);
+        }
+        $result = $column->data($data)->add();
         if( false === $result)
         {
           $this->error("创建栏目失败！");
@@ -65,7 +99,18 @@ class ColumnController extends CommonController
       // 修改栏目信息
       if($type == 'mod')
       {
+        $id      = I('post.id'); 
+        $data['description'] = I("post.description");
+        $data['title']       = I('post.title');
 
+        if($column->where(array("id"=>$id))->save($data))
+        {
+          $this->success("修改栏目信息成功！");
+         }
+       else
+        {
+          $this->error("修改栏目信息失败！");
+        }
       }
 
     }//f

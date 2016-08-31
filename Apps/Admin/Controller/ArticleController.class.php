@@ -14,7 +14,8 @@ class ArticleController extends CommonController
   	// 显示添加文章界面
     public function add()
     {
-    	echo '添加文章';
+      $this->assign('data',D("Column")->getColumns());
+    	$this->display();
     }
 
     // 显示修改文章界面
@@ -27,7 +28,7 @@ class ArticleController extends CommonController
     // 新增或修改文章内容
     public function insert()
     {
-    	echo '插入文章';
+    	var_dump($_POST);
     }
 
 

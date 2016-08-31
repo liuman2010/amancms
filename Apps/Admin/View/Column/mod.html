@@ -1,9 +1,10 @@
-<include file='Public/head' />
+<include file='Index/head' />
 <div class="col-sm-12">
 	<div class="col-sm-5">
 		<h1>修改栏目信息</h1>
 		<hr>
-			<form action='__URL__/update' method='post' class="form-horizontal" role="form">
+			<form action='__URL__/insert' method='post' class="form-horizontal" role="form">
+				<input type="hidden" name='type' value='mod'>
 			   <div class="form-group">
 			      <label for="firstname" class="col-sm-4 control-label">栏目名称</label>
 			      <div class="col-sm-6">
@@ -14,14 +15,13 @@
 			   <div class="form-group">
 			   	<input type="hidden" name='id' value='{$data.id}'>
 			   	<input type="hidden" name='pid' value='{$data.pid}'>
-			      <label for="firstname" class="col-sm-4 control-label">上一级栏目</label>
+			      <label for="firstname" class="col-sm-4 control-label">所属栏目</label>
 			      <div class="col-sm-6">
-			      		
 				      <select class="form-control" name='modpid'>
-				      	<option value="{$idInfo.id}">{$idInfo.title}</option>
-
-				        {$optionHtml}
-				      	
+					      	<option value="0">--根目录--</option>
+				      		<volist name="cloumnsData" id='list'>
+					      		<option class="opt_{$list.id}" value="{$list.id}">|-{$list.title}</option>
+				      		</volist>
 				      </select>
 			      </div>
 			      
@@ -31,7 +31,7 @@
 			   <div class="form-group">
 			      <label for="firstname" class="col-sm-4 control-label">栏目描述</label>
 			      <div class="col-sm-8">
-			          <textarea class="form-control" name='description' rows="3" placeholder="请输入栏目介绍">{$data.description}</textarea>
+			          <textarea class="form-control" name='description' rows="8" placeholder="请输入栏目介绍">{$data.description}</textarea>
 			      </div>
 			   </div>
   
@@ -56,3 +56,6 @@
 	</div>
 
 </div>
+<script>
+	$(".opt_{$select_id}").attr("selected",true);
+</script>
