@@ -48,7 +48,7 @@ class ColumnController extends CommonController
     // 新增或修改栏目内容
     public function insert()
     { 
-      $column = M("column");
+      $column = D("column");
       // 提交类型
       $type    = I("post.type");
 
@@ -85,7 +85,15 @@ class ColumnController extends CommonController
           session("remeber_select_column",null);
           session("remeber_select_id",null);
         }
-        $result = $column->data($data)->add();
+        if(!$column->create($data))
+        {
+          // 不通过提示错误信息
+          $this->error($column->getError());
+          
+        }
+        
+        $result = $column->add();
+
         if( false === $result)
         {
           $this->error("创建栏目失败！");

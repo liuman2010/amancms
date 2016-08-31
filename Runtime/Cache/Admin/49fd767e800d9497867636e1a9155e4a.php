@@ -44,14 +44,19 @@
             <div class="form-group">
               <label for="pid" class="col-sm-2 control-label">栏目:</label>
               <div class="col-sm-6">
-                 <select name="id" class='form-control'>
-                    <option value="0">--根目录--</option>
-                    <?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><option class="opt_<?php echo ($list["id"]); ?>" value="<?php echo ($list["id"]); ?>"><?php echo ($list["title"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                 <select name="pid" class='form-control'>
+                    <option value="0">|--根目录--</option>
+                    <?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><option class="opt_<?php echo ($list["id"]); ?>" value="<?php echo ($list["id"]); ?>">|-<?php echo ($list["title"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
                  </select>
               </div>
            </div>
         </div>
     </div>
+
+    <script>
+        $(".opt_<?php echo (session('article_column_pid')); ?>").attr("selected",true);
+    </script>
+
      <div class="col-sm-12">
 
         <div class="col-sm-5">
@@ -68,14 +73,14 @@
     <div class="col-sm-12">
         <div class="col-sm-10">
             <div class="form-group">
-              <label for="pic" class="col-sm-1 control-label">缩略图:</label>
+              <label for="thumbpic" class="col-sm-1 control-label">缩略图:</label>
               <div class="col-sm-3">
-                 <input type="text" class="form-control" name="pic"   
+                 <input type="text" class="form-control" name="thumbpic"   
                     placeholder="输入网络地址">
               </div>
 
               <div class="col-sm-3">
-                 <input type="file"  class="form-control" name="pic" >
+                 <input type="file"  class="form-control" name="uppic" >
               </div>
            </div>
         </div>

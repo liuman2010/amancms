@@ -194,7 +194,6 @@ class IndexController extends CommonController
                 $replace               = "UPDATE {$tableName} SET {$columnName}= REPLACE({$columnName},'{$before}','{$after}') WHERE {$columnName}='{$before}'";
                 $likeReplace           = "UPDATE {$tableName} SET {$columnName}= REPLACE({$columnName},'{$like}','{$after}') WHERE {$columnName} LIKE '%{$like}%'";
                 
-                echo $likeReplace;exit;
                 // 执行替换语句
                 if(empty($like))
                 {

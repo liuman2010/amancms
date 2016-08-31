@@ -2,6 +2,12 @@
 namespace Admin\Model;
 use Think\Model;
 class ColumnModel extends Model {
+
+	// 自动验证
+	protected $_validate = array(
+			array('title','require','栏目名称不能为空！'),
+		);
+
 	
 	// 返回格式化后的栏目数据
 	public function getColumns()
@@ -11,7 +17,7 @@ class ColumnModel extends Model {
         {
           // 有多少个-横杆就复制多少个空格
           $n    = substr_count($data[$i]["amanpath"], '-');
-          $nbsp = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-', $n-1);
+          $nbsp = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-', $n-1);
           $data[$i]["title"] = $nbsp.$data[$i]["title"];
         }
 		return $data;
