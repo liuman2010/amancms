@@ -16,7 +16,36 @@ class ArticleController extends CommonController
   	// 显示文章列表
   	public function index()
   	{
-  		echo '显示文章列表';
+      $article = M("Article");
+      $pid     = I("get.pid");
+
+      if(empty($pid))
+      {
+        $count = $article->order('ctime desc')->count();
+        $page = new \Think\Page($count,30);
+        $data  = $article->order('ctime desc')->limit($page->firstRow.','.$page->listRows)->select();
+
+      }
+      else
+      {
+        $count = $article->where( array("pid"=>$pid) )->count();
+        $page = new \Think\Page($count,30);
+        $data  = $article->where( array("pid"=>$pid) )->order('ctime desc')->limit($page->firstRow.','.$page->listRows)->select();
+      }
+      $page->setConfig('prev','上一页');
+      $page->setConfig('next','下一页');
+      $page->setConfig('first','首页');
+      $page->setConfig('last','尾页');
+      $page->setConfig('theme',"%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% 共 %TOTAL_ROW% 篇文章");
+
+      // 分页显示输出
+      $show = $page->show();
+      // 数据集
+      $this->assign("data",$data); 
+      // 赋值分页
+      $this->assign("page",$show);
+      $this->assign("columnsData",D("Column")->getColumns());
+      $this->display();
   	}
 
   	// 显示添加文章界面
@@ -37,33 +66,22 @@ class ArticleController extends CommonController
     public function insert()
     {
       if(!IS_POST) $this->error("非法访问！");
+      $article = D("Article");
       session('article_column_pid',I("post.pid"));
+      $thumbPath           = $article->getThumb( $_FILES["uppic"],I("post.thumbpic") );
+      if(!$thumbPath) $this->error("上传文件失败！请检查！");
+      $data["thumbpic"]    = $thumbPath;
       $type                = I("post.type");
       $id                  = I("post.id");
       $data["title"]       = I("post.title");
       $data["pid"]         = I("post.pid");
-      $data["thumbpic"]    = I("post.thumbpic");
       $data["author"]      = I("post.author");
       $data["summary"]     = I("post.summary");
       $data["content"]     = I("post.editorValue");
 
       // 验证数据
-      $article = D("Article");
-      // if( !$article->create($data) ) $this->error( $article->getError() );
-      // 检测是否有图片上传
-      if($_FILES['uppic']['error'] === 0 )
-      {
-        $data["thumbpic"] = $_FILES["uppic"]["name"];
-      }
-      else
-      {
-        if( empty(I("post.thumbpic")) )
-        {
-          $data["thumbpic"] = '/Public/static/images/admin/default_thumbpic.gif';
-        }
-      }
-      
-      var_dump($data);exit;
+      if( !$article->create($data) ) $this->error( $article->getError() );
+
       // 添加文章
       if($type === 'add')
       {
@@ -91,7 +109,17 @@ class ArticleController extends CommonController
     // 删除一个或多个文章
     public function del()
     {
-    	echo '删除一个或多个文章';
+      $id  = I("get.id");
+      $ids = I("post.ids");
+      if( is_array($ids) && !empty($ids) ) $id = implode(',', $ids);
+      if( M("Article")->delete($id) )
+      {
+        $this->success("删除成功！");
+      }
+      else
+      {
+        $this->error("删除失败！");
+      }
     }
 
 

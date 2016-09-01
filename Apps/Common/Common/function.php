@@ -54,12 +54,18 @@
 	 * @param $rootPath    string       文件上传的根目录 默认./Public/uploads
 	 * @param $savePath    string       文件上传的目录   默认为当前日期
 	 * @param $exts        array        允许上传的文件类型
-	 * @param $maxSize     string       上传文件大小的最大值
+	 * @param $maxSize     int          上传文件大小的最大值
 	 */
-
-
-
-
+	function upload($savePath='album/')
+	{
+		$upload = new \Think\Upload();
+		$upload->maxSize  = 3145728;
+		$upload->exts     = array('jpg', 'gif', 'png', 'jpeg');
+		$upload->rootPath = './Public/uploads/';
+		$upload->savePath = $savePath;
+		$info 			  = $upload->upload();
+		return $info;
+	}
 
 
 

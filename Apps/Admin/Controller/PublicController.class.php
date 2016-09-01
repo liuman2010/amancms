@@ -191,8 +191,7 @@ class PublicController extends Controller
 
 	public function test()
 	{
-		$data = D('column')->getColumns();
-		echo $data;
+		upload();
 	}
 
 

@@ -36,7 +36,7 @@ return array(
 	'TMPL_PARSE_STRING'  =>array(
 	     '__JS__'     => '/Public/static/js', // 增加新的JS类库路径替换规则
 	     '__CSS__'     => '/Public/static/css',
-	     '__UPS__'     => '/Public/static/uploads',
+	     '__UPS__'     => '/Public/uploads',
 	     '__IMG__'     => '/Public/static/images',
 	     '__PLUS__'     => '/Public/static/plus',
 	),
