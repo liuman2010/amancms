@@ -1,4 +1,30 @@
 <?php 
+	
+	/**
+	 * @param  $data 	    array       要操作的二维数组	
+	 * @param  $field 	    string      要提取的字段名称
+	 * @return $result      array       提取二维数组中指定字段的值的集合 
+	 */
+	function i_array_column($data,$field)
+	{	
+		$result = null;
+		if(function_exists('array_column'))
+        {
+            $result    = array_column($data,$field);
+        }
+        else
+        {	
+        	$n = count($data);
+            for ($i=0; $i < $n; $i++) 
+            { 
+                $result[] = $data[$i][$field];
+            }
+        }
+
+		return $result;
+	}//f
+
+
 	/**
 	 * 发起curl请求 获得数据 
 	 * @param  $url     	string  	请求的地址
@@ -50,19 +76,18 @@
 
 	/**
 	 * 公共单文件上传函数
-	 * @param $fileName    string 		表单提交过来的名称$_FILES["filename"] 
-	 * @param $rootPath    string       文件上传的根目录 默认./Public/uploads
-	 * @param $savePath    string       文件上传的目录   默认为当前日期
+	 * @param $savePath    string       保存文件的目录
 	 * @param $exts        array        允许上传的文件类型
-	 * @param $maxSize     int          上传文件大小的最大值
 	 */
-	function upload($savePath='album/')
+	function upload($savePath='album')
 	{
 		$upload = new \Think\Upload();
-		$upload->maxSize  = 3145728;
-		$upload->exts     = array('jpg', 'gif', 'png', 'jpeg');
+		//上传文件大小的最大值
+		$upload->maxSize  = 0; 
+		$upload->exts     = array('jpg', 'gif', 'png', 'jpeg','mp4');
 		$upload->rootPath = './Public/uploads/';
-		$upload->savePath = $savePath;
+		//文件上传的根目录 默认./Public/uploads
+		$upload->savePath = $savePath; 
 		$info 			  = $upload->upload();
 		return $info;
 	}
@@ -99,6 +124,8 @@
         }
         return $onlineip; 
     } 
+
+
 
 
  ?>

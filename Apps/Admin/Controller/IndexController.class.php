@@ -140,18 +140,20 @@ class IndexController extends CommonController
         
         // 获取所有数据表字段信息
         $tablesArrs    =  $model->query("show tables from {$dbName}");
-        $this->assign('data',$tablesArrs);
-
+        foreach ($tablesArrs as $key => $arrs) {
+            foreach ($arrs as $k => $v) {
+                $data[]['name'] = $v;
+            }
+        }
+        $this->assign('data',$data);
 
         // 获得第一个数据表表
         $first = array_shift($tablesArrs);
-        $tableName  = $first['tables_in_amancms'];
-
+        $tableName  = end($first);
         $firstData = $model->query("SHOW COLUMNS FROM {$tableName}");
-        $fields    = array_column($firstData,"field");
+        $fields    = i_array_column($firstData,"field");
         $this->assign('firstData',$fields);
         $this->assign('firstTableName',$tableName);
-
         $this->display();
     }
 
@@ -165,7 +167,7 @@ class IndexController extends CommonController
         {
             $tableName      = I("post.tableName");
             $data = $model->query("SHOW COLUMNS FROM {$tableName}");
-            $fields = array_column($data,"field");
+            $fields    = i_array_column($data,"field");
             $this->ajaxReturn($fields);
         }
         else
@@ -258,13 +260,15 @@ class IndexController extends CommonController
     {   
         $area = urldecode($city);
         $url  = "http://api.map.baidu.com/telematics/v3/weather?location={$area}&output=json&ak=4c9dcc281e73f6511fa0107a1502266c";
-        /**
-         * @param  $url     string 请求的地址
-         * @param  $data    array  请求的数据
-         * @param  $cookie  string 请求的cookie
-         * @param  $timeout int    请求超时秒数 默认5
-         * @return curl_exec的结果
-         */
+       /**
+        * 发起curl请求 获得数据 
+        * @param  $url         string      请求的地址
+        * @param  $data        array       请求的数据
+        * @param  $toArray     boolean     返回的执行结果是否转为数组
+        * @param  $cookie      string      请求的cookie
+        * @param  $timeout     int         请求超时秒数 默认5
+        * @return curl_exec的执行结果 | $result array
+        */
         $data = curl($url,'',true);
         return $data;
     }
@@ -272,8 +276,6 @@ class IndexController extends CommonController
     
     /**
      * @Function 获得系统和服务器信息
-     * @param  string $msg  错误信息
-     * @param  array  $data 参数容器
      * @return array  $data 返回参数数组      
      */
     private function getInfo()
@@ -297,7 +299,7 @@ class IndexController extends CommonController
         $data['gdVersion']         = $gd_info['GD Version']        ? $gd_info['GD Version']              : '<span class="label label-danger">未安装GD库扩展！</span>'; 
         $data['curlStatus']        = function_exists('curl_init')         ? '<span class="glyphicon glyphicon-ok"></span> 支持' : '<span class="glyphicon glyphicon-remove"></span> 不支持' ;
         $data['fileGetStatus']     = function_exists('file_get_contents') ? '<span class="glyphicon glyphicon-ok"></span> 支持' : '<span class="glyphicon glyphicon-remove"></span> 不支持' ;
-        $data['phpVersion']        = PHP_VERSION; 
+        $data['phpVersion']        = phpversion(); 
         // 系统信息数组
         $data['DOMAINS']           = C("DOMAINS");
         $data['IP_ADDER']          = C("IP_ADDER");

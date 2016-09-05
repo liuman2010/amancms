@@ -1,8 +1,8 @@
-<include file='Public/head' />
+<include file='Index/head' />
 <body>
     <form name='mod' class="form-horizontal" role="form" method='post' action='__URL__/insert' enctype='multipart/form-data'>
     <input type="hidden" name='id' value='{$data.id}'>
-    <input type="hidden" name='sub' value='mod'>
+    <input type="hidden" name='type' value='mod'>
 		<div class="col-sm-12">
 			<div class="col-sm-10">
 				<h1>修改文章</h1><hr>
@@ -19,14 +19,16 @@
     	</div>
     </div>
 
-
      <div class="col-sm-12">
     	<div class="col-sm-5">
     		<div class="form-group">
 		      <label for="pid" class="col-sm-2 control-label">栏目:</label>
 		      <div class="col-sm-6">
 		         <select name="pid" id="" class='form-control'>
-		         	{$optionHtml}
+		         	     <volist name='columnsData' id='list'>
+                    <option class="opt_{$list.id}" value="{$list.id}">{$list.title}</option>
+                  </volist>
+                  <script>$(".opt_{$pid}").attr("selected","selected");</script>
 		         </select>
 		      </div>
 		   </div>
@@ -36,17 +38,18 @@
     <div class="col-sm-12">
         <div class="col-sm-10">
             <div class="form-group">
-              <label for="pic" class="col-sm-1 control-label">缩略图</label>
+              <label for="thumbpic" class="col-sm-1 control-label">缩略图:</label>
               <div class="col-sm-3">
-                 <input type="text" class="form-control" name="pic" value='{$data.thumbpic}'>
+                 <input type="text" class="form-control" name="thumbpic" value="{$data.thumbpic}">
               </div>
 
               <div class="col-sm-3">
-                 <input type="file"  class="form-control" name="pic" >
+                 <input type="file"  class="form-control" name="uppic" >
               </div>
            </div>
         </div>
-    </div>    
+    </div>       
+
 
     <div class="col-sm-12">
         <div class="col-sm-5">
@@ -59,6 +62,19 @@
         </div>
     </div>
 
+     <div class="col-sm-12">
+
+        <div class="col-sm-5">
+            <div class="form-group">
+              <label for="author" class="col-sm-2 control-label">作者:</label>
+              <div class="col-sm-6">
+                 <input type="text" class="form-control" name="author" 
+                    value="{$data.author}">
+              </div>
+           </div>
+        </div>
+    </div>
+    
     <div class="col-sm-12">
     	<div class="col-sm-10">
     		<div class="form-group">
@@ -71,20 +87,17 @@
     </div>
 
 
-    <div class="col-sm-12">
-        <div class="col-sm-5">
+     <div class="col-sm-11">
             <div class="form-group">
-                <label for="summary" class="col-sm-2 control-label">默认:</label>
-                <div class="col-sm-10">
-                     <div class="checkbox">
-                        <label>
-                           <input type="checkbox" checked  name='wget' value='true'> 下载图片保存到本地
-                        </label>
-                     </div>
-                </div>
-           </div>
+              <label for="video_url" class="col-sm-1 control-label">视频:</label>
+              <div class="col-sm-6">
+                 <input type="text" class="form-control" id="video_url" 
+                    placeholder="请粘贴mp4视频地址">
+              </div>
+              <div class="col-xs-2"><span class='btn btn-info add_video'>插入视频</span></div>
         </div>
     </div>
+
 
 
     <div class="col-sm-12">
@@ -93,7 +106,6 @@
     	</div>
 
     </div>
-
 
 <div class="col-sm-12">
 	<div class="col-sm-8">
@@ -105,20 +117,34 @@
 </div>
 
 </form>
-    <script type="text/javascript" charset="utf-8" src="__ROOT__/ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" charset="utf-8" src="__ROOT__/ueditor/ueditor.all.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/static/plus/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/static/plus/ueditor/ueditor.all.js"> </script>
     <script type="text/javascript">
-
         //实例化编辑器
         //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
         var ue = UE.getEditor('editor');
+
         function setContent(isAppendTo) {
             var arr = [];
             UE.getEditor('editor').setContent('　', isAppendTo);
         }
+
         setTimeout(function() {
          setContent(true);
         }, 500);
+
+
+      // 追加视频
+      $(function(){
+          $(".add_video").click(function(){
+              var url = $("#video_url").val();
+              var htmlcode = '<video controls="controls" autoplay="autoplay" class="edui-upload-video video-js vjs-default-skin aman" controls="controls" autoplay="autoplay" data-setup="{}" height="auto" id="example_video_1" poster="/Public/static/images/video_begin_bg.jpg" preload="none" width="auto" src="'+url+'"></video>'+'　';
+              UE.getEditor('editor').execCommand('insertHtml', htmlcode);
+          });
+      });
+
     </script>
+
+
 </body>
 </html>

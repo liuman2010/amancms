@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+   <meta http-equiv="x-ua-compatible" content="ie=edge">
+   <title>修改视频标题</title>
+   <load href="__JS__/jquery.min.js" />
+   <load href="__JS__/bootstrap.min.js" />
+   <load href="__CSS__/bootstrap.min.css" />
+   <load href="__CSS__/weixin_video.css" />
+</head>
+<style>
+	.middle{
+		width:100%;
+		padding:25px;
+	}
+  .info{
+    margin-top:30%;
+    margin-left:10%;
+    position: absolute;
+    display: none;
+  }
+</style>
+<body>
+
+<form action="__URL__/update" method='post' enctype="multipart/form-data">
+<div class="middle">
+	<center><a href="__URL__/" class="btn btn-info">回到首页</a > <a href="__URL__/histroy" class="btn btn-info">查看生成历史</a ></center><hr>
+    <div class="form-group">
+    	<label for="title" class="control-label">视频标题:</label>
+      <input type="hidden" name='id' value="{$data.id}">
+      <input type="text" class="form-control" name="title" value="{$data.title}">
+    </div>
+    <hr>
+    <button class="btn btn-success mod">提交修改</button>
+</div>
+</form>
+
+<include file="Video/footer" />

@@ -88,11 +88,22 @@
     </div>
 
 
+     <div class="col-sm-11">
+            <div class="form-group">
+              <label for="video_url" class="col-sm-1 control-label">视频:</label>
+              <div class="col-sm-6">
+                 <input type="text" class="form-control" id="video_url" 
+                    placeholder="请粘贴mp4视频地址">
+              </div>
+              <div class="col-xs-2"><span class='btn btn-info add_video'>插入视频</span></div>
+        </div>
+    </div>
+
+
     <div class="col-sm-12">
         <div class="col-sm-10">
             <script id="editor" type="text/plain" style="width:100%;height:320px;"></script>
         </div>
-
     </div>
 
 </div>
@@ -220,10 +231,15 @@
         alert("已清空草稿箱")
     }
 
-      function getFirstImg(){
-        alert(1);
-    }
 
+      // 追加视频
+      $(function(){
+          $(".add_video").click(function(){
+              var url = $("#video_url").val();
+              var htmlcode = '<video controls="controls" autoplay="autoplay" class="edui-upload-video video-js vjs-default-skin aman" controls="controls" autoplay="autoplay" data-setup="{}" height="auto" id="example_video_1" poster="/Public/static/images/video_begin_bg.jpg" preload="none" width="auto" src="'+url+'"></video>'+'　';
+              UE.getEditor('editor').execCommand('insertHtml', htmlcode);
+          });
+      });
 
 </script>
 </body>

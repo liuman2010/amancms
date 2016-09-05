@@ -321,7 +321,7 @@
         //}
 
         //tableDragable
-        //表格是否可以拖拽
+        //表格是否可以拖拽 whiteList
         //,tableDragable: true
 
 
@@ -425,7 +425,7 @@
 			tt:     [],
 			u:      [],
 			ul:     ['class', 'style'],
-			video:  ['autoplay', 'controls', 'loop', 'preload', 'src', 'height', 'width', 'class', 'style']
+			video:  ['autoplay', 'controls', 'loop', 'preload', 'src', 'height', 'width', 'class','style','poster']
 		}
     };
 

@@ -9,9 +9,9 @@
 	<div class="col-sm-12"> <hr> </div>
 	<div class="col-sm-2">
 					<select name="pid" id="select" class='form-control' onchange="showArticle(this.value);">
-						<option class='opt' value="all">所有文章</option>
+						<option class='opt' value="0">所有文章</option>
 						<volist name='columnsData' id='list'>
-							<option value="{$list.id}">{$list.title}</option>
+							<option class="opt_{$list.id}" value="{$list.id}">{$list.title}</option>
 						</volist>
 					</select>
 					<script>
@@ -32,7 +32,7 @@
 		<volist name='data' id='list' empty="没有文章">
 
 			<tr class='list'>
-				<td style="width:80px;"><input type="checkbox" class='id' name='ids[]' value='{$list.id}'></td><td>{$list.id}</td><td><a target='main' href="__URL__/mod/id/{$list.id}">{$list.title}</a></td><td>{$list.pid}</td><td><span class='glyphicon glyphicon-ok'></span></td><td><span class='glyphicon glyphicon-remove'></span></td><td>{$list.views}</td><td><span class='glyphicon glyphicon-pencil'></span> <a target='main' href="__URL__/mod/id/{$list.id}">修改</a>&nbsp;｜&nbsp;<span class='glyphicon glyphicon-trash'></span> <a href="__APP__/Article/del/id/{$list.id}">删除</a>&nbsp;｜&nbsp;<span class='glyphicon glyphicon-globe'></span> <a target='_blank' href="/index.php/article/index/aid/{$list.id}">浏览</a></td><td>{$list.posttime|date="y-m-d H:i:s",###}</td>
+				<td style="width:80px;"><input type="checkbox" class='id' name='ids[]' value='{$list.id}'></td><td>{$list.id}</td><td><a target='main' href="__URL__/mod/id/{$list.id}">{$list.title}</a></td><td>{$list.pid}</td><td><span class='glyphicon glyphicon-ok'></span></td><td><span class='glyphicon glyphicon-remove'></span></td><td>{$list.views}</td><td><span class='glyphicon glyphicon-pencil'></span> <a target='main' href="__URL__/mod/id/{$list.id}">修改</a>&nbsp;｜&nbsp;<span class='glyphicon glyphicon-trash'></span> <a href="__APP__/Article/del/id/{$list.id}">删除</a>&nbsp;｜&nbsp;<span class='glyphicon glyphicon-globe'></span> <a target='_blank' href="/index.php/article/index/aid/{$list.id}">浏览</a></td><td>{$list.ctime|date="y-m-d H:i:s",###}</td>
 			</tr>
 
 		</volist>
@@ -54,6 +54,8 @@
 			$(".del_select").click(function(){
 					$(".id").removeAttr("checked");
 			});
+
+			$(".opt_{$Think.session.a_column_id}").attr("selected","selected");
 
 </script>
 	

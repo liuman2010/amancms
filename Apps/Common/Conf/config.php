@@ -6,7 +6,7 @@ return array(
 	'IP_ADDER'=>'192.168.2.254',
 	'DEFAULT_TPL'=>'default',
 	'WATER_MARK'=>'false',
-	'WATER_POSITION'=>'5',
+	'WATER_POSITION'=>'3',
 	'ALLOW_TYPE'=>'gif|png|jpg|jpeg',
 	'IMG_WIDTH'=>'320',
 	'IMG_HEIGHT'=>'180',
