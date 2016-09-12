@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>新网站</title>
+<link rel="stylesheet" type="text/css" href="__Res__/images/style.css" />
+<link rel="stylesheet" type="text/css" href="__Res__/images/common.css" />
+<script src="__Res__/images/jquery.js"></script>
+<script type="text/javascript" src="__Res__/images/jquery.SuperSlide.js"></script>
+<script type="text/javascript" src="__Res__/images/global.js"></script>
+<script type="text/javascript" src="__Res__/images/www.js"></script><script type="text/javascript"></script>
+</head>
+<body>
+<div id="header">
+<div class="warp">
+<div class="logo"><h1><a href="/" title=""><img src="__Res__/images/logo.png" alt=""/></a></h1> </div>
+<div class="head-r">
+<div class="tel"><img  width='300' height='90' src="__Res__/images/tel.png" alt="" /></div>
+</div>
+</div>
+</div>
+<div class="clear"></div>
+<div id="naver">
+<div class="warp">
+	    <ul>
+            <li><a href="/" >网站首页</a></li>
+            <volist name='data' id='data'>
+                <li><a href="__APP__/list/index/pid/{$data.id}" >{$data.title}</a></li>
+            </volist>
+    </ul>
+    </div>
+</div>
+<div class="clear"></div>
+<div id="fullside">
+  <div class="bd">
+    <ul>
+       
+            <li style="background:url(__Res__/images/1.jpg) no-repeat center;height:443px;"><a href="#####"></a></li>
+            <li style="background:url(__Res__/images/2.jpg) no-repeat center;height:443px;"><a href="#####"></a></li>
+            <li style="background:url(__Res__/images/3.jpg) no-repeat center;height:443px;"><a href="#####"></a></li>
+       
+          </ul>
+  </div>
+  <div class="hd">
+    <ul>
+      <li></li>
+    </ul>
+  </div>
+</div>
+<script type="text/javascript">jQuery("#fullside").slide({ titCell:".hd ul", mainCell:".bd ul", effect:"leftLoop",  autoPlay:true, autoPage:true, trigger:"click" ,delayTime:1500,interTime:5000});	</script>

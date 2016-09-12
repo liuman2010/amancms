@@ -1,0 +1,180 @@
+<include file='Public/head' />
+
+<style>
+	.video-js-box{
+	width: 603px;
+height: 360px;
+margin: 0px auto;
+}
+.video-js-box .video-js video{
+	width: 530px;
+
+	height: 300px;
+}
+</style>
+	<!-- 代码开始 -->
+	<div id="js_banner" class="banner">
+		<ul id="js_banner_img" class="banner_img clear">
+			<li class="bgli03">
+				<div class="banner_inner">
+					<div class="child child1" data-z="2"><img src="__Res__/images/3-1.png" /></div>
+					<div class="child child2" data-z="3"><a href="/" target="_blank"><img src="__Res__/images/3-2.png" /></a></div>
+				</div>
+			</li>
+			<li class="bgli01">
+				<div class="banner_inner">
+					<div class="child child1" data-z="2"><img src="__Res__/images/1-1.png" /></div><!-- data-z="2"与data-z="3"表示两个图层进退场的顺序有区别 -->
+					<div class="child child2" data-z="3"><a href="/" target="_blank"><img src="__Res__/images/1-2.png" /></a></div>
+				</div>
+			</li>
+			<li class="bgli02">
+				<div class="banner_inner">
+					<div class="child child1" data-z="2"><img src="__Res__/images/2-1.png" /></div>
+					<div class="child child2" data-z="3"><a href="/a/jingtouxilie/20140313/318.html" target="_blank"><img src="__Res__/images/2-2.png" /></a></div>
+				</div>
+			</li>
+			<li class="bgli04">
+				<div class="banner_inner">
+					<div class="child child1" data-z="2"><img src="__Res__/images/4-1.png" /></div>
+					<div class="child child2" data-z="3"><a href="/a/chanpinshipin/20140312/314.html" target="_blank"><img src="__Res__/images/4-2.png" /></a></div>
+				</div>
+			</li>
+
+                         <li class="bgli05">
+				<div class="banner_inner">
+					<div class="child child1" data-z="2"><img src="__Res__/images/5-1.png" /></div>
+					<div class="child child2" data-z="3"><a href="/a/danren_caozuo/20140503/332.html" target="_blank"><img src="__Res__/images/5-2.png" /></a></div>
+				</div>
+			</li>
+		</ul>
+		<div class="banner_common">
+			<a id="js_banner_pre" href="javascript:;" class="banner_pre"></a>
+			<a id="js_banner_next" href="javascript:;" class="banner_next"></a>
+		</div>
+	</div>
+	<!-- 代码结束 -->
+			
+						<div class="main"><div class="banner_pic">
+			<img src="__Res__/images/banner3.gif" alt="小米分析仪" width='1200'>
+		</div>
+			<div class="left_1">
+				<div class="xiaomi">
+					<img width="300" height="300"  src="__Res__/images/yl.jpg" alt="阿拉丁普通牌扑克分析仪">
+				</div>
+				<div class="xiaomi_con">
+					<ul>
+						<li><a href="/index.php/article/index/aid/89" class='tit_one' target="_blank">普通扑克分析仪</a></li>
+						<li><p>针对市面上的任何普通扑克牌，桌面不用放置镜头和其它辅助工具，可以任由别人切牌、抬牌，做庄做闲家都实用！</p></li>
+						<li><a target="_blank" href="/index.php/article/index/aid/89" class='tit_two'>查看详情</a></li>
+					</ul>
+				</div>
+				
+			</div>
+			<div class="right_2" style="margin: 0px 130px 1px 0px;">
+  <div class="video-js-box">
+<video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="530" height="300"
+      poster="__Res__/post.png"
+      data-setup="{}">
+    <source src="http://121.42.195.161/20150910.mp4" type='video/mp4' />
+    <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+    <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+    <p class="vjs-no-js">您好！您的浏览器不支持视频播放！</p>
+  </video>
+  </div>
+
+		</div>
+			
+		</div>
+	<div class="clear"></div>
+<div style="width: 1200px;
+height: auto;
+margin: 8px auto;">
+      <a href="/index.php/article/index/aid/102"> <img src="__Res__/images/add10.jpg" alt="苹果分析仪" width="1200"></a>
+    </div>
+
+		
+		<div class="menu">
+
+			<img src="__Res__/images/pic_menu_2.png" alt=""><!-- 产品视频 -->
+		</div>
+		<div class="pics">
+			<ul class="pics_link">
+
+				<img style="margin:20px 0px;" src="__Res__/images/tit1.jpg" alt="" width='158' height='45'>
+
+				 <volist name='p6' id='vo' offset='1' length='13'>
+					<li><a href="__APP__/article/index/aid/{$vo.id}"> {$vo.title} </a></li>
+				</volist>
+
+				<img style="margin:20px 0px;" src="__Res__/images/333.png" alt="" width='160' height='172'>
+				<img style="margin:20px 0px;" src="__Res__/images/22.jpg" alt="" width='155' height='150'>
+				<hr>
+				<a href="/index.php/article/index/aid/117"><img style="margin:20px 0px;" src="__Res__/images/11.jpg" alt="" width='155' height='140'></a>
+
+			</ul>
+			<ul>
+				 <volist name='p6' id='vo' offset='1' length='16'>
+					<li><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" class='vod'><img src="{$vo.thumbpic}" width='210' height='225' alt="{$vo.title}"></a><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" class='tit_url'> {$vo.title} </a></li>
+			  	</volist>
+	
+			</ul>
+		</div>
+		<div class="clear"></div>
+		
+		<div class="clear"></div>
+		<div style="width: 1200px;
+height: auto;
+margin: 8px auto;">
+      <a href="/index.php/article/index/aid/58"><img src="__Res__/images/biandian.jpg" alt="苹果分析仪" width="1200"></a>
+    </div>
+		<div class="menu">
+			<!-- <img src="__Res__/images/dizhi.jpg" alt=""> -->
+			<img src="__Res__/images/pic_menu_3.png" alt="">
+		</div>
+		<div class="pics">
+			<ul class="pics_link">
+				<img style="margin:20px 0px;" src="__Res__/images/tit1.jpg" alt="" width='158' height='45'>
+
+				<volist name='p6' id='vo' offset='13' length='15'>
+					<li><a href="__APP__/article/index/aid/{$vo.id}"> {$vo.title} </a></li>
+				</volist>
+
+				<a href="/a/bianpai_xilie/20140310/292.html"><img style="margin:20px 0px;" src="__Res__/images/55.gif" alt="" width='155' height='140'></a>
+				<a href="/a/bianpai_xilie/20140313/315.html"><img style="margin:20px 0px;" src="__Res__/images/66.jpg" alt="" width='155' height='140'></a>
+
+			</ul>
+			<ul>
+				<img style="margin:20px 0px;" src="__Res__/images/jiamen.jpg" alt="">
+				 <volist name='p6' id='vo' offset='16' length='12'>
+					<li><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" class='vod'><img src="{$vo.thumbpic}" width='210' height='225' alt="{$vo.title}"></a><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" class='tit_url'> {$vo.title} </a></li>
+			  	</volist>
+			</ul>
+		</div>
+
+			<div class="clear"></div>
+		<div class="company_box">
+				<div class="intit">
+					<span>公司简介</span>
+					<font>ABOUT US</font><a href="/index.php/list/index/pid/6" target="_blank" class="in_more">更多>></a>
+				</div>
+				<div class="company_con">
+					<img src="__Res__/images/company/company_1.jpg" alt="">
+					<img src="__Res__/images/company/company_2.jpg" alt="">
+					<img src="__Res__/images/company/company_3.jpg" alt="">
+					<img src="__Res__/images/company/company_4.jpg" alt="">
+					<img src="__Res__/images/company/company_5.jpg" alt="">
+					<img src="__Res__/images/company/company_6.jpg" alt="">
+					<img src="__Res__/images/company/company_7.jpg" alt="">
+				</div>
+			<div class="saled">
+				<p>您好：首先欢迎您浏览本公司网站，我们是做厂家直销，全部一手货源，产品齐全、价格低廉，承诺比市场零售价低20%--30%，可享受一年无忧售后服务！【欢迎外地朋友加盟】如果您对本公司产品或者技术感兴趣的话，欢迎您亲临本公司实地考察、免费体验产品或者技术效果、满意再买再学，广州市内任何地方打的来本公司可以凭票报销。如果外地不方便前来本公司的朋友也可以办理货到付款业务【注：做货到付款要预付总货款的10%代收手续费，因为我们是跟EMS合作的，这个10%是他们收取，为了防止恶意下单，所以要做货到付款的朋友事先要支付这个手续费才能下单，收到货后再付货款，希望能理解。】咨询 热线：<font style="color:red"><font style="color:blue;">邱小姐:</font>18124267558</font>   <font style="color:blue;">固话:</font><font style="color:red">020-29883713</font>(24小时竭诚为您服务)  热线服务时间：周一～周日 00：00－24：00 电子 邮箱： HG228355@163.com <font style="color:red">公司详细地址：广州市白云区三元里大道909-911号粤海商务中心五楼正厅【远景路口东江大酒店正对面】【广州火车站坐公交车60路或者840、广州东站坐185、罗冲围客运站坐198、芳村客运站坐26路到“棠下①”站下过红绿灯斜对面即到、高铁站可以坐地铁2号线“三元里站C1出口”、市内“打的”凭票<font style="color:blue;">可报销车费</font></font>[<a href="/index.php/list/index/pid/6" target="_blank">详细</a>]</p>
+			</div>
+		</div>
+
+	<div class="clear"></div>
+	<div class="menu">
+			<img src="__Res__/images/ad3.jpg" alt="">
+			
+		</div>
+
+<include file='Public/footer' />

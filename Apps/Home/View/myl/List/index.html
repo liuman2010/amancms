@@ -1,0 +1,34 @@
+<include file='Public/head' />
+<div class="banner">
+	<img src="__Res__/images/2.jpg" alt="扑克必胜绝招">
+</div>
+
+<div class="position">
+	当前浏览：{$position}
+</div>
+
+<div class="content">
+	<volist name='list' id='vo'>
+		<div class="pics">
+			<ul>
+				<li><a href="__APP__/article/index/aid/{$vo.id}"><img src="{$vo.thumbpic}" width="100"  height="90" alt="{$vo.title}"></a></li>
+				<li><a href="__APP__/article/index/aid/{$vo.id}">{$vo.title}</a></li>
+			</ul>
+		</div>
+	</volist>
+
+</div>
+
+	<div class="clear"></div>
+
+<div class="pages">
+   <ul class="pagelist">
+    {$page}
+   </ul>
+ </div>
+	<div class="clear"></div>
+	<hr><br>
+	<div class="top_title"><p>直接点击拨打免费热线</p><a href="tel:18124267558">18124267558</a>
+	</div>
+	<br>
+<include file="Public/footer">

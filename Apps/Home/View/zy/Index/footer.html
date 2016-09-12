@@ -1,0 +1,141 @@
+    <div class="footer">
+        
+       <div class="ft_nav">
+                              <ul>
+            <li><a href="/">网站首页</a></li>
+            <li><a href="/index.php/list/index/pid/5">单人操作</a></li><li><a href="/index.php/list/index/pid/6">视频演示</a></li><li><a href="/index.php/list/index/pid/7">镜头系列</a></li><li><a href="/index.php/list/index/pid/8">变牌系列</a></li><li><a href="/index.php/list/index/pid/9">穿透系列</a></li><li><a href="/index.php/list/index/pid/10">牌九筒子</a></li><li><a href="/index.php/list/index/pid/11">色子系列</a></li><li><a href="/index.php/list/index/pid/13">麻将桌类</a></li><li><a href="/index.php/list/index/pid/14">百家乐类</a></li>    </ul>
+
+        </div>
+        <div class="copy">
+<p><img src="__Res__/images/foot22.jpg"></p>
+<p> <img src="__Res__/images/telpic.png">本站客服电话：<span>莫小姐 132-6833-4858</span>   售后服务：133-6000-1556</p>
+            <p>Copyright (C) 2016 All Rights Reserved. 广州众宜娱乐牌具 版权所有   粤ICP备48271333号 </p>
+            <p>联系地址：广州市白云区远景路842号 （东江大酒店旁边）<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258265330'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/stat.php%3Fid%3D1258265330%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script></p>
+            
+        </div>
+
+    </div>
+
+
+
+    <style>
+
+@media screen and (max-width:1000px){
+    .piaofu2{
+        display: none;
+    }
+} 
+
+.piaofu2{
+    width: 191px;
+    height:563px;
+    position: absolute;
+    top: 150px;
+    right: 20px;
+    overflow: hidden;
+    z-index: 9999999;
+}
+.piaofu2 ul{
+    width: 191px;
+    height: 563px;
+    padding-right: 4px;
+    padding-top: 58px;
+    position: absolute;
+    float: left;
+    background:url('__Res__/images/kefu_right.png')  no-repeat; 
+}
+.piaofu2 ul li{
+    width: 150px;
+    float: left;
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+.piaofu2 ul li.img_box{
+    width: 65px;
+    height: 33px;
+    padding: 0px 0px 0px 14px;
+}
+.piaofu2 ul li.img_box a{
+    /*background: red;*/
+    width: 140px;
+    height: 221px;
+    display: block;;
+}
+
+.piaofu2 ul li p{
+    width: 173px;
+    margin-left: 4px;
+    font-weight: bold;
+}
+
+</style>
+
+<div class="piaofu2">
+        <ul>
+               <li class="img_box "><a href=# onClick="javascript:window.open('http://www.gzknpj.com/aman.php/Public/client/username/xiaomo','','width=964,height=625,toolbar=no, status=no, menubar=no, resizable=yes, scrollbars=yes,location=no,top=100,left=300');return false;"></a></li> 
+
+        </ul>
+    </div>      
+ <script type="text/javascript">  
+     $(document).ready(function() {  
+         //滚动条事件  
+         $(window).scroll(function() {  
+             //获取窗口一半的高度+滚动条高度  
+             var offsetTop = $(window).scrollTop() + $(window).height() /5;  
+             //改变样式 显示   
+             $(".piaofu2").show();  
+             //改变样式 top 高度  
+             $(".piaofu2").animate({ top: offsetTop + "px" }, { duration: 600, queue: false });  
+             //改变left 位置  
+             $(".piaofu2").animate({ right:20}, { duration: 600, queue: false });  
+         });  
+     });  
+
+     // 获取xy
+// 设置xy
+$(function(){
+    function Scorll2(){
+        var piaofu2 = $('.piaofu2');
+        var piaofu_left2 = piaofu2.offset().right;
+        var piaofu_top2 = piaofu2.offset().top;
+        piaofu2.animate({right:'50',top:'200'});
+    }
+});
+   
+ </script>
+
+
+<script>
+
+    $(function(){
+        var online = 0;
+        $.ajax({
+          url: "http://www.gzknpj.com/aman.php/Public/checkKefuStatus/username/xiaomo",
+          type: 'GET',
+          dataType: 'html',
+          success: function (data) {
+              if(data == 0){
+                // 改变背景
+                $(".piaofu2 ul").css("background","url(/Cms/Home/View/zy/Resource/images/kefu_rightfalse.png) no-repeat");
+                // 改变链接
+                $(".kefu_status3").css("background","url(http://www.gzknpj.com/Public/images/kefu_offline.jpg) no-repeat");
+                var link = '<a  class="toMessage" href="javascript:void(0);"></a>';
+                $(".img_box").html(link);
+                $(".toMessage").click(function(){
+                    window.open('http://www.gzknpj.com/aman.php/Public/guest/username/xiaomo','','width=964,height=620,toolbar=no, status=no, menubar=no, resizable=yes, scrollbars=yes,location=no,top=100,left=300');
+                    return false;
+                });
+            }else{
+                return false;
+            }
+        }
+      });
+
+    });
+
+</script>
+
+ 
+</body>
+</html>

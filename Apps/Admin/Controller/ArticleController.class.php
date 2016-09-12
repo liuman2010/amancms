@@ -60,7 +60,7 @@ class ArticleController extends CommonController
     {
     	$id = I("get.id");
       $data = M("Article")->where(array('id'=>$id))->find();
-      $data["content"] = htmlspecialchars_decode($data["content"]);
+      $data["content"]     = htmlspecialchars_decode($data["content"]);
       $this->assign("pid",$data['pid']);
       $this->assign("data",$data);
       $this->assign("columnsData",D("Column")->getColumns());
@@ -71,6 +71,8 @@ class ArticleController extends CommonController
     // 新增或修改文章内容
     public function insert()
     {
+      // var_dump($_POST);exit;
+
       if(!IS_POST) $this->error("非法访问！");
       $article = D("Article");
       session('article_column_pid',I("post.pid"));
@@ -83,7 +85,7 @@ class ArticleController extends CommonController
       $data["title"]       = I("post.title");
       $data["author"]      = I("post.author");
       $data["summary"]     = I("post.summary");
-      $data["content"]     = I("post.editorValue");
+      $data["content"]     = I("post.content");
       $data["ctime"]       = time();
 
       // 验证数据
@@ -98,7 +100,6 @@ class ArticleController extends CommonController
       // 修改文章
       if($type === 'mod')
       {
-        $data["content"] = htmlspecialchars_decode($data["content"]);
         $result = $article->where( array('id'=>$id) )->save($data);
       }
 
@@ -108,7 +109,7 @@ class ArticleController extends CommonController
       }
       else
       {
-        $this->success("操作成功！");
+        $this->success("操作成功！",'index');
       }
 
     }//f

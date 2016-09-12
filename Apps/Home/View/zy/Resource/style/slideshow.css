@@ -1,0 +1,69 @@
+body {
+	font: 12px/1.5 Tahoma, "Microsoft Yahei", "Simsun"; color: rgb(68, 68, 68); font-size-adjust: none; font-stretch: normal;
+}
+body {
+	margin: 0px; padding: 0px;
+}
+ul {
+	margin: 0px; padding: 0px;
+}
+li {
+	margin: 0px; padding: 0px;
+}
+a img {
+	border: currentColor;
+}
+.block {
+	position: relative;
+}
+.slideshow {
+	clear: both;
+}
+.slideshow li {
+	overflow: hidden; position: relative;
+}
+.slidebar li {
+	background: rgba(0, 0, 0, 0.3); color: rgb(255, 255, 255); overflow: hidden; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = #30000000,endColorstr = #30000000);
+}
+.slidebar li {
+	width: 20px; height: 20px; text-align: center; line-height: 20px; font-size: 10px; margin-right: 1px; float: left; cursor: pointer;
+}
+.slidebar li.on {
+	background: rgba(255, 255, 255, 0.5); color: rgb(0, 0, 0); font-weight: 700; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = #50FFFFFF,endColorstr = #50FFFFFF);
+}
+ul {
+	list-style: none;
+}
+li {
+	list-style: none;
+}
+.frame {
+	border: 0px solid rgb(255, 255, 255); margin-bottom: 0px;
+}
+.slidebar {
+	right: 4px; bottom: 5px; position: absolute;
+}
+.slideshow span.title {
+	background: rgba(0, 0, 0, 0.3); color: rgb(255, 255, 255); overflow: hidden; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = #90000000,endColorstr = #90000000);
+}
+.slidebar li {
+	background: rgba(0, 0, 0, 0.3); color: rgb(255, 255, 255); overflow: hidden; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = #90000000,endColorstr = #90000000);
+}
+.slidebar li.on {
+	background: rgba(255, 255, 255, 0.5); color: rgb(255, 255, 0); font-weight: 700; filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = #90000000,endColorstr = #90000000);
+}
+.block {
+	margin: 0px; position: relative;
+}
+#frameHlicAe {
+	margin: 0px !important; border: 0px currentColor !important;
+}
+.comiis_wrapad {
+	width: 100%; height: 328px; overflow: hidden; margin-top: 5px;
+}
+.comiis_wrapad img {
+	width: 100%; height: 328px; float: left;
+}
+#slidesImgs li {
+	width: 100%; height: 328px; display: none;
+}

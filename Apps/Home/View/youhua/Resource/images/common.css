@@ -1,0 +1,109 @@
+/* CSS Document */
+.pagelist { height: 30px; padding-top: 10px; width: 100%; text-align: center; line-height: 30px; }
+.pagelist a { padding: 3px 5px; background: #fff; color: #e81c2d; border: 1px solid #e9e9e9; }
+.pagelist a:hover, .pagelist a.on { background: #e81c2d; color: #fff; }
+.pagelist .pagination li{
+	float: left;
+	margin-right: 25px;
+}
+.netopic { height: 30px; padding-top: 10px; width: 100%; text-align: center; line-height: 30px; }
+.netopic li { width: 50%; text-align: center; float: left; }
+.netopic li a { color: #000; }
+.netopic li a:hover { color: #e81c2d; }
+.title { width: auto; height: 45px; text-align: center; background: url(title-bg.jpg) repeat-x; }
+.title h3 { width: auto; padding: 0px 18px; height: 58px; line-height: 45px; float: left; font-size: 25px; font-weight: normal; color: #fff; background: url(title-ico.png) no-repeat; padding-left: 50px; }
+.title p { width: auto; font-size: 14px; color: #333333; height: 45px; line-height: 45px; text-align: right; display: block; background: url(more.png) no-repeat right; padding-right: 10px; }
+.title a p:hover { color: #e81c2d; }
+.ltitle { width: auto; height: 62px; text-align: center; background: url(rt.jpg) no-repeat; }
+.ltitle h3 { width: auto; padding: 0px 18px; line-height: 62px; float: left; font-size: 18px; color: #fff; padding-left: 20px; }
+.ltitle h3 small { font-size: 14px; font-style: normal; padding-left: 5px; font-weight: normal; }
+.rtitle { width: 740px; height: 62px; float: left; border-bottom: 1px solid #e9e9e9; }
+.rtitle h3 { width: auto; color: #67696d; font-size: 18px; float: left; font-weight: bold; border-bottom: 2px solid #fc9c02; line-height: 62px; }
+.rtitle span { float: right; width: auto; text-align: right; }
+.rtitle span a { color: #777; }
+.rtitle span a:hover { color: #e81c2d; }
+/**msg_book beagin **/
+.form1 { width: 738px; text-align: center; height: auto; padding-top: 30px; }
+.inpclass { width: 260px; height: 24px; margin: 10px 0px; border: 1px solid #cccccc; }
+.inpclass:hover { border: 1px solid #2192cc; height: 24px; }
+.textclass { width: 260px; height: 100px; margin-top: 10px; }
+.btnsub { width: 100px; height: 30px; background: #2192cc; color: #fff; border: none; margin-top: 10px; border-radius: 3px; }
+.form1 span { padding-left: 10px; }
+/**msg_book over **/
+
+/**msg_onepage begin **/
+.pageleft { width: 240px; height: auto; float: left; }
+.pagelcont { padding:0px 0px 5px 0px; }
+.pagelcont ul li { width: 240px; margin-top: 5px;  }
+.pagelcont ul li .a1 {   height: 37px;  display: block;  background: url(libg.jpg) no-repeat;  padding-left: 70px;  font-size: 14px;line-height:37px; }
+
+.pagelcont ul li.on a, .pagelcont ul li a1:hover { color: #fff;background:url(libgon.jpg) no-repeat; }
+.sonlist{width:240px; overflow:hidden; padding:10px 0;}
+.sonlist a{ float:left; width:100px; line-height:24px; background:url(title-bg.png) no-repeat left center; padding-left:15px;}
+
+
+.pageright { width: 740px; height: auto; float: right; }
+.pagercont { padding: 10px; overflow: hidden; }
+.pagercont p { line-height: 20px; }
+
+
+/**msg_onepage over **/
+
+/**list_product beagin **/
+.pright { width: 740px; overflow: hidden; float: right; margin-bottom: 10px; min-height: 566px; height: auto; }
+.msgrcont { padding-top: 10px; }
+.msgrcont ul li { width: 230px; height: 189px; padding: 10px 2px; border-bottom: 1px dashed #e9e9e9; float: left; margin-left: 10px; text-align: center; }
+.newcont { width: 230px; height:189px; overflow: hidden; }
+.newcont img { width: 228px; height: 163px; float: left; border: 1px solid #e9e9e9; }
+.newcont img:hover { opacity: 0.6; }
+.newcont h3 { font-size: 15px; font-weight: normal; height: 24px; line-height: 24px; width: 230px; float: left; }
+.newcont a h3 { color: #000; }
+.newcont a:hover h3 { color: #e81c2d; }
+/**list_product over **/
+
+/**list_article beagin **/
+.pagercont ul li { width: 738px; height: 152px; padding: 10px 0px; border-bottom: 1px dashed #e9e9e9; float: left; margin-left: 10px; }
+.newscont { width: 738px; height: 152px; overflow: hidden; }
+.newscont img { width: 220px; height: 150px; float: left; border: 1px solid #e9e9e9; }
+.newscont img:hover { opacity: 0.6; }
+.newscont h3 { font-size: 15px; font-weight: normal; height: 30px; line-height: 30px; margin-left: 10px; width: 500px; float: left; }
+.newscont small { margin-left: 10px; }
+.newscont p { line-height: 24px; height: 24px; float: left; width: 500px; margin-left: 10px; }
+.newscont a { color: #000; }
+.newscont a:hover { color: #e81c2d; }
+/**list_article over **/
+
+/**msg_article beagin **/
+
+.msgtitle { height: 40px; line-height: 40px; width: 738px; text-align: center; font-size: 15px; padding-bottom: 30px; }
+.msgtitle small { height: 20px; line-height: 20px; width: 738px; text-align: center; }
+/**msg_article over **/
+
+/**msg_product beagin **/
+
+.productcont { padding-top: 78px; height: auto; }
+.productcont .bd { width: 412px; height: 297px; border-bottom: 1px dashed #e9e9e9; padding-bottom: 5px; float: left; }
+.productcont .bd li { width: 412px; height: 297px; text-align: left; }
+.productcont .bd li img { width: 400px; height: 285px; border: 1px solid #e9e9e9; padding: 5px; }
+.rightclass { width: 300px; float: right; height: 297px; margin-left: 10px; }
+.rightclass h3 { color: #4c4c4c; font-weight: bold; font-size: 16px; line-height: 28px; padding-bottom: 10px; border-bottom: 1px solid #e9e9e9; }
+.rightclass p { font-size: 19px; padding: 20px 10px; background: #f3f3f3; height: auto; line-height: 30px; color: #666; margin-top: 20px; }
+.rightclass ul { width: 300px; height: auto; }
+.rightclass ul li { width: 300px; background: #f3f3f3; height: auto; height: 30px; }
+.rightclass ul li p { padding: 3px 10px; color: #666; font-size: 13px; line-height: 30px; width: auto; }
+.productcont .hd { width: 738px; height: 100px; margin: 10px 0px; z-index: 1; float: left; }
+.productcont .hd li { width: 100px; height: 70px; text-align: center; float: left; padding: 10px 12px; }
+.productcont .hd li img { width: 98px; height: 68px; border: 1px solid #e9e9e9; padding: 1px; }
+.productcont .hd li.on img { border: 1px solid #e81c2d; padding: 3px; }
+.productxq { padding: 10px; }
+.productxqcont { padding-top: 70px; }
+.productxqcont p { line-height: 24px; }
+
+.producttj { width: auto; border-bottom: 1px solid #e9e9e9;overflow:hidden; }
+.tjcont { height: auto; }
+.tjcont ul { padding-top: 15px; }
+.tjcont ul li { width: 230px; height: 189px; float: left; margin: 10px 8px;  }
+.tjcont ul li img { width: 228px; height: 163px; padding: 2px; border: 1px solid #e9e9e9; }
+.tjcont ul li p { width: 230px; text-align: center; height: 24px; line-height: 24px; color: #4c4c4c; }
+.tjcont ul li p:hover { color: #e81c2d; }
+/**msg_product over **/

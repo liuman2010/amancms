@@ -1,0 +1,100 @@
+/***
+ *	
+本手机网站由宅叔设计并制作！
+宅叔博客：www.campusba.com
+ **/
+ 
+/*---------- base ---------*/
+*{padding:0px;margin:0px;}
+html{background:#fff;}
+body{font:100%/1.6em Helvetica, Arial, sans-serif; background: #eee; max-width:600px; margin:auto}
+img{border:none;max-width: 100%; margin:0 auto}
+a{color:#256EB1;text-decoration:none;}
+a:hover{color:#ba2636;text-decoration:underline;}
+a:visited,a:focus{color:#256EB1;}
+ul,li{list-style:none;}
+input,select,button{vertical-align:middle;}
+h1{ font-size:1.1em; font-weight:bold; text-align:center; line-height:2.3em;}
+h2{ font-size:1.15em; font-weight:normal; line-height:40px; white-space:nowrap; overflow:hidden}
+h3{padding-left:10px; background: #fff; border-left:5px solid #C60; height:1.7em; line-height:1.7em; font-weight: normal;font-size:1.2em; color:#C60; margin-top:5px; padding-right:2%}
+h3 a,h3 a:visited{ font-size:1em; color:#C60}
+h3 span{display:block; float:right;}
+section{overflow:hidden;}
+.topdiv{width:100%; height:40px;}
+.fullwidth{width:100%}
+.fl{ float:left}
+.fr{ float:right}
+.mt1{margin-top:0.5em;}
+.pd10{ padding:0 1%;}
+.clear{overflow:hidden;}
+.fc-f60{color:#F60;}
+.fc-f90{color:#F90;}
+.clr{clear:both;}
+header{background:/*url(nav-bg.png) repeat-x #C60*/ rgba(204,102,0,0.8); height:40px; width:100%; color:#ffffff;}
+header a,header a:visited,header a:focus{ color:#ffffff}
+header h1{ font-size:1.1em; color:#ffffff; line-height:40px; text-align:center; font-weight:bold;margin-top:-40px;}
+header .home{padding:3px 15px 3px 10px; display:block; width:20px; height:31px;background:url(./home.png) no-repeat center center; border:1px solid #CCC; -webkit-border-radius: 5px; -moz-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px;z-index: 99999;}
+header .fenlei{float:right; margin:-39px 1px 0 0; width:30px; height:31px; line-height:30px; font-size:12px; padding:3px 8px 3px 28px;background:url(./list-icons.png) 0 center no-repeat; border:1px solid #CCC; -webkit-border-radius: 5px; -moz-border-radius: 5px; -o-border-radius: 5px; border-radius: 5px; color:#ffffff;}
+.panel {display: none; width: 50%; padding: 20px; background-color:#D68533; color: #fff; box-shadow: inset 0 0 5px 5px #CC6600; }
+header nav a{ border-bottom:1px dashed #CCC; height:2em; line-height:2em; display:block; width:100%}
+nav button{font-size:1.2em;width:100%;height:35px;background: #f18d05 none repeat scroll 0 0; border: medium none; box-shadow: none; color: white; text-shadow: none; transition-duration: 0.3s; transition-property: background;}
+.nav-top {float:left; width:21%;padding:0; margin:1% 2%}
+.nav-top dt{width:100%;}
+.nav-top dd{width:100%; text-align:center; color:#515D68;font-size:0.8em;}
+
+.wrapper{width: 99%;margin:0 auto;}
+.hotfoucs{ clear:both; background:#f5f5f5}
+.toutiao{background:#FFFFFF;border-bottom: 1px dotted #CCCCCC;padding-bottom: 3%;}
+.toutiao .cont{}
+.hotfoucs img{ width:35%; margin-right:2%; display:block}
+.hotfoucs p{ color:#666666; line-height:1.32em; font-size:1.1em}
+.sublist{ background:#f8f8f8; margin:1%; padding:1%; font-size:1em;}
+.sublist a{ background:#BA2636; color:#ffffff; padding:0 5px}
+.list1 li{border-bottom: 1px solid #E4E4E4;line-height: 2.5em; font-size:1.2em }
+.list1 li a{}
+.list1 li span{ color:#888888;  font-size:0.7em}
+.list2{text-overflow:ellipsis; overflow:hidden; width:46%; float:left;padding:1%; background:#fff;margin:1%;}
+.list2 dd{height:1.5em; line-height:1.8em;white-space:nowrap; width:100%;color:#4e4e4e;text-align: center;}
+.list2 dt{width:100%;padding:0}
+.list2 dt img{ display:block;width:100%; height:130px; }
+.pagelistbox{ padding:0 2%; margin:2% auto; width:90%; text-align:center;    clear: both;}
+.pagelistbox a,.pagelistbox strong{ border:1px solid #dddddd; padding:0 5px; height:1.56em; margin-right:1%; display: inline-block}
+.pagelistbox strong{ background:#C60; border:1px solid #C60; color:#ffffff}
+.pagelistbox a:visited{ color:#C60}
+article .content{ color:#555555; background:#fefefe}
+article .info{ border-bottom:1px dotted #cccccc; color:#666666; background:#f6f6f6; font-size:0.8em; padding:0.2em; padding-left:4%;}
+article .content{ padding:5% 4%; /*text-indent:2em;*/ margin-bottom:5px;}
+article .content_p img{ display:block;     width: 240px;
+    height: auto;
+    text-align: center;    margin-bottom: 20px;}
+article .content .tags{ text-align:right; font-size:0.8em;}
+article .content_vedio img{}
+
+.backlist{ height:2em; line-height:2em; text-align:center; font-size:1em; background:#C60}
+.backlist a{ color:#FFF}
+footer{border-top:1px solid #dddddd; clear:both; padding:0.5em; line-height:1.1em; font-size:0.8em;text-align:center;}
+footer p{
+	line-height: 25px;
+} 
+.nav-bottom{background:rgba(204,102,0,0.8); color:#fff ;position:fixed;left:0;bottom:0;width:100%;}
+.nav-bottom ul{padding:0;}
+.nav-bottom li{float:left; width:25%;padding:11px 0; text-align:center;font-size:1.3em}
+.nav-bottom li a{color:#fff}
+
+/* 顶部幻灯片*/
+.slideBox{ width:100%; overflow:hidden; position:relative;}
+.slideBox .hd{ height:15px; overflow:hidden; position:absolute; right:5px; bottom:5px; z-index:1; }
+.slideBox .hd ul{ overflow:hidden; zoom:1; float:left;  }
+.slideBox .hd ul li{ float:left; margin-right:2px;  width:15px; height:15px; line-height:16px; text-align:center; background:#fff; cursor:pointer; }
+.slideBox .hd ul li.on{ background:#c60; color:#fff; }
+.slideBox .bd{ position:relative; z-index:0;   }
+.slideBox .bd li{ zoom:1; vertical-align:middle; }
+.slideBox .bd img{ width:100%; display:block;  }
+
+
+
+/*刘满 635549913@qq.com 视频适应 2015-06-02 */
+.video-js-box video{
+	width:320px;
+	height:240px;
+}

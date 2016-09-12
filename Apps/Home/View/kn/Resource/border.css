@@ -1,0 +1,43 @@
+
+.borderpx {border:1px solid #ccc; overflow: hidden;}
+
+.borderaa { margin-top:8px; width:240px; overflow:hidden; }
+.borderaa .border-top{ height:33px;background:url(qq.gif) no-repeat;  }
+.borderaa .border-top h3{padding:0px 0 0 0px; color:#fff ;margin:0; line-height:33px; text-align:center; font-size:14px; font-weight:bold;}
+.borderaa .border-body{ padding:0px;border:1px solid #ddd; border-top:0; width:238px; overflow:hidden; }
+
+
+.borderbb { margin-top:8px; border:#dddddd 1px solid;position:relative; }
+.borderbb .border-top{ height:31px;background:#f5f5f5; margin-top:1px;  }
+.borderbb .border-top h3{padding:0px 0 0 10px; color:#333 ;margin:0; line-height:31px; font-weight:bold;}
+.borderbb .border-body{ padding:5px; }
+.yingbk .ArticleList .more { position:absolute; right:0px; top:2px;}
+.yingxw .ArticleList .more { position:absolute; right:0px; top:2px;}
+
+
+
+.bordercc { margin-bottom:10px; border:#419541 1px solid; }
+.bordercc .border-top{ height:28px;background:url(lll.gif) repeat-x; margin-left:1px; margin-right:1px;  }
+.bordercc .border-top h3{padding:0px 0 0 15px; color:#fff ;margin:0; line-height:28px; font-weight:bold; font-size:14px; }
+.bordercc .border-body{ padding:5px; background:#f3ffee; }
+.sideColumn .bordercc  { width:204px; overflow:hidden;}
+
+.borderdd { margin-bottom:10px; border:#d1d1d1 1px solid; }
+.borderdd .border-top{ height:28px;background:url(hhh.gif) repeat-x;  }
+.borderdd .border-top h3{padding:0px 0 0 15px; color:#297929 ;margin:0; line-height:28px; font-weight:bold; }
+.borderdd .border-body{ padding:5px;  }
+.sideColumn .borderdd  { width:204px; overflow:hidden;}
+
+
+
+.borderee { margin-bottom:10px; border:#d1d1d1 1px solid; }
+.borderee .border-top{ height:32px;background:url(lby.gif) repeat-x;  }
+.borderee .border-top h3{padding:0px 0 0 15px; color:#297929 ;margin:0; line-height:32px; font-weight:bold; }
+.borderee .border-body{ padding:5px; height:99px; overflow:hidden;  }
+.mainColumn .tang .borderee {wdth:236px; overflow:hidden; }
+
+
+.borderff { margin-top:10px; border:#d0d0d0 1px solid; border-top:0; }
+.borderff .border-top{ height:29px;background:url(bbb.gif) repeat-x;  }
+.borderff .border-top h3{padding:0px 0 0 15px; color:#666 ;margin:0; line-height:29px; font-weight:bold; }
+.borderff .border-body{ padding:0px; }

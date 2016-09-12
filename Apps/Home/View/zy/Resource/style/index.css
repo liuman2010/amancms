@@ -1,0 +1,303 @@
+* {
+	margin: 0px; padding: 0px; font-family: "Courier New", Courier, monospace;
+}
+body {
+	background-color: rgb(242, 242, 242);
+}
+.clear {
+	clear: both;
+}
+a {
+	border: currentColor; color: rgb(0, 0, 0); text-decoration: none;
+}
+img {
+	border: currentColor;
+}
+.wrap {
+	background: rgb(255, 255, 255); margin: 0px auto; width: 1000px;
+}
+ul {
+	list-style: none;
+}
+.header {
+	margin: 0px auto; width: 100%; position: relative; background-color: rgb(255, 255, 255);
+}
+.top {
+	margin: 0px auto; width: 1000px; height: 100px; position: relative;
+}
+.top1 {
+	margin: 0px auto; width: 1000px; height: 90px; position: relative;
+}
+.top img {
+	left: 10px; top: 0px; width: 980px; height: 100px; position: absolute;
+}
+.top h1 {
+	left: 160px; top: 8px; color: rgb(255, 255, 255); font-family: "Arial Black", Gadget, sans-serif; font-size: 40px; position: absolute;
+}
+.top h1 {
+	line-height: 90px;
+}
+.top h4 {
+	top: 90px; right: 20px; color: rgb(255, 102, 0); position: absolute;
+}
+.top h4 span {
+	color: rgb(255, 255, 255); font-size: small;
+}
+.menu {
+	background: url("../images/menu_bg.jpg") repeat-x; width: 100%; height: 40px;
+}
+.menu li {
+	width: 90px; height: 42px; line-height: 42px; margin-left: 10px; float: left;
+}
+.menu li a {
+	background: url("../images/AKK1.jpg") no-repeat right; width: 90px; height: 40px; text-align: center; color: rgb(255, 255, 255); font-family: "Microsoft YaHei","Arial"; font-size: 15px; font-weight: bold; display: block;
+}
+.menu li a:hover {
+	background: url("../images/menuli_bg.jpg") repeat-x; text-align: center; color: rgb(242, 242, 242);
+}
+.banner {
+	margin: 0px auto; border: 1px solid rgb(204, 198, 197); width: 996px; height: 365px; padding-top: 1px;
+}
+.left {
+	margin: 6px 10px 0px 5px; width: 200px; height: 335px; float: left;
+}
+.left h2 {
+	background: url("../images/xiaobt.jpg") repeat-x; width: 160px; height: 30px; color: rgb(255, 255, 255); line-height: 30px; padding-left: 40px; font-size: 14px;
+}
+.left li {
+	background: url("../images/catcap2.jpg") repeat-x left bottom; width: 150px; height: 30px; line-height: 30px; padding-left: 50px; margin-bottom: 3px;
+}
+.left li a {
+	color: rgb(102, 102, 102); line-height: 30px; font-family: "黑体", Gadget, sans-serif; font-size: 14px;
+}
+.left li a:hover {
+	color: rgb(190, 0, 0);
+}
+.middle {
+	margin: 5px 5px 0px; width: 775px; height: 328px; overflow: hidden; float: left; position: relative;
+}
+.middle .imgC_b {
+	width: 775px; height: 328px; overflow: hidden;
+}
+.middle .imgC_b img {
+	width: 775px; height: 328px; flaot: left;
+}
+.middle ul {
+	right: 20px; bottom: 10px; position: absolute;
+}
+.middle ul li {
+	margin: 1px; border: 1px solid rgb(255, 153, 0); width: 18px; height: 18px; text-align: center; line-height: 18px; font-family: Verdana, Geneva, sans-serif; font-size: 12px; float: left; background-color: rgb(255, 255, 255);
+}
+.middle ul li.active {
+	margin: 1px; border: 0px currentColor; width: 22px; height: 22px; text-align: center; color: rgb(255, 255, 255); line-height: 22px; font-family: Verdana, Geneva, sans-serif; font-size: 14px; float: left; background-color: rgb(255, 153, 0);
+}
+.call_me {
+	width: 100%; height: 25px; font-size: 13px; position: relative; background-color: rgb(241, 113, 92);
+}
+.cal_type {
+	left: 30px; bottom: 0px; color: rgb(237, 243, 250); line-height: 25px; font-family: "楷体"; font-size: 14px; position: absolute;
+}
+.form1 {
+	right: 210px; line-height: 25px; float: left; position: absolute;
+}
+.form2 {
+	margin: 0px auto; right: 2px; line-height: 25px; float: left; position: absolute;
+}
+.content {
+	margin: 10px auto; width: 1000px; position: relative;
+}
+.lists {
+	width: 1000px; height: 270px; margin-bottom: 10px;
+}
+.lists .head {
+	margin: 2px auto; width: 1000px; height: 60px; position: relative;
+}
+.lists .head .mores {
+	 width: 51px; height: 15px; right: 30px; bottom: 5px; font-size: 14px; display: block; position: absolute;
+}
+.lists .contonts {
+	margin: 10px 0px; width: 1000px; height: auto; min-height: 210px;
+}
+.lists .contonts .con_img_list {
+	margin: 5px; width: 190px; height: 200px; text-align: center; float: left;
+}
+.lists .contonts .con_img_list a.video {
+	width: 190px; height: 150px; display: block;
+}
+.lists .con_img_list img {
+	padding: 1px; border: 1px solid rgb(204, 204, 204); width: 186px; height: 144px;
+}
+.lists .con_img_list a {
+	width: 190px; height: 20px; color: rgb(131, 125, 125); font-family: "微软雅黑"; font-size: 12px; font-weight: 600; margin-top: 10px; display: block;
+}
+.lists .con_img_list a:hover {
+	color: rgb(190, 0, 0); text-decoration: underline;
+}
+mores .footer {
+	margin: 0px auto; width: 1000px; height: 100px; line-height: 20px; clear: both; font-size: 14px;
+}
+.footer .baozheng {
+	height: 100px; padding-top: 20px; border-top-color: rgb(204, 204, 204); border-top-width: 3px; border-top-style: solid; display: none;
+}
+.footer .ft_nav {
+	border-width: 2px 0px 1px; border-style: solid none; border-color: rgb(241, 113, 92) currentColor rgb(212, 211, 211); margin: 5px auto; width: 1000px; height: 30px;
+}
+.footer ul {
+	margin-left: 70px;
+}
+.footer li {
+	margin: 0px 5px; width: 78px; text-align: center; line-height: 30px; font-size: 12px; float: left;
+}
+.footer li a {
+	width: 75px; height: 12px; color: rgb(102, 102, 102); display: block;
+}
+.footer .copy {
+	text-align: center; color: rgb(47, 46, 46); line-height: 26px; font-size: 13px; font-weight: 100; margin-top: 10px; margin-bottom: 10px; wfont-family: "微软雅黑";
+}
+.footer .copy span {
+	color: rgb(238, 6, 28); font-family: "宋体",Verdana; font-weight: 600;
+}
+.footer .copy a {
+	color: rgb(17, 6, 6); font-family: "黑体"; background-color: rgb(218, 222, 224);
+}
+.listc {
+	margin: 10px auto; width: 1000px; height: auto;
+}
+.listc .head {
+	margin: 2px auto; width: 1000px; height: 30px; position: relative;
+}
+.con_img_listsd {
+	margin: 0px 3px; width: 190px; height: 200px; text-align: center; float: left;
+}
+.listc .head {
+	margin: 2px auto; width: 1000px; height: 60px; position: relative;
+}
+.listc .mores {
+    /*background: url("../images/more.gif") no-repeat left bottom; width: 51px; height: 15px; right: 20px; bottom: 0px; font-size: 14px; display: block; position: absolute;*/
+}
+.listc .head a {
+    width: 51px;
+    height: 19px;
+    right: 30px;
+    margin-top: -33px;
+    font-size: 14px;
+    display: block;
+    position: absolute;
+}
+.listc .head img {
+	width: 1000px; height: 60px;
+}
+
+.listc .head img  a{
+	width: 1000px; height: 60px;
+}
+.contentm {
+	margin-top: 5px;
+}
+.contentm a {
+	text-align: center; color: rgb(102, 102, 102); font-family: "微软雅黑"; font-size: 14px;
+}
+.contentm a:hover {
+	color: rgb(190, 0, 0); text-decoration: underline;
+}
+.contentm_1 {
+	margin-top: 20px;
+}
+.contentm_1 a {
+	text-align: center; color: rgb(131, 125, 125); font-size: 12px; font-weight: 600;
+}
+.contentm_1 a:hover {
+	color: rgb(190, 0, 0); text-decoration: underline;
+}
+.con_img_listsd {
+	width: 180px; height: 186px; margin-left: 10px; float: left;
+}
+.listc .contentm img {
+	padding: 2px; border: 1px solid rgb(204, 204, 204); width: 214px; height: 150px;
+}
+.listc .contentm_1 img {
+	padding: 1px; border: 1px solid rgb(204, 204, 204); width: 182px; height: 144px;
+}
+.fleft {
+	width: 790px; height: 360px; float: left;
+}
+.fleft a {
+	font-family: "微软雅黑";
+}
+.fright {
+	border: 1px solid rgb(204, 204, 204); width: 198px; height: 350px; padding-top: 5px; padding-left: 1px; float: left;
+}
+.fright a {
+	font-family: "黑体",Verdana;
+}
+.fright ul li {
+	background: url("../image/sanjiaoxing.jpg") no-repeat left; width: 150px; height: 38px; line-height: 38px; padding-left: 20px; margin-left: 10px; border-bottom-color: rgb(204, 204, 204); border-bottom-width: 1px; border-bottom-style: dashed;
+}
+.fright a {
+	color: rgb(102, 102, 102);
+}
+.lvide {
+	margin: 12px 2px 0px 10px; float: left;
+}
+.vlist {
+	margin: 14px; width: 200px; height: 160px; text-align: center; float: left;
+}
+.vlist img {
+	width: 210px; height: 150px;
+}
+.submit {
+	height: 25px; color: rgb(107, 99, 97); font-family: "Microsoft YaHei","Arial"; font-weight: 600;
+}
+.keyword {
+	height: 18px; color: rgb(175, 172, 172); line-height: 18px; font-family: "宋体","Arial";
+}
+.keyword2 {
+	height: 20px; color: rgb(175, 172, 172); line-height: 20px; font-family: "宋体","Arial";
+}
+.label2 {
+	margin: 0px auto; height: 30px;
+}
+
+
+/* CSS Document */
+
+.pro_dct_list_content{width:710px;margin:10px 20px;text-align:left;color: saddlebrown;
+   font-size:18px;line-height:32px;}
+.pro_dct_list_content h3{color:#5e5e5e;text-align:center;font-weight:bold;font-family:"微软雅黑";line-height:50px}
+.pro_dct_list_content img{margin:10px 20px;border: 1px solid #e9e9e9;padding:15px;}
+.pro_dct_list_content a{text-decoration:none;color:#930;font-size:18px;}
+
+
+
+.zxlx{ float:left;width:230px; height:70px; color:#666;}
+.zxlx p { font-size:12px; padding-left:30px; height:20px; line-height:20px; margin-top:5px; font-family:"ËÎÌå"; }
+.zxlx p a{ display:block; height:20px; line-height:20px; float:right; margin-right:20px;}
+.zxlx a { text-decoration:none;color:#666;margin-top:3px}
+.zxlx p img{ width:20px;}
+.gsdz { float:left;width:230px; height:215px; color:#666;}
+.gsdz p{ font-size:12px; padding-left:10px; line-height:28px}
+.gsdz p span { font-weight:600; }
+.nonal{ font-style:normal; }
+.talk{margin-top:10px; display:block;padding-top:10px;}
+.QQ{float:right;margin-right:70px;}
+
+
+.aman_list li{
+	list-style: none;
+	padding-left: 8px;
+	padding-bottom: 8px;
+}
+
+.aman_list li a:hover{
+	color:red;
+}
+
+
+.video-js-box{
+	text-align: center;
+}
+.video-js-box video{
+	    margin: 0px auto;
+    width: auto;
+    height: auto;
+}

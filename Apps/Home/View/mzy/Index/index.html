@@ -1,0 +1,77 @@
+<include file="Public/head" />
+<main>
+<section>
+	<div id="slideBox" class="slideBox">
+			<div class="hd">
+				
+			</div>
+			<div class="bd">
+				<ul>
+					<li><a href="/" target="_blank"><img src="__Res__/slider1.jpg" /></a></li>
+					<li><a href="/" target="_blank"><img src="__Res__/slider2.jpg" /></a></li>
+					<li><a href="/" target="_blank"><img src="__Res__/slider3.jpg" /></a></li>
+				</ul>
+			</div>
+
+	</div>
+
+		<script type="text/javascript">
+		jQuery(".slideBox").slide({mainCell:".bd ul",effect:"leftLoop",autoPlay:true,delayTime:700});
+		</script>
+</section> 
+
+
+<section>
+<h3>1F 视频演示<span><a href='/index.php/list/index/pid/6'>更多 >></a></span></h3>
+
+<volist name='p6' id='vo' offset='50' length='12'>
+
+ <dl class='list2'><a href="__APP__/article/index/aid/{$vo.id}"><dt><img src="{$vo.thumbpic}" width="120" height="130" alt="{$vo.title}"></dt><dd>{$vo.title}</dd></a></dl>
+
+</volist>
+
+</section>
+
+
+<section>
+<h3>2F 单人操作<span><a href='/index.php/list/index/pid/5'>更多 >></a></span></h3>
+
+<volist name='p5' id='vo' offset='1' length='12'>
+
+ <dl class='list2'><a href="__APP__/article/index/aid/{$vo.id}"><dt><img src="{$vo.thumbpic}" width="120"  height="90" alt="{$vo.title}"></dt><dd>{$vo.title}</dd></a></dl>
+
+</volist>
+
+
+</section>
+
+
+<section>
+<h3>3F 变牌系列<span><a href='/index.php/list/index/pid/7'>更多 >></a></span></h3>
+
+<volist name='p7' id='vo' offset='1' length='12'>
+
+ <dl class='list2'><a href="__APP__/article/index/aid/{$vo.id}"><dt><img src="{$vo.thumbpic}" width="120"  height="90" alt="{$vo.title}"></dt><dd>{$vo.title}</dd></a></dl>
+
+</volist>
+
+
+</section>
+
+
+<section>
+<h3>4F 麻将系列<span><a href='/index.php/list/index/pid/13'>更多 >></a></span></h3>
+
+<volist name='p7' id='vo' offset='1' length='12'>
+
+ <dl class='list2'><a href="__APP__/article/index/aid/{$vo.id}"><dt><img src="{$vo.thumbpic}" width="120"  height="90" alt="{$vo.title}"></dt><dd>{$vo.title}</dd></a></dl>
+
+</volist>
+
+
+</section>
+
+
+</main>
+﻿
+<include file="Public/footer" />

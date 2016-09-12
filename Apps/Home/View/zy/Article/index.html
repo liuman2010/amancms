@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<include file='Public/head2' />
+<div class="clear"></div>
+
+<div class="now"><span>{$position}</span></div>
+<div class="content">
+
+
+<!--产品分类列表 左侧 -->
+
+    <div class="plstL">
+        <div class="prt_class">
+            <div class="prt_class_head"><h2>热门视频</h2></div>
+            <div class="prt_class_content">
+                 <ul>
+                    <volist name='hotVideo' id='vo' offset='1' length='12'>
+         <li><a href="__APP__/article/index/aid/{$vo.id}">{$vo.title} </a></li>
+         </volist>  
+
+   </ul>
+    
+            </div>
+            <div class="prt_class_head"><h2>最新产品</h2></div>
+            <div class="prt_class_content">
+                <ul>
+             <volist name='top' id='vo' offset='1' length='10'>
+         <li><a href="__APP__/article/index/aid/{$vo.id}">{$vo.title} </a></li>
+         </volist>  
+                  </ul>
+            </div>
+        </div>
+
+<div class="prt_class_head"></div>
+            <div class="prt_class_content">
+              
+            </div>
+
+    </div>
+    
+
+
+
+    <div class="plstR">
+      <div class="pro_dct_list_content">
+           <h3>{$aidInfo['title']}</h3>
+ <div class="prt_time" style="font-size:12px; text-align:center;"> 来源：广州众宜牌具 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 发布时间：{$posttime} 点击：{$aidInfo['views']} 次</div>
+           {$aidInfo['content']}
+           <p style="text-align:left;color:red;">
+      <strong>&nbsp; &nbsp; &nbsp; &nbsp; 广州专业娱乐牌具厂家：自主研发、生产、批发、销售、产品全、价格低、售后有保障、同款产品承诺比市场价低30%，建议有需要的朋友前来公司参观、先免费体验每款产品的功能效果、满意后再决定购买适合自己的产品。欢迎外地加盟合作！</strong></p>
+      <p style="text-align:left;color:red;">
+      <span style="color:#ff0000;"><strong>&nbsp; &nbsp; &nbsp; &nbsp; 本网站客服专线：</strong><strong style="font-size:16px;color:#008000;">132-6833-4858 ；</strong><strong>业务QQ：</strong><strong style="font-size:16px;color:#008000;">2458828007</strong><strong>加微信号</strong><strong>：</strong></span><strong><span style="font-size:16px;color:#008000;">A168paiju</span>关注最新产品动态。</strong></p>
+      <p style="text-align: left;">
+      <span style="color:#0000cd;"><span style="font-size:16px;"><strong>&nbsp; &nbsp; &nbsp; &nbsp; 公司地址：广州市白云区远景路842号 （东江大酒店旁边）</strong><br>
+      <strong>　　广州火车站坐公交车</strong><strong>840</strong><strong>路、广州东站坐</strong><strong>185</strong><strong>、罗冲围客运站坐</strong><strong>198</strong><strong>、芳村客运站坐</strong><strong>26</strong><strong>路到</strong><strong>“</strong><strong>棠下</strong><strong>①</strong><strong>”</strong><strong>站下过红绿灯斜对面即到、高铁南站可以坐地铁</strong><strong>2</strong><strong>号线</strong><strong>“</strong><strong>三元里站</strong><strong>”C1</strong><strong>出口、机场打的二十分钟到、市内</strong><strong>“</strong><strong>打的</strong><strong>”</strong><strong>广州市内任何地方打的来本公司可以凭票可报销车费。</strong></span></span></p>
+                            <p style="margin-top:30px; font-size:18px;"><span><font style="color:red;"> 货到付款：客户只需来电订货即可，我方即保密发货，一般1--3日内到达。</font></p>
+
+
+           <img src="__Res__/images/chat.jpg">
+      </div>
+     <ul class='aman_list'>
+        <li>上一篇： {$prev}</li>
+                        <li>下一篇： {$next}</li>
+
+     </ul>
+        <div class="clear"></div>
+        
+    </div>
+    <div class="clear"></div>
+</div>
+<include file="Public/footer" />

@@ -1,0 +1,38 @@
+<include file="Public/head2" />
+<main>
+  <section> 
+  <h3> {$position} </h3>
+  <article>
+  <h1>{$aidInfo['title']}</h1>
+  <div class="info">发布时间:<time>{$posttime}</time>  浏览:{$aidInfo['views']} 次  </div>
+  <div class="content">
+  <div class="content_vedio">
+  <script src='http://static.polyv.net/file/polyvplayer_v2.0.min.js'></script>
+    <div id='plv_'></div>
+  <script>
+  var player = polyvObject('#plv_').videoPlayer({
+  'width':'100%',
+  'height':'250',
+  'vid' : ''
+  });
+  </script>
+  </div>
+  
+  <div class="content_p">
+  <div>
+   {$aidInfo['content']}
+</div>
+<div style="text-align: left;">
+  <br>
+  <font style="font-size:14px;color:red;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;广州专业娱乐牌具厂家 ：自主研发、生产、批发、销售、产品全、价格低、售后有保障、同款产品承诺比市场价低30%，建议有需要的朋友前来公司参观、先免费体验每款产品的功能效果、满意后再决定购买适合自己的产品。详情咨询本网站的业务代表专线: <a href="tel:13268334858">莫小姐  :132-6833-4858</a> (点击直接拨号)</font>
+<br>
+  </div>
+  </article>
+  <ul style="text-align:left;">
+		     <li>上一篇：  {$prev}</li>
+         <li>下一篇： {$next}</li>
+	    </ul>
+</main>
+﻿
+
+<include file="Public/footer" />

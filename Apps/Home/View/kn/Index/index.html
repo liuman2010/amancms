@@ -1,0 +1,1400 @@
+<include file="Public/head" />
+<script type="text/javascript">
+<!--
+var timeout         = 50;
+var closetimer    = 0;
+var ddmenuitem      = 0;
+
+
+// open hidden layer
+function mopen(id)
+{ 
+  // cancel close timer
+  mcancelclosetime();
+
+  // close old layer
+  if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+  // get new layer and show it
+  ddmenuitem = document.getElementById(id);
+  ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+  if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+  closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+  if(closetimer)
+  {
+    window.clearTimeout(closetimer);
+    closetimer = null;
+  }
+}
+
+// close layer when click-out
+document.onclick = mclose; 
+// -->
+</script>
+<div class="AllWrap clearfix">
+  <div class="qingfenlei fl">
+      <div class="DuceDropNavs">
+                          <ul>
+                            <li class="m-cat-depth-1 ">
+                                    <a class="depth-1" href="/index.php/list/index/pid/5"><em>单人操作分析仪<br> <b><i>AKK扑克分析仪 </i><i>麻将牌九筒子分析仪 </i><i>普通扑克分析仪 </i><i>金花扑克分析仪 </i><i>斗牛扑克分析仪 </i><i>三公扑克分析仪 </i><i>番摊分析仪 </i></b> </em></a>
+
+                                    <ul class="m-cat-popup" style="display: none; margin: 0px 0px 0px 206px;">
+                                        <div class="hei">
+                                            <ul class="m-cat-drop-2">
+                                                <div style="color:#336600; font-weight:bold;">分类</div>
+                                                   <volist name='p5' id='vo'>
+                                                    <a href="__APP__/article/index/aid/{$vo.id}">{$vo.title}</a>
+                                                    </volist>
+                                            <div class="clear"></div>
+                                            </ul>
+                                        </div>
+                                        <div class="bai"></div>
+                                    </ul>
+                               </li>
+                               <li class="m-cat-depth-1 ">
+                                    <a class="depth-1" href="/index.php/list/index/pid/6"><em>必胜绝技演示<br> <b><i>扑克必胜 </i><i>麻将出千 </i><i>超强分析仪 </i><i>iphone6智能一体机 </i><i>天衣无缝扫描 </i><i>饮料瓶镜头 </i><i>打火机等镜头 </i></b> </em></a>
+                                    <ul class="m-cat-popup" style="display: none; margin: 0px 0px 0px 206px;">
+                                        <div class="hei">
+                                            <ul class="m-cat-drop-2">
+                                                <div style="color:#336600; font-weight:bold;">分类</div>
+                                                    <volist name='p11' id='vo' offset='1' length='20'>
+                                                    <a href="__APP__/article/index/aid/{$vo.id}">{$vo.title}</a>
+                                                    </volist>
+                                            <div class="clear"></div>
+                                            </ul>
+                                        </div>
+                                        <div class="bai"></div>
+                                    </ul>
+                               </li>
+                              <li class="m-cat-depth-1 ">
+                                    <a class="depth-1" href="/index.php/list/index/pid/7"><em>隐形透视眼镜<br> <b><i>美国隐形眼镜 </i><i>韩国隐形眼镜 </i><i>英国隐形眼镜 </i><i>博士伦隐形眼镜 </i><i>高清隐形眼镜 </i><i>白光隐形眼镜 </i></b> </em></a>
+                                    <ul class="m-cat-popup" style="display: none; margin: 0px 0px 0px 206px;">
+                                        <div class="hei">
+                                            <ul class="m-cat-drop-2">
+                                                <div style="color:#336600; font-weight:bold;">分类</div>
+                                                    <volist name='p7' id='vo' offset='1' length='20'>
+                                                    <a href="__APP__/article/index/aid/{$vo.id}">{$vo.title}</a>
+                                                    </volist>  
+                                            <div class="clear"></div>
+                                            </ul>
+                                        </div>
+                                        <div class="bai"></div>
+                                    </ul>
+                               </li>
+
+                               <li class="m-cat-depth-1 ">
+                                    <a class="depth-1" href="/index.php/list/index/pid/8"><em>白光透视扑克定制<br> <b><i>姚记白光扑克 </i><i>宾王白光扑克 </i><i>三A白光扑克 </i><i>钓鱼白光扑克 </i><i>正点白光扑克 </i><i>敦煌白光扑克 </i><i>万盛达白光扑克 </i><i>千人王白光扑克 </i><i>其他白光扑克 </i></b> </em></a>
+                                    <ul class="m-cat-popup" style="display: none; margin: 0px 0px 0px 206px;">
+                                        <div class="hei">
+                                            <ul class="m-cat-drop-2">
+                                                <div style="color:#336600; font-weight:bold;">分类</div>
+                                                     <volist name='p8' id='vo' offset='1' length='20'>
+                                                    <a href="__APP__/article/index/aid/{$vo.id}">{$vo.title}</a>
+                                                    </volist>  
+                                            <div class="clear"></div>
+                                            </ul>
+                                        </div>
+                                        <div class="bai"></div>
+                                    </ul>
+                               </li>
+
+
+                               <li class="m-cat-depth-1 ">
+                                    <a class="depth-1" href="/index.php/list/index/pid/9"><em>进口白光显形镜<br> <b><i>高清显形药水 </i><i>常见扑克显形效果 </i><i>各种扑克麻将显形效果 </i><i>进口纳米不限光显形镜 </i><i>正点密码牌 </i><i>敦煌密码牌 </i><i>万盛达密码牌 </i><i>千人王密码牌 </i><i>其他密码扑克 </i></b> </em></a>
+                                    <ul class="m-cat-popup" style="display: none; margin: 0px 0px 0px 206px;">
+                                        <div class="hei">
+                                            <ul class="m-cat-drop-2">
+                                                <div style="color:#336600; font-weight:bold;">分类</div>
+                                                     <volist name='p9' id='vo' offset='1' length='20'>
+                                                    <a href="__APP__/article/index/aid/{$vo.id}">{$vo.title}</a>
+                                                    </volist>  
+                                            <div class="clear"></div>
+                                            </ul>
+                                        </div>
+                                        <div class="bai"></div>
+                                    </ul>
+                               </li>
+
+                                <li class="m-cat-depth-1 ">
+                                    <a class="depth-1" href="/index.php/list/index/pid/10"><em>最新雷达扫描筒子<br> <b><i>变牌器 </i><i>变牌包 </i><i>变牌桌 </i><i>变牌衣 </i><i>变牌裤 </i><i>变牌鬼手 </i></b> </em></a>
+                                    <ul class="m-cat-popup" style="display: none; margin: 0px 0px 0px 206px;">
+                                        <div class="hei">
+                                            <ul class="m-cat-drop-2">
+                                                <div style="color:#336600; font-weight:bold;">分类</div>
+                                                    <volist name='p10' id='vo' offset='1' length='20'>
+                                                    <a href="__APP__/article/index/aid/{$vo.id}">{$vo.title}</a>
+                                                    </volist>   
+                                            <div class="clear"></div>
+                                            </ul>
+                                        </div>
+                                        <div class="bai"></div>
+                                    </ul>
+                               </li>
+                                <li class="m-cat-depth-1 ">
+                                    <a class="depth-1" href="/index.php/list/index/pid/11"><em>麻将牌九色子<br> <b><i>全自动麻将桌 </i><i>四口程序麻将机 </i><i>密码麻将牌 </i><i>白光牌九 </i><i>密码牌九 </i><i>百变之王无缝变牌麻将桌 </i></b> </em></a>
+                                    <ul class="m-cat-popup" style="display: none; margin: 0px 0px 0px 206px;">
+                                        <div class="hei">
+                                            <ul class="m-cat-drop-2">
+                                                <div style="color:#336600; font-weight:bold;">分类</div>
+                                                    <volist name='p13' id='vo' offset='1' length='20'>
+                                                    <a href="__APP__/article/index/aid/{$vo.id}">{$vo.title}</a>
+                                                    </volist>   
+                                            <div class="clear"></div>
+                                            </ul>
+                                        </div>
+                                        <div class="bai"></div>
+                                    </ul>
+                               </li>
+                              </ul>
+                              <div class="clear"></div>
+                        </div>
+  </div>
+    <div class="guanggao fl">
+      <div class="gg">
+          <div class="wrapper">
+            <div id="slideshow" class="box_skitter fn-clear">
+                <ul>
+                    <li>
+                        <a href="/index.php/list/index/pid/6"><img alt="机皇s5分析仪" class="cubeRandom" src="__Res__/slider1.jpg" /></a></li>
+                    <li>
+                        <a href="/index.php/list/index/pid/6"><img alt="阿拉丁" class="cubeRandom" src="__Res__/slider2.jpg" /></a></li>
+                    <li>
+                        <a href="/index.php/list/index/pid/6"><img alt="cvk" class="cubeRandom" src="__Res__/slider3.jpg" /></a></li>
+                </ul>
+            </div>
+            <script type="text/javascript" src="__Res__/slideshow.js"></script>
+        </div>
+    </div>
+    
+    </div>
+        <div class="clear"> </div>
+        <div class="xingying red">
+          <div class="xingtit fl">
+              <div class="AdvBanner">  <a href="/index.php/list/index/pid/6" target="_blank"> <img src="__Res__/vedio.jpg" style=""> </a>  </div>
+            </div>
+            <div class="xingzdy fr">
+              <div class="AdvBanner">  <a href="/index.php/list/index/pid/6" target="_blank"> <img src="__Res__/more.jpg" style=""> </a>  </div>
+            </div>
+            <div class="more fr">
+                <volist name='p6' id='vo' offset='1' length='5'>
+                       <a href="__APP__/article/index/aid/{$vo.id}">{$vo.title}</a>
+                </volist>  
+            </div>
+        </div>
+      <div class="yingtp fr">
+          <div class="AdvBanner">  <a href="/index.php/list/index/pid/6" target="_blank"> <img src="__Res__/vedio1.gif" style=""> </a>  </div>
+        </div>
+        <div class="shipin fl">
+          <div class="vedio_left">      
+
+
+        <!--  <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" height="350" width="460">
+  <param name="flashvars" value="vcastr_file=http://121.42.195.161/shouye.flv&IsAutoPlay=0&IsContinue=1&LogoColor=678314&BarColor=0xFF0000&LogoText=www.nuoxin168.com 双击全屏" />
+  <param name="src" value="/div/flvplayer.swf" />
+  <param name="allowfullscreen" value="true" />
+  <param name="quality" value="high" />
+  <embed allowfullscreen="true" flashvars="vcastr_file=http://121.42.195.161/shouye.flv&IsAutoPlay=0&IsContinue=1&BarColor=0xFF0000&LogoColor=678314&LogoText=www.nuoxin168.com 双击全屏" width="460" height="350" quality="high" src="/div/flvplayer.swf" type="application/x-shockwave-flash" width="450" wmode="transparent"></embed>
+</object> -->
+
+     
+              <!--代码开始-->
+<video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="450" height="280"
+      poster="__Res__/post.png"
+      data-setup="{}">
+    <source src="http://121.42.195.161/m/alading.mp4" type='video/mp4' />
+    <source src="" type='video/webm' />
+    <source src="" type='video/ogg' />
+  </video>
+<!--代码结束-->
+<p class="videoInt">爆款新产品“圣斗版普通扑克分析仪”</p>
+            </div>
+            <div class="vedio_right">
+              <ul>
+              <volist name='p6' id='vo' offset='1' length='4'>
+                <li class="vlist"><a href="__APP__/article/index/aid/{$vo.id}" class="video"><img src="{$vo.thumbpic}" alt=""></a><a href="__APP__/article/index/aid/{$vo.id}">{$vo.title}</a></li>
+                 </volist>   
+    </ul>
+            </div>
+        </div>
+        <div class="clear"> </div>
+        <div class="xingying red">
+
+          <div class="xingtit fl">
+              <div class="AdvBanner">  <a href="/index.php/list/index/pid/6" target="_blank"> <img src="__Res__/a7.png" style=""> </a>  </div>
+            </div>
+
+            <div class="xingzdy fr">
+              <div class="AdvBanner">  <a href="/index.php/list/index/pid/6" target="_blank"> <img src="__Res__/more.jpg" style=""> </a>  </div>
+            </div>
+
+            <div class="more fr">
+              <volist name='p6' id='vo' offset='1' length='5'>
+                <a href="__APP__/article/index/aid/{$vo.id}" type="url" target="_blank">{$vo.title}</a>|
+              </volist>
+            </div>
+        </div>
+
+
+
+        <!-- 开始 -->
+<div class="ying fl">
+    <script>
+var good_list = new Class({
+    divSrc:'',
+    divSrc2:'',
+    initialize: function(div1,div2){
+      this.divSrc=div1;
+      this.divSrc2=div2;
+      
+      this.tab = 'ttp_widgets_189';
+    },
+    changeTableing:function(type,div){
+      var i;
+      for(i=0;i<2;i++){
+        if(i==type){
+          $(this.divSrc2+i).setStyles({
+            'display':''
+          });
+          
+          $('widgets_189_more_'+i).setStyles({
+            'display':''
+          });
+          $(this.tab+i).addClass('current');
+        }else{
+          $(this.divSrc2+i).setStyles({
+            'display':'none'
+          });
+          $('widgets_189_more_'+i).setStyles({
+            'display':'none'
+          });
+          $(this.tab+i).removeClass('current');
+        }
+      }
+    }
+  }); 
+
+
+  var ef_widgets_189=new good_list('top_widgets_189','widgets_189_list');
+
+</script>
+<style> .itemsWrap{ *display:inline; float:left; overflow:hidden; } </style>
+    <div id="top_widgets_189" class="GoodsList-Tabs">
+          <div class="" style="float:left" id="ttp_widgets_1890" onmouseover="ef_widgets_189.changeTableing(0)"><span>热销商品</span> </div>
+            <div style="float:left" id="ttp_widgets_1891" onmouseover="ef_widgets_189.changeTableing(1,'widgets_189_more1')" class="current"><span>新品上市</span> </div>
+        </div>
+        <div class="GoodsListWrap">
+          <div class="GoodsList">
+              <div id="widgets_189_list0" style="display: none;">
+
+                 <volist name='p6' id='vo' offset='1' length='4'>
+               <div class="itemsWrap " style="width:99%;">
+                        <div class="item">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td><div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:50px;height:50px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" height="50" width="50"  alt=""></a></div></td>
+                                        <td class="goodsDesc">  <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>  </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+              </volist>
+                    <div class="clear"></div>
+                 </div>
+                <div id="widgets_189_more_0" class="more" style="display: none;">  <a href="/index.php/list/index/pid/5">更多...</a></div>
+                <div id="widgets_189_list1">
+                <volist name='p6' id='vo' offset='5' length='4'>
+               <div class="itemsWrap " style="width:99%;">
+                        <div class="item">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td><div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:50px;height:50px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" height="50" width="50" alt=""></a></div></td>
+                                        <td class="goodsDesc">  <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>  </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+              </volist>
+
+                    <div class="clear"></div>
+                </div>
+                <div id="widgets_189_more_1" class="more">  <a href="/index.php/list/index/pid/5">更多...</a></div>
+            </div>
+        </div>
+   </div>
+     <!-- 结束 -->
+
+
+      <div class="yingtp fr">
+          <div class="AdvBanner">  <a href="/index.php/list/index/pid/5" target="_blank"> <img src="__Res__/ad1.jpg" style=""> </a>  </div>
+        </div>
+        <div class="yingsp fl">
+          <div class="borderpx " id="widgets_225">
+            <style> .itemsWrap{ *display:block; float:left; overflow:hidden; } </style>
+            <div class="GoodsListWrap">
+              <div class="GoodsList">
+
+            <volist name='p6' id='vo' offset='15' length='8'>
+                <div class="itemsWrap " style="width:24%;">
+                      <div class="item">
+                          <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='120' height="120" alt=""></a></div>
+                            <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>
+                        </div>
+                    </div>
+
+            </volist>
+
+
+                    <div class="clear"></div>
+                </div>
+                <div class="more clearfix"><a href="/index.php/list/index/pid/6">更多...</a></div>
+            </div>
+            </div>
+        </div>
+    <div class="clear"> </div>
+    <div class="qing1 fl">
+  <script>
+var good_list = new Class({
+    divSrc:'',
+    divSrc2:'',
+    initialize: function(div1,div2){
+      this.divSrc=div1;
+      this.divSrc2=div2;
+      
+      this.tab = 'ttp_widgets_236';
+    },
+    changeTableing:function(type,div){
+      var i;
+      for(i=0;i<5;i++){
+        if(i==type){
+          $(this.divSrc2+i).setStyles({
+            'display':''
+          });
+          
+          $('widgets_236_more_'+i).setStyles({
+            'display':''
+          });
+          $(this.tab+i).addClass('current');
+        }else{
+          $(this.divSrc2+i).setStyles({
+            'display':'none'
+          });
+          $('widgets_236_more_'+i).setStyles({
+            'display':'none'
+          });
+          $(this.tab+i).removeClass('current');
+        }
+      }
+    }
+  }); 
+
+
+  var ef_widgets_236=new good_list('top_widgets_236','widgets_236_list');
+
+</script>
+<style>.itemsWrap{ *display:inline; float:left; overflow:hidden; } </style>
+    <div id="top_widgets_236" class="GoodsList-Tabs">
+          <div class="" style="float:left" id="ttp_widgets_2360" onmouseover="ef_widgets_236.changeTableing(0)"><span>单人操作镜头</span> </div>
+
+
+            <div style="float:left" id="ttp_widgets_2361" onmouseover="ef_widgets_236.changeTableing(1,'widgets_236_more1')" class="current"><span>现场演示</span> </div>
+
+
+            <div style="float:left" id="ttp_widgets_2362" onmouseover="ef_widgets_236.changeTableing(2,'widgets_236_more2')" class=""><span>变牌器具</span> </div>
+            <div style="float:left" id="ttp_widgets_2363" onmouseover="ef_widgets_236.changeTableing(3,'widgets_236_more3')" class=""><span>麻将牌九色子</span> </div>
+            <div style="float:left" id="ttp_widgets_2364" onmouseover="ef_widgets_236.changeTableing(4,'widgets_236_more4')" class=""><span>穿透系列</span> </div>
+        </div>
+        <div class="GoodsListWrap">
+          <div class="GoodsList">
+              <div id="widgets_236_list0" style="display: none;" >
+      <volist name='p5' id='vo' offset='1' length='10'>
+                <div class="itemsWrap " style="width:19%;">
+                     <div class="item">
+                          <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='120' height="120" alt=""></a></div>
+                            <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>
+                        </div>
+                    </div>
+      </volist>
+                    <div class="clear"></div>
+                 </div>
+
+
+                 <div id="widgets_236_more_0" class="more" style="display: none;"><a href="/index.php/list/index/pid/5">更多...</a></div>
+
+
+                <div id="widgets_236_list1">
+<volist name='p6' id='vo' offset='1' length='10'>
+                <div class="itemsWrap " style="width:19%;">
+                     <div class="item">
+                          <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='120' height="120" alt=""></a></div>
+                            <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>
+                        </div>
+                    </div>
+      </volist>
+<img src="__Res__/jiamen.jpg" width="957">
+                    <div class="clear"></div>
+             </div>
+               <div id="widgets_236_more_1" class="more"><a href="/index.php/list/index/pid/8">更多...</a></div>
+                 <div id="widgets_236_list2" style="display: none;">
+                <volist name='p8' id='vo' offset='1' length='10'>
+                <div class="itemsWrap " style="width:19%;">
+                     <div class="item">
+                          <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='120' height="120" alt=""></a></div>
+                            <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>
+                        </div>
+                    </div>
+      </volist>
+
+      <volist name='p9' id='vo' offset='1' length='5'>
+                <div class="itemsWrap " style="width:19%;">
+                     <div class="item">
+                          <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='120' height="120" alt=""></a></div>
+                            <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>
+                        </div>
+                    </div>
+      </volist>
+
+                    <div class="clear"></div>
+                    <div class="clear"></div>
+               </div>
+                 <div id="widgets_236_more_2" class="more" style="display: none;"><a href="/index.php/list/index/pid/9">更多...</a></div>
+                 <div id="widgets_236_list3" style="display: none;">
+                <volist name='p10' id='vo' offset='1' length='10'>
+                <div class="itemsWrap " style="width:19%;">
+                     <div class="item">
+                          <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='120' height="120" alt=""></a></div>
+                            <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>
+                        </div>
+                    </div>
+      </volist>
+
+      <volist name='p13' id='vo'>
+                <div class="itemsWrap " style="width:19%;">
+                     <div class="item">
+                          <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='120' height="120" alt=""></a></div>
+                            <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>
+                        </div>
+                    </div>
+      </volist>
+
+      <volist name='p11' id='vo' offset='1' length='2'>
+                <div class="itemsWrap " style="width:19%;">
+                     <div class="item">
+                          <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='120' height="120" alt=""></a></div>
+                            <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>
+                        </div>
+                    </div>
+      </volist>
+
+                    <div class="clear"></div>
+                    <div class="clear"></div>
+                </div>
+                 <div id="widgets_236_more_3" class="more" style="display: none;"><a href="/index.php/list/index/pid/11">更多...</a></div>
+                 <div id="widgets_236_list4" style="display: none;">
+                <volist name='p9' id='vo' offset='1' length='5'>
+                <div class="itemsWrap " style="width:19%;">
+                     <div class="item">
+                          <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='120' height="120" alt=""></a></div>
+                            <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>
+                        </div>
+                    </div>
+      </volist>
+
+      <volist name='p14' id='vo' offset='1' length='5'>
+                <div class="itemsWrap " style="width:19%;">
+                     <div class="item">
+                          <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='120' height="120" alt=""></a></div>
+                            <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>
+                        </div>
+                    </div>
+      </volist>
+
+                    <div class="clear"></div>
+                    <div class="clear"></div>
+                </div>
+                 <div id="widgets_236_more_4" class="more" style="display: none;"><a href="/index.php/list/index/pid/14">更多...</a></div>
+             </div>
+        </div>
+      </div>
+    <div class="qing2 fr">
+      <div class="qinga">
+          <div class="borderaa " id="widgets_237">
+              <div class="border-top"><h3>本周排行</h3></div>
+                <div class="border-body">
+        <style> .itemsWrap{ *display:block; float:left; overflow:hidden; } </style>
+                    <div class="GoodsListWrap">
+                        <div class="GoodsList">
+
+                                 <volist name='p6' id='vo' offset='20' length='4'>
+               <div class="itemsWrap " style="width:99%;">
+                      <div class="item">
+                          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                              <tbody>
+                                  <tr>
+                                      <td><div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:50px;height:50px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='50' height='50' alt=""></a></div></td>
+                                        <td class="goodsDesc">  <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>  </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+</volist>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+      </div>
+     <div class="clear"> </div>
+      <div class="qingb">
+          <div class="borderpx " id="widgets_270">
+              <a href="/index.php/article/index/aid/96" target="_blank"> <img src="__Res__/bianpai.gif" style="width:240px;height:190px;"> </a>
+            </div>
+        </div>
+     </div>
+     <div class="clear"> </div>
+      <div class="qingtt"></div>
+    <div class="clear"> </div>
+        <div class="qingqing fl">
+
+            <img src="__Res__/4.jpg"  width="960" height="283" alt="">
+        </div>
+            <!-- 开始 -->
+<div class="qingx fr">
+    <script>
+var good_list = new Class({
+    divSrc:'',
+    divSrc2:'',
+    initialize: function(div1,div2){
+      this.divSrc=div1;
+      this.divSrc2=div2;
+      
+      this.tab = 'ttp_widgets_185';
+    },
+    changeTableing:function(type,div){
+      var i;
+      for(i=0;i<2;i++){
+        if(i==type){
+          $(this.divSrc2+i).setStyles({
+            'display':''
+          });
+          
+          $('widgets_185_more_'+i).setStyles({
+            'display':''
+          });
+          $(this.tab+i).addClass('current');
+        }else{
+          $(this.divSrc2+i).setStyles({
+            'display':'none'
+          });
+          $('widgets_185_more_'+i).setStyles({
+            'display':'none'
+          });
+          $(this.tab+i).removeClass('current');
+        }
+      }
+    }
+  }); 
+
+
+  var ef_widgets_185=new good_list('top_widgets_185','widgets_185_list');
+
+</script>
+<style> .itemsWrap{ *display:inline; float:left; overflow:hidden; } </style>
+    <div id="top_widgets_185" class="GoodsList-Tabs">
+          <div class="current" style="float:left" id="ttp_widgets_1850" onmouseover="ef_widgets_185.changeTableing(0)"><span>推荐产品</span> </div>
+            <div style="float:left" id="ttp_widgets_1851" onmouseover="ef_widgets_185.changeTableing(1,'widgets_185_more1')"><span>热销牌具</span> </div>
+        </div>
+        <div class="GoodsListWrap">
+          <div class="GoodsList">
+              <div id="widgets_185_list0">
+                <div class="itemsWrap " style="width:99%;">
+                      <div class="item">
+                          <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:140px;height:140px;"><a href="/index.php/article/index/aid/93" target="_blank" title=" 
+iphone6发牌软件"><img src="/Public/goodsimages/shipin/6.jpg" width="140" height="140" title="   
+iphone6发牌软件"></a></div>
+                            <h6><a href="/index.php/list/index/pid/6" target="_blank" title="   
+iphone6发牌软件"> 
+iphone6发牌软件...</a></h6>
+                        </div>
+                    </div>
+
+               <div class="clear"></div>
+               </div>
+               <div id="widgets_185_more_0" class="more" style="">  <a href="/index.php/list/index/pid/6">更多...</a></div>
+                <div id="widgets_185_list1" style="display:none">
+
+                         <div class="itemsWrap " style="width:99%;">
+                      <div class="item">
+                          <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:140px;height:140px;"><a href="/index.php/article/index/aid/143" target="_blank" title=" 
+阿拉丁普通牌分析仪"><img src="/Public/goodsimages/shipin/2016/11.png" width="140" height="140" title="    
+阿拉丁普通牌分析仪"></a></div>
+                            <h6><a href="###" target="_blank" title="   
+阿拉丁普通牌分析仪"> 
+阿拉丁普通牌分析仪...</a></h6>
+                        </div>
+                    </div>
+
+               <div class="clear"></div>
+               </div>
+               <div id="widgets_185_more_1" class="more" style="display:none;">  <a href="/index.php/list/index/pid/6">更多...</a></div>
+            </div>
+        </div>
+    </div>
+
+     <!-- 结束 -->
+    <div class="clear"> </div>
+      <div class="xingying">
+          <div class="xingtit fl">
+              <div class="AdvBanner">  <a href="/index.php/list/index/pid/6" target="_blank"> <img src="__Res__/a1.png" style=""> </a>  </div>
+            </div>
+            <div class="xingzdy fr">
+              <div class="AdvBanner">  <a href="/index.php/list/index/pid/6" target="_blank"> <img src="__Res__/more.jpg" style=""> </a>  </div>
+            </div>
+            <div class="more fr">
+
+              <volist name='p6' id='vo' offset='20' length='3'>
+                <a href="__APP__/article/index/aid/{$vo.id}" type="url" target="_blank"> {$vo.title}</a>|
+              </volist>
+            </div>
+        </div>
+    <div class="ying fl">
+    <script>
+var good_list = new Class({
+    divSrc:'',
+    divSrc2:'',
+    initialize: function(div1,div2){
+      this.divSrc=div1;
+      this.divSrc2=div2;
+      
+      this.tab = 'ttp_widgets_203';
+    },
+    changeTableing:function(type,div){
+      var i;
+      for(i=0;i<2;i++){
+        if(i==type){
+          $(this.divSrc2+i).setStyles({
+            'display':''
+          });
+          
+          $('widgets_203_more_'+i).setStyles({
+            'display':''
+          });
+          $(this.tab+i).addClass('current');
+        }else{
+          $(this.divSrc2+i).setStyles({
+            'display':'none'
+          });
+          $('widgets_203_more_'+i).setStyles({
+            'display':'none'
+          });
+          $(this.tab+i).removeClass('current');
+        }
+      }
+    }
+  }); 
+
+
+  var ef_widgets_203=new good_list('top_widgets_203','widgets_203_list');
+
+</script>
+<style> .itemsWrap{ *display:inline; float:left; overflow:hidden; } </style>
+    <div id="top_widgets_203" class="GoodsList-Tabs">
+          <div class="current" style="float:left" id="ttp_widgets_2030" onmouseover="ef_widgets_203.changeTableing(0)"><span>热销商品</span> </div>
+            <div style="float:left" id="ttp_widgets_2031" onmouseover="ef_widgets_203.changeTableing(1,'widgets_203_more1')" class=""><span>新品上市</span> </div>
+        </div>
+        <div class="GoodsListWrap">
+          <div class="GoodsList">
+              <div id="widgets_203_list0" style="">
+               <volist name='p8' id='vo' offset='1' length='4'>
+               <div class="itemsWrap " style="width:99%;">
+                      <div class="item">
+                          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                              <tbody>
+                                  <tr>
+                                      <td><div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:50px;height:50px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='50' height='50' alt=""></a></div></td>
+                                        <td class="goodsDesc">  <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>  </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+              </volist>
+
+                    <div class="clear"></div>
+                </div>
+                <div id="widgets_203_more_0" class="more" style="">  <a href="/index.php/list/index/pid/8">更多...</a></div>
+                <div id="widgets_203_list1" style="display: none;">
+                       <volist name='p8' id='vo' offset='2' length='4'>
+               <div class="itemsWrap " style="width:99%;">
+                      <div class="item">
+                          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                              <tbody>
+                                  <tr>
+                                      <td><div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:50px;height:50px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='50' height='50' alt=""></a></div></td>
+                                        <td class="goodsDesc">  <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>  </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+         </volist>
+
+                    <div class="clear"></div>
+               </div>
+                <div id="widgets_203_more_1" class="more" style="display: none;">  <a href="/index.php/list/index/pid/8">更多...</a></div>
+            </div>
+        </div>
+     </div>
+
+      <div class="yingtp fr">
+          <div class="AdvBanner">  <a href="/index.php/list/index/pid/7" target="_blank"> <img src="__Res__/ad2.jpg" style=""> </a>  </div>
+        </div>
+        <div class="yingsp fl">
+          <div class="borderpx " id="widgets_191">
+            <style> .itemsWrap{ *display:block; float:left; overflow:hidden; } </style>
+            <div class="GoodsListWrap">
+              <div class="GoodsList">
+
+               <volist name='p8' id='vo' offset='1' length='4'>
+                <div class="itemsWrap " style="width:24%;">
+                      <div class="item">
+                          <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='120' height='120' alt=""></a></div>
+                            <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>
+                        </div>
+                    </div>
+ </volist>
+
+ <volist name='p7' id='vo' offset='1' length='4'>
+                <div class="itemsWrap " style="width:24%;">
+                      <div class="item">
+                          <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='120' height='120' alt=""></a></div>
+                            <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>
+                        </div>
+                    </div>
+ </volist>
+
+                    <div class="clear"></div>
+                    <div class="clear"></div>
+                 </div>
+                <div class="more clearfix"><a href="/index.php/list/index/pid/8">更多...</a></div>
+            </div>
+            </div>
+         </div>
+    <div class="clear"> </div>
+        <div class="xingying xx">
+          <div class="xingtit fl">
+              <div class="AdvBanner">  <a href="/index.php/list/index/pid/7" target="_blank"> <img src="__Res__/a2.png" style=""> </a>  </div>
+            </div>
+            <div class="xingzdy fr">
+              <div class="AdvBanner">  <a href="/index.php/list/index/pid/7" target="_blank"> <img src="__Res__/more.jpg" style=""> </a>  </div>
+            </div>
+            <div class="more fr">
+              
+ <volist name='p6' id='vo' offset='28' length='3'>
+                <a href="__APP__/article/index/aid/{$vo.id}" type="url" target="_blank"> {$vo.title}</a>|
+              </volist>
+            </div>
+        </div>
+<div class="ying fl">
+    <script>
+var good_list = new Class({
+    divSrc:'',
+    divSrc2:'',
+    initialize: function(div1,div2){
+      this.divSrc=div1;
+      this.divSrc2=div2;
+      
+      this.tab = 'ttp_widgets_224';
+    },
+    changeTableing:function(type,div){
+      var i;
+      for(i=0;i<2;i++){
+        if(i==type){
+          $(this.divSrc2+i).setStyles({
+            'display':''
+          });
+          
+          $('widgets_224_more_'+i).setStyles({
+            'display':''
+          });
+          $(this.tab+i).addClass('current');
+        }else{
+          $(this.divSrc2+i).setStyles({
+            'display':'none'
+          });
+          $('widgets_224_more_'+i).setStyles({
+            'display':'none'
+          });
+          $(this.tab+i).removeClass('current');
+        }
+      }
+    }
+  }); 
+
+
+  var ef_widgets_224=new good_list('top_widgets_224','widgets_224_list');
+
+</script>
+<style> .itemsWrap{ *display:inline; float:left; overflow:hidden; } </style>
+    <div id="top_widgets_224" class="GoodsList-Tabs">
+          <div class="current" style="float:left" id="ttp_widgets_2240" onmouseover="ef_widgets_224.changeTableing(0)"><span>热销商品</span> </div>
+            <div style="float:left" id="ttp_widgets_2241" onmouseover="ef_widgets_224.changeTableing(1,'widgets_224_more1')" class=""><span>新品上市</span> </div>
+        </div>
+        <div class="GoodsListWrap">
+          <div class="GoodsList">
+              <div id="widgets_224_list0" style="">
+ <volist name='p7' id='vo' offset='1' length='4'>
+               <div class="itemsWrap " style="width:99%;">
+                        <div class="item">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td><div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:50px;height:50px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"> <img src="{$vo.thumbpic}" width='50' height='50' alt=""></a></div></td>
+                                        <td class="goodsDesc">  <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>  </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+</volist>
+
+                    <div class="clear"></div>
+                </div>
+                <div id="widgets_224_more_0" class="more" style="">  <a href="/index.php/list/index/pid/7">更多...</a></div>
+                <div id="widgets_224_list1" style="display: none;">
+               
+  <volist name='p7' id='vo' offset='5' length='4'>
+               <div class="itemsWrap " style="width:99%;">
+                        <div class="item">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td><div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:50px;height:50px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"> <img src="{$vo.thumbpic}" width='50' height='50' alt=""></a></div></td>
+                                        <td class="goodsDesc">  <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>  </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+</volist>
+
+                    <div class="clear"></div>
+               </div>
+                <div id="widgets_224_more_1" class="more" style="display: none;">  <a href="/index.php/list/index/pid/7">更多...</a></div>
+            </div>
+        </div>
+     </div>
+      <div class="yingtp fr">
+          <div class="AdvBanner">  <a href="/index.php/article/index/aid/61" target="_blank"> <img src="__Res__/x2.jpg" style=""> </a>  </div>
+        </div>
+        <div class="yingsp fl">
+          <div class="borderpx " id="widgets_225">
+            <style> .itemsWrap{ *display:block; float:left; overflow:hidden; } </style>
+            <div class="GoodsListWrap">
+              <div class="GoodsList">
+             
+ <volist name='p7' id='vo' offset='6' length='8'>
+                <div class="itemsWrap " style="width:24%;">
+                        <div class="item">
+                            <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='120' height='120' alt=""></a></div>
+                            <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>
+                        </div>
+                    </div>
+
+</volist>
+                    <div class="clear"></div>
+                </div>
+                <div class="more clearfix"><a href="/index.php/list/index/pid/9">更多...</a></div>
+            </div>
+            </div>
+        </div>
+    <div class="clear"> </div>
+        <div class="xingying pink">
+          <div class="xingtit fl">
+              <div class="AdvBanner">  <a href="/index.php/list/index/pid/7" target="_blank"> <img src="__Res__/a3.png" style=""> </a>  </div>
+            </div>
+            <div class="xingzdy fr">
+              <div class="AdvBanner">  <a href="/index.php/list/index/pid/7" target="_blank"> <img src="__Res__/more.jpg" style=""> </a>  </div>
+            </div>
+            <div class="more fr">
+             <volist name='p6' id='vo' offset='31' length='3'>
+                <a href="__APP__/article/index/aid/{$vo.id}" type="url" target="_blank"> {$vo.title}</a>|
+              </volist>
+            </div>
+        </div>
+        <div class="ying fl">
+    <script>
+var good_list = new Class({
+    divSrc:'',
+    divSrc2:'',
+    initialize: function(div1,div2){
+      this.divSrc=div1;
+      this.divSrc2=div2;
+      
+      this.tab = 'ttp_widgets_216';
+    },
+    changeTableing:function(type,div){
+      var i;
+      for(i=0;i<2;i++){
+        if(i==type){
+          $(this.divSrc2+i).setStyles({
+            'display':''
+          });
+          
+          $('widgets_216_more_'+i).setStyles({
+            'display':''
+          });
+          $(this.tab+i).addClass('current');
+        }else{
+          $(this.divSrc2+i).setStyles({
+            'display':'none'
+          });
+          $('widgets_216_more_'+i).setStyles({
+            'display':'none'
+          });
+          $(this.tab+i).removeClass('current');
+        }
+      }
+    }
+  }); 
+
+
+  var ef_widgets_216=new good_list('top_widgets_216','widgets_216_list');
+
+</script>
+<style> .itemsWrap{ *display:inline; float:left; overflow:hidden; } </style>
+    <div id="top_widgets_216" class="GoodsList-Tabs">
+          <div class="current" style="float:left" id="ttp_widgets_2160" onmouseover="ef_widgets_216.changeTableing(0)"><span>热销商品</span> </div>
+            <div style="float:left" id="ttp_widgets_2161" onmouseover="ef_widgets_216.changeTableing(1,'widgets_216_more1')" class=""><span>新品上市</span> </div>
+        </div>
+        <div class="GoodsListWrap">
+          <div class="GoodsList">
+              <div id="widgets_216_list0">
+               <volist name='p11' id='vo' offset='1' length='4'>
+               <div class="itemsWrap " style="width:99%;">
+                        <div class="item">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td><div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:50px;height:50px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"> <img src="{$vo.thumbpic}" width='50' height='50' alt=""></a></div></td>
+                                        <td class="goodsDesc">  <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>  </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+</volist>
+
+                    <div class="clear"></div>
+                </div>
+                <div id="widgets_216_more_0" class="more" style="">  <a href="/index.php/list/index/pid/5">更多...</a></div>
+                <div id="widgets_216_list1" style="display: none;">
+        
+ <volist name='p5' id='vo' offset='6' length='4'>
+               <div class="itemsWrap " style="width:99%;">
+                        <div class="item">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td><div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:50px;height:50px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"> <img src="{$vo.thumbpic}" width='50' height='50' alt=""></a></div></td>
+                                        <td class="goodsDesc">  <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>  </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+</volist>
+
+                    <div class="clear"></div>
+               </div>
+                <div id="widgets_216_more_1" class="more" style="display: none;">  <a href="/index.php/list/index/pid/5">更多...</a></div>
+            </div>
+        </div>
+     </div>
+      <div class="yingtp fr">
+          <div class="AdvBanner">  <a href="/index.php/list/index/pid/6" target="_blank"> <img src="__Res__/x3.jpg" style=""> </a>  </div>
+        </div>
+        <div class="yingsp fl">
+          <div class="borderpx " id="widgets_225">
+            <style> .itemsWrap{ *display:block; float:left; overflow:hidden; } </style>
+            <div class="GoodsListWrap">
+
+
+              <div class="GoodsList">
+               <volist name='p8' id='vo' offset='4' length='3'>
+                <div class="itemsWrap " style="width:24%;">
+                        <div class="item">
+                            <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='120' height='120' alt=""></a></div>
+                            <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>
+                        </div>
+                    </div>
+
+</volist>  <volist name='p9' id='vo'>
+                <div class="itemsWrap " style="width:24%;">
+                        <div class="item">
+                            <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='120' height='120' alt=""></a></div>
+                            <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>
+                        </div>
+                    </div>
+
+</volist>
+
+                    <div class="clear"></div>
+                </div>
+                <div class="more clearfix"><a href="/index.php/list/index/pid/8">更多...</a></div>
+            </div>
+            </div>
+        </div>
+    <div class="clear"> </div>
+    <div class="clear"> </div>
+        <div class="xingying red">
+          <div class="xingtit fl">
+              <div class="AdvBanner">  <a href="/index.php/list/index/pid/8" target="_blank"> <img src="__Res__/a4.png" style=""> </a>  </div>
+            </div>
+            <div class="xingzdy fr">
+              <div class="AdvBanner">  <a href="/index.php/list/index/pid/8" target="_blank"> <img src="__Res__/more.jpg" style=""> </a>  </div>
+            </div>
+           <div class="more fr">
+             <volist name='p6' id='vo' offset='34' length='3'>
+                <a href="__APP__/article/index/aid/{$vo.id}" type="url" target="_blank"> {$vo.title}</a>|
+              </volist>
+            </div>
+        </div>
+        <div class="ying fl">
+    <script>
+var good_list = new Class({
+    divSrc:'',
+    divSrc2:'',
+    initialize: function(div1,div2){
+      this.divSrc=div1;
+      this.divSrc2=div2;
+      
+      this.tab = 'ttp_widgets_214';
+    },
+    changeTableing:function(type,div){
+      var i;
+      for(i=0;i<2;i++){
+        if(i==type){
+          $(this.divSrc2+i).setStyles({
+            'display':''
+          });
+          
+          $('widgets_214_more_'+i).setStyles({
+            'display':''
+          });
+          $(this.tab+i).addClass('current');
+        }else{
+          $(this.divSrc2+i).setStyles({
+            'display':'none'
+          });
+          $('widgets_214_more_'+i).setStyles({
+            'display':'none'
+          });
+          $(this.tab+i).removeClass('current');
+        }
+      }
+    }
+  }); 
+
+
+  var ef_widgets_214=new good_list('top_widgets_214','widgets_214_list');
+
+
+</script>
+<style> .itemsWrap{ *display:inline; float:left; overflow:hidden; } </style>
+    <div id="top_widgets_214" class="GoodsList-Tabs">
+          <div class="current" style="float:left" id="ttp_widgets_2140" onmouseover="ef_widgets_214.changeTableing(0)"><span>热销商品</span> </div>
+            <div style="float:left" id="ttp_widgets_2141" onmouseover="ef_widgets_214.changeTableing(1,'widgets_214_more1')"><span>新品上市</span> </div>
+        </div>
+        <div class="GoodsListWrap">
+          <div class="GoodsList">
+              <div id="widgets_214_list0">
+                   <volist name='p6' id='vo' offset='44' length='4'>
+               <div class="itemsWrap " style="width:99%;">
+                        <div class="item">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td><div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:50px;height:50px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"> <img src="{$vo.thumbpic}" width='50' height='50' alt=""></a></div></td>
+                                        <td class="goodsDesc">  <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>  </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+</volist>
+
+                    <div class="clear"></div>
+                </div>
+                <div id="widgets_214_more_0" class="more" style="">  <a href="/index.php/list/index/pid/6">更多...</a></div>
+                <div id="widgets_214_list1" style="display:none">
+                    <volist name='p11' id='vo' offset='1' length='4'>
+               <div class="itemsWrap " style="width:99%;">
+                        <div class="item">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td><div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:50px;height:50px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"> <img src="{$vo.thumbpic}" width='50' height='50' alt=""></a></div></td>
+                                        <td class="goodsDesc">  <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>  </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+</volist>
+
+                    <div class="clear"></div>
+               </div>
+                <div id="widgets_214_more_1" class="more" style="display:none;">  <a href="/index.php/list/index/pid/6">更多...</a></div>
+            </div>
+        </div>
+     </div>
+      <div class="yingtp fr">
+          <div class="AdvBanner">  <a href="/index.php/list/index/pid/6" target="_blank"> <img src="__Res__/x4.jpg" style=""> </a>  </div>
+        </div>
+        <div class="yingsp fl">
+          <div class="borderpx " id="widgets_225">
+            <style> .itemsWrap{ *display:block; float:left; overflow:hidden; } </style>
+            <div class="GoodsListWrap">
+              <div class="GoodsList">
+               
+<volist name='p10' id='vo' offset='1' length='4'>
+                <div class="itemsWrap " style="width:24%;">
+                        <div class="item">
+                            <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='120' height='120' alt=""></a></div>
+                            <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>
+                        </div>
+                    </div>
+
+</volist>
+
+
+<volist name='p11' id='vo' offset='1' length='4'>
+                <div class="itemsWrap " style="width:24%;">
+                        <div class="item">
+                            <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='120' height='120' alt=""></a></div>
+                            <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>
+                        </div>
+                    </div>
+
+</volist>
+
+                    <div class="clear"></div>
+                </div>
+                <div class="more clearfix"><a href="/index.php/list/index/pid/7">更多...</a></div>
+            </div>
+            </div>
+        </div>
+    <div class="clear"> </div>
+
+        <div class="xingying coffee">
+          <div class="xingtit fl">
+              <div class="AdvBanner">  <a href="/index.php/list/index/pid/7" target="_blank"> <img src="__Res__/a5.png" style=""> </a>  </div>
+            </div>
+            <div class="xingzdy fr">
+              <div class="AdvBanner">  <a href="/index.php/list/index/pid/7" target="_blank"> <img src="__Res__/more.jpg" style=""> </a>  </div>
+            </div>
+            <div class="more fr"><volist name='p6' id='vo' offset='64' length='3'>
+                <a href="__APP__/article/index/aid/{$vo.id}" type="url" target="_blank"> {$vo.title}</a>|
+              </volist></div>
+        </div>
+        <div class="ying fl">
+    <script>
+var good_list = new Class({
+    divSrc:'',
+    divSrc2:'',
+    initialize: function(div1,div2){
+      this.divSrc=div1;
+      this.divSrc2=div2;
+      
+      this.tab = 'ttp_widgets_175';
+    },
+    changeTableing:function(type,div){
+      var i;
+      for(i=0;i<2;i++){
+        if(i==type){
+          $(this.divSrc2+i).setStyles({
+            'display':''
+          });
+          
+          $('widgets_175_more_'+i).setStyles({
+            'display':''
+          });
+          $(this.tab+i).addClass('current');
+        }else{
+          $(this.divSrc2+i).setStyles({
+            'display':'none'
+          });
+          $('widgets_175_more_'+i).setStyles({
+            'display':'none'
+          });
+          $(this.tab+i).removeClass('current');
+        }
+      }
+    }
+  }); 
+
+
+  var ef_widgets_175=new good_list('top_widgets_175','widgets_175_list');
+
+</script>
+<style> .itemsWrap{ *display:inline; float:left; overflow:hidden; } </style>
+    <div id="top_widgets_175" class="GoodsList-Tabs">
+          <div class="current" style="float:left" id="ttp_widgets_1750" onmouseover="ef_widgets_175.changeTableing(0)"><span>热销商品</span> </div>
+            <div style="float:left" id="ttp_widgets_1751" onmouseover="ef_widgets_175.changeTableing(1,'widgets_175_more1')"><span>新品上市</span> </div>
+        </div>
+        <div class="GoodsListWrap">
+          <div class="GoodsList">
+              <div id="widgets_175_list0">
+               <volist name='p6' id='vo' offset='36' length='4'>
+               <div class="itemsWrap " style="width:99%;">
+                        <div class="item">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td><div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:50px;height:50px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"> <img src="{$vo.thumbpic}" width='50' height='50' alt=""></a></div></td>
+                                        <td class="goodsDesc">  <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>  </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+</volist>
+
+                    <div class="clear"></div>
+                </div>
+                <div id="widgets_175_more_0" class="more" style="">  <a href="/index.php/list/index/pid/6">更多...</a></div>
+                <div id="widgets_175_list1" style="display:none">
+            
+ <volist name='p6' id='vo' offset='40' length='4'>
+               <div class="itemsWrap " style="width:99%;">
+                        <div class="item">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td><div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:50px;height:50px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"> <img src="{$vo.thumbpic}" width='50' height='50' alt=""></a></div></td>
+                                        <td class="goodsDesc">  <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>  </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+</volist>
+
+                    <div class="clear"></div>
+               </div>
+                <div id="widgets_175_more_1" class="more" style="display:none;">  <a href="/index.php/list/index/pid/7">更多...</a></div>
+            </div>
+        </div>
+     </div>
+      <div class="yingtp fr">
+          <div class="AdvBanner">  <a href="/index.php/list/index/pid/14" target="_blank"> <img src="__Res__/x5.jpg" style=""> </a>  </div>
+        </div>
+        <div class="yingsp fl">
+          <div class="borderpx " id="widgets_225">
+            <style> .itemsWrap{ *display:block; float:left; overflow:hidden; } </style>
+            <div class="GoodsListWrap">
+              <div class="GoodsList">
+               
+<volist name='p14' id='vo'>
+                <div class="itemsWrap " style="width:24%;">
+                        <div class="item">
+                            <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src="{$vo.thumbpic}" width='120' height='120' alt=""></a></div>
+                            <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>
+                        </div>
+                    </div>
+
+</volist>
+
+                <div class="itemsWrap " style="width:24%;">
+                        <div class="item">
+</volist>
+                            <div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:120px;height:120px;"><a href="/index.php/article/index/aid/125" target="_blank" title="{$vo.title}"><img src="/Public/goodsimages/shipin/39.jpg" width='120' height='120' alt=""></a></div>
+                           <h6><a href="/index.php/article/index/aid/125" target="_blank" title="百家乐分析仪软件">百家乐分析仪软件...</a></h6>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="clear"></div>
+                </div>
+                <div class="more clearfix"><a href="/index.php/list/index/pid/14">更多...</a></div>
+            </div>
+            </div>
+        </div>
+
+  <div class="clear"> </div>
+      <div class="tu1"></div>
+    <div class="clear"> </div>
+    <div class="qingtt">
+      <div class="bordercc " id="widgets_276">
+          <div class="border-top"><h3>实战视频演示</h3></div>
+              <div class="border-body">
+                  <div class="ArticleListWrap" name="ar_widgets_190" id="ar_widgets_190">
+                      <div class="ArticleList">
+                          <table width="100%" cellpadding="0" cellspacing="0">
+                              <tbody>
+                                  <tr>
+                                <volist name='p6' id='vo' offset='40' length='6'>
+                                    <td><img src="__Res__/arrow_4.gif" path="icons">  <a href="__APP__/article/index/aid/{$vo.id}" title="{$vo.title}">{$vo.title}</a></td>
+                                </volist> 
+                                    </tr>
+
+
+                                  <tr>
+                                    <volist name='p6' id='vo' offset='46' length='6'>
+                                    <td><img src="__Res__/arrow_4.gif" path="icons">  <a href="__APP__/article/index/aid/{$vo.id}" title="{$vo.title}">{$vo.title}</a></td>
+                                </volist> 
+                                    </tr>
+
+                                    <tr>
+                                    <volist name='p6' id='vo' offset='52' length='6'>
+                                    <td><img src="__Res__/arrow_4.gif" path="icons">  <a href="__APP__/article/index/aid/{$vo.id}" title="{$vo.title}">{$vo.title}</a></td>
+                                </volist> 
+                                    </tr>
+
+
+                                    <tr>
+                                    <volist name='p6' id='vo' offset='58' length='6'>
+                                    <td><img src="__Res__/arrow_4.gif" path="icons">  <a href="__APP__/article/index/aid/{$vo.id}" title="{$vo.title}">{$vo.title}</a></td>
+                                </volist> 
+                                    </tr>
+
+
+
+                                </tbody>
+                             </table>
+                             <div class="more clearfix"> <a href="/index.php/list/index/pid/6">更多...</a> </div>
+                        </div>
+                   </div>
+              </div>
+         </div>
+     </div>        
+      
+</div>
+  <div class="clear"> </div>
+    <div class="clear"> </div>
+
+
+<include file="Public/footer" />

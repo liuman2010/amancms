@@ -1,5 +1,10 @@
 <?php 
 	
+	function test($ars)
+	{
+		echo '公共函数处理后的结果！参数是：'.$ars;
+	}
+
 	/**
 	 * @param  $data 	    array       要操作的二维数组	
 	 * @param  $field 	    string      要提取的字段名称
@@ -87,7 +92,7 @@
 		$upload->exts     = array('jpg', 'gif', 'png', 'jpeg','mp4');
 		$upload->rootPath = './Public/uploads/';
 		//文件上传的根目录 默认./Public/uploads
-		$upload->savePath = $savePath; 
+		$upload->savePath = $savePath.'/'; 
 		$info 			  = $upload->upload();
 		return $info;
 	}

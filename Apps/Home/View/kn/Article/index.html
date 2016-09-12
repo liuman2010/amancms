@@ -1,0 +1,189 @@
+﻿<include file="Public/head2" />
+<script type="text/javascript">
+<!--
+var timeout         = 50;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose; 
+// -->
+</script>
+<div class="AllWrapInside clearfix">
+ 	<div class="sideColumn1">
+    	<div class="Navigation">您的当前位置：{$position}</div>
+    </div>
+    <div class="clear"> </div>
+    <div class="mainColumn">
+    	<div class="GoodsInfoWrap">
+        	<div id="goods-viewer">
+            	<table width="100%">
+                	<tbody>
+                    	<tr>
+                        	<td valign="top" align="center">
+                            	<div class="goodspic">
+                                	<div class="goods-detail-pic" style=" width:300px;height:300px;" bigpicsrc="{dede:field.litpic/}"> <a href="###" target="_blank" style="color:#fff;font-size:263px; width:300px;height:300px;font-size:262.5px;;font-family:Arial;display:table-cell; vertical-align:middle;"> <img src="{$aidInfo['thumbpic']}" alt="普通扑克化学药水变牌" style="vertical-align:middle;width:300px;height:300px;"> </a>  </div>
+                                </div>
+                            </td>
+                            <td width="60%" valign="top">
+                            <h1 class="goodsname">{$aidInfo['title']}</h1>
+                             <p class="brief">广州信诺专业娱乐牌具产品厂家：自主研发、生产、批发、销售、产品全、价格低、售后有保障、同款产品承诺比市场价低30%，建议有需要的朋友前来公司参观、先免费体验每款产品的功能效果、满意后再决定购买适合自己的产品。欢迎外地加盟、产品详情和更多新产品动态请咨询本网站客服专线</p>
+                            <ul class="goodsprops clearfix">
+                            	<li><span>公司名称：</span>信诺牌具</li>
+                                <li><span>公司地址：</span>广州市白云区远景路842号 （东江大酒店旁边）</li>
+                                <li><span>客服QQ：</span><span id="goodsBn">3217422376　　　　</span></li>
+                                <li><span>财富热线：</span>181-2783-5272</li>
+                            </ul>
+                            <p style="margin-top:30px; font-size:18px;"><span><font style="color:#000;">货到付款：</font></span><font style="color:#003399;">客户只需来电订货即可，我方即保密发货，<br>一般1--3日内到达。</font></p>
+                            </td>
+                         </tr>
+                     </tbody>
+                  </table>
+                  <div style="clear:both"></div>
+                  <div class="goods-detail-tab clearfix">
+                  	<div class="goodsDetailTab active"><span>商品详情</span></div>
+                  </div>
+                  <div class="clear"></div>
+                  <div class="section pdtdetail" tab="商品详情" style=""> 
+                  	<div class="goodsprop_ultra clearfix">  </div>
+                    <div class="body indent uarea-output" id="goods-intro"> <h1 style="font-size: 30px;
+font-weight: bold;
+text-align: center;
+margin: 24px 0px;">{$aidInfo['title']}</h1>
+<p style="text-align: center;">上架时间：{$posttime} 点击：{$aidInfo['views']} 次</p>
+<div style="text-align: left;">
+                    {$aidInfo['content']}
+<p style="text-align:left;color:red;">
+      <strong>&nbsp; &nbsp; &nbsp; &nbsp; 广州专业娱乐牌具厂家：自主研发、生产、批发、销售、产品全、价格低、售后有保障、同款产品承诺比市场价低30%，建议有需要的朋友前来公司参观、先免费体验每款产品的功能效果、满意后再决定购买适合自己的产品。欢迎外地加盟合作！</strong></p>
+      
+      <p style="text-align:left;color:red;">
+      <span style="color:#ff0000;"><strong>&nbsp; &nbsp; &nbsp; &nbsp; 本网站客服专线：</strong><strong style="font-size:16px;color:#008000;">181-2426-7558；</strong><strong>业务QQ：</strong><strong style="font-size:16px;color:#008000;">3217422376；</strong><strong>加微信号</strong><strong>：</strong></span><strong><span style="font-size:16px;color:#008000;">GZKXPAIJU</span>关注最新产品动态。</strong></p>
+
+      <p style="text-align: left;">
+      <span style="color:#0000cd;"><span style="font-size:16px;"><strong>&nbsp; &nbsp; &nbsp; &nbsp; 公司地址：广州市白云区远景路842号 （东江大酒店旁边）</strong><br>
+      <strong>　　广州火车站坐公交车</strong><strong>840</strong><strong>路、广州东站坐</strong><strong>185</strong><strong>、罗冲围客运站坐</strong><strong>198</strong><strong>、芳村客运站坐</strong><strong>26</strong><strong>路到</strong><strong>“</strong><strong>棠下</strong><strong>①</strong><strong>”</strong><strong>站下过红绿灯斜对面即到、高铁南站可以坐地铁</strong><strong>2</strong><strong>号线</strong><strong>“</strong><strong>三元里站</strong><strong>”C1</strong><strong>出口、机场打的二十分钟到、市内</strong><strong>“</strong><strong>打的</strong><strong>”</strong><strong>广州市内任何地方打的来本公司可以凭票可报销车费。</strong></span></span></p>
+ </div>
+
+
+                    <div class="context">
+                    <ul>
+                        <li>上一篇： {$prev}</li>
+                        <li>下一篇： {$next}</li>
+                    </ul>
+         </div>
+                    </div>
+
+
+                  </div>
+              </div>
+          </div>
+
+</div>
+<div class="sideColumn">
+    <div class="borderaa " id="widgets_271">
+        <div class="border-top"><h3>热门视频</h3></div>
+        <div class="border-body">
+            <div class="GoodsCategoryWrap">
+                <ul>
+                <li class="c-cat-depth-1">
+                   <a href="/">广州信诺娱乐牌具开发有限公司</a>
+                        <table class="c-cat-depth-2">
+                            <tbody>
+                            <volist name='hotVideo' id='vo' offset="1" length='5' >
+                                <tr>
+                                    <td><a href="__APP__/article/index/aid/{$vo.id}">{$vo.title}</a> </td>
+                                </tr>
+                            </volist>
+                                
+                              </tbody>
+                          </table>
+                      </li><li class="c-cat-depth-1">
+                        <a href="/">广州市白云区远景路842号</a>
+                        <table class="c-cat-depth-2">
+                            <tbody>
+                            
+                               <volist name='hotVideo' id='vo' offset="7" length='8' >
+                                <tr>
+                                    <td><a href="__APP__/article/index/aid/{$vo.id}">{$vo.title}</a> </td>
+                                </tr>
+                            </volist>
+                            
+                              </tbody>
+                          </table>
+                      </li>
+
+                     
+                 </ul>
+              </div>
+        </div>
+    </div>
+    <div class="bordercc " id="widgets_247">
+        <div class="border-top"><h3>热销排行榜</h3></div>
+        <div class="border-body">
+            <style> .itemsWrap{ *display:block; float:left; overflow:hidden; } </style>
+            <div class="GoodsListWrap">
+                <div class="GoodsList">
+
+                 <volist name='hotVideo' id='vo' offset="7" length='8' >
+               <div class="itemsWrap " style="width:99%;">
+                        <div class="item">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td><div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:50px;height:50px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src=" {$vo.thumbpic}" alt=""></a></div></td>
+                                        <td class="goodsDesc">  <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>  </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+ </volist>
+
+
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+ </div>
+<div class="clear"> </div>
+<include file="Public/footer" />

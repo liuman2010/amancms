@@ -1,0 +1,64 @@
+<include file="Public/head2" />
+
+<div class="clear"></div>
+
+<div class="now"><span>{$position}</div>
+<div class="content">
+
+<!--产品分类列表 左侧 -->
+
+   <div class="plstL">
+        <div class="prt_class">
+            <div class="prt_class_head"><h2>热门视频</h2></div>
+            <div class="prt_class_content">
+                 <ul>
+                    <volist name='hotVideo' id='vo' offset='1' length='12'>
+         <li><a href="__APP__/article/index/aid/{$vo.id}">{$vo.title} </a></li>
+         </volist>  
+
+   </ul>
+    
+            </div>
+            <div class="prt_class_head"><h2>最新产品</h2></div>
+            <div class="prt_class_content">
+                <ul>
+             <volist name='top' id='vo' offset='1' length='10'>
+         <li><a href="__APP__/article/index/aid/{$vo.id}">{$vo.title} </a></li>
+         </volist>  
+                  </ul>
+            </div>
+        </div>
+
+<div class="prt_class_head"></div>
+            <div class="prt_class_content">
+              
+            </div>
+
+    </div>
+    
+    
+    
+    <div class="plstR">
+        <div class="prt_dct_list_head"><h2>咨询热线：莫小姐 132-6833-4858&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地址:广州市白云区远景路842号(东江大酒店旁边)</h2></div>
+        <div class="prt_dct_list_content">
+            <ul>
+            <volist name='list' id='vo'>
+                           <li><a href="__APP__/article/index/aid/{$vo.id}" title="{$vo.title} "><img src="{$vo.thumbpic}"  alt="">
+                    <p>{$vo.title} </p>
+                </a> </li>   
+  </volist>  
+
+            
+            
+               
+            </ul>
+        </div>
+        <div class="clear"></div>
+        <div class="control">           
+              {$page}
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<include file="Public/footer" />

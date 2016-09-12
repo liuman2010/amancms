@@ -1,0 +1,280 @@
+*{	
+	margin:0px;
+	padding:0px;
+	border:0px;
+}
+.clear{
+	clear: both;
+	width: 100%;
+}
+li{
+	list-style: none;
+}
+a,p{
+	font-size: 16px;
+	text-decoration: none;
+}
+body{
+	width: 100%;
+	overflow-x: hidden;
+	/*height: 300px;*/
+	font-size: 14px;
+font-family: STHeiti-Light,'Hiragino Sans GB','Microsoft Yahei',Arial;
+background-color: #ececec;
+}
+.top_title{
+	width:100%;
+	background: pink;
+	height: 39px;
+line-height: 38px;
+/*padding-left: 11px;*/
+display: block;
+overflow: hidden;
+}
+.top_title span{
+	height: 38px;
+	line-height: 40px;
+	color:#666;
+	float: left;
+	display: inline-block;
+	/*padding-right: 13px;*/
+}
+.top_title p{
+	padding-right: 13px;
+	width: auto;
+	height: 38px;
+	line-height: 45px;
+	float: left;
+}
+.top_title a{
+	padding-right: 13px;
+	width: 80px;
+	font-size: 16px;
+	text-decoration: none;
+	height: 38px;
+	line-height: 45px;
+	float: left;
+	color: #fc3304;
+font-size: 21px;
+font-style: italic;
+font-weight: 700;
+/*-webkit-text-fill-color: #fc3304;
+-webkit-text-stroke: 1px #fff;*/
+position: relative;
+}
+
+.logo{
+	text-align: center;
+}
+.channel{
+	width: 100%;
+	height: auto;
+}
+.channel ul{
+	width: 100%;
+}
+.channel ul li{
+	width: 33%;
+display: inline-block;
+float: left;
+position: relative;
+
+box-shadow: 0 2px 2px rgba(0,0,0,.08);
+font-size: 15px;
+text-decoration: none;
+text-align: center;
+color: #666;
+}
+.channel ul li a{
+	display: block;
+height: 64px;
+background: linear-gradient(#f4f4f4,#ededed);
+background: -moz-linear-gradient(#f4f4f4,#ededed);
+border: 1px #d7d7d7 solid;
+box-shadow: 0 2px 2px rgba(0,0,0,.08);
+margin-left: 10px;
+margin-bottom: 10px;
+font-size: 15px;
+text-decoration: none;
+position: relative;
+text-align: center;
+line-height: 53px;
+color: #666;
+border-top: 5px solid rgba(254, 1, 22, 0.498039);
+}
+
+.adder{
+	width: 100%;
+	padding: 10px;
+}
+
+.adder p{
+	width: auto;
+	color: #959595;
+	height: 30px;
+	line-height: 30px;
+	font-size: 12px;
+}
+.adder a{
+	text-decoration: none;
+	color: rgb(254, 1, 22);
+	font-size: 13px;
+}
+.bottom{
+	position: fixed;
+width: 100%;
+z-index: 99990;
+height: 55px;
+left: 0;
+bottom: 0;
+z-index: 6;
+border-top: 1px solid #9a121d;
+}
+.bottom_box{
+	bottom: 0;
+width: 100%;
+height: 55px;
+position: absolute;
+background-color: #f71d2f;
+z-index: -99;
+}
+
+
+
+
+
+/*底部固定工具条*/
+#tool { width: 100%;position: fixed; bottom: 0; left: 0; right: 0; z-index: 900; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+ul.toollist { position: fixed; z-index: 900; bottom: 0; left: 0; right: 0;margin: auto; display: block; height: 48px;}
+.toollist li{ float:left;width: auto;  height: 100%;width:25%;
+position: static!important;  margin: 0;
+border-radius: 0!important; -webkit-box-sizing: border-box;
+box-sizing: border-box; -webkit-box-flex: 1; box-flex: 1;
+-webkit-box-sizing: border-box; box-shadow: none!important; background: none;
+}
+.toollist li a {font-size: 20px;line-height: 20px;text-align: center;display: block;text-decoration: none;padding-top: 2px;position:relative;}
+.toollist li a img{width:24px;height:24px;}
+.toollist li a p{margin: 1px 0 1px 0;font-size: 14px;display: block !important;line-height: 18px;text-align: center;}
+/*灰色主题*/
+.toollist_gray {
+	border-top: 1px solid #3D3D46;
+	background-image:linear-gradient(top, #697077, #464A53 60%, #3F434E);
+	background-image:-o-linear-gradient(top, #697077, #464A53 60%, #3F434E);
+	background-image:-ms-linear-gradient(top, #697077, #464A53 60%, #3F434E);
+	background-image:-moz-linear-gradient(top, #697077, #464A53 60%, #3F434E);
+	background-image:-webkit-linear-gradient(top, #697077, #464A53 60%, #3F434E );
+
+	box-shadow: 0 1px 0 #949494 inset;
+	-moz-box-shadow:0 1px 0 #949494 inset;
+	-webkit-box-shadow:0 1px 0 #949494 inset;
+	-o-box-shadow:0 1px 0 #949494 inset;
+}
+.toollist_gray li{ border-right: 1px solid rgba(148, 148, 148, 0.6);}
+.toollist_gray li a {color: #fff;}
+/*绿色主题*/
+.toollist_green {
+	
+	border-top: 1px solid #9a121d; 
+	background-image:linear-gradient(top,  #0aa881,  #f71d2f);
+	background-image:-o-linear-gradient(top,  #0aa881,  #f71d2f);
+	background-image:-ms-linear-gradient(top,  #0aa881,  #f71d2f);
+	background-image:-moz-linear-gradient(top,  #0aa881,  #f71d2f);
+	background-image:-webkit-linear-gradient(top, #FF082D, #f71d2f);
+	
+	box-shadow: 0 1px 0 #eee inset;
+	-moz-box-shadow: 0 1px 0 #eee inset;
+	-webkit-box-shadow: 0 1px 0 #eee inset;
+	-o-box-shadow: 0 1px 0 #eee inset;
+}
+.toollist_green li{ border-right: 1px solid rgba(255, 255, 255, 0.6);}
+.toollist_green li a {color: #fff;}
+/*蓝色主题*/
+.toollist_blue {
+	border-top: 1px solid #0c86dc; 
+	background-image:linear-gradient(top, #3D8A32, #359a26 60%, #218712);
+	background-image:-o-linear-gradient(top, #3D8A32, #359a26 60%, #218712);
+	background-image:-ms-linear-gradient(top, #3D8A32, #359a26 60%, #218712);
+	background-image:-moz-linear-gradient(top, #3D8A32, #359a26 60%, #218712);
+	background-image:-webkit-linear-gradient(top, #0985df, #0771c9 60%, #0161b8 );
+	
+	box-shadow: 0 1px 0 #9bc9ed inset;
+	-moz-box-shadow: 0 1px 0 #9bc9ed inset;
+	-webkit-box-shadow: 0 1px 0 #9bc9ed inset;
+	-o-box-shadow: 0 1px 0 #9bc9ed inset;
+}
+.toollist_blue li{ border-right: 1px solid rgba(250, 250, 250, 0.4);}
+.toollist_blue li a {color: #fff;}
+
+
+#copyright {
+	width: 100%;
+padding: 3px 0px;
+text-align: center;
+font-size: 14px;
+color: #666;
+border: 0px solid red;
+margin-bottom: 50px;
+}
+
+
+.content{
+	width: 100%;
+	height: auto;
+}
+
+.content .pics{
+	float: left;
+	width: 30%;
+height: 50px;
+margin: 5px 5px 100px 5px;
+	text-align: center;
+}
+.content .pics ul li{
+	margin-top: 5px;
+}
+.content .pics ul li a{
+	font-size: 12px;
+	color: red;
+	width: auto;
+	overflow: hidden;
+}
+
+/*列表页*/
+.banner {
+	width: 100%;
+	text-align: center;
+	padding-top: 20px;
+}
+.banner img{
+	width: 95%;
+}   
+.position{
+	padding-top:20px;
+padding-left:20px;
+}
+
+.body_content{
+	width: 100%;
+	text-align: center;
+}
+
+.article img{
+	width:240px;
+	height:auto;
+}
+
+.pages{
+	float: right;
+	margin-top: 10px;
+}
+.pages li{
+	float: left;
+	width: auto;
+	
+}
+/*视频适应 2015-06-02 */
+.video-js-box video{
+	width:320px;
+	height:240px;
+}
+/*刘满 635549913@qq.com 2015-01-29 16:07:30;*/

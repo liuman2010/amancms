@@ -1,0 +1,69 @@
+﻿<include file="Public/head" />
+
+<div class="main_list">
+  <div class="position">您的当前位置：{$position} </div>
+   <div class="left">
+     <div class="article_body">
+     	<h2> {$aidInfo['title']} </h2>
+     	<p class="tit_p">更新时间：{$posttime|date="Y-m-d",###}  点击： {$views} 次</p>
+      <br>
+     	<div class="content">
+     		{$aidInfo['content']}
+        <br>
+<p style="text-align:left;color:red;">
+      <strong>&nbsp; &nbsp; &nbsp; &nbsp; 广州专业娱乐牌具厂家：自主研发、生产、批发、销售、产品全、价格低、售后有保障、同款产品承诺比市场价低30%，建议有需要的朋友前来公司参观、先免费体验每款产品的功能效果、满意后再决定购买适合自己的产品。欢迎外地加盟合作！</strong></p>
+
+
+      <p style="text-align:left;color:red;">
+      <span style="color:#ff0000;"><strong>&nbsp; &nbsp; &nbsp; &nbsp; 本网站客服专线：</strong><strong style="font-size:16px;color:#008000;">邱小姐 : 181-2426-7558；</strong><strong>业务QQ：</strong><strong style="font-size:16px;color:#008000;">2283243398；</strong><strong>加微信号</strong><strong>：</strong></span><strong><span style="font-size:16px;color:#008000;">18124267558</span>关注最新产品动态。</strong></p>
+
+
+      <p style="text-align: left;">
+      <span style="color:#0000cd;"><span style="font-size:16px;"><strong>&nbsp; &nbsp; &nbsp; &nbsp; 公司地址</strong><strong>:</strong><strong>广州市白云区三元里大道</strong><strong>909-911</strong><strong>号粤海商务中心五楼正厅【远景路口东江大酒店正对面】</strong><br>
+      <strong>　　广州火车站坐公交车</strong><strong>840</strong><strong>路、广州东站坐</strong><strong>185</strong><strong>、罗冲围客运站坐</strong><strong>198</strong><strong>、芳村客运站坐</strong><strong>26</strong><strong>路到</strong><strong>“</strong><strong>棠下</strong><strong>①</strong><strong>”</strong><strong>站下过红绿灯斜对面即到、高铁南站可以坐地铁</strong><strong>2</strong><strong>号线</strong><strong>“</strong><strong>三元里站</strong><strong>”C1</strong><strong>出口、机场打的二十分钟到、市内</strong><strong>“</strong><strong>打的</strong><strong>”</strong><strong>广州市内任何地方打的来本公司可以凭票可报销车费。</strong></span></span></p>
+
+     	</div>
+     	 <div class="context">
+				<ul>
+		     		<li>上一篇：{$prev}</li>
+            <li class="xia">下一篇： {$next}</li>
+				</ul>
+		 </div>
+     </div>
+   </div>
+
+  <div class="right">
+    <div class="con_list">
+        <h2 style="font-size:20px;" class="tit">网站公告栏</h2>
+        <p class="con">*  本公司是做厂家直销，全部一手货源，产品齐全、价格低廉，承诺比市场零售价低20%--30%，很多外地客户都从我们这里批发拿货。</p>
+        <p>产品可享受一年无忧售后服务！欢迎您亲临本公司实地考察、免费体验产品或者技术效果、满意再买再学。</p>
+    </div>
+    
+    <div class="add">
+      <img src="__Res__/images/add2.gif" alt="">
+    </div>
+     <div class="con_list">
+        <h2 style="font-size:20px;" class="tit">最新技术推荐</h2>
+        <ul>
+          <volist name='articles' id='vo' offset='1' length='7'>
+            <li><a href="__APP__/article/index/aid/{$vo.id}"> {$vo.title} </a></li>
+          </volist>
+        </ul>
+    </div>
+
+     <div class="con_list">
+        <h2 style="font-size:20px;" class="tit">联系我们</h2>
+        <dl class="contact">
+          <dt>联系人：邱小姐</dt>
+          <dt>电话：181-2426-7558</dt>
+          <dt>咨询：020-2988-3713</dt>
+          <dd>联系地址：广州市白云区三元里大道909-911号粤海商务中心五楼正厅【远景路口东江大酒店正对面】</dd>
+        </dl>
+
+    </div>
+  </div>
+ 
+</div>
+<div class="clear"></div>
+
+<include file="Public/footer" />

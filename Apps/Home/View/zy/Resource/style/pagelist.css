@@ -1,0 +1,37 @@
+.plst_call_me{position:relative;width:1000px;height:30px;margin:0 auto;background: url(../images/fg.jpg) no-repeat;font-size:13px;}
+.plst_cal_type{position: absolute;left:20px;bottom:0;line-height:30px;font-family: "微软雅黑", Courier, monospace; }
+.plst_form1{position:absolute;right:20px;bottom:0;line-height:30px;}
+.now{width:1000px;height:30px;margin:0 auto;padding-top:2px;}
+.now span{float:left;font-size: 12px;line-height: 30px;color: #999;padding-left:5px}
+.now span a{font-family: "微软雅黑";}
+.plstL{float:left;width:230px;height:auto;margin:0 10px 10px 0;border:1px solid #d8d8d8;background-color: #fff;}
+.plstL2{float:left;width:230px;height:760px;margin:0 10px 10px 0;border:1px solid #d8d8d8;background-color: #fff;}
+.prt_class_head{background-color:#f1715c;width:200px;border-bottom:2px solid #f04a2f;margin-bottom:5px;}
+.prt_class_head h2{width:160px;padding-left:20px;font-size:15px;line-height:26px;color:#FFFFFF;font-family: "Microsoft YaHei","Arial";}
+
+.prt_class_content li{overflow: hidden;width:150px;height:28px;margin-bottom:3px;
+    line-height:28px;padding-left:50px;background:url(../images/catcap2.jpg) repeat-x left bottom;}
+.prt_class_content li a{font-family: "微软雅黑", Gadget, sans-serif;line-height:28px;font-size:15px;}
+.prt_class_content li a:hover{color:#be0000;}
+
+.prt_class_content2 li{width:180px;height:26px;margin-bottom:3px;border-bottom:1px dashed #cdcdcd;
+    line-height:26px;margin-left:12px;}
+.prt_class_content2 li a{font: 12px/23px simsun;line-height:26px;font-size:13px;color:#545454;}
+.prt_class_content2 li a:hover{color:#ff0000;}
+
+.plstR{width:750px;height:auto;min-height:780px;float:right;border:1px solid #e9e8e8;overflow: hidden;background-color:#ffffff;}
+.prt_dct_list_head{width:775px;height:28px;background-color:#f1715c;border-bottom:2px solid #f04a2f;}
+.prt_dct_list_head h2{color:#300d07;font-size:16px;line-height:28px;margin-left:20px;font-family: "Microsoft YaHei","Arial";}
+.prt_dct_list_content{padding-left:9px}
+.prt_dct_list_content li{float:left;width:230px;height:205px;margin:7px;}
+.prt_dct_list_content li a img{width:230px;height:180px;border:1px solid #a4a3a3;padding: 1px;}
+.prt_dct_list_content li a p{width:228px;height:23px;text-align: center;font-size: 14px; font-family: "微软雅黑";}
+.prt_dct_list_content li a:hover{color:#be0000;text-decoration: underline;}
+.control{width:750px;height:30px;margin:0 auto;}
+.control ul{margin:20px auto;width:650px}
+.control li{    float: left;
+    width: auto;
+    font-size: 14px;
+    font-family: "微软雅黑";
+    margin-left: 25px;
+}}

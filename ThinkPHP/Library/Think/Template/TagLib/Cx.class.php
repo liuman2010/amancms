@@ -19,7 +19,7 @@ class Cx extends TagLib {
     protected $tags   =  array(
         // 标签定义： attr 属性列表 close 是否闭合（0 或者1 默认1） alias 标签别名 level 嵌套层次
         'php'       =>  array(),
-        'volist'    =>  array('attr'=>'name,id,offset,length,key,mod','level'=>3,'alias'=>'iterate'),
+        'volist'    =>  array('attr'=>'name,id,offset,length,key,mod,typeid','level'=>3,'alias'=>'iterate'),
         'foreach'   =>  array('attr'=>'name,item,key','level'=>3),
         'if'        =>  array('attr'=>'condition','level'=>2),
         'elseif'    =>  array('attr'=>'condition','close'=>0),
@@ -39,7 +39,87 @@ class Cx extends TagLib {
         'assign'    =>  array('attr'=>'name,value','close'=>0),
         'define'    =>  array('attr'=>'name,value','close'=>0),
         'for'       =>  array('attr'=>'start,end,name,comparison,step', 'level'=>3),
+        'arclist'   =>  array('attr'=>'typeid,row,order','close'=>1),
+        'channel'   =>  array('attr'=>'type,row','close'=>1,'level'=>3),
         );
+
+
+
+
+    // _article标签解析
+    public function _arclist($tag,$content)   {
+
+        // 从模板标签那里获得数据
+        $typeid  =   $tag['typeid'];
+        $row     =   $tag['row'];
+        $order   =   $tag['order'];
+
+        // 查询的条件
+        $map     = array("pid"=>$typeid);
+
+        // 按条件查询的选项
+        if( $typeid=='all' )  $map = true; 
+        if( $order == 'top' ) $sort = 'ctime desc';
+        if( $order == 'hot' ) $sort = 'views desc';
+
+        // 随机调用
+        if( $order == 'rand' )
+        {
+            // 所有的文章数据
+            $data = M('article')->where( $map )->select();
+            
+            // 提取的数据量不能大过数据总数
+            $maxRow = count($data);
+            if($row > $maxRow) $row = $maxRow;
+
+            for ($i=0; $i < $row; $i++) 
+            {   
+                $id    = mt_rand(0,count($data)-1);
+                $html .= str_replace(array("[url]","[title]","[image]"), array("__APP__/article/index/aid/".$data[$id]["id"],$data[$id]["title"],$data[$id]["thumbpic"]), $content);
+            }
+            return $html;
+        }
+
+        // 按条件调用
+        $data    =   M('article')->where( $map )->limit($row)->order($sort)->select();
+        $n = count($data);
+        for ($i=0; $i < $n; $i++) 
+        { 
+            $html .= str_replace(array("[url]","[title]","[image]"), array("__APP__/article/index/aid/".$data[$i]["id"],$data[$i]["title"],$data[$i]["thumbpic"]), $content);
+        }
+        return $html;
+
+    }//f
+
+
+    // 菜单标签
+    public function _channel($tag,$content)
+    {
+        // 从模板标签那里获得数据
+        $type  =   $tag['type'];
+        $row   =   $tag['row'];
+        if($type == 'top') $type = 0;
+
+         // 按条件调用
+        $data = M('Column')->where(array('pid'=>$type))->limit($row)->select();
+
+        for ($i=0; $i < count($data); $i++) 
+        {   
+            // 查找他的子菜单
+            $html .= str_replace(array("[url]","[title]"), array("__APP__/List/index/pid/".$data[$i]["id"],$data[$i]["title"]), $content);
+            $sonInfoData = M("Column")->where( array("pid"=>$data[$i]["id"]) )->select();
+            if(!empty($sonInfoData))
+            {   
+                for ($j=0; $j < count($sonInfoData); $j++) {
+                    $html .= '<div class="son">'; 
+                    $html .= str_replace(array("[url]","[title]"), array("__APP__/List/index/pid/".$sonInfoData[$j]["id"]," 　　　　子菜单".$sonInfoData[$j]["title"]), $content);
+                    $html .= '</div>'; 
+                }
+            } 
+        }
+        return $html;
+    }//f
+
 
     /**
      * php标签解析
@@ -52,6 +132,7 @@ class Cx extends TagLib {
         $parseStr = '<?php '.$content.' ?>';
         return $parseStr;
     }
+
 
     /**
      * volist标签解析 循环输出数据集
@@ -68,6 +149,7 @@ class Cx extends TagLib {
     public function _volist($tag,$content) {
         $name  =    $tag['name'];
         $id    =    $tag['id'];
+        $pid   =    $tag['pid'];
         $empty =    isset($tag['empty'])?$tag['empty']:'';
         $key   =    !empty($tag['key'])?$tag['key']:'i';
         $mod   =    isset($tag['mod'])?$tag['mod']:'2';
@@ -316,6 +398,7 @@ class Cx extends TagLib {
      * @param string $type  比较类型
      * @return string
      */
+
     public function _range($tag,$content,$type='in') {
         $name       =   $tag['name'];
         $value      =   $tag['value'];
@@ -611,4 +694,7 @@ class Cx extends TagLib {
         return $parseStr;
     }
 
-}
+
+
+
+}//c

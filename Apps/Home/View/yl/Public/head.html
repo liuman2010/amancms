@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <base target="_blank">
+<script type="text/javascript">
+
+var mobileAgent = new Array("iphone", "ipod", "ipad", "android", "mobile", "blackberry", "webos", "incognito", "webmate", "bada", "nokia", "lg", "ucweb", "skyfire");
+
+var browser = navigator.userAgent.toLowerCase(); 
+
+var isMobile = false; 
+
+for (var i=0; i<mobileAgent.length; i++){ if (browser.indexOf(mobileAgent[i])!=-1){ isMobile = true; 
+
+// alert(mobileAgent[i]); 
+
+location.href = 'http://m.gzylpj.com/';
+
+break; } } 
+
+</script>
+	<link rel="stylesheet" href="__Res__/style/base.css">
+	<!-- <link rel="stylesheet" href="__Res__/style/bootstrap.min.css">  <script type="text/javascript" src="__Res__/js/jquery-1.5.1.min.js"></script>-->
+
+	<script type="text/javascript" src='__Res__/js/base.js'></script>
+	<link rel="stylesheet" href="__Res__/style/lrtk.css" type="text/css"/>
+<script type="text/javascript" src="__Res__/js/jquery-1.5.1.min.js"></script>
+	
+
+	<script type="text/javascript" src="__Res__/js/global.js"></script>
+	<script type="text/javascript" src="__Res__/js/tab.js"></script>
+
+ <!-- Chang URLs to wherever Video.js files will be hosted -->
+  <link href="__PUBLIC__/js/video-js.css" rel="stylesheet" type="text/css">
+  <!-- video.js must be in the <head> for older IEs to work. -->
+  <script src="__PUBLIC__/js/video.js"></script>
+
+  <!-- Unless using the CDN hosted version, update the URL to the Flash SWF -->
+  <script>
+    videojs.options.flash.swf = "__PUBLIC__/js/video-js.swf";
+  </script>
+
+
+	<title>广州永盈牌具</title>
+	<script type="text/javascript">
+	$(function(){
+		var $window = $(window),
+			window_width = $window.width();
+		$('#js_banner, #js_banner_img li').width(window_width);
+
+		var urlParam = G.util.parse.url(),
+			startFrame = 0;
+		if (urlParam.search && ('banner' in urlParam.search)) {
+			startFrame = (parseInt(urlParam.search['banner'])-1) || 0;
+		}
+
+		new $.Tab({/*添加圆点按钮*/
+			target: $('#js_banner_img li'),
+			effect: 'slide3d',
+			animateTime: 1000,
+			stay: 4000,
+			playTo: startFrame,
+			autoPlay: true,
+			merge: true,
+			prevBtn: $('#js_banner_pre'),
+			nextBtn: $('#js_banner_next')
+		});
+		$('#js_banner_img').css('left','-' + (window_width * startFrame) + 'px');
+	})
+</script>
+</head>
+<body>
+<include file='Public/piaofu' />   
+		<div class="header">
+			<div class="text">
+				<div class='text_left'> <span style="color:red; font-size:22px;;">全国咨询热线：邱小姐:18124267558     020-29883713</span></div> <div class='text_right'><a href="">收藏本站</a> <a href="">设为首页</a></div>
+			</div>
+
+			<div class="center">
+				<div class="logo">
+					<img src="__Res__/images/logo.png" alt="永利牌具">
+				</div>
+				<!-- <div class="logo_con">
+					<p>全国咨询热线：18613179　    客服QQ；888888888</p>
+				</div> -->
+				<div class="company">
+					<p>公司地址：广州市白云区三元里大道909-911号粤海商务中心五楼正厅[远景路口东江大酒店正对面] [广州火车站坐公交车60路或者840、广州东站坐185、罗冲围客运站坐198、芳村客运站坐26路到“棠下①”站下过红绿灯斜对面即到、高铁站可以坐地铁2号线“三元里站C1出口”]</p>
+				</div>
+			</div>
+			
+			<div class="nav">
+				<ul>
+					<li><a href="/">网站首页</a></li>
+					  <volist name='data' id='data'>
+							<li><a href="__APP__/list/index/pid/{$data.id}" > {$data.title} </a></li>
+					  </volist>
+				</ul>
+			</div>
+		</div>  <!-- header -->

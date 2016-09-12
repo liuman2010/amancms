@@ -31,7 +31,7 @@
         <volist name='data' id='list'>
           <tr>
             <td style="width:20px;">{$list.id}</td>
-            <td><a href="__URL__/mod/id/{$list.id}">{$list.title}</a></td>
+            <td>{$list.title}</td>
             <td>{$list.ctime|date=('Y-m-d H:i:s'),###}</td>
             <td><a target="_blank" class="btn btn-info" href="{$list.link}">查看</a></td>
           </tr>

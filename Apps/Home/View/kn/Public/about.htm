@@ -1,0 +1,185 @@
+{dede:include filename="head.htm" /}
+<script type="text/javascript">
+<!--
+var timeout         = 50;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose; 
+// -->
+</script>
+<div class="AllWrapInside clearfix">
+ 	<div class="sideColumn1">
+    	<div class="Navigation">您当前的位置：  <a href="/">主页</a> > <a href="/a/guanyuwomen/">联系我们</a> >   </div>
+    </div>
+    <div class="clear"> </div>
+    <div class="mainColumn">
+    	<div class="con_date">
+        	<div class="jianjie">广州科诺牌具娱乐用品有限公司
+                  <br>
+                  <span style="color:#f00;">公司地址：广州市白云区三元里大道909-911号粤海商务中心五楼502室【远景路口东江大酒店正对面】</span><br>
+              <span style="color:#d66f00;">联系电话：（181-2783-5272 虞经理）（以上电话为产品业务电话，广告勿扰）</span></div>
+              <div class="xuxian2"></div>
+              <div class="cont">
+              	<p>【来科诺牌具公司，小编教您怎么乘车】</p>
+                <div class="feiji">
+                	<ul>
+                    	<li><strong style="color:#f00;">飞机:</strong>如果您是搭乘飞机，全国各地可以至广州白云国际机场。</li>
+                        <li><span style="color:#d66f00;">地铁：</span>到机场后可以选择地铁"机场南"-"嘉禾望岗"-"三元里"，C出口，走路10分钟，或者打摩的直接到粤海商务中心楼下（5块钱）。<strong style="color:#232323;">"东江大酒店的对面"</strong></li>
+                        <li><span style="color:#d66f00;">打的：</span>如果您选择打的的话可以告知的士师傅至<strong style="color:#232323;">东江大酒店</strong>"的对面粤海商务中心502"（30分钟以内）</li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+                <div class="hc">
+                	<ul>
+                    	<li><strong style="color:#f00;">高铁:</strong>如果您是搭乘高铁，全国各地可以至广州南站下车。</li>
+                        <li><span style="color:#d66f00;">地铁：</span>下车后选择地铁（高铁站负一层）二号线搭乘至"三元里"站，C出口，走路10分钟。或者打摩的直接到粤海商务中心楼下（5块钱）。东江大酒店的对面（不需要转线、30分钟左右）</li>
+                        <li><span style="color:#d66f00;">打的：</span>如果您选择打的的话可以告知的士师傅至三元里大道远景路口<strong style="color:#232323;">"东江大酒店"</strong>的对面粤海商务中心502（30分钟以内）</li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+                <div class="huoche"><img src="{dede:global.cfg_templets_skin/}/images/hc.jpg" width="879" height="276" alt="火车搭乘路线"></div>
+                <div class="daba">
+                	<ul>
+                    	<li><strong style="color:#f00;">长途大巴汽车:</strong>如果您选择乘坐大巴的话可以根据您所到的汽车客运站乘车至即“棠下公车站”</li>
+                        <li><span style="color:#d66f00;">广州省汽车站：</span>省汽车站可以选择步行至火车站广场搭乘840、538、198、291b、108路公交，在“棠下站”下车。楼上就是本公司-广州科诺牌具娱乐用品有限公司<strong style="color:#232323;">"东江大酒店对面粤海商务中心5楼502</strong>
+
+</li>
+                        <li><span style="color:#d66f00;">广州市汽车站：</span>市汽车站可以选择到一楼公交站场搭乘274路公交车，在棠下站下车。楼上就是本公司-广州科诺牌具娱乐用品有限公司
+
+</li>
+                        <li><span style="color:#d66f00;">广园客运站：</span>广园客运站可以选择搭乘63、32、278路公交车，在棠下站下车。楼上就是本公司-广州科诺牌具娱乐用品有限公司<strong style="color:#232323;">"东江大酒店对面粤海商务中心5楼502</strong>
+
+</li>
+                        <li><span style="color:#d66f00;">夏茅客运站：</span>夏茅客运站步行至公交站场搭乘127、298、58a、807路等公交车，棠下站下车。楼上就是本公司-广州科诺牌具娱乐用品有限公司<strong style="color:#232323;">"东江大酒店对面粤海商务中心5楼502</strong>
+
+</li>
+                        <li><span style="color:#d66f00;">天河客运站：</span>天河客运站可以选择做到地铁二号线三元里站c出口，然后，打摩的直接到“东江大酒店”的对面粤海商务中心（5块钱）。（不需要转线、30分钟左右）<strong style="color:#232323;">"东江大酒店对面粤海商务中心5楼502</strong>
+
+</li>
+                    </ul>
+                </div>
+                <div class="clear"></div>
+                <div class="dishi"><img src="{dede:global.cfg_templets_skin/}/images/dishi.jpg" width="855" height="107" alt="打的线路"></div>
+                <div class="dishi"><img src="{dede:global.cfg_templets_skin/}/images/zijia.jpg" width="873" height="116" alt="自驾线路"></div>
+                <div class="zhushi2">
+                	<p><strong style="color:#f00;">注：</strong>以上有不明白乘车路线均可以电话咨询客服（139-2239-0945 虞经理） <br>
+                      附近有三元里地铁站，出地铁后，打摩的直接到粤海商务中心下（五块钱），东江大酒店对面。                      <br>
+                      以上任何客运站如没有注释的可以均搭乘公交车至"棠下站"下车，公车站后面就是粤海商务中心<strong style="color:#232323;">"东江大酒店对面</strong>
+
+
+                      <br>
+                  广州任何地区打的的话可以告知师傅至三元里大道远景路口<strong style="color:#232323;">"东江大酒店"</strong>下车，粤海商务中心5楼502(东江大酒店的对面)</p>
+                </div>
+              </div>
+  </div>
+</div>
+<div class="sideColumn">
+    <div class="borderaa " id="widgets_271">
+        <div class="border-top"><h3>商品分类</h3></div>
+        <div class="border-body">
+            <div class="GoodsCategoryWrap">
+                <ul>
+                <li class="c-cat-depth-1">
+                        <a href="/a/danren_caozuo/">单人操作分析仪</a>
+                        <table class="c-cat-depth-2">
+                            <tbody>
+                            {dede:arclist row=8 typeid=12 orderby=rand titlelen=30}
+                                <tr>
+                                    <td><a href="[field:arcurl/]">[field:title/]</a> </td>
+                                </tr>
+                            {/dede:arclist}
+                            
+                              </tbody>
+                          </table>
+                      </li><li class="c-cat-depth-1">
+                        <a href="/a/chanpinshipin/">必胜绝技实战演示</a>
+                        <table class="c-cat-depth-2">
+                            <tbody>
+                            
+                               {dede:arclist row=8 typeid=13 orderby=rand titlelen=30}
+                                <tr>
+                                    <td><a href="[field:arcurl/]">[field:title/]</a> </td>
+                                </tr>
+                            {/dede:arclist}
+                            
+                              </tbody>
+                          </table>
+                      </li>
+
+                     
+                 </ul>
+              </div>
+        </div>
+    </div>
+    <div class="bordercc " id="widgets_247">
+        <div class="border-top"><h3>热销排行榜</h3></div>
+        <div class="border-body">
+            <style> .itemsWrap{ *display:block; float:left; overflow:hidden; } </style>
+            <div class="GoodsListWrap">
+                <div class="GoodsList">
+
+                 {dede:arclist row="19" typeid='all' imgwidth='50' imgheight='50' orderby='top'}
+               <div class="itemsWrap " style="width:99%;">
+                        <div class="item">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td><div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:50px;height:50px;"><a href="[field:arcurl/]" target="_blank" title="[field:title/]">[field:image/]</a></div></td>
+                                        <td class="goodsDesc">  <h6><a href="[field:arcurl/]" target="_blank" title="[field:title/]">[field:title/]...</a></h6>  </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+{/dede:arclist}
+
+
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+ </div>
+<div class="clear"> </div>
+{dede:include filename="footer.htm" /}

@@ -1,0 +1,7 @@
+网站名称   {$webname}
+客服名称   {$name}
+客服电话   {$phone}
+客服固话   {$phone2}
+客服qq     {$qq}
+客服微信   {$weixin}
+公司地址   {$addr}

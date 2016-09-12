@@ -3,7 +3,6 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-   <meta http-equiv="x-ua-compatible" content="ie=edge">
    <title>微信视频分享系统 V1.0</title>
    <load href="__JS__/jquery.min.js" />
    <load href="__CSS__/bootstrap.min.css" />
@@ -21,11 +20,11 @@
 	<center><a href="__URL__/index/type/all" class="btn btn-info">视频列表</a > <a href="__URL__/add" class="btn btn-info">添加资源</a > <a href="__URL__/histroy" class="btn btn-info">查看历史</a ></center><hr>
     
     <div class="form-group">
-    	<label for="search_title" class="control-label">搜索视频:</label><input type="text" class="form-control" name="search_title" placeholder="输入你想搜索的视频名称">
+    	<label for="search_title" class="control-label">搜索视频:</label><input type="text" class="form-control" name="search_title" placeholder="点击这里输入关键词">
     </div>
 
 	<div class="form-group">
-		<label for="id" class="control-label">发布视频:</label>
+		<label for="id" class="control-label">分享视频:</label>
 		<select name="id" class='form-control'>
 			<option value="null">点击这里选择一个视频</option>
 			<volist name="data" id='list'>
@@ -37,11 +36,8 @@
 
 	<hr>
 
-<!--     <div class="form-group">
-    	<label for="search_title" class="control-label">上传视频:</label><input type="file" class="form-control" name="up_video_file">
-    </div> -->
-	<button class="btn btn-success">提交</button>
-	<input type="reset" class="btn btn-danger" />
+	<button class="btn btn-success">提交操作</button>
+	<input type="reset" value='重新输入' class="btn btn-danger" />
 </div>
 
 </form>
