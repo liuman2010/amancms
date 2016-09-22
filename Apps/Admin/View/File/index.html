@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>elFinder 2.1.x source version with PHP connector</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
+
+		<!-- Section CSS -->
+		<!-- jQuery UI (REQUIRED) -->
+		<link rel="stylesheet" type="text/css" href="__PLUS__/elFinder-2.1.15/css/jquery-ui.css">
+
+		<!-- elFinder CSS (REQUIRED) -->
+		<link rel="stylesheet" type="text/css" href="__PLUS__/elFinder-2.1.15/css/elfinder.full.css">
+		<link rel="stylesheet" type="text/css" href="__PLUS__/elFinder-2.1.15/css/theme.css">
+
+		<!-- Section JavaScript -->
+		<!-- jQuery and jQuery UI (REQUIRED) -->
+		<script src="__PLUS__/elFinder-2.1.15/js/jquery.min.js"></script>
+		<script src="__PLUS__/elFinder-2.1.15/js/jquery-ui.min.js"></script>
+
+		<!-- elFinder JS (REQUIRED)  -->
+		<script src="__PLUS__/elFinder-2.1.15/js/elfinder.min.js"></script>
+
+		<!-- GoogleDocs Quicklook plugin for GoogleDrive Volume (OPTIONAL) -->
+		<!--<script src="js/extras/quicklook.googledocs.js"></script>-->
+
+		<!-- elFinder translation (OPTIONAL) 这里设置语言才有用 -->
+	    <script src="__PLUS__/elFinder-2.1.15/js/i18n/elfinder.zh_CN.js"></script>
+
+		<!-- elFinder initialization (REQUIRED) -->
+		<script type="text/javascript" charset="utf-8">
+			// Documentation for client options:
+			// https://github.com/Studio-42/elFinder/wiki/Client-configuration-options
+			$(document).ready(function() {
+				$('#elfinder').elfinder({
+					url : '__PLUS__/elFinder-2.1.15/php/connector.minimal.php'  // connector URL (REQUIRED)
+					, lang: 'zh_CN'                    // language (OPTIONAL) 此处无用
+				});
+			});
+		</script>
+
+		<style>
+			body{
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Element where elFinder will be created (REQUIRED) -->
+		<div id="elfinder" style="height:718px;"></div>
+	</body>
+</html>

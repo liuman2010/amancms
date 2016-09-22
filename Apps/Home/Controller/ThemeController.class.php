@@ -13,12 +13,8 @@ use Think\Controller;
 class ThemeController extends Controller {
 
 	// 首先根据本次访问域名来设置相关的模板数据
-	public function _before_index()
+	public function _initialize()
 	{	
-		// $data = M("article")->where(array("pid"=>14))->select();
-		// $ids  = array_rand($data,5);
-		// var_dump($ids);
-		// exit;
 		// 获得模板名称  
 		$templateName = $this->getTemplateName();
 
@@ -39,6 +35,11 @@ class ThemeController extends Controller {
 		// 模板中资源的路径
 		$resPath = trim( $path,"." ).'/Resource';
 		C("TMPL_PARSE_STRING.__Res__",$resPath);
+
+		$kefuInfo = M("User")->where(array("username"=>$templateName))->find();
+		// 清空旧的，更新
+		session("kefu",null);
+		session("kefu",$kefuInfo);
 	}//f
 
 
@@ -51,7 +52,6 @@ class ThemeController extends Controller {
 		if( empty($templateName) ) $templateName = C("DEFAULT_TPL");
 		return $templateName;
 	}//f
-
 
 
 

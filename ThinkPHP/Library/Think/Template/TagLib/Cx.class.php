@@ -92,13 +92,14 @@ class Cx extends TagLib {
     }//f
 
 
-    // 菜单标签
+    // 菜单标签 最多支持3级菜单  ！ 待改进为递归查找多级菜单 2016-09-13 10:27:00   635549913@qq.com
     public function _channel($tag,$content)
     {
         // 从模板标签那里获得数据
         $type  =   $tag['type'];
         $row   =   $tag['row'];
-        if($type == 'top') $type = 0;
+        $son   =   $tag['son'];
+        if($type == 'top' or empty($type) ) $type = 0;
 
          // 按条件调用
         $data = M('Column')->where(array('pid'=>$type))->limit($row)->select();
@@ -106,15 +107,36 @@ class Cx extends TagLib {
         for ($i=0; $i < count($data); $i++) 
         {   
             // 查找他的子菜单
-            $html .= str_replace(array("[url]","[title]"), array("__APP__/List/index/pid/".$data[$i]["id"],$data[$i]["title"]), $content);
             $sonInfoData = M("Column")->where( array("pid"=>$data[$i]["id"]) )->select();
-            if(!empty($sonInfoData))
+            if( !empty($sonInfoData) && $son == 'yes' )
             {   
-                for ($j=0; $j < count($sonInfoData); $j++) {
-                    $html .= '<div class="son">'; 
-                    $html .= str_replace(array("[url]","[title]"), array("__APP__/List/index/pid/".$sonInfoData[$j]["id"]," 　　　　子菜单".$sonInfoData[$j]["title"]), $content);
-                    $html .= '</div>'; 
+                $html .= '<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$data[$i]["title"].'<b class="caret"></b>
+                </a><ul class="dropdown-menu">';
+                for ($j=0; $j < count($sonInfoData); $j++) 
+                {
+                    // 继续查找它的子菜单，看看有没有
+                    $son3InfoData = M("Column")->where( array("pid"=>$sonInfoData[$j]["id"]) )->select();
+                    if( !empty($son3InfoData) && $son == 'yes' )
+                    {
+                        $html .= '<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$sonInfoData[$j]["title"].'<b class="caret"></b></a><ul class="son3_menu_dropdown-menu">';
+                        for ($son3=0; $son3 < count($son3InfoData); $son3++) 
+                        { 
+                            $html .= str_replace(array("[url]","[title]"), array("__APP__/List/index/pid/".$son3InfoData[$son3]["id"],$son3InfoData[$son3]["title"]), $content);
+                        }
+                        $html .= '</ul></li>';
+                        
+                    }
+                    else
+                    {
+                        $html .= str_replace(array("[url]","[title]"), array("__APP__/List/index/pid/".$sonInfoData[$j]["id"],$sonInfoData[$j]["title"]), $content);
+                    }
+
                 }
+                $html .= '</ul></li>';
+            }
+            else
+            {
+                $html .= str_replace(array("[url]","[title]"), array("__APP__/List/index/pid/".$data[$i]["id"],$data[$i]["title"]), $content);
             } 
         }
         return $html;

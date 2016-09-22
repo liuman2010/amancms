@@ -29,6 +29,9 @@ class IndexController extends CommonController
     // 显示后台底部信息栏
     public function footer() 
     {
+        $this->assign("columnCount",M('Column')->count());
+        $this->assign("articleCount",M('article')->count());
+        $this->assign("albumCount",M('album')->count());
         $this->display();
     }
 
@@ -242,8 +245,11 @@ class IndexController extends CommonController
 
         // 获得系统和服务器信息
         $info = $this->getInfo();
-        // var_dump($info);
+
+        // 获得最后一个登录的人的信息
+        $data = M("User")->order('ctime desc')->limit(1)->find();
         $this->assign('info',$info);
+        $this->assign('data',$data);
         $this->display();
     }//f
 

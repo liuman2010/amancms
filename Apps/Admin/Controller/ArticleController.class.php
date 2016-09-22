@@ -50,6 +50,8 @@ class ArticleController extends CommonController
   	// 显示添加文章界面
     public function add()
     { 
+      upload();
+      exit("asdf");
       i_array_column();
       $this->assign('data',D("Column")->getColumns());
     	$this->display();
@@ -71,8 +73,6 @@ class ArticleController extends CommonController
     // 新增或修改文章内容
     public function insert()
     {
-      // var_dump($_POST);exit;
-
       if(!IS_POST) $this->error("非法访问！");
       $article = D("Article");
       session('article_column_pid',I("post.pid"));

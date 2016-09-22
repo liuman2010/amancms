@@ -1,0 +1,56 @@
+<include file="Index/head2" />
+
+<div class="clear"></div>
+
+<div class="now"><span>{$position}</div>
+<div class="content">
+
+<!--产品分类列表 左侧 -->
+
+   <div class="plstL">
+        <div class="prt_class">
+            <div class="prt_class_head"><h2>热门视频</h2></div>
+            <div class="prt_class_content">
+                 <ul>
+                    <arclist typeid='6' order="rand" row='12'>
+         <li><a href="[url]">[title]</a></li>
+         </arclist>  
+
+   </ul>
+    
+            </div>
+            <div class="prt_class_head"><h2>最新产品</h2></div>
+            <div class="prt_class_content">
+                <ul>
+             <arclist typeid='all' order="rand" row='10'>
+         <li><a href="[url]">[title]</a></li>
+         </arclist>  
+                  </ul>
+            </div>
+        </div>
+
+<div class="prt_class_head"></div>
+            <div class="prt_class_content">
+              
+            </div>
+
+    </div>
+    
+    <div class="plstR">
+        <div class="prt_dct_list_head"><h2>咨询热线：{$kefu["nikname"]} {$kefu["tel"]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地址:{$kefu["addr"]}</h2></div>
+        <div class="prt_dct_list_content">
+            <ul>
+            <volist name='data' id='list'>
+                <li><a href="__APP__/article/index/aid/{$list.id}" title="{$list.title} "><img src="{$list.thumbpic}"  alt=""><p>{$list.title} </p></a></li>   
+            </volist>  
+            </ul>
+        </div>
+        <div class="clear"></div>
+        <div class="control">           
+              {$page}
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<include file="Index/footer" />

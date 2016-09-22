@@ -1,0 +1,18 @@
+		"zy.gzknpj.com"				=>	"zhongyi",
+		"mzy.gzknpj.com"		    =>	"m_zhongyi",
+
+		
+		"gzknpj.com"				=>	"xinnuo",
+		"www.kexun-paiju.com"		=>	"kexun",
+		"www.yingke-paiju.com"		=>	"yingke",
+		"www.yongsheng-paiju.com"	=>	"yongsheng",
+		"www.yongying-paiju.com"	=>	"yongying",
+		"www.nanxunpaiju.com"		=>	"nanxun",
+		"www.guangxin-paiju.com"	=>	"guangxin",
+
+		"m.kexun-paiju.com"		    =>	"m_kexun",
+		"m.yingke-paiju.com"	    =>	"m_yingke",
+		"m.yongsheng-paiju.com"	    =>	"m_yongsheng",
+		"m.yongying-paiju.com"	    =>	"m_yongying",
+		"m.nanxunpaiju.com"		    =>	"m_nanxun",
+		"m.guangxin-paiju.com"	    =>	"m_guangxin",

@@ -4,10 +4,10 @@ return array(
 	// 自定义配置     
 	'DOMAINS'=>'localhost',
 	'IP_ADDER'=>'192.168.2.254',
-	'DEFAULT_TPL'=>'zy',
+	'DEFAULT_TPL'=>'default',
 	'WATER_MARK'=>'false',
 	'WATER_POSITION'=>'5',
-	'ALLOW_TYPE'=>'gif|png|jpg|jpeg',
+	'ALLOW_TYPE'=>'gif|png|jpg|jpeg|mp4',
 	'IMG_WIDTH'=>'320',
 	'IMG_HEIGHT'=>'180',
 	'MAX_SIZE'=>'20480',
@@ -21,15 +21,15 @@ return array(
 
 	//数据库配置信息
 	'DB_TYPE'=>'mysqli', // 数据库类型
-	'DB_HOST'=>'127.0.0.1', // 服务器地址
-	'DB_NAME'=>'amancms', // 数据库名
+	'DB_HOST'=>'localhost', // 服务器地址
+	'DB_NAME'=>'liumancms', // 数据库名
 	'DB_USER'=>'root', // 用户名
 	'DB_PWD'=>'123qwe', // 密码
 	'DB_PORT'=> 3306, // 端口
 	// 'DB_PARAMS' =>  array(), // 数据库连接参数
 	'DB_PREFIX'=>'nx_', // 数据库表前缀 
 	'DB_CHARSET'=>'utf8', // 字符集
-	'DB_DEBUG'=>'true', // 数据库调试模式 开启后可以记录SQL日志
+	'DB_DEBUG'=>'false', // 数据库调试模式 开启后可以记录SQL日志
 
 
 	// 模板路径替换规则  
@@ -44,8 +44,8 @@ return array(
 
 	// 模板域名对应关系 要填写完整域名 : www.xxx.com     二级域名 test.xxx.com  
 	'TEMP_DOMAIN'  =>array(
-		"gzknpj.com"				=>	"xinnuo",
-		"zy.gzknpj.com"				=>	"zy",
+		"www.gzknpj.com"			=>	"xinnuo",
+		"zy.gzknpj.com"				=>	"zhongyi",
 		"www.kexun-paiju.com"		=>	"kexun",
 		"www.yingke-paiju.com"		=>	"yingke",
 		"www.yongsheng-paiju.com"	=>	"yongsheng",
@@ -53,6 +53,7 @@ return array(
 		"www.nanxunpaiju.com"		=>	"nanxun",
 		"www.guangxin-paiju.com"	=>	"guangxin",
 
+		"mzy.gzknpj.com"		    =>	"m_zhongyi",
 		"m.kexun-paiju.com"		    =>	"m_kexun",
 		"m.yingke-paiju.com"	    =>	"m_yingke",
 		"m.yongsheng-paiju.com"	    =>	"m_yongsheng",
@@ -64,7 +65,7 @@ return array(
 
 
 	// 缓存设置
-	'HTML_CACHE_ON'=>'true', // 开启静态缓存
+	'HTML_CACHE_ON'=>'false', // 开启静态缓存
 	'HTML_CACHE_TIME'   => 60,   // 全局静态缓存有效期（秒）
 	'HTML_FILE_SUFFIX'=>'.shtml', // 设置静态缓存文件后缀
 	'HTML_CACHE_RULES'  => array(  // 定义静态缓存规则
@@ -90,4 +91,5 @@ return array(
     "RBAC_USER_TABLE"		    =>	'nx_role_user',       		// 用户角色中间表名称(必配)
     "RBAC_ACCESS_TABLE" 		=>	'nx_access',        		// 权限表名称(必配)
     "RBAC_NODE_TABLE" 			=>	'nx_node',            		// 节点表名称(必配)
+
 );

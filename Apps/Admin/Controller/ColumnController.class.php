@@ -129,8 +129,16 @@ class ColumnController extends CommonController
     {
       $id  = I("get.id");
       $ids = I("post.ids");
+
       if( is_array($ids) && !empty($ids) ) $id = implode(',', $ids);
-      if(M("Column")->delete($id))
+      if(empty($id)) $this->error("不能为空！请选择要删除的栏目！");
+
+      $Column = D("Column");
+      // 检查被删除的id有没有存在子栏目
+      $errorStatus = $Column->checkSonColumn($id);
+      if($errorStatus) $this->error("还存在子栏目！请先删除子栏目！");
+
+      if($Column->delete($id))
       {
         $this->success("删除成功！");
       }

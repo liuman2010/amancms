@@ -1,0 +1,20 @@
+<include file="Index/head" />
+<main>
+  <section> 
+  <h3> {$position} </h3>
+  <volist name='data' id='vo'>
+ <dl class="list2">
+     <a target="_blank" href="__APP__/article/index/aid/{$vo.id}"><dt><img src="{$vo.thumbpic}" width="100"  height="90" alt="{$vo.title}"></dt><dd>{$vo.title}</dd></a>
+  </dl>
+</volist>
+
+ <div class="pagelistbox">
+  <div class="dede_pages">
+  	<ul class=pagelist>
+  		{$page}
+	</ul>
+</div>
+  </section>
+</main>
+﻿
+<include file="Index/footer" />

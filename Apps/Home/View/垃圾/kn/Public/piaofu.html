@@ -1,0 +1,96 @@
+<style>
+li{
+	list-style-type: none;
+}
+@media screen and (max-width:1000px){
+	.piaofu{
+		display: none;
+	}
+} 
+
+.piaofu{
+	width: 150px;
+	height:563px;
+	position: absolute;
+	top: 150px;
+	left: 20px;
+	overflow: hidden;
+	z-index: 9999999;
+}
+.piaofu ul{
+	width: 150px;
+	height: 563px;
+	padding-left: 4px;
+padding-top: 58px;
+	position: absolute;
+	float: left;
+	background:url({dede:global.cfg_templets_skin/}/images/keifu2.png)  no-repeat; 
+}
+.piaofu ul li{
+	width: 150px;
+	float: left;
+	position: relative;
+	top: 0px;
+	left: 0px;
+}
+.piaofu ul li.img_box{
+	width: 65px;
+	height: 33px;
+	padding: 0px 0px 0px 14px;
+}
+.piaofu ul li.img_box a{
+	/*background: red;*/
+	width: 88px;
+	height: 20px;
+	display: block;;
+}
+
+.piaofu ul li p{
+	width: 173px;
+	margin-left: 4px;
+	font-weight: bold;
+}
+
+</style>
+
+	<div class="piaofu">
+		<!-- <ul style="background:pink"> -->
+		<ul>
+				<!-- <li><img src="{dede:global.cfg_templets_skin/}/images/168top.gif" alt="" /></li>
+				<li><p style="color:red;" font-size="14"><marquee  behavior="scroll">欢迎光临诺信牌具官方网站！本公司是做厂家直销，全部一手货源，产品齐全、价格低廉，承诺比市场零售价低20%30%，在本公司所购产品均可享受一年无忧售后服务！欢迎您亲临本公司实地考察、免费体验产品或者技术效果、满意再买再学。</marquee> </p></li>-->
+				<li class="img_box"><a target="_blank"  href="http://wpa.qq.com/msgrd?v=3&uin=1330327971&site=qq&menu=yes"></a></li>
+
+				<li class="img_box "><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1330327971&site=qq&menu=yes"></a></li>  
+				
+
+		</ul>
+	</div>      
+ <script type="text/javascript">  
+ 
+     $(document).ready(function() {  
+         //滚动条事件  
+         $(window).scroll(function() {  
+             //获取窗口一半的高度+滚动条高度  
+             var offsetTop = $(window).scrollTop() + $(window).height() /5;  
+             //改变样式 显示   
+             $(".piaofu").show();  
+             //改变样式 top 高度  
+             $(".piaofu").animate({ top: offsetTop + "px" }, { duration: 600, queue: false });  
+             //改变left 位置  
+             $(".piaofu").animate({ left:20}, { duration: 600, queue: false });  
+         });  
+         
+     });  
+
+     // 获取xy
+// 设置xy
+$(function(){
+	function Scorll(){
+		var piaofu = $('.piaofu');
+		var piaofu_left = piaofu.offset().left;
+		var piaofu_top = piaofu.offset().top;
+		piaofu.animate({left:'50',top:'200'});
+	}
+});
+   
+ </script>

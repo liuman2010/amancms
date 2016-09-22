@@ -8,7 +8,7 @@ class PictureController extends Controller
   // 显示上传图片的界面
   public function upPicForm()
   {
-    echo '显示上传图片的界面';
+    $this->display();
   }
 
 	// 上传文件

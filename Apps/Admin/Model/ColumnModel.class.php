@@ -24,4 +24,25 @@ class ColumnModel extends Model {
 	}
 	
 
+	// 检查被删除的ID有没有存在子栏目
+	public function checkSonColumn($id)
+	{	
+		$error = '';
+		$n = strpos($id,',');
+		if( is_int($n) )
+		{
+			$arrs = explode(',', $id);
+			for ($i=0; $i < count($arrs)-1; $i++) { 
+				$status = M("Column")->where(array("pid"=>$arrs[$i]))->select();
+				if($status) $error=1;
+			}
+		}
+		else
+		{
+			$status = M("Column")->where(array("pid"=>$id))->select();
+			if($status) $error=1;
+		}
+		return $error;
+	}//f
+
 }//c

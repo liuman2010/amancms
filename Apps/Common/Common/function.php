@@ -1,10 +1,5 @@
 <?php 
 	
-	function test($ars)
-	{
-		echo '公共函数处理后的结果！参数是：'.$ars;
-	}
-
 	/**
 	 * @param  $data 	    array       要操作的二维数组	
 	 * @param  $field 	    string      要提取的字段名称
@@ -82,10 +77,11 @@
 	/**
 	 * 公共单文件上传函数
 	 * @param $savePath    string       保存文件的目录
-	 * @param $exts        array        允许上传的文件类型
 	 */
 	function upload($savePath='album')
-	{
+	{	
+		$arrs = C("ALLOW_TYPE");
+		var_dump($arrs);exit('df');
 		$upload = new \Think\Upload();
 		//上传文件大小的最大值
 		$upload->maxSize  = 0; 
@@ -103,6 +99,7 @@
 	function getIp()
 	{ 
         $onlineip='未检测到'; 
+
         if(getenv('HTTP_CLIENT_IP')&&strcasecmp(getenv('HTTP_CLIENT_IP'),'unknown'))
         { 
             $onlineip=getenv('HTTP_CLIENT_IP'); 
@@ -127,6 +124,7 @@
         {
         	$onlineip='本地局域网';
         }
+        
         return $onlineip; 
     } 
 

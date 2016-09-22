@@ -12,7 +12,7 @@
 	<div class="col-lg-12">
 		<table class='table table-bordered  table-hover'>
 			<tr>
-				<th>用户名</th><th>性别</th><th>所属组别</th><th>用户状态</th><th>登录次数</th><th>最后登录时间</th><th>最后登录IP</th><th>最后登录地区</th><th>注册日期</th><th>操作</th>
+				<th>用户名</th><th>性别</th><th>所属组别</th><th>登录次数</th><th>最后登录时间</th><th>手机号码</th><th>QQ号码</th><th>微信号码</th><th>公司地址</th><th>操作</th>
 				
 			</tr>
 			<volist name='data' id='list'>
@@ -34,34 +34,31 @@
 							<case value='3'>客服</case>
 						</switch>
 					</td>
-
-					<td><switch name="list.status" >
-							<case value="0">已禁用</case>
-							<case value="1">已开启</case>
-							<default />无法判断状态
-						</switch></td> 
 					<td>{$list.num}</td> 
 
 					<td>
 						
 						<switch name="list.last_time" >
 								<case value="0">新注册用户</case>
-								<default />{$list.last_time|date="Y-m-d H:i:s",###}
+								<default />{$list.last_time|date="m-d H:i:s",###}
 						</switch>
 					</td> 
 
-				<td>{$list.last_ip}</td> 
-				<td>{$list.last_area}</td> 
+				<td>{$list.tel}</td> 
+				<td>{$list.qq}</td> 
+				<td>{$list.weixin}</td> 
+				<td>{$list.addr}</td>
 
-				<td>{$list.ctime|date="Y-m-d",###}</td>
-
-				<td><a href="__URL__/changeStatus/id/{$list.id}/status/{$list.status}" >
+				<td>
+					<a href="__URL__/changeStatus/id/{$list.id}/status/{$list.status}" >
 						<switch name="list.status" >
 							<case value="0"><p class='btn btn-success btn-default'>恢复</p></case>
 							<case value="1"><p class='btn btn-warning btn-default'>禁用</p></case>
 							<default />无法判断状态
 						</switch>
-					</a> | <a href="__URL__/del/id/{$list.id}" class='btn btn-danger btn-default'>删除</a>
+					</a> | 
+					<a href="__URL__/mod/id/{$list.id}" class='btn btn-info btn-default'>编辑</a> | 
+					<a href="__URL__/del/id/{$list.id}" class='btn btn-danger btn-default'>删除</a>
 				</td>
 
 			</tr>

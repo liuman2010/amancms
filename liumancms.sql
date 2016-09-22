@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.7
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: 2016-09-08 10:36:03
--- 服务器版本： 5.5.42-log
--- PHP Version: 5.4.41
+-- Host: 127.0.0.1
+-- Generation Time: 2016-09-22 08:41:57
+-- 服务器版本： 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -31,7 +31,9 @@ CREATE TABLE IF NOT EXISTS `nx_access` (
   `node_id` smallint(6) unsigned NOT NULL,
   `level` tinyint(1) NOT NULL,
   `pid` int(11) NOT NULL,
-  `module` varchar(50) DEFAULT NULL
+  `module` varchar(50) DEFAULT NULL,
+  KEY `groupId` (`role_id`),
+  KEY `nodeId` (`node_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -111,12 +113,15 @@ INSERT INTO `nx_access` (`role_id`, `node_id`, `level`, `pid`, `module`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `nx_album` (
-  `id` smallint(5) unsigned NOT NULL,
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `pid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `path` varchar(100) NOT NULL DEFAULT '',
   `title` varchar(100) NOT NULL DEFAULT '',
-  `description` varchar(200) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  `description` varchar(200) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `album_pid` (`pid`),
+  KEY `album_path` (`path`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- 转存表中的数据 `nx_album`
@@ -135,7 +140,7 @@ INSERT INTO `nx_album` (`id`, `pid`, `path`, `title`, `description`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `nx_article` (
-  `id` int(11) unsigned NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL DEFAULT '',
   `author` varchar(50) NOT NULL DEFAULT '系统',
   `thumbpic` text NOT NULL,
@@ -149,16 +154,24 @@ CREATE TABLE IF NOT EXISTS `nx_article` (
   `audit` smallint(1) unsigned NOT NULL DEFAULT '0',
   `recommend` smallint(1) unsigned NOT NULL DEFAULT '0',
   `allow` smallint(1) unsigned NOT NULL DEFAULT '1',
-  `views` smallint(5) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=167 DEFAULT CHARSET=utf8;
+  `views` smallint(5) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `article_title` (`title`),
+  KEY `article_uid` (`uid`),
+  KEY `article_pid` (`pid`),
+  KEY `article_audit` (`audit`),
+  KEY `article_recommend` (`recommend`),
+  KEY `article_allow` (`allow`),
+  KEY `article_keyword` (`keyword`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=168 ;
 
 --
 -- 转存表中的数据 `nx_article`
 --
 
 INSERT INTO `nx_article` (`id`, `title`, `author`, `thumbpic`, `summary`, `ctime`, `uid`, `comefrom`, `content`, `keyword`, `pid`, `audit`, `recommend`, `allow`, `views`) VALUES
-(23, '隐形专业版分析仪', '系统', '/Public/goodsimages/danren/1/3.jpg', '隐形专业版分析仪', 1429841705, 1, '1', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/1/1.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/1/2.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/1/3.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/1/4.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/1/5.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/1/6.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/1/7.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/1/8.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/1/9.jpg&quot; /></p>\r\n<p>\r\n	<strong style=&quot;text-align: left;color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; white-space: normal; background-color: rgb(255, 255, 255);&quot;>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</strong><strong style=&quot;margin: 0px; padding: 0px; text-align: center; white-space: normal; color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; background-color: rgb(255, 255, 255);&quot;>隐形专业版分析仪</strong><span style=&quot;margin: 0px; padding: 0px; border: 0px; text-align: center; white-space: normal; color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; background-color: rgb(255, 255, 255);&quot;>，专业牌具厂家研发推荐，采用AKK-K1升级版版，外观精美，体积更小，在原来的基础上大大的 缩小，火柴盒大小，携带更方便；功能更强大，超级扫描分析系统，超级技术，专业厂商，必赢的保证，顶级配置，性能提升一倍以上，全球最准，最快，最强的扫 描报牌系统，行业唯一具备每秒可完成十亿次的扫描运算和上千次的对比分析，卓越超前的设计理念工艺好，性能好，功能更强大，配备超强版MINI耳机感应 器，效果在行业汇总，绝对的第一。</span></p>\r\n', '', 5, 1, 0, 1, 3508),
-(133, '普通扑克筒子牌九透视桌', '系统', '/Public/goodsimages/shipin/2016/1.png', '', 1450250875, 1, '', '<div class=&quot;video-js-box&quot;>\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/1.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\n', '', 6, 1, 0, 1, 853),
+(23, '隐形专业版分析仪', '系统', '/Public/goodsimages/danren/1/3.jpg', '隐形专业版分析仪', 1429841705, 1, '1', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/1/1.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/1/2.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/1/3.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/1/4.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/1/5.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/1/6.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/1/7.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/1/8.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/1/9.jpg&quot; /></p>\r\n<p>\r\n	<strong style=&quot;text-align: left;color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; white-space: normal; background-color: rgb(255, 255, 255);&quot;>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</strong><strong style=&quot;margin: 0px; padding: 0px; text-align: center; white-space: normal; color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; background-color: rgb(255, 255, 255);&quot;>隐形专业版分析仪</strong><span style=&quot;margin: 0px; padding: 0px; border: 0px; text-align: center; white-space: normal; color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; background-color: rgb(255, 255, 255);&quot;>，专业牌具厂家研发推荐，采用AKK-K1升级版版，外观精美，体积更小，在原来的基础上大大的 缩小，火柴盒大小，携带更方便；功能更强大，超级扫描分析系统，超级技术，专业厂商，必赢的保证，顶级配置，性能提升一倍以上，全球最准，最快，最强的扫 描报牌系统，行业唯一具备每秒可完成十亿次的扫描运算和上千次的对比分析，卓越超前的设计理念工艺好，性能好，功能更强大，配备超强版MINI耳机感应 器，效果在行业汇总，绝对的第一。</span></p>\r\n', '', 5, 1, 0, 1, 3509),
+(133, '普通扑克筒子牌九透视桌', '系统', '/Public/goodsimages/shipin/2016/1.png', '', 1450250875, 1, '', '<div class=&quot;video-js-box&quot;>\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/1.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\n', '', 6, 1, 0, 1, 858),
 (24, '升级版分析仪', '系统', '/Public/goodsimages/danren/2/2.jpg', '这款升级版分析仪的出现超越了目前市场上其他款式的扑克分析仪，不仅在外观上进行了奢华的升级，携带更方便；更在功能上进行了扩展，使用起来也更加轻松方便。', 1429843054, 1, '这款升级版分析仪的出现超越了目前市场上其他款式的扑', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/2/1.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/2/2.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/2/3.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/2/4.jpg&quot; /></p>\r\n<p>\r\n	<span style=&quot;color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 18px; white-space: normal; background-color: rgb(255, 255, 255);&quot;>&nbsp; &nbsp; &nbsp;</span><span style=&quot;margin: 0px; padding: 0px; border: 0px; text-align: center; white-space: normal; color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 18px; background-color: rgb(255, 255, 255);&quot;>这款升级版分析仪的出现超越了目前市场上其他款式的扑克分析仪，不仅在外观上进行了奢华的升级，</span><font size=&quot;2&quot; style=&quot;margin: 0px; padding: 0px; text-align: center; white-space: normal; color: rgb(68, 68, 68); font-family: Verdana, sans-serif; line-height: 18px; background-color: rgb(255, 255, 255);&quot;>携带更方便；</font><span style=&quot;margin: 0px; padding: 0px; border: 0px; text-align: center; white-space: normal; color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 18px; background-color: rgb(255, 255, 255);&quot;>更在功能上进行了扩展，使用起来也更加轻松方便。</span></p>\r\n', '', 5, 1, 0, 1, 3271),
 (25, '苹果手机智能一体机', '系统', '/Public/goodsimages/danren/3/2.jpg', '', 1429843294, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/3/2.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/3/1.jpg&quot;  /></p>\r\n<p style=&quot;margin: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); font-family: 微软雅黑; font-size: 15px; white-space: normal;&quot;>\r\n	<span style=&quot;margin: 0px; padding: 0px; border: 0px; font-size: 12px;&quot;>1、具备普通手机的接打电话功能，短信功能以及影音娱乐播放功能。</span></p>\r\n<p style=&quot;margin: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); font-family: 微软雅黑; font-size: 15px; white-space: normal;&quot;>\r\n	<span style=&quot;margin: 0px; padding: 0px; border: 0px; font-size: 12px;&quot;>2、可上网，可以配置内存卡，苹果E2一体机不仅仅是一款扫描镜头。</span></p>\r\n<p style=&quot;margin: 0px; padding: 0px; border: 0px; color: rgb(51, 51, 51); font-family: 微软雅黑; font-size: 15px; white-space: normal;&quot;>\r\n	<span style=&quot;margin: 0px; padding: 0px; border: 0px; font-size: 12px;&quot;>3、同时它也是一款智能手机，性价比最高，本站强烈推荐。</span></p>\r\n', '', 5, 1, 0, 1, 5434),
 (26, '各种手机扫描仪', '系统', '/Public/goodsimages/danren/4/1.jpg', '', 1429843407, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/4/1.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/4/2.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/4/3.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/4/4.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/4/5.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/4/6.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/4/7.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/4/8.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/4/9.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/4/10.jpg&quot; /></p>\r\n', '', 5, 1, 0, 1, 3469),
@@ -174,25 +187,25 @@ INSERT INTO `nx_article` (`id`, `title`, `author`, `thumbpic`, `summary`, `ctime
 (36, 'DK88智能分析仪', '系统', '/Public/goodsimages/danren/14/1.jpg', '', 1429847104, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/14/1.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/danren/14/3.png&quot;  /></p>\r\n', '', 5, 1, 0, 1, 3295),
 (37, '药物感应器', '系统', '/Public/goodsimages/jingtou/1/1.jpg', '', 1429854050, 1, '', '\r\n<p style=&quot;text-align: center;&quot;>\r\n	<span style=&quot;text-align: left; color: rgb(68, 68, 68); font-size: 14px;&quot;><img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/1/1.jpg&quot; /></span></p>\r\n\r\n', '', 11, 1, 0, 1, 5486),
 (38, '电波感应色子', '系统', '/Public/goodsimages/jingtou/2/1.jpg', '', 1429854174, 1, '', '<p>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/2/1.jpg&quot; /></p>\r\n', '', 11, 1, 0, 1, 5758),
-(39, '广角四季衣服扫描仪', '系统', '/Public/goodsimages/jingtou/3/1.jpg', '', 1429856329, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/3/1.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/3/2.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/3/3.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/3/4.jpg&quot; /></p>\r\n<p>\r\n&nbsp;</p>\r\n<p>\r\n	<span style=&quot;color: rgb(68, 68, 68);  font-size: 14px; line-height: 26px; white-space: normal; background-color: rgb(255, 255, 255);&quot;>&nbsp; &nbsp; &nbsp;</span><span style=&quot;color: rgb(68, 68, 68); font-family: 微软雅黑; font-size: 14px; line-height: 26px; text-align: center; white-space: normal; background-color: rgb(255, 255, 255);&quot;>各种主机镜头都可以伪装于各种衣服任何一个部位上面，像夏季T恤、寸衫、秋季的夹克、西服、风衣冬天的大衣、棉袄、、、也可以根据客户要求定做。镜头伪装于衣服上比较隐蔽、不易被发现、实用性强！</span></p>\r\n', '', 7, 1, 0, 1, 5844),
-(135, '六代密码色子', '系统', '/Public/goodsimages/shipin/2016/3.png', '', 1450252602, 1, '', '\r\n<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/3.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 936),
-(40, '玻璃烟灰缸扫描仪', '系统', '/Public/goodsimages/jingtou/4/1.jpg', '', 1429859227, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<span style=&quot;color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; white-space: normal; background-color: rgb(255, 255, 255);&quot;>&nbsp; &nbsp; </span><img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/4/1.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/4/2.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/4/3.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/4/5.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/4/6.jpg&quot; /></p>\r\n<p>\r\n	<span style=&quot;color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; white-space: normal; background-color: rgb(255, 255, 255);&quot;>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style=&quot;color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; text-align: center; white-space: normal; background-color: rgb(255, 255, 255);&quot;>当越来越多的人知道手机是扑克看变镜头以后，很多牌场已经禁止把手机放在桌面上。对于使用手机单人操作镜头的玩家来说是一个沉重的打击。目前市场迫切需要 的不再是单人操作主机而是单人操作扑克扫描镜头。需要隐蔽性强，不会让人怀疑的单人操作高清镜头。在夏天，衣服袖口单人操作镜头已经不能再用，不过专业生 产单人操作镜头的厂家在这个夏天没有让大家失望，推出了几款隐蔽的扑克扫描镜头，其中玻璃烟灰缸镜头就是其中的一款。</span></p>\r\n', '', 7, 1, 0, 1, 5304),
-(134, '普通牌远程飞飙后台', '系统', '/Public/goodsimages/shipin/2016/2.png', '', 1450251790, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/2.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 897),
-(41, '真钱币变牌器', '系统', '/Public/goodsimages/jingtou/5/1.jpg', '', 1429859685, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/5/1.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/5/2.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/5/3.gif&quot; /></p>\r\n', '', 8, 1, 0, 1, 4791),
-(42, '各种车钥匙镜头', '系统', '/Public/goodsimages/jingtou/6/1.jpg', '', 1429859788, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/6/1.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/6/2.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/6/3.jpg&quot; /></p>\r\n', '', 7, 1, 0, 1, 4808),
+(39, '广角四季衣服扫描仪', '系统', '/Public/goodsimages/jingtou/3/1.jpg', '', 1429856329, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/3/1.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/3/2.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/3/3.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/3/4.jpg&quot; /></p>\r\n<p>\r\n&nbsp;</p>\r\n<p>\r\n	<span style=&quot;color: rgb(68, 68, 68);  font-size: 14px; line-height: 26px; white-space: normal; background-color: rgb(255, 255, 255);&quot;>&nbsp; &nbsp; &nbsp;</span><span style=&quot;color: rgb(68, 68, 68); font-family: 微软雅黑; font-size: 14px; line-height: 26px; text-align: center; white-space: normal; background-color: rgb(255, 255, 255);&quot;>各种主机镜头都可以伪装于各种衣服任何一个部位上面，像夏季T恤、寸衫、秋季的夹克、西服、风衣冬天的大衣、棉袄、、、也可以根据客户要求定做。镜头伪装于衣服上比较隐蔽、不易被发现、实用性强！</span></p>\r\n', '', 7, 1, 0, 1, 5846),
+(135, '六代密码色子', '系统', '/Public/goodsimages/shipin/2016/3.png', '', 1450252602, 1, '', '\r\n<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/3.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 943),
+(40, '玻璃烟灰缸扫描仪', '系统', '/Public/goodsimages/jingtou/4/1.jpg', '', 1429859227, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<span style=&quot;color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; white-space: normal; background-color: rgb(255, 255, 255);&quot;>&nbsp; &nbsp; </span><img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/4/1.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/4/2.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/4/3.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/4/5.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/4/6.jpg&quot; /></p>\r\n<p>\r\n	<span style=&quot;color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; white-space: normal; background-color: rgb(255, 255, 255);&quot;>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><span style=&quot;color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; text-align: center; white-space: normal; background-color: rgb(255, 255, 255);&quot;>当越来越多的人知道手机是扑克看变镜头以后，很多牌场已经禁止把手机放在桌面上。对于使用手机单人操作镜头的玩家来说是一个沉重的打击。目前市场迫切需要 的不再是单人操作主机而是单人操作扑克扫描镜头。需要隐蔽性强，不会让人怀疑的单人操作高清镜头。在夏天，衣服袖口单人操作镜头已经不能再用，不过专业生 产单人操作镜头的厂家在这个夏天没有让大家失望，推出了几款隐蔽的扑克扫描镜头，其中玻璃烟灰缸镜头就是其中的一款。</span></p>\r\n', '', 7, 1, 0, 1, 5305),
+(134, '普通牌远程飞飙后台', '系统', '/Public/goodsimages/shipin/2016/2.png', '', 1450251790, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/2.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 898),
+(41, '真钱币变牌器', '系统', '/Public/goodsimages/jingtou/5/1.jpg', '', 1429859685, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/5/1.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/5/2.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/5/3.gif&quot; /></p>\r\n', '', 8, 1, 0, 1, 4792),
+(42, '各种车钥匙镜头', '系统', '/Public/goodsimages/jingtou/6/1.jpg', '', 1429859788, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/6/1.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/6/2.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/6/3.jpg&quot; /></p>\r\n', '', 7, 1, 0, 1, 4810),
 (43, '矿泉水镜头', '系统', '/Public/goodsimages/jingtou/7/1.jpg', '', 1429859887, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/7/1.jpg&quot; /></p>\r\n', '', 7, 1, 0, 1, 3967),
-(44, '各种烟盒镜头', '系统', '/Public/goodsimages/jingtou/8/1.jpg', '', 1473301425, 1, '', '&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/8/1.jpg&quot;/&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;\r\n	&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/8/2.jpg&quot;/&gt;&lt;/p&gt;', '', 7, 1, 0, 1, 3551),
-(45, '充电宝镜头', '系统', '/Public/goodsimages/jingtou/9/1.jpg', '', 1429860248, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/9/1.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/9/2.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/9/3.jpg&quot;  /></p>\r\n', '', 7, 1, 0, 1, 3448),
+(44, '各种烟盒镜头', '系统', '/Public/goodsimages/jingtou/8/1.jpg', '', 1473301425, 1, '', '&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/8/1.jpg&quot;/&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;\r\n	&amp;nbsp;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/8/2.jpg&quot;/&gt;&lt;/p&gt;', '', 7, 1, 0, 1, 3552),
+(45, '充电宝镜头', '系统', '/Public/goodsimages/jingtou/9/1.jpg', '', 1429860248, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/9/1.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/9/2.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/9/3.jpg&quot;  /></p>\r\n', '', 7, 1, 0, 1, 3449),
 (46, '四镜皮带动态扫描镜头', '系统', '/Public/goodsimages/jingtou/10/1.jpg', '', 1429860442, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/10/1.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/10/2.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/10/3.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/10/4.jpg&quot;  /></p>\r\n', '', 7, 1, 0, 1, 4159),
 (47, '隐形手表镜头', '系统', '/Public/goodsimages/jingtou/11/3.jpg', '', 1429860753, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/11/1.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/11/2.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/11/3.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/11/4.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/11/5.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/11/6.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/11/7.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/11/8.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n', '', 7, 1, 0, 1, 3803),
 (48, '最新一次性水杯镜头', '系统', '/Public/goodsimages/jingtou/12/1.jpg', '', 1429860990, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/12/1.jpg&quot;  /></p>\r\n', '', 7, 1, 0, 1, 2951),
-(49, '远距离壁画遥控镜头', '系统', '/Public/goodsimages/jingtou/13/1.jpg', '', 1429861616, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/13/1.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/13/2.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/13/3.jpg&quot;  /></p>\r\n', '', 7, 1, 0, 1, 2492),
-(50, '水晶烟缸广角镜头', '系统', '/Public/goodsimages/jingtou/14/1.jpg', '', 1429861945, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/14/1.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/14/2.jpg&quot;  /></p>\r\n', '', 7, 1, 0, 1, 2037),
-(51, '不限光眼镜', '系统', '/Public/goodsimages/jingtou/15/1.jpg', '', 1429862130, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/15/1.jpg&quot;  /></p>\r\n', '', 7, 1, 0, 1, 2187),
-(52, '无影微控追踪 镜头', '系统', '/Public/goodsimages/jingtou/16/1.jpg', '', 1429862314, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/16/1.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/16/3.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/16/2.jpg&quot; /></p>\r\n<p>\r\n	<strong style=&quot;margin: 0px; padding: 0px; text-align: center; white-space: normal; color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 18px; background-color: rgb(255, 255, 255);&quot;><span style=&quot;margin: 0px; padding: 0px; border: 0px; text-align: left; color: rgb(0, 0, 205);&quot;>无影微控追踪镜头：</span></strong><span style=&quot;margin: 0px; padding: 0px; border: 0px; text-align: center; white-space: normal; color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 18px; background-color: rgb(255, 255, 255);&quot;>是目前一款单人操作分析仪最先进的前端配置镜头，不用摆在桌面、无需提前安装、穿短袖也一样轻松自如的使用，拆装一秒钟，夏季超强产品。拥有此产品，其它的前端配置镜头都是淘汰产品。此产品真正做到，隐蔽、简单、不限距离、360&deg;全方位无死角、不穿衣服也能上场，绝无夸大其词，欢迎前来免费体验效果。</span></p>\r\n', '', 7, 1, 0, 1, 2894),
-(137, '金花梭哈感应桌', '系统', '/Public/goodsimages/shipin/2016/5.png', '', 1450252682, 1, '', '\r\n<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/5.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 790),
+(49, '远距离壁画遥控镜头', '系统', '/Public/goodsimages/jingtou/13/1.jpg', '', 1429861616, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/13/1.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/13/2.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/13/3.jpg&quot;  /></p>\r\n', '', 7, 1, 0, 1, 2496),
+(50, '水晶烟缸广角镜头', '系统', '/Public/goodsimages/jingtou/14/1.jpg', '', 1429861945, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/14/1.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/14/2.jpg&quot;  /></p>\r\n', '', 7, 1, 0, 1, 2048),
+(51, '不限光眼镜', '系统', '/Public/goodsimages/jingtou/15/1.jpg', '', 1429862130, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/15/1.jpg&quot;  /></p>\r\n', '', 7, 1, 0, 1, 2224),
+(52, '无影微控追踪 镜头', '系统', '/Public/goodsimages/jingtou/16/1.jpg', '', 1429862314, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/16/1.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/16/3.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/16/2.jpg&quot; /></p>\r\n<p>\r\n	<strong style=&quot;margin: 0px; padding: 0px; text-align: center; white-space: normal; color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 18px; background-color: rgb(255, 255, 255);&quot;><span style=&quot;margin: 0px; padding: 0px; border: 0px; text-align: left; color: rgb(0, 0, 205);&quot;>无影微控追踪镜头：</span></strong><span style=&quot;margin: 0px; padding: 0px; border: 0px; text-align: center; white-space: normal; color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 18px; background-color: rgb(255, 255, 255);&quot;>是目前一款单人操作分析仪最先进的前端配置镜头，不用摆在桌面、无需提前安装、穿短袖也一样轻松自如的使用，拆装一秒钟，夏季超强产品。拥有此产品，其它的前端配置镜头都是淘汰产品。此产品真正做到，隐蔽、简单、不限距离、360&deg;全方位无死角、不穿衣服也能上场，绝无夸大其词，欢迎前来免费体验效果。</span></p>\r\n', '', 7, 1, 0, 1, 47),
+(137, '金花梭哈感应桌', '系统', '/Public/goodsimages/shipin/2016/5.png', '', 1450252682, 1, '', '\r\n<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/5.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 792),
 (54, '四季幻影变牌衣', '系统', '/Public/goodsimages/bianpai/2/2.jpg', '', 1429862976, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/2/2.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/2/1.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<span style=&quot;color: rgb(255, 0, 0); font-family: Verdana, Simsun, Helvetica, Arial, sans-serif; font-size: 18px; line-height: 18px; white-space: normal; background-color: rgb(255, 255, 255);&quot;>不论高矮肥瘦，我们都有码数的！</span></p>\r\n', '', 8, 1, 0, 1, 9015),
-(131, '远程4G网络后台分析', '系统', '/Public/goodsimages/jingtou/17/1.jpg', '', 1438657496, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/17/1.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/17/2.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/17/3.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/17/4.jpg&quot; /></p>\r\n<p>\r\n	远程4G网络文字介绍： 一：没有距离限制，只要有手机信号的地方都可以接收； 二：无需再要人工计算结果，专业的分析软件一秒就可分析出大小输赢； 三：不怕专业人士验牌，一对一监控扫描，一对一接收发射，一对一传输结果数据；</p>\r\n', '', 7, 1, 0, 1, 2983),
+(131, '远程4G网络后台分析', '系统', '/Public/goodsimages/jingtou/17/1.jpg', '', 1438657496, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/17/1.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/17/2.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/17/3.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/jingtou/17/4.jpg&quot; /></p>\r\n<p>\r\n	远程4G网络文字介绍： 一：没有距离限制，只要有手机信号的地方都可以接收； 二：无需再要人工计算结果，专业的分析软件一秒就可分析出大小输赢； 三：不怕专业人士验牌，一对一监控扫描，一对一接收发射，一对一传输结果数据；</p>\r\n', '', 7, 1, 0, 1, 2988),
 (55, '各种实木无缝变牌桌', '系统', '/Public/goodsimages/bianpai/3/1.jpg', '', 1429863165, 1, '', '<p style=&quot;text-align: center;&quot;>\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/3/1.jpg&quot; /></p>\n<p style=&quot;text-align: center;&quot;>\n	&nbsp;</p>\n\n<p style=&quot;text-align: center;&quot;>\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/3/2.jpg&quot; /></p>\n<p style=&quot;text-align: center;&quot;>\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/3/3.jpg&quot; /></p>', '', 8, 1, 0, 1, 6871),
 (56, '感应变牌手机', '系统', '/Public/goodsimages/bianpai/4/1.jpg', '', 1429863279, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/4/1.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/4/2.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/4/3.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/4/4.jpg&quot; /></p>\r\n', '', 8, 1, 0, 1, 10686),
 (57, '最新麻将变点原料', '系统', '/Public/goodsimages/bianpai/5/1.gif', '', 1429863405, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/5/1.gif&quot; /></p> \r\n<p>\r\n	<span style=&quot;color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 18px; text-align: center; white-space: normal; background-color: rgb(255, 255, 255);&quot;>&nbsp; &nbsp; &nbsp;</span><span style=&quot;color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 18px; white-space: normal; text-align: center; background-color: rgb(255, 255, 255);&quot;>最新麻将变点王，最新神奇麻将变点王隐形感应变牌产品，不受光源与场地限制，普通麻将随意变化，筒子边万子，万子边条子，想变就变。带感应全自动 装置，变牌速度极快，只需0.1秒。百人观看无人破，实战实用。单人操作，不需手法。（一教就会，真正做到全程&ldquo;傻瓜&rdquo;式 操 作）.隐蔽性极强，解开衣服无人看破！</span></p>\r\n', '', 8, 1, 0, 1, 13511),
@@ -203,9 +216,9 @@ INSERT INTO `nx_article` (`id`, `title`, `author`, `thumbpic`, `summary`, `ctime
 (62, '常见扑克显形效果', '系统', '/Public/goodsimages/bianpai/10/1.jpg', '', 1429864471, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/10/1.jpg&quot; /></p>\r\n', '', 9, 1, 0, 1, 5133),
 (63, '进口高清显形药水', '系统', '/Public/goodsimages/bianpai/11/1.jpg', '', 1429864597, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/11/1.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/11/2.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/11/3.jpg&quot; /></p>\r\n', '', 9, 1, 0, 1, 5925),
 (130, '全能玩后台分析软件', '系统', '/Public/goodsimages/shipin/quannengwan.jpg', '', 1438656431, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/quannengwan.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 2681),
-(64, '各种扑克麻将显形效果', '系统', '/Public/goodsimages/bianpai/12/1.jpg', '', 1429864752, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/12/1.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/12/2.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/12/3.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/12/4.jpg&quot;  /></p>\r\n', '', 9, 1, 0, 1, 4974),
+(64, '各种扑克麻将显形效果', '系统', '/Public/goodsimages/bianpai/12/1.jpg', '', 1429864752, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/12/1.jpg&quot;  /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/12/2.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/12/3.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	&nbsp;</p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/bianpai/12/4.jpg&quot;  /></p>\r\n', '', 9, 1, 0, 1, 4975),
 (65, '单人扫描筒子牌九', '系统', '/Public/goodsimages/paijiu/1/1.jpg', '', 1429864903, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/paijiu/1/1.jpg&quot; /></p><p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/paijiu/1/2.jpg&quot; /></p>\r\n', '', 10, 1, 0, 1, 32479),
-(66, '最新雷达扫描筒子', '系统', '/Public/goodsimages/paijiu/2/1.jpg', '', 1429865007, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/paijiu/2/1.jpg&quot;  /></p>\r\n', '', 10, 1, 0, 1, 34832),
+(66, '最新雷达扫描筒子', '系统', '/Public/goodsimages/paijiu/2/1.jpg', '', 1429865007, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/paijiu/2/1.jpg&quot;  /></p>\r\n', '', 10, 1, 0, 1, 34834),
 (67, '钓鱼神筒', '系统', '/Public/goodsimages/paijiu/3/1.gif', '', 1429865048, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/paijiu/3/1.gif&quot; /></p>\r\n', '', 10, 1, 0, 1, 33160),
 (68, '感应牌九分析仪', '系统', '/Public/goodsimages/paijiu/4/1.jpg', '', 1429865082, 1, '', '<p style=&quot;text-align: center;&quot;>\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/paijiu/4/1.jpg&quot; /></p>\n ', '', 10, 1, 0, 1, 32874),
 (69, '最新语音筒子牌九', '系统', '/Public/goodsimages/paijiu/5/1.png', '', 1429865113, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/paijiu/5/1.png&quot; /></p>\r\n', '', 10, 1, 0, 1, 33719),
@@ -214,33 +227,33 @@ INSERT INTO `nx_article` (`id`, `title`, `author`, `thumbpic`, `summary`, `ctime
 (74, 'CT透视普通杯碗', '系统', '/Public/goodsimages/sezi/4/1.jpg', '', 1429865674, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/sezi/4/1.jpg&quot; /></p><p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/sezi/4/2.jpg&quot; /></p><p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/sezi/4/3.jpg&quot; /></p>\r\n', '', 11, 1, 0, 1, 5116),
 (75, '微波感应色子', '系统', '/Public/goodsimages/sezi/5/1.jpg', '', 1429865710, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/sezi/5/1.jpg&quot; /></p>\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/sezi/5/2.jpg&quot; /></p>\r\n', '', 11, 1, 0, 1, 32440),
 (76, '万能遥控色子', '系统', '/Public/goodsimages/sezi/6/1.jpg', '', 1429865733, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/sezi/6/1.jpg&quot;  /></p>\r\n', '', 11, 1, 0, 1, 4053),
-(77, '全自动包赢麻将机', '系统', '/Public/goodsimages/majiang/1/1.jpg', '', 1429865842, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/majiang/1/1.jpg&quot;  /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/majiang/1/2.jpg&quot;  /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/majiang/1/3.jpg&quot;  /></p>\r\n<p>\r\n	&nbsp;</p>\r\n<p>\r\n	&nbsp;</p>\r\n<p>\r\n	<span style=&quot;color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; white-space: normal; background-color: rgb(255, 255, 255);&quot;>&nbsp; &nbsp; &nbsp;&nbsp;</span><span style=&quot;color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; text-align: center; white-space: normal; background-color: rgb(255, 255, 255);&quot;>&nbsp;娱乐包赢麻将机，最新研制成果真正有别于其它产品做到毫无破绽。直接在打色盘上控制，无需感应，更无需摇控，进牌口无选牌器。色子无磁性，上牌速度 快，洗牌无声音。任意程序麻将牌全部功能牌，程序想上什么牌就能上什么牌，精确度百分之百，想自摸就随时自摸。任意骰点 新版一体机可打出四个色点，同时兼容两个色点。蓝牙一对一开启整机配蓝牙一对一控制器，您买的就只有您拥有。高科技指纹触摸识别轻轻一触即可开启程序，免 去使用摇控器的苦恼。整机真正一体化设计体化，复位开关不用安装（硬复位），支架更隐藏，烧录程序更方便，真正的新版一体化程序机。配套电脑软件可个性化 任意修改。配套电脑软件更加人性化，功能更强大。</span></p>\r\n', '', 13, 1, 0, 1, 5865),
+(77, '全自动包赢麻将机', '系统', '/Public/goodsimages/majiang/1/1.jpg', '', 1429865842, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/majiang/1/1.jpg&quot;  /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/majiang/1/2.jpg&quot;  /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/majiang/1/3.jpg&quot;  /></p>\r\n<p>\r\n	&nbsp;</p>\r\n<p>\r\n	&nbsp;</p>\r\n<p>\r\n	<span style=&quot;color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; white-space: normal; background-color: rgb(255, 255, 255);&quot;>&nbsp; &nbsp; &nbsp;&nbsp;</span><span style=&quot;color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; text-align: center; white-space: normal; background-color: rgb(255, 255, 255);&quot;>&nbsp;娱乐包赢麻将机，最新研制成果真正有别于其它产品做到毫无破绽。直接在打色盘上控制，无需感应，更无需摇控，进牌口无选牌器。色子无磁性，上牌速度 快，洗牌无声音。任意程序麻将牌全部功能牌，程序想上什么牌就能上什么牌，精确度百分之百，想自摸就随时自摸。任意骰点 新版一体机可打出四个色点，同时兼容两个色点。蓝牙一对一开启整机配蓝牙一对一控制器，您买的就只有您拥有。高科技指纹触摸识别轻轻一触即可开启程序，免 去使用摇控器的苦恼。整机真正一体化设计体化，复位开关不用安装（硬复位），支架更隐藏，烧录程序更方便，真正的新版一体化程序机。配套电脑软件可个性化 任意修改。配套电脑软件更加人性化，功能更强大。</span></p>\r\n', '', 13, 1, 0, 1, 5867);
+INSERT INTO `nx_article` (`id`, `title`, `author`, `thumbpic`, `summary`, `ctime`, `uid`, `comefrom`, `content`, `keyword`, `pid`, `audit`, `recommend`, `allow`, `views`) VALUES
 (78, '四口程序麻将机', '系统', '/Public/goodsimages/majiang/2/2.jpg', '', 1429865912, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/majiang/2/1.jpg&quot;  /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/majiang/2/2.jpg&quot; /></p>\r\n<p>\r\n	<span style=&quot;color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; white-space: normal; background-color: rgb(255, 255, 255);&quot;>&nbsp;</span></p>\r\n<p>\r\n	&nbsp;</p>\r\n<p>\r\n	<span style=&quot;color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; white-space: normal; background-color: rgb(255, 255, 255);&quot;>&nbsp; &nbsp; &nbsp;</span><span style=&quot;color: rgb(68, 68, 68); font-family: Verdana, sans-serif; font-size: 14px; line-height: 26px; text-align: center; white-space: normal; background-color: rgb(255, 255, 255);&quot;>在麻将的时候你想上什么牌就上什么牌，想自摸就随时可以自摸吗？起手就能赢吗？清一色轻松搞定，诺信娱乐最新推出的万能四口程序麻将机，不仅能够起手好 牌，而且包自摸，是真正赢钱的麻将机，万能四口程序麻将机内置最新研制的麻将机程序，功能强大，更专业更先进，外观和普通四口麻将机一模一样，揭开面板也 看不见任何东西，真正做到毫无破绽;主板一体化，复位开关不用安装，支架更隐蔽，烧录程序更方便。配套电脑软件更加人性化，操作更简单，烧录更方便，兼容 所有电脑。</span></p>\r\n', '', 13, 1, 0, 1, 6427),
 (79, '无缝变牌 麻将桌', '系统', '/Public/goodsimages/majiang/3/1.jpg', '', 1429866152, 1, '', '<p style=&quot;text-align: center;&quot;>\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/majiang/3/1.jpg&quot;  /></p>\n<br />\n<p style=&quot;text-align: center;&quot;>\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/majiang/3/2.jpg&quot;  /></p>\n<br />\n<p style=&quot;text-align: center;&quot;>\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/majiang/3/3.jpg&quot;  /></p>', '', 13, 1, 0, 1, 4608),
-(80, '三星至尊扫描镜头', '系统', '/Public/goodsimages/baijiale/6/1.jpg', '', 1429866306, 1, '', '<p style=&quot;text-align: center;&quot;>\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/6/1.jpg&quot;  /></p>', '', 14, 1, 0, 1, 37346),
+(80, '三星至尊扫描镜头', '系统', '/Public/goodsimages/baijiale/6/1.jpg', '', 1429866306, 1, '', '<p style=&quot;text-align: center;&quot;>\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/6/1.jpg&quot;  /></p>', '', 14, 1, 0, 1, 37349),
 (132, '苹果6普通牌扑克分析仪', '系统', '/Public/goodsimages/shipin/mffxy.jpg', '', 1444196597, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/mffxy.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '苹果6普通牌扑克分析仪', 6, 1, 0, 1, 2669),
-(81, '百家乐遥控牌靴', '系统', '/Public/goodsimages/baijiale/2/1.jpg', '', 1429866487, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/2/1.jpg&quot; /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/2/2.jpg&quot; /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/2/3.jpg&quot; /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/2/4.jpg&quot; /></p>\r\n', '', 14, 1, 0, 1, 37989),
-(82, '百家乐分析牌路桌', '系统', '/Public/goodsimages/baijiale/3/1.jpg', '', 1429866701, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/3/1.jpg&quot; /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/3/2.jpg&quot; /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/3/3.jpg&quot; /></p>\r\n<br />\r\n', '', 14, 1, 0, 1, 37790),
-(83, '可控牌路透明靴', '系统', '/Public/goodsimages/baijiale/4/1.jpg', '', 1429866747, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/4/1.jpg&quot; /></p>\r\n', '', 14, 1, 0, 1, 12513),
-(84, '百家乐普通牌分析仪', '系统', '/Public/goodsimages/baijiale/5/1.jpg', '', 1429866803, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/5/1.jpg&quot; /></p>\r\n', '', 14, 1, 0, 1, 10411);
-INSERT INTO `nx_article` (`id`, `title`, `author`, `thumbpic`, `summary`, `ctime`, `uid`, `comefrom`, `content`, `keyword`, `pid`, `audit`, `recommend`, `allow`, `views`) VALUES
-(85, '百家乐光钎洗牌机分析仪', '系统', '/Public/goodsimages/baijiale/1/1.jpg', '', 1429866887, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/1/1.jpg&quot; /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/1/2.jpg&quot; /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/1/3.jpg&quot; /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/1/4.jpg&quot; /></p>\r\n<h3 style=&quot;padding: 15px; margin: 0px; line-height: 18px; white-space: normal; border: 0px; font-size: 12px; font-family: arial, helvetica, sans-serif, &#039;arial narrow&#039;, &#039;times new roman&#039;; color: red; background-color: rgb(255, 255, 255);&quot;>\r\n	&nbsp;</h3>\r\n<h3 style=&quot;margin: 0px; padding: 15px; border: 0px; text-align: center; white-space: normal; line-height: 18px; font-size: 12px; font-family: arial, helvetica, sans-serif, &#039;arial narrow&#039;, &#039;times new roman&#039;; color: red; background-color: rgb(255, 255, 255);&quot;>\r\n	<b style=&quot;margin: 0px; padding: 0px; border: 0px; outline-style: none; font-family: &#039;&#039;; line-height: 22px; color: rgb(0, 0, 0); background-color: rgb(255, 237, 196);&quot;><span style=&quot;margin: 0px; padding: 0px; border: 0px; outline-style: none; font-family: Î¢ÈíÑÅºÚ; color: rgb(255, 0, 0);&quot;><font style=&quot;margin: 0px; padding: 0px; border: 0px; outline-style: none; font-family: 仿宋_GB2312, &#039;MS Sans Serif&#039;, sans-serif; font-size: 16pt;&quot;><span style=&quot;margin: 0px; padding: 0px; border: 0px; outline-style: none; font-family: Î¢ÈíÑÅºÚ; background-color: rgb(255, 255, 0);&quot;>此款洗牌机不管是从外表还是内部结构跟普通的百家乐洗牌机是一模一样，针对市面上的任何普通扑克；包括进口塑料牌、小蜜蜂牌等、、、、只要经过光纤洗牌机洗完牌后，可以让人家切牌、倒牌、在下注前就可以分析出庄大、闲大、还是和。单人操作，不受牌和场地及环境的限制，是目前玩百家乐最先进的产品之一。</span></font></span></b></h3>\r\n\r\n\r\n', '', 14, 1, 0, 1, 8883),
-(86, '百家乐分析主机', '系统', '/Public/goodsimages/baijiale/7/1.jpg', '', 1429866931, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/7/1.jpg&quot;  /></p>\r\n', '', 14, 1, 0, 1, 9130),
+(81, '百家乐遥控牌靴', '系统', '/Public/goodsimages/baijiale/2/1.jpg', '', 1429866487, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/2/1.jpg&quot; /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/2/2.jpg&quot; /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/2/3.jpg&quot; /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/2/4.jpg&quot; /></p>\r\n', '', 14, 1, 0, 1, 37990),
+(82, '百家乐分析牌路桌', '系统', '/Public/goodsimages/baijiale/3/1.jpg', '', 1429866701, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/3/1.jpg&quot; /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/3/2.jpg&quot; /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/3/3.jpg&quot; /></p>\r\n<br />\r\n', '', 14, 1, 0, 1, 37791),
+(83, '可控牌路透明靴', '系统', '/Public/goodsimages/baijiale/4/1.jpg', '', 1429866747, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/4/1.jpg&quot; /></p>\r\n', '', 14, 1, 0, 1, 12515),
+(84, '百家乐普通牌分析仪', '系统', '/Public/goodsimages/baijiale/5/1.jpg', '', 1429866803, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/5/1.jpg&quot; /></p>\r\n', '', 14, 1, 0, 1, 10430),
+(85, '百家乐光钎洗牌机分析仪', '系统', '/Public/goodsimages/baijiale/1/1.jpg', '', 1429866887, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/1/1.jpg&quot; /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/1/2.jpg&quot; /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/1/3.jpg&quot; /></p>\r\n<br />\r\n<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/1/4.jpg&quot; /></p>\r\n<h3 style=&quot;padding: 15px; margin: 0px; line-height: 18px; white-space: normal; border: 0px; font-size: 12px; font-family: arial, helvetica, sans-serif, &#039;arial narrow&#039;, &#039;times new roman&#039;; color: red; background-color: rgb(255, 255, 255);&quot;>\r\n	&nbsp;</h3>\r\n<h3 style=&quot;margin: 0px; padding: 15px; border: 0px; text-align: center; white-space: normal; line-height: 18px; font-size: 12px; font-family: arial, helvetica, sans-serif, &#039;arial narrow&#039;, &#039;times new roman&#039;; color: red; background-color: rgb(255, 255, 255);&quot;>\r\n	<b style=&quot;margin: 0px; padding: 0px; border: 0px; outline-style: none; font-family: &#039;&#039;; line-height: 22px; color: rgb(0, 0, 0); background-color: rgb(255, 237, 196);&quot;><span style=&quot;margin: 0px; padding: 0px; border: 0px; outline-style: none; font-family: Î¢ÈíÑÅºÚ; color: rgb(255, 0, 0);&quot;><font style=&quot;margin: 0px; padding: 0px; border: 0px; outline-style: none; font-family: 仿宋_GB2312, &#039;MS Sans Serif&#039;, sans-serif; font-size: 16pt;&quot;><span style=&quot;margin: 0px; padding: 0px; border: 0px; outline-style: none; font-family: Î¢ÈíÑÅºÚ; background-color: rgb(255, 255, 0);&quot;>此款洗牌机不管是从外表还是内部结构跟普通的百家乐洗牌机是一模一样，针对市面上的任何普通扑克；包括进口塑料牌、小蜜蜂牌等、、、、只要经过光纤洗牌机洗完牌后，可以让人家切牌、倒牌、在下注前就可以分析出庄大、闲大、还是和。单人操作，不受牌和场地及环境的限制，是目前玩百家乐最先进的产品之一。</span></font></span></b></h3>\r\n\r\n\r\n', '', 14, 1, 0, 1, 8885),
+(86, '百家乐分析主机', '系统', '/Public/goodsimages/baijiale/7/1.jpg', '', 1429866931, 1, '', '<p style=&quot;text-align: center;&quot;>\r\n	<img alt=&quot;&quot; src=&quot;/Public/goodsimages/baijiale/7/1.jpg&quot;  /></p>\r\n', '', 14, 1, 0, 1, 9131),
 (88, '一对一跟踪王', '系统', '/Public/goodsimages/shipin/20.jpg', '', 1429949600, 1, '', '<div class=&quot;video-js-box&quot;>\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/guangjiao.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 18421),
-(89, '阿拉丁普通扑克分析仪', '系统', '/Public/goodsimages/shipin/8.jpg', '', 1429949825, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/alading.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 20047),
-(90, '机王全能分析仪', '系统', '/Public/goodsimages/shipin/2.jpg', '', 1429949825, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/yingxingkongshou.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 11859),
-(91, '最新一对一耳塞', '系统', '/Public/goodsimages/shipin/4.jpg', '', 1429953913, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/DK88.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 11651),
-(92, '全方位动态镜头', '系统', '/Public/goodsimages/shipin/5.jpg', '', 1429953980, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/dongtaiwang_02sStart.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 11414),
+(89, '阿拉丁普通扑克分析仪', '系统', '/Public/goodsimages/shipin/8.jpg', '', 1429949825, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/alading.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 20049),
+(90, '机王全能分析仪', '系统', '/Public/goodsimages/shipin/2.jpg', '', 1429949825, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/yingxingkongshou.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 11862),
+(91, '最新一对一耳塞', '系统', '/Public/goodsimages/shipin/4.jpg', '', 1429953913, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/DK88.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 11652),
+(92, '全方位动态镜头', '系统', '/Public/goodsimages/shipin/5.jpg', '', 1429953980, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/dongtaiwang_02sStart.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 11415),
 (93, '发牌王软件', '系统', '/Public/goodsimages/shipin/6.jpg', '', 1429954058, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/doudizhu.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 11676),
 (94, '普通扑克知点仪', '系统', '/Public/goodsimages/shipin/7.jpg', '', 1429954157, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/zhidianyi.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 12328),
 (95, '普通筒子牌九后台分析', '系统', '/Public/goodsimages/shipin/9.jpg', '', 1429954270, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/houtaifenxi.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 10565),
 (96, '最新麻将变点王', '系统', '/Public/goodsimages/shipin/10.jpg', '', 1429954332, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/majiangbiandian.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 14029),
 (97, '普通扑克变点王', '系统', '/Public/goodsimages/shipin/11.jpg', '', 1429954584, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/biandian.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 14879),
 (98, '神手变牌器', '系统', '/Public/goodsimages/shipin/12.jpg', '', 1429954697, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/shenshou.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 11340),
-(99, '最新光纤感应牌九、筒子', '系统', '/Public/goodsimages/shipin/13.jpg', '', 1429954762, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/guangqian.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 9398),
-(100, '牌九板九筒子分析仪', '系统', '/Public/goodsimages/shipin/14.jpg', '', 1429954924, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/yuyingpaijiu.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 6347),
+(99, '最新光纤感应牌九、筒子', '系统', '/Public/goodsimages/shipin/13.jpg', '', 1429954762, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/guangqian.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 9399),
+(100, '牌九板九筒子分析仪', '系统', '/Public/goodsimages/shipin/14.jpg', '', 1429954924, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/yuyingpaijiu.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 6349),
 (101, '普通杯碗监控仪', '系统', '/Public/goodsimages/shipin/15.jpg', '', 1429955000, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/jiankong.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 5283),
-(102, '带遥控正反一体机', '系统', '/Public/goodsimages/shipin/16.jpg', '', 1429955264, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/iPhone5S_Yi_Ti_Ji.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 6938),
+(102, '带遥控正反一体机', '系统', '/Public/goodsimages/shipin/16.jpg', '', 1429955264, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/iPhone5S_Yi_Ti_Ji.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 6939),
 (104, '全能赢猜宝王', '系统', '/Public/goodsimages/shipin/18.jpg', '', 1430096772, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/caibaowang.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 7926),
 (105, '单人语音扫描皮带', '系统', '/Public/goodsimages/shipin/19.jpg', '', 1430096845, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/2015niukou.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 3197),
 (106, '天衣无缝扫描镜头', '系统', '/Public/goodsimages/shipin/1.png', '', 1430097007, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/wuyingzuizhong.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 2703),
@@ -248,7 +261,7 @@ INSERT INTO `nx_article` (`id`, `title`, `author`, `thumbpic`, `summary`, `ctime
 (108, '高科技遥控色子', '系统', '/Public/goodsimages/shipin/22.jpg', '', 1430097163, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/yaokong.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 3068),
 (109, '万能密码色子', '系统', '/Public/goodsimages/shipin/23.jpg', '', 1430097217, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/wanneng.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\n', '', 6, 1, 0, 1, 1747),
 (110, '牌九空手变牌', '系统', '/Public/goodsimages/shipin/24.jpg', '', 1430097277, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/paijiukongshou.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 1588),
-(111, '任性手表扫描仪', '系统', '/Public/goodsimages/shipin/25.jpg', '', 1430097357, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/wugangshoubiao.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 1808),
+(111, '任性手表扫描仪', '系统', '/Public/goodsimages/shipin/25.jpg', '', 1430097357, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/wugangshoubiao.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 1809),
 (112, '单人操作IC智能麻将', '系统', '/Public/goodsimages/shipin/26.jpg', '', 1430097408, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/ICzhineng.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 1572),
 (113, '必胜程序麻将机', '系统', '/Public/goodsimages/shipin/27.jpg', '', 1430097489, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/chengxu.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 1567),
 (114, '最新变牌自摸视频演示', '系统', '/Public/goodsimages/shipin/28.jpg', '', 1430097591, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/bianpai.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 2170),
@@ -257,24 +270,24 @@ INSERT INTO `nx_article` (`id`, `title`, `author`, `thumbpic`, `summary`, `ctime
 (117, '三星note4扑克分析仪', '系统', '/Public/goodsimages/shipin/31.jpg', '', 1430097783, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/wuyingjingt3.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 4163),
 (118, '单人语音光控麻将', '系统', '/Public/goodsimages/shipin/32.gif', '', 1430097836, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/dongfangbubai.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 2690),
 (119, '三星S5(A版,B版,C版)', '系统', '/Public/goodsimages/shipin/33.jpg', '', 1430097922, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/yingxing1-5.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 1913),
-(120, '扑克小九变牌绝技', '系统', '/Public/goodsimages/shipin/34.jpg', '', 1430097981, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/xiaopaijiu.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 2238),
+(120, '扑克小九变牌绝技', '系统', '/Public/goodsimages/shipin/34.jpg', '', 1430097981, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/xiaopaijiu.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 2239),
 (121, '扑克金花空手变牌', '系统', '/Public/goodsimages/shipin/35.jpg', '', 1430098051, 1, '', '<div class=&quot;video-js-box&quot;><video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/pukejinhua.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 3357),
 (122, '扑克必胜绝技', '系统', '/Public/goodsimages/shipin/36.jpg', '', 1430098097, 1, '', '<div class=&quot;video-js-box&quot;>\r\n  <video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/doudizhu.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 3288),
 (123, '最新变牌绝技', '系统', '/Public/goodsimages/shipin/37.jpg', '', 1430098135, 1, '', '<div class=&quot;video-js-box&quot;>\r\n  <video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/zuixinbianpai2014.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 5149),
-(124, '高科技百家乐分析仪', '系统', '/Public/goodsimages/shipin/38.jpg', '', 1430098204, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/baijiale.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 3215),
-(125, '百家乐分析仪软件', '系统', '/Public/goodsimages/shipin/39.jpg', '', 1430098260, 1, '', '<div class=&quot;video-js-box&quot;>\r\n  <video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/baijialefenxi.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 2629),
+(124, '高科技百家乐分析仪', '系统', '/Public/goodsimages/shipin/38.jpg', '', 1430098204, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/baijiale.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 3216),
+(125, '百家乐分析仪软件', '系统', '/Public/goodsimages/shipin/39.jpg', '', 1430098260, 1, '', '<div class=&quot;video-js-box&quot;>\r\n  <video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/baijialefenxi.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 2632),
 (126, '百家乐认普通牌靴', '系统', '/Public/goodsimages/shipin/40.jpg', '', 1430098651, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/danrencaozuo.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 2923),
 (127, 'CVK超强分析仪', '系统', '/Public/goodsimages/shipin/41.jpg', '', 1430098699, 1, '', '<div class=&quot;video-js-box&quot;>\n  <video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/cvk.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 3130),
 (128, '跑胡子{字牌、长牌}专用分析仪', '系统', '/Public/goodsimages/shipin/3.jpg', '', 1430100311, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/jinhua.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 3993),
 (129, 'X光透视桌面', '系统', '/Public/goodsimages/shipin/x.jpg', '', 1438135786, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/m/xguan.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 3041),
-(138, '普通扑克麻将密码笔', '系统', '/Public/goodsimages/shipin/2016/6.png', '', 1450252713, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/6.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 1053),
-(139, '普通扑克极速分析仪', '系统', '/Public/goodsimages/shipin/2016/7.png', '', 1450252765, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/7.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 1176),
-(140, '筒子牌九分析仪', '系统', '/Public/goodsimages/shipin/2016/8.png', '', 1450252794, 1, '', '\r\n<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/8.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 932),
-(141, '百家乐可控牌路分析牌靴', '系统', '/Public/goodsimages/shipin/2016/9.png', '', 1450252820, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/9.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 678),
+(138, '普通扑克麻将密码笔', '系统', '/Public/goodsimages/shipin/2016/6.png', '', 1450252713, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/6.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 1055),
+(139, '普通扑克极速分析仪', '系统', '/Public/goodsimages/shipin/2016/7.png', '', 1450252765, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/7.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 1186),
+(140, '筒子牌九分析仪', '系统', '/Public/goodsimages/shipin/2016/8.png', '', 1450252794, 1, '', '\r\n<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/8.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 934),
+(141, '百家乐可控牌路分析牌靴', '系统', '/Public/goodsimages/shipin/2016/9.png', '', 1450252820, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/9.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 679),
 (166, '普通筒子牌九远程分析', '系统', '/Public/goodsimages/shipin/2016/32.png', '', 1473298150, 1, '', '&lt;p style=&quot;text-align: center;&quot;&gt;&lt;video class=&quot;video-js vjs-default-skin aman&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot; data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;&gt;&lt;source src=&quot;http://121.42.195.161/2016/32.mp4&quot; type=&quot;video/mp4&quot;/&gt;&lt;/video&gt;&lt;/p&gt;&lt;p&gt;　 &amp;nbsp;&amp;nbsp;&lt;/p&gt;&lt;p&gt;　&lt;/p&gt;&lt;p&gt;　&lt;/p&gt;', '', 6, 1, 0, 1, 3621),
-(143, '高速动态扫描镜头', '系统', '/Public/goodsimages/shipin/2016/11.png', '', 1450252883, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/11.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 860),
-(144, '三星变牌手机【真机】', '系统', '/Public/goodsimages/shipin/2016/12.png', '', 1473299747, 1, '', '&lt;p&gt;&lt;video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot; data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;&gt;&lt;source src=&quot;http://121.42.195.161/2016/12.mp4&quot; type=&quot;video/mp4&quot;/&gt;&lt;/video&gt;&lt;/p&gt;&lt;p&gt;　&lt;/p&gt;', '', 6, 1, 0, 1, 873),
-(145, '袖剑变牌', '系统', '/Public/goodsimages/shipin/2016/13.png', '', 1450252933, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/13.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 866),
+(143, '高速动态扫描镜头', '系统', '/Public/goodsimages/shipin/2016/11.png', '', 1450252883, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/11.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 864),
+(144, '三星变牌手机【真机】', '系统', '/Public/goodsimages/shipin/2016/12.png', '', 1473299747, 1, '', '&lt;p&gt;&lt;video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot; data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;&gt;&lt;source src=&quot;http://121.42.195.161/2016/12.mp4&quot; type=&quot;video/mp4&quot;/&gt;&lt;/video&gt;&lt;/p&gt;&lt;p&gt;　&lt;/p&gt;', '', 6, 1, 0, 1, 874),
+(145, '袖剑变牌', '系统', '/Public/goodsimages/shipin/2016/13.png', '', 1450252933, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/13.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 867),
 (146, '超级扫描分析仪', '系统', '/Public/goodsimages/shipin/2016/14.png', '', 1450252965, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/14.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 786),
 (147, '透视杯碗', '系统', '/Public/goodsimages/shipin/2016/16.png', '', 1450252991, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/16.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 884),
 (148, '极品烟缸扫描', '系统', '/Public/goodsimages/shipin/2016/18.png', '', 1450253066, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/18.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>', '', 6, 1, 0, 1, 740),
@@ -293,7 +306,8 @@ INSERT INTO `nx_article` (`id`, `title`, `author`, `thumbpic`, `summary`, `ctime
 (161, '感应超级板', '系统', '/Public/goodsimages/shipin/2016/34.png', '', 1450253556, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/34.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 2138),
 (162, '三星S5分析仪', '系统', '/Public/goodsimages/shipin/2016/36.png', '', 1450253678, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/36.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 2894),
 (163, '跑胡子分析仪', '系统', '/Public/goodsimages/shipin/2016/37.png', '', 1450253708, 1, '', '<div class=&quot;video-js-box&quot;>\r\n	<video class=&quot;video-js vjs-default-skin&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot;\r\n data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;> <source src=&quot;http://121.42.195.161/2016/37.mp4&quot; type=&quot;video/mp4&quot;></source></video><p>　</p></div>\r\n', '', 6, 1, 0, 1, 2201),
-(164, '单人语音麻将机', '系统', '/Public/goodsimages/shipin/2016/4.png', '', 1473298162, 1, '', '&lt;p&gt;&lt;video class=&quot;video-js vjs-default-skin aman&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot; data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;&gt;&lt;source src=&quot;http://121.42.195.161/2016/4.mp4&quot; type=&quot;video/mp4&quot;/&gt;&lt;/video&gt;&lt;/p&gt;&lt;p&gt;　&lt;/p&gt;', '', 6, 1, 0, 1, 3224);
+(164, '单人语音麻将机', '系统', '/Public/goodsimages/shipin/2016/4.png', '', 1473298162, 1, '', '&lt;p&gt;&lt;video class=&quot;video-js vjs-default-skin aman&quot; controls=&quot;controls&quot; autoplay=&quot;autoplay&quot; data-setup=&quot;{}&quot; height=&quot;auto&quot; id=&quot;example_video_1&quot; poster=&quot;/Public/static/images/video_begin_bg.jpg&quot; preload=&quot;none&quot; width=&quot;auto&quot;&gt;&lt;source src=&quot;http://121.42.195.161/2016/4.mp4&quot; type=&quot;video/mp4&quot;/&gt;&lt;/video&gt;&lt;/p&gt;&lt;p&gt;　&lt;/p&gt;', '', 6, 1, 0, 1, 3224),
+(167, '1', '1', '/Public/static/images/admin/default_thumbpic.gif', '1', 1474257621, 0, '', '&lt;p&gt;&lt;img src=&quot;/Public/uploads/ueditor/image/20160919/1474257596232027.jpg&quot; title=&quot;1474257596232027.jpg&quot; alt=&quot;567b6977a57ef.jpg&quot;/&gt;&lt;/p&gt;', '', 20, 0, 0, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -302,14 +316,15 @@ INSERT INTO `nx_article` (`id`, `title`, `author`, `thumbpic`, `summary`, `ctime
 --
 
 CREATE TABLE IF NOT EXISTS `nx_chat` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) DEFAULT 'null',
   `client_id` int(11) NOT NULL,
   `message` varchar(10000) NOT NULL DEFAULT '<span style="color:red;">系统提示:正在连接服务器...</span>',
   `fasttime` varchar(20) NOT NULL DEFAULT '1991',
   `lasttime` varchar(20) NOT NULL DEFAULT '2016',
-  `status` int(1) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=163 DEFAULT CHARSET=utf8;
+  `status` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=163 ;
 
 --
 -- 转存表中的数据 `nx_chat`
@@ -486,7 +501,7 @@ INSERT INTO `nx_chat` (`id`, `username`, `client_id`, `message`, `fasttime`, `la
 --
 
 CREATE TABLE IF NOT EXISTS `nx_client` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL DEFAULT 'null',
   `session_id` int(11) NOT NULL,
   `message` varchar(10000) NOT NULL DEFAULT '<span style="color:red;">系统提示：对话建立成功！输入文字消息按回车键发送！</span>',
@@ -500,8 +515,9 @@ CREATE TABLE IF NOT EXISTS `nx_client` (
   `referer` varchar(200) NOT NULL DEFAULT 'null',
   `ip` varchar(20) NOT NULL DEFAULT 'null',
   `isp` varchar(20) NOT NULL DEFAULT 'null',
-  `status` int(11) DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
+  `status` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=201 ;
 
 --
 -- 转存表中的数据 `nx_client`
@@ -716,7 +732,7 @@ INSERT INTO `nx_client` (`id`, `username`, `session_id`, `message`, `fasttime`, 
 --
 
 CREATE TABLE IF NOT EXISTS `nx_column` (
-  `id` smallint(5) unsigned NOT NULL,
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `pid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `path` varchar(100) NOT NULL DEFAULT '',
   `title` varchar(100) NOT NULL DEFAULT '',
@@ -725,8 +741,15 @@ CREATE TABLE IF NOT EXISTS `nx_column` (
   `picid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `audit` smallint(1) unsigned NOT NULL DEFAULT '1',
   `ord` smallint(3) unsigned NOT NULL DEFAULT '0',
-  `display` smallint(3) unsigned NOT NULL DEFAULT '1'
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+  `display` smallint(3) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `column_pid` (`pid`),
+  KEY `column_path` (`path`),
+  KEY `column_audit` (`audit`),
+  KEY `column_ord` (`ord`),
+  KEY `column_display` (`display`),
+  KEY `column_picid` (`picid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- 转存表中的数据 `nx_column`
@@ -743,8 +766,7 @@ INSERT INTO `nx_column` (`id`, `pid`, `path`, `title`, `ctime`, `description`, `
 (13, 0, '0', '麻将桌类', '', '', 4, 0, 0, 1),
 (14, 0, '0', '百家乐类', '', '', 0, 1, 0, 1),
 (15, 6, '0-6', '手法技术', '1472867570', '', 0, 1, 0, 1),
-(16, 6, '0-6', '产品演示', '1472867634', '', 0, 1, 0, 1),
-(17, 6, '0-6', '出千设备演示', '1472867657', '', 0, 1, 0, 1);
+(20, 15, '0-6-15', '阿斯顿飞', '1474182027', '', 0, 1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -753,13 +775,16 @@ INSERT INTO `nx_column` (`id`, `pid`, `path`, `title`, `ctime`, `description`, `
 --
 
 CREATE TABLE IF NOT EXISTS `nx_comment` (
-  `id` int(11) unsigned NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `uid` int(11) unsigned NOT NULL DEFAULT '0',
   `aid` int(11) unsigned NOT NULL DEFAULT '0',
   `ptime` int(10) unsigned NOT NULL DEFAULT '0',
   `content` text NOT NULL,
-  `cmt` smallint(5) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `cmt` smallint(5) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `comment_aid` (`aid`),
+  KEY `comment_uid` (`uid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -768,14 +793,19 @@ CREATE TABLE IF NOT EXISTS `nx_comment` (
 --
 
 CREATE TABLE IF NOT EXISTS `nx_dynamic` (
-  `id` int(11) unsigned NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `uid` int(11) unsigned NOT NULL DEFAULT '0',
   `otype` smallint(1) unsigned NOT NULL DEFAULT '0',
   `ptime` int(11) unsigned NOT NULL DEFAULT '0',
   `pid` int(11) unsigned NOT NULL DEFAULT '0',
   `cid` int(11) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(100) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=131 DEFAULT CHARSET=utf8;
+  `title` varchar(100) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `dynamic_uid` (`uid`),
+  KEY `dynamic_otype` (`otype`),
+  KEY `dynamic_pid` (`pid`),
+  KEY `dynamic_cid` (`cid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=131 ;
 
 --
 -- 转存表中的数据 `nx_dynamic`
@@ -897,7 +927,7 @@ INSERT INTO `nx_dynamic` (`id`, `uid`, `otype`, `ptime`, `pid`, `cid`, `title`) 
 --
 
 CREATE TABLE IF NOT EXISTS `nx_flink` (
-  `id` smallint(5) unsigned NOT NULL,
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `webname` varchar(30) NOT NULL DEFAULT '',
   `url` varchar(60) NOT NULL DEFAULT '',
   `logo` varchar(60) NOT NULL DEFAULT '',
@@ -907,8 +937,12 @@ CREATE TABLE IF NOT EXISTS `nx_flink` (
   `msg` varchar(200) NOT NULL DEFAULT '',
   `list` smallint(1) unsigned NOT NULL,
   `audit` smallint(1) unsigned NOT NULL,
-  `ord` smallint(1) unsigned NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `ord` smallint(1) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `flink_list` (`list`),
+  KEY `flink_audit` (`audit`),
+  KEY `flink_ord` (`ord`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -917,7 +951,7 @@ CREATE TABLE IF NOT EXISTS `nx_flink` (
 --
 
 CREATE TABLE IF NOT EXISTS `nx_group` (
-  `id` smallint(4) unsigned NOT NULL,
+  `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,
   `groupname` varchar(20) NOT NULL DEFAULT '',
   `description` varchar(200) NOT NULL DEFAULT '',
   `useradmin` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -925,8 +959,9 @@ CREATE TABLE IF NOT EXISTS `nx_group` (
   `articleadmin` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `sendarticle` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `sendcomment` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `sendmessage` tinyint(1) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `sendmessage` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- 转存表中的数据 `nx_group`
@@ -943,15 +978,19 @@ INSERT INTO `nx_group` (`id`, `groupname`, `description`, `useradmin`, `webadmin
 --
 
 CREATE TABLE IF NOT EXISTS `nx_guest` (
-  `id` int(11) unsigned NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL DEFAULT '访客',
   `phone` varchar(11) NOT NULL DEFAULT '0',
   `weixin` varchar(30) NOT NULL DEFAULT '',
   `ctime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `message` varchar(1000) NOT NULL,
   `username` varchar(20) NOT NULL DEFAULT 'admin',
-  `status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `messgae_uid` (`phone`),
+  KEY `message_revicename` (`weixin`),
+  KEY `message_status` (`username`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- 转存表中的数据 `nx_guest`
@@ -973,11 +1012,13 @@ INSERT INTO `nx_guest` (`id`, `name`, `phone`, `weixin`, `ctime`, `message`, `us
 --
 
 CREATE TABLE IF NOT EXISTS `nx_image` (
-  `id` int(11) unsigned NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `pid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `name` char(24) NOT NULL DEFAULT '',
-  `water` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  `water` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `image_pid` (`pid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- 转存表中的数据 `nx_image`
@@ -996,15 +1037,20 @@ INSERT INTO `nx_image` (`id`, `pid`, `name`, `water`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `nx_node` (
-  `id` smallint(6) NOT NULL,
+  `id` smallint(6) NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `title` varchar(50) DEFAULT NULL,
   `status` tinyint(1) DEFAULT '0',
   `remark` varchar(255) DEFAULT NULL,
   `sort` varchar(20) DEFAULT '0',
   `pid` smallint(6) unsigned NOT NULL,
-  `level` tinyint(1) unsigned NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8;
+  `level` tinyint(1) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `level` (`level`),
+  KEY `pid` (`pid`),
+  KEY `status` (`status`),
+  KEY `name` (`name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 --
 -- 转存表中的数据 `nx_node`
@@ -1047,15 +1093,20 @@ INSERT INTO `nx_node` (`id`, `name`, `title`, `status`, `remark`, `sort`, `pid`,
 --
 
 CREATE TABLE IF NOT EXISTS `nx_notic` (
-  `id` smallint(5) unsigned NOT NULL,
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(80) NOT NULL DEFAULT '',
   `color` char(6) NOT NULL DEFAULT '000000',
   `starttime` int(10) unsigned NOT NULL DEFAULT '0',
   `endtime` int(10) unsigned NOT NULL DEFAULT '0',
   `content` text NOT NULL,
   `display` smallint(1) unsigned NOT NULL DEFAULT '1',
-  `ord` smallint(3) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `ord` smallint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `notice_starttime` (`starttime`),
+  KEY `notice_endtime` (`endtime`),
+  KEY `notice_display` (`display`),
+  KEY `notice_ord` (`ord`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1064,15 +1115,22 @@ CREATE TABLE IF NOT EXISTS `nx_notic` (
 --
 
 CREATE TABLE IF NOT EXISTS `nx_play` (
-  `id` smallint(5) unsigned NOT NULL,
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `aid` int(11) unsigned NOT NULL DEFAULT '0',
   `title` varchar(80) NOT NULL DEFAULT '',
   `picid` smallint(5) unsigned NOT NULL DEFAULT '0',
   `starttime` int(10) unsigned NOT NULL DEFAULT '0',
   `endtime` int(10) unsigned NOT NULL DEFAULT '0',
   `display` smallint(1) unsigned NOT NULL DEFAULT '1',
-  `ord` smallint(3) unsigned NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `ord` smallint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `play_aid` (`aid`),
+  KEY `play_picid` (`picid`),
+  KEY `play_starttime` (`starttime`),
+  KEY `play_endtime` (`endtime`),
+  KEY `play_display` (`display`),
+  KEY `play_ord` (`ord`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -1081,13 +1139,16 @@ CREATE TABLE IF NOT EXISTS `nx_play` (
 --
 
 CREATE TABLE IF NOT EXISTS `nx_role` (
-  `id` smallint(6) unsigned NOT NULL,
+  `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `pid` smallint(6) DEFAULT NULL,
   `status` tinyint(1) unsigned DEFAULT NULL,
   `remark` varchar(255) DEFAULT NULL,
-  `ctime` int(11) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  `ctime` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `pid` (`pid`),
+  KEY `status` (`status`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- 转存表中的数据 `nx_role`
@@ -1106,7 +1167,9 @@ INSERT INTO `nx_role` (`id`, `name`, `pid`, `status`, `remark`, `ctime`) VALUES
 
 CREATE TABLE IF NOT EXISTS `nx_role_user` (
   `role_id` mediumint(9) unsigned DEFAULT NULL,
-  `user_id` char(32) DEFAULT NULL
+  `user_id` char(32) DEFAULT NULL,
+  KEY `group_id` (`role_id`),
+  KEY `user_id` (`user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -1129,8 +1192,10 @@ INSERT INTO `nx_role_user` (`role_id`, `user_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `nx_user` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
+  `nikname` varchar(100) NOT NULL DEFAULT '昵称',
+  `webname` varchar(50) DEFAULT '网站名称',
   `groupid` varchar(50) DEFAULT NULL,
   `password` varchar(32) NOT NULL,
   `sex` tinyint(1) DEFAULT '1',
@@ -1139,23 +1204,29 @@ CREATE TABLE IF NOT EXISTS `nx_user` (
   `last_ip` varchar(32) DEFAULT '本地局域网',
   `last_area` varchar(15) DEFAULT '广州诺信科技',
   `email` varchar(32) DEFAULT 'test@test.com',
+  `tel` varchar(20) NOT NULL DEFAULT '电话号码',
+  `qq` varchar(13) NOT NULL DEFAULT 'QQ号码',
+  `weixin` varchar(100) NOT NULL DEFAULT '微信号码',
+  `addr` varchar(1000) NOT NULL DEFAULT '公司地址',
   `num` smallint(5) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '1',
-  `login_status` int(1) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+  `login_status` int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- 转存表中的数据 `nx_user`
 --
 
-INSERT INTO `nx_user` (`id`, `username`, `groupid`, `password`, `sex`, `ctime`, `last_time`, `last_ip`, `last_area`, `email`, `num`, `status`, `login_status`) VALUES
-(1, 'admin', '1', '12d20e48fca5e458a401269772e74827', 1, '1970-01-01', '1473297446', '116.21.24.88', '广东省广州市', 'test@test.com', 27, 1, 1),
-(2, 'djkk', '1', '12d20e48fca5e458a401269772e74827', 1, '1471509529', '1472438948', '本地局域网', '广东省广州市', 'liuman@qq.com', 0, 1, 1),
-(3, '小周', '3', '12d20e48fca5e458a401269772e74827', 1, '1471509567', '1472438947', '本地局域网', '广州诺信科技', 'xiaozhou@qq.com', 0, 1, 0),
-(4, '众宜', '3', '12d20e48fca5e458a401269772e74827', 0, '1471509610', '1472438946', '本地局域网', '广州诺信科技', 'zhongyi@qq.com', 0, 1, 0),
-(5, '永胜', '1', '12d20e48fca5e458a401269772e74827', 0, '1471509657', '1472440781', '本地局域网', '广东省广州市', 'yongsheng@qq.com', 0, 1, 1),
-(6, '科讯', '3', '12d20e48fca5e458a401269772e74827', 1, '1472269881', '1472450362', '本地局域网', '广东省广州市', 'test@qq.com', 0, 1, 0),
-(7, '盈科', '3', '12d20e48fca5e458a401269772e74827', 0, '1472279240', '1472450398', '本地局域网', '广东省广州市', 'yingke@qq.com', 1, 1, 0);
+INSERT INTO `nx_user` (`id`, `username`, `nikname`, `webname`, `groupid`, `password`, `sex`, `ctime`, `last_time`, `last_ip`, `last_area`, `email`, `tel`, `qq`, `weixin`, `addr`, `num`, `status`, `login_status`) VALUES
+(1, 'admin', '昵称', '网站名称', '1', '12d20e48fca5e458a401269772e74827', 1, '1970-01-01', '1474508290', '本地局域网', '广东省广州市', 'test@test.com', '电话号码', 'QQ号码', '微信号码', '公司地址', 34, 1, 1),
+(2, 'djkk', '昵称', '网站名称', '1', '12d20e48fca5e458a401269772e74827', 1, '1471509529', '1472438948', '本地局域网', '广东省广州市', 'liuman@qq.com', '电话号码', 'QQ号码', '微信号码', '公司地址', 0, 1, 1),
+(3, '小周', '昵称', '网站名称', '3', '12d20e48fca5e458a401269772e74827', 1, '1471509567', '1472438947', '本地局域网', '广州诺信科技', 'xiaozhou@qq.com', '电话号码', 'QQ号码', '微信号码', '公司地址', 0, 1, 0),
+(4, 'zhongyi', '昵称', '网站名称', '3', '12d20e48fca5e458a401269772e74827', 0, '1471509610', '1472438946', '本地局域网', '广州诺信科技', 'zhongyi@qq.com', '电话号码', 'QQ号码', '微信号码', '广州市白云区远景路842号(东江大酒店旁边)', 0, 1, 0),
+(5, '永胜', '昵称', '网站名称', '1', '12d20e48fca5e458a401269772e74827', 0, '1471509657', '1472440781', '本地局域网', '广东省广州市', 'yongsheng@qq.com', '电话号码', 'QQ号码', '微信号码', '公司地址', 0, 1, 1),
+(6, 'xinnuo', '昵称', '网站名称', '3', '12d20e48fca5e458a401269772e74827', 1, '1472269881', '1472450362', '本地局域网', '广东省广州市', 'test@qq.com', '电话号码', 'QQ号码', '微信号码', '公司地址', 0, 1, 0),
+(7, '盈科', '昵称', '网站名称', '3', '12d20e48fca5e458a401269772e74827', 0, '1472279240', '1472450398', '本地局域网', '广东省广州市', 'yingke@qq.com', '电话号码', 'QQ号码', '微信号码', '公司地址', 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1164,12 +1235,14 @@ INSERT INTO `nx_user` (`id`, `username`, `groupid`, `password`, `sex`, `ctime`, 
 --
 
 CREATE TABLE IF NOT EXISTS `nx_video` (
-  `id` int(6) NOT NULL,
+  `id` int(6) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) NOT NULL DEFAULT '',
   `url` varchar(2000) NOT NULL DEFAULT '',
   `ctime` varchar(32) NOT NULL,
-  `link` varchar(2000) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=400 DEFAULT CHARSET=utf8;
+  `link` varchar(2000) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=434 ;
 
 --
 -- 转存表中的数据 `nx_video`
@@ -1184,18 +1257,18 @@ INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
 (6, '发牌王软件', 'http://121.42.195.161/m/doudizhu.mp4', '', ''),
 (7, '普通扑克知点仪', 'http://121.42.195.161/m/zhidianyi.mp4', '', ''),
 (8, '普通筒子牌九后台分析', 'http://121.42.195.161/m/houtaifenxi.mp4', '', ''),
-(9, '最新麻将变点王', 'http://121.42.195.161/m/majiangbiandian.mp4', '', ''),
-(10, '普通扑克变点王', 'http://121.42.195.161/m/biandian.mp4', '', ''),
+(9, '最新麻将变点王', 'http://121.42.195.161/m/majiangbiandian.mp4', '1473561792', 'http://weixin-shipin.com/Public/weixin_video/html/20160911_10_43_12.html'),
+(10, '普通扑克变点王', 'http://121.42.195.161/m/biandian.mp4', '1473592441', 'http://weixin-shipin.com/Public/weixin_video/html/20160911_19_14_01.html'),
 (11, '神手变牌器', 'http://121.42.195.161/m/shenshou.mp4', '', ''),
 (12, '最新光纤感应牌九、筒子', 'http://121.42.195.161/m/guangqian.mp4', '1473212207', 'http://weixin-shipin.com/Public/weixin_video/html/20160907_09_36_47.html'),
-(13, '牌九板九筒子分析仪', 'http://121.42.195.161/m/yuyingpaijiu.mp4', '', ''),
+(13, '牌九板九筒子分析仪', 'http://121.42.195.161/m/yuyingpaijiu.mp4', '1473747333', 'http://weixin-shipin.com/Public/weixin_video/html/20160913_14_15_33.html'),
 (14, '普通杯碗监控仪', 'http://121.42.195.161/m/jiankong.mp4', '', ''),
 (15, '带遥控正反一体机', 'http://121.42.195.161/m/iPhone5S_Yi_Ti_Ji.mp4', '', ''),
 (16, '全能赢猜宝王', 'http://121.42.195.161/m/caibaowang.mp4', '', ''),
 (17, '单人语音扫描皮带', 'http://121.42.195.161/m/2015niukou.mp4', '', ''),
 (18, '天衣无缝扫描镜头', 'http://121.42.195.161/m/wuyingzuizhong.mp4', '', ''),
 (19, '最新无缝变牌桌', 'http://121.42.195.161/m/wufengzhuo.mp4', '', ''),
-(20, '高科技遥控色子', 'http://121.42.195.161/m/yaokong.mp4', '', ''),
+(20, '高科技遥控色子', 'http://121.42.195.161/m/yaokong.mp4', '1473561272', 'http://weixin-shipin.com/Public/weixin_video/html/20160911_10_34_32.html'),
 (21, '万能密码色子', 'http://121.42.195.161/m/wanneng.mp4', '', ''),
 (22, '牌九空手变牌', 'http://121.42.195.161/m/paijiukongshou.mp4', '', ''),
 (23, '任性手表扫描仪', 'http://121.42.195.161/m/wugangshoubiao.mp4', '', ''),
@@ -1211,22 +1284,22 @@ INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
 (33, '扑克金花空手变牌', 'http://121.42.195.161/m/pukejinhua.mp4', '', ''),
 (34, '扑克必胜绝技', 'http://121.42.195.161/m/doudizhu.mp4', '1472974649', 'http://weixin-shipin.com/Public/weixin_video/html/20160904_15_37_29.html'),
 (35, '最新变牌绝技', 'http://121.42.195.161/m/zuixinbianpai2014.mp4', '', ''),
-(36, '高科技百家乐分析仪', 'http://121.42.195.161/m/baijiale.mp4', '', ''),
-(37, '百家乐分析仪软件', 'http://121.42.195.161/m/baijialefenxi.mp4', '', ''),
-(38, '百家乐认普通牌靴', 'http://121.42.195.161/m/danrencaozuo.mp4', '', ''),
+(36, '高科技百家乐分析仪', 'http://121.42.195.161/m/baijiale.mp4', '1473578473', 'http://weixin-shipin.com/Public/weixin_video/html/20160911_15_21_13.html'),
+(37, '百家乐分析仪软件', 'http://121.42.195.161/m/baijialefenxi.mp4', '1473578502', 'http://weixin-shipin.com/Public/weixin_video/html/20160911_15_21_42.html'),
+(38, '百家乐认普通牌靴', 'http://121.42.195.161/m/danrencaozuo.mp4', '1473578517', 'http://weixin-shipin.com/Public/weixin_video/html/20160911_15_21_57.html'),
 (39, 'CVK超强分析仪', 'http://121.42.195.161/m/cvk.mp4', '', ''),
 (40, '跑胡子{字牌、长牌}专用分析仪', 'http://121.42.195.161/m/jinhua.mp4', '', ''),
 (41, 'X光透视桌面', 'http://121.42.195.161/m/xguan.mp4', '', ''),
-(42, '普通扑克麻将密码笔', 'http://121.42.195.161/2016/6.mp4', '', ''),
+(42, '普通扑克麻将密码笔', 'http://121.42.195.161/2016/6.mp4', '1473658643', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_13_37_23.html'),
 (43, '普通扑克极速分析仪', 'http://121.42.195.161/2016/7.mp4', '', ''),
 (44, '筒子牌九分析仪', 'http://121.42.195.161/2016/8.mp4', '', ''),
-(45, '百家乐可控牌路分析牌靴', 'http://121.42.195.161/2016/9.mp4', '', ''),
+(45, '百家乐可控牌路分析牌靴', 'http://121.42.195.161/2016/9.mp4', '1473578533', 'http://weixin-shipin.com/Public/weixin_video/html/20160911_15_22_13.html'),
 (46, '普通筒子牌九远程分析', 'http://121.42.195.161/2016/32.mp4', '', ''),
 (47, '高速动态扫描镜头', 'http://121.42.195.161/2016/11.mp4', '', ''),
 (48, '三星变牌手机【真机】', 'http://121.42.195.161/2016/12.mp4', '1472974450', 'http://weixin-shipin.com/Public/weixin_video/html/20160904_15_34_10.html'),
-(49, '袖剑变牌', 'http://121.42.195.161/2016/13.mp4', '', ''),
+(49, '袖剑变牌', 'http://121.42.195.161/2016/13.mp4', '1473306558', 'http://weixin-shipin.com/Public/weixin_video/html/20160908_11_49_18.html'),
 (50, '超级扫描分析仪', 'http://121.42.195.161/2016/14.mp4', '', ''),
-(51, '透视杯碗', 'http://121.42.195.161/2016/16.mp4', '', ''),
+(51, '透视杯碗', 'http://121.42.195.161/2016/16.mp4', '1473315110', 'http://weixin-shipin.com/Public/weixin_video/html/20160908_14_11_50.html'),
 (52, '极品烟缸扫描', 'http://121.42.195.161/2016/18.mp4', '', ''),
 (53, '知音震动手表', 'http://121.42.195.161/2016/39.mp4', '', ''),
 (54, '万能过牌色子', 'http://121.42.195.161/2016/20.mp4', '', ''),
@@ -1239,7 +1312,7 @@ INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
 (61, '扑克王软价【任何手机】', 'http://121.42.195.161/2016/28.mp4', '', ''),
 (62, 'PK王分析仪', 'http://121.42.195.161/2016/30.mp4', '', ''),
 (63, '普通扑克知点仪', 'http://121.42.195.161/2016/31.mp4', '', ''),
-(64, '麻将变牌新品', 'http://121.42.195.161/2016/33.mp4', '', ''),
+(64, '麻将变牌新品', 'http://121.42.195.161/2016/33.mp4', '1473579605', 'http://weixin-shipin.com/Public/weixin_video/html/20160911_15_40_05.html'),
 (65, '感应超级板', 'http://121.42.195.161/2016/34.mp4', '', ''),
 (66, '三星S5分析仪', 'http://121.42.195.161/2016/36.mp4', '', ''),
 (67, '跑胡子分析仪', 'http://121.42.195.161/2016/37.mp4', '', ''),
@@ -1249,7 +1322,7 @@ INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
 (71, '普通牌远程飞飙后台', 'http://121.42.195.161/2016/2.mp4', '', ''),
 (72, '金花梭哈感应桌', 'http://121.42.195.161/2016/5.mp4', '', ''),
 (73, '全能玩后台分析软件', 'http://121.42.195.161/m/quannengwan.mp4', '', ''),
-(74, '苹果6普通牌扑克分析仪', 'http://121.42.195.161/m/mffxy.mp4', '', ''),
+(74, '苹果6普通牌扑克分析仪', 'http://121.42.195.161/m/mffxy.mp4', '1473649625', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_11_07_05.html'),
 (75, '智能机变牌现场表演', 'http://121.42.195.161/20160420.mp4', '', ''),
 (76, '白光高清、蓝光一对一——效果对比【视频】', 'http://m.yicl.net/mp4/白光高清、蓝光一对一——效果对比【视频】.mp4', '', ''),
 (77, 'iPhone SE的使用方法讲解——轻松实战演示【视频】', 'http://m.yicl.net/mp4/iPhone SE的使用方法讲解——轻松实战演示【视频】.mp4', '', ''),
@@ -1259,10 +1332,10 @@ INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
 (81, '威锋王动态皮带镜头——无需后台操作，范围覆盖整张台面【视频】', 'http://m.yicl.net/mp4/威锋王动态皮带镜头——无需后台操作，范围覆盖整张台面【视频】.mp4', '', ''),
 (82, '千术手法——纯手法斗地主【视频】', 'http://m.yicl.net/mp4/千术手法——纯手法斗地主【视频】.mp4', '', ''),
 (83, '换牌技巧——纯手法视频', 'http://m.yicl.net/mp4/换牌技巧——纯手法视频.mp4', '', ''),
-(84, '普通麻将飞针——尖端突破，无需换牌，远程操控，后台操作系统', 'http://m.yicl.net/mp4/普通麻将飞针——尖端突破，无需换牌，远程操控，后台操作系统.mp4', '', ''),
+(84, '普通麻将飞针——尖端突破，无需换牌，远程操控，后台操作系统', 'http://m.yicl.net/mp4/普通麻将飞针——尖端突破，无需换牌，远程操控，后台操作系统.mp4', '1473697091', 'http://weixin-shipin.com/Public/weixin_video/html/20160913_00_18_11.html'),
 (85, '扑克王“神眼”——操作使用方法演示【视频】', 'http://m.yicl.net/mp4/扑克王“神眼”——操作使用方法演示【视频】.mp4', '', ''),
 (86, '扑克王“神眼”——以金花玩法为例：实战演示【视频】', 'http://m.yicl.net/mp4/扑克王“神眼”——以金花玩法为例：实战演示【视频】.mp4', '', ''),
-(87, '知点仪——不需要镜头耳塞，任何普通牌都可使用，保证自己拿最大牌【视频】', 'http://m.yicl.net/mp4/知点仪——不需要镜头耳塞，任何普通牌都可使用，保证自己拿最大牌【视频】.mp4', '', ''),
+(87, '知点仪——不需要镜头耳塞，任何普通牌都可使用，保证自己拿最大牌【视频】', 'http://m.yicl.net/mp4/知点仪——不需要镜头耳塞，任何普通牌都可使用，保证自己拿最大牌【视频】.mp4', '1473642578', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_09_09_38.html'),
 (88, '威锋王二代皮带镜头——杀庄杀闲随心所欲，想赢就赢【视频】', 'http://m.yicl.net/mp4/威锋王二代皮带镜头——杀庄杀闲随心所欲，想赢就赢【视频】.mp4', '', ''),
 (89, '阿拉丁分析仪——金花玩法：多次洗牌抽牌都可以知道别家牌的大小【视频】', 'http://m.yicl.net/mp4/阿拉丁分析仪——金花玩法：多次洗牌抽牌都可以知道别家牌的大小【视频】.mp4', '', ''),
 (90, 'CTK发牌软件', 'http://m.yicl.net/mp4/CTK发牌软件.mp4', '', ''),
@@ -1272,14 +1345,14 @@ INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
 (94, '一对一耳塞——使用方法与正确操作演示【视频】', 'http://m.yicl.net/mp4/一对一耳塞——使用方法与正确操作演示【视频】.mp4', '', ''),
 (95, '纯手法技术——江湖上失传多年、号称绝杀一号，不偷牌不藏牌【视频】', 'http://m.yicl.net/mp4/纯手法技术——江湖上失传多年、号称绝杀一号，不偷牌不藏牌【视频】.mp4', '', ''),
 (96, '改装王I代——任何品牌四口机都可安装，方便隐蔽【视频】', 'http://m.yicl.net/mp4/改装王I代——任何品牌四口机都可安装，方便隐蔽【视频】.mp4', '', ''),
-(97, '遥控碗——想打几就打几、准确效果演示【视频】', 'http://m.yicl.net/mp4/遥控碗——想打几就打几、准确效果演示【视频】.mp4', '', ''),
+(97, '遥控碗——想打几就打几、准确效果演示【视频】', 'http://m.yicl.net/mp4/遥控碗——想打几就打几、准确效果演示【视频】.mp4', '1473561509', 'http://weixin-shipin.com/Public/weixin_video/html/20160911_10_38_29.html'),
 (98, '钱包镜头——极速王2主机演示效果【视频】', 'http://m.yicl.net/mp4/钱包镜头——极速王2主机演示效果【视频】.mp4', '', ''),
-(99, '极速王2——6人三公为例：任意多次切牌，横竖切照样报牌【视频】', 'http://m.yicl.net/mp4/极速王2——6人三公为例：任意多次切牌，横竖切照样报牌【视频】.mp4', '', ''),
+(99, '极速王2——6人三公为例：任意多次切牌，横竖切照样报牌【视频】', 'http://m.yicl.net/mp4/极速王2——6人三公为例：任意多次切牌，横竖切照样报牌【视频】.mp4', '1473490646', 'http://weixin-shipin.com/Public/weixin_video/html/20160910_14_57_26.html'),
 (100, '极速王2——双剑合璧4人三公：庄家洗牌，闲家打点，报庄大【视频】', 'http://m.yicl.net/mp4/极速王2——双剑合璧4人三公：庄家洗牌，闲家打点，报庄大【视频】.mp4', '', ''),
-(101, '百家乐', 'http://m.yicl.net/mp4/百家乐.mp4', '', ''),
+(101, '百家乐红包软件', 'http://m.yicl.net/mp4/百家乐.mp4', '1473652054', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_11_47_34.html'),
 (102, '极速王2——40张8人斗牛，发后面四轮牌，报最大家【视频】', 'http://m.yicl.net/mp4/极速王2——40张8人斗牛，发后面四轮牌，报最大家【视频】.mp4', '', ''),
 (103, '普通扑克洗牌方法——资深师傅亲自讲解演示【视频】', 'http://m.yicl.net/mp4/普通扑克洗牌方法——资深师傅亲自讲解演示【视频】.mp4', '', ''),
-(104, '极速王2——梭哈：不管谁发牌、任意切牌、可知道未来的牌【视频】', 'http://m.yicl.net/mp4/极速王2——梭哈：不管谁发牌、任意切牌、可知道未来的牌【视频】.mp4', '', ''),
+(104, '极速王2——梭哈：不管谁发牌、任意切牌、可知道未来的牌【视频】', 'http://m.yicl.net/mp4/极速王2——梭哈：不管谁发牌、任意切牌、可知道未来的牌【视频】.mp4', '1473490708', 'http://weixin-shipin.com/Public/weixin_video/html/20160910_14_58_28.html'),
 (105, '极速王2——52张宝子，庄家洗牌、闲家切牌、保庄大玩法【视频】', 'http://m.yicl.net/mp4/极速王2——52张宝子，庄家洗牌、闲家切牌、保庄大玩法【视频】.mp4', '', ''),
 (106, '极速王2——洗牌、拨牌、切牌方式报最大家为例：不受灯光限制【视频】', 'http://m.yicl.net/mp4/极速王2——洗牌、拨牌、切牌方式报最大家为例：不受灯光限', '', ''),
 (107, '极速王2——三公大吃小为例：庄家不能洗牌只能打色、报最大家【视频】', 'http://m.yicl.net/mp4/极速王2——三公大吃小为例：庄家不能洗牌只能打色、报最大', '', ''),
@@ -1307,8 +1380,8 @@ INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
 (129, 'PK王S518——湖南长牌、实战演示效果【视频】', 'http://m.yicl.net/mp4/PK王S518——湖南长牌、实战演示效果【视频】.mp4', '', ''),
 (130, '马来西亚变牌——无变牌器的变牌衣，不多不少不重牌不卡牌【视频】', 'http://m.yicl.net/mp4/马来西亚变牌——无变牌器的变牌衣，不多不少不重牌不卡牌【视频】.mp4', '', ''),
 (131, '最新全自动捕捉八付牌，可远程操作【视频效果】', 'http://m.yicl.net/mp4/最新全自动捕捉八付牌，可远程操作【视频效果】.mp4', '', ''),
-(132, '最新百家乐洗牌机，针对任何普通牌【视频效果】', 'http://m.yicl.net/mp4/最新百家乐洗牌机，针对任何普通牌【视频效果】.mp4', '', ''),
-(133, '2016最新普通扑克分析仪---移动-晃动-自动识别', 'http://m.yicl.net/mp4/2016最新普通扑克分析仪---移动-晃动-自动识别.mp4', '', ''),
+(132, '最新百家乐洗牌机，针对任何普通牌【视频效果】', 'http://m.yicl.net/mp4/最新百家乐洗牌机，针对任何普通牌【视频效果】.mp4', '1473578642', 'http://weixin-shipin.com/Public/weixin_video/html/20160911_15_24_02.html'),
+(133, '2016最新普通扑克分析仪---移动-晃动-自动识别', 'http://m.yicl.net/mp4/2016最新普通扑克分析仪---移动-晃动-自动识别.mp4', '1473745107', 'http://weixin-shipin.com/Public/weixin_video/html/20160913_13_38_27.html'),
 (134, '恭喜发财第四代智能语音麻将', 'http://m.yicl.net/mp4/恭喜发财第四代智能语音麻将.mp4', '', ''),
 (135, '药物感应猜单双大小鱼虾【视频】', 'http://m.yicl.net/mp4/药物感应猜单双大小鱼虾【视频】.mp4', '', ''),
 (136, '2016最新普通扑克分析仪---移动-晃动-自动识别', 'http://m.yicl.net/mp4/2016最新普通扑克分析仪---移动-晃动-自动识别.mp4', '', ''),
@@ -1326,24 +1399,24 @@ INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
 (148, '牌靴认识普通牌——适用于百家乐、龙虎【视频】', 'http://m.yicl.net/mp4/牌靴认识普通牌——适用于百家乐、龙虎【视频】.mp4', '', ''),
 (149, '战神上市，轻松变牌——真正实战打场产品【视频】', 'http://m.yicl.net/mp4/战神上市，轻松变牌——真正实战打场产品【视频】.mp4', '', ''),
 (150, '战神变牌衣——实战演示效果【视频】', 'http://m.yicl.net/mp4/战神变牌衣——实战演示效果【视频】.mp4', '', ''),
-(151, '新款袖口变牌衣——只需0.1秒即可变牌【视频】', 'http://m.yicl.net/mp4/新款袖口变牌衣——只需0.1秒即可变牌【视频】.mp4', '', ''),
+(151, '新款袖口变牌衣——只需0.1秒即可变牌【视频】', 'http://m.yicl.net/mp4/新款袖口变牌衣——只需0.1秒即可变牌【视频】.mp4', '1473655564', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_12_46_04.html'),
 (152, '新电动鬼手——【视频介绍】', 'http://m.yicl.net/mp4/新电动鬼手——【视频介绍】.mp4', '', ''),
 (153, '夏季新款变牌衣——金花玩法演示效果【视频】', 'http://m.yicl.net/mp4/夏季新款变牌衣——金花玩法演示效果【视频】.mp4', '', ''),
 (154, '无痕打点药水——操作使用视频', 'http://m.yicl.net/mp4/无痕打点药水——操作使用视频.mp4', '', ''),
 (155, '无道具变牌衣——普通扑克通用，打场神器【视频】', 'http://m.yicl.net/mp4/无道具变牌衣——普通扑克通用，打场神器【视频】.mp4', '', ''),
 (156, '万能油——毫无破绽，秒变取胜【视频】', 'http://m.yicl.net/mp4/万能油——毫无破绽，秒变取胜【视频】.mp4', '', ''),
 (157, '万能变_牌药水——视频演示', 'http://m.yicl.net/mp4/万能变_牌药水——视频演示.mp4', '', ''),
-(158, '万变神油——可摸底张，偷_换牌，换真假色子【实战视频】', 'http://m.yicl.net/mp4/万变神油——可摸底张，偷_换牌，换真假色子【实战视频】.mp4', '', ''),
+(158, '万变神油——可摸底张，偷_换牌，换真假色子【实战视频】', 'http://m.yicl.net/mp4/万变神油——可摸底张，偷_换牌，换真假色子【实战视频】.mp4', '1473403796', 'http://weixin-shipin.com/Public/weixin_video/html/20160909_14_49_56.html'),
 (159, '筒子外挂——操作演示【视频】', 'http://m.yicl.net/mp4/筒子外挂——操作演示【视频】.mp4', '', ''),
 (160, '筒子牌九皮带变牌器——轻轻一放即变【视频】', 'http://m.yicl.net/mp4/筒子牌九皮带变牌器——轻轻一放即变【视频】.mp4', '1472974712', 'http://weixin-shipin.com/Public/weixin_video/html/20160904_15_38_32.html'),
 (161, '闪电变牌衣——秒杀市面上一切变牌衣【视频】', 'http://m.yicl.net/mp4/闪电变牌衣——秒杀市面上一切变牌衣【视频】.mp4', '', ''),
 (162, '钱币变牌——无噪音不卡牌【视频】', 'http://m.yicl.net/mp4/钱币变牌——无噪音不卡牌【视频】.mp4', '', ''),
-(163, '普通扑克变牌衬衣——不多不少不重复【视频】', 'http://m.yicl.net/mp4/普通扑克变牌衬衣——不多不少不重复【视频】.mp4', '', ''),
+(163, '普通扑克变牌衬衣——不多不少不重复【视频】', 'http://m.yicl.net/mp4/普通扑克变牌衬衣——不多不少不重复【视频】.mp4', '1473584243', 'http://weixin-shipin.com/Public/weixin_video/html/20160911_16_57_23.html'),
 (164, '苹果六4.7英寸通话变牌手机——使用绝技视频', 'http://m.yicl.net/mp4/苹果六4.7英寸通话变牌手机——使用绝技视频.mp4', '1472978928', 'http://weixin-shipin.com/Public/weixin_video/html/20160904_16_48_48.html'),
 (165, '苹果6变牌手机——【视频演示】', 'http://m.yicl.net/mp4/苹果6变牌手机——【视频演示】.mp4', '', ''),
 (166, '牌九无缝变牌桌——桌面不需放任何东西即可变牌【视频】', 'http://m.yicl.net/mp4/牌九无缝变牌桌——桌面不需放任何东西即可变牌【视频】.mp4', '', ''),
-(167, '牌九变_牌技巧——出千打场必备【视频】', 'http://m.yicl.net/mp4/牌九变_牌技巧——出千打场必备【视频】.mp4', '', ''),
-(168, '内袖变牌棉衣——冬天玩牌必备【视频】', 'http://m.yicl.net/mp4/内袖变牌棉衣——冬天玩牌必备【视频】.mp4', '', ''),
+(167, '牌九变_牌技巧——出千打场必备【视频】', 'http://m.yicl.net/mp4/牌九变_牌技巧——出千打场必备【视频】.mp4', '1473400734', 'http://weixin-shipin.com/Public/weixin_video/html/20160909_13_58_54.html'),
+(168, '内袖变牌棉衣——冬天玩牌必备【视频】', 'http://m.yicl.net/mp4/内袖变牌棉衣——冬天玩牌必备【视频】.mp4', '1473400311', 'http://weixin-shipin.com/Public/weixin_video/html/20160909_13_51_51.html'),
 (169, '麻将机盖板（桌面）控色——准确率百分百【视频】', 'http://m.yicl.net/mp4/麻将机盖板（桌面）控色——准确率百分百【视频】.mp4', '', ''),
 (170, '可上网通话的苹果6变_牌手机——视频演示', 'http://m.yicl.net/mp4/可上网通话的苹果6变_牌手机——视频演示.mp4', '', ''),
 (171, '高科技变牌衣——眼皮底下轻松换牌【视频】', 'http://m.yicl.net/mp4/高科技变牌衣——眼皮底下轻松换牌【视频】.mp4', '', ''),
@@ -1369,12 +1442,12 @@ INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
 (191, '百变智能手机后台——不仅可玩筒子牌九，还可透视色子，猜宝，效果百分百', 'http://m.yicl.net/mp4/百变智能手机后台——不仅可玩筒子牌九，还可透视色子，猜宝，效果百分百【视频】.mp4', '1473061922', 'http://weixin-shipin.com/Public/weixin_video/html/20160905_15_52_02.html'),
 (192, 'QQ飞针麻将——超级IC飞针麻将牌【视频】', 'http://m.yicl.net/mp4/QQ飞针麻将——超级IC飞针麻将牌【视频】.mp4', '', ''),
 (193, 'CTK孙悟空72变之火眼睛镜——真正做到大范围，高清，隐蔽', 'http://m.yicl.net/mp4/CTK孙悟空72变之火眼睛镜——真正做到大范围，高清，隐蔽.mp4', '1472987459', 'http://weixin-shipin.com/Public/weixin_video/html/20160904_19_10_59.html'),
-(194, '最新六代光纤牌九——准确率高达百分之百【视频】', 'http://m.yicl.net/mp4/最新六代光纤牌九——准确率高达百分之百【视频】.mp4', '', ''),
+(194, '最新六代光纤牌九——准确率高达百分之百【视频】', 'http://m.yicl.net/mp4/最新六代光纤牌九——准确率高达百分之百【视频】.mp4', '1473747366', 'http://weixin-shipin.com/Public/weixin_video/html/20160913_14_16_06.html'),
 (195, '智能极速王牌九玩法——闲家可任意切牌【视频】', 'http://m.yicl.net/mp4/智能极速王牌九玩法——闲家可任意切牌【视频】.mp4', '', ''),
 (196, '至尊宝——专业感应筒子、牌九【视频】', 'http://m.yicl.net/mp4/至尊宝——专业感应筒子、牌九【视频】.mp4', '', ''),
 (197, '新型无声按键麻将语音报牌器——使用操作说明【视频】', 'http://m.yicl.net/mp4/新型无声按键麻将语音报牌器——使用操作说明【视频】.mp4', '', ''),
-(198, '闪电筒子——专业感应，随意报大小，玩法随意切换', 'http://m.yicl.net/mp4/闪电筒子——专业感应，随意报大小，玩法随意切换.mp4', '', ''),
-(199, '麻将机控色线圈——【视频介绍】', 'http://m.yicl.net/mp4/麻将机控色线圈——【视频介绍】.mp4', '', ''),
+(198, '闪电筒子——专业感应，随意报大小，玩法随意切换', 'http://m.yicl.net/mp4/闪电筒子——专业感应，随意报大小，玩法随意切换.mp4', '1473400334', 'http://weixin-shipin.com/Public/weixin_video/html/20160909_13_52_14.html'),
+(199, '麻将机控色线圈——【视频介绍】', 'http://m.yicl.net/mp4/麻将机控色线圈——【视频介绍】.mp4', '1473561570', 'http://weixin-shipin.com/Public/weixin_video/html/20160911_10_39_30.html'),
 (200, '领航者极速便装版——打到哪，装到哪【视频】', 'http://m.yicl.net/mp4/领航者极速便装版——打到哪，装到哪【视频】.mp4', '', ''),
 (201, '幻影牌九，筒子——打场必备产品、可来牌加工【视频】', 'http://m.yicl.net/mp4/幻影牌九，筒子——打场必备产品、可来牌加工【视频】.mp4', '', ''),
 (202, '幻影密码麻将——非同凡响，与你一起纵横驰骋，横扫千军【视频】', 'http://m.yicl.net/mp4/幻影密码麻将——非同凡响，与你一起纵横驰骋，横扫千军【视频】.mp4', '', ''),
@@ -1382,7 +1455,7 @@ INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
 (204, '光纤筒子牌九——随意串牌点杀【视频效果】', 'http://m.yicl.net/mp4/光纤筒子牌九——随意串牌点杀【视频效果】.mp4', '', ''),
 (205, '光纤筒子——牌九三层效果视频', 'http://m.yicl.net/mp4/光纤筒子——牌九三层效果视频.mp4', '', ''),
 (206, '光控麻将——安装视频', 'http://m.yicl.net/mp4/光控麻将——安装视频.mp4', '', ''),
-(207, '恭喜发财”第四代单人操作语音麻将——铸就行业不败神话【视频】', 'http://m.yicl.net/mp4/恭喜发财”第四代单人操作语音麻将——铸就行业不败神话【视频】.mp4', '', ''),
+(207, '恭喜发财”第四代单人操作语音麻将——铸就行业不败神话【视频】', 'http://m.yicl.net/mp4/恭喜发财”第四代单人操作语音麻将——铸就行业不败神话【视频】.mp4', '1473659466', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_13_51_06.html'),
 (208, '东方不败二合一麻将机——一机两用，扑克麻将怎么玩都是赢【视频】', 'http://m.yicl.net/mp4/东方不败二合一麻将机——一机两用，扑克麻将怎么玩都是赢【视频】.mp4', '', ''),
 (209, '第三代语音验牌器——可以准确独读出每一张程序、透视、飞针牌【视频】', 'http://m.yicl.net/mp4/第三代语音验牌器——可以准确独读出每一张程序、透视、飞针', '', ''),
 (210, 'AK麻将机——现场玩牌实战效果【视频】', 'http://m.yicl.net/mp4/AK麻将机——现场玩牌实战效果【视频】.mp4', '', ''),
@@ -1390,30 +1463,30 @@ INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
 (212, '扎金花变牌技巧——玩牌中即可变牌【视频】', 'http://m.yicl.net/mp4/扎金花变牌技巧——玩牌中即可变牌【视频】.mp4', '', ''),
 (213, '十三水发牌技术——【视频】', 'http://m.yicl.net/mp4/十三水发牌技术——【视频】.mp4', '', ''),
 (214, '千术发牌手法——普通牌玩金花四家牌【视频】', 'http://m.yicl.net/mp4/千术发牌手法——普通牌玩金花四家牌【视频】.mp4', '', ''),
-(215, '普通牌认牌技术——实战视频', 'http://m.yicl.net/mp4/普通牌认牌技术——实战视频.mp4', '', ''),
+(215, '普通牌认牌技术——实战视频', 'http://m.yicl.net/mp4/普通牌认牌技术——实战视频.mp4', '1473668108', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_16_15_08.html'),
 (216, '扑克打点药水——操作说明【视频】', 'http://m.yicl.net/mp4/扑克打点药水——操作说明【视频】.mp4', '', ''),
 (217, '美国二代做牌药水——无色差、不改变原牌质量【操作视频】', 'http://m.yicl.net/mp4/美国二代做牌药水——无色差、不改变原牌质量【操作视频】.mp4', '', ''),
 (218, '马来西亚万变麻将——随便摸牌都可胡牌【视频】', 'http://m.yicl.net/mp4/马来西亚万变麻将——随便摸牌都可胡牌【视频】.mp4', '', ''),
-(219, '麻将千术纯手法——技术在手，胜券在握【视频】', 'http://m.yicl.net/mp4/麻将千术纯手法——技术在手，胜券在握【视频】.mp4', '', ''),
+(219, '麻将千术纯手法——技术在手，胜券在握【视频】', 'http://m.yicl.net/mp4/麻将千术纯手法——技术在手，胜券在握【视频】.mp4', '1473561636', 'http://weixin-shipin.com/Public/weixin_video/html/20160911_10_40_36.html'),
 (220, '金花发牌技术——【实战视频】', 'http://m.yicl.net/mp4/金花发牌技术——【实战视频】.mp4', '', ''),
 (221, '换整副扑克牌外挂——无需在衣服上打孔，演示效果绝对惊人【视频】', 'http://m.yicl.net/mp4/换整副扑克牌外挂——无需在衣服上打孔，演示效果绝对惊人【视频】.mp4', '', ''),
 (222, '幻影神笔认普通牌——视频演示', 'http://m.yicl.net/mp4/幻影神笔认普通牌——视频演示.mp4', '1473061696', 'http://weixin-shipin.com/Public/weixin_video/html/20160905_15_48_16.html'),
-(223, '挂花膏演示效果——【视频】', 'http://m.yicl.net/mp4/挂花膏演示效果——【视频】.mp4', '', ''),
+(223, '挂花膏演示效果——【视频】', 'http://m.yicl.net/mp4/挂花膏演示效果——【视频】.mp4', '1473654595', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_12_29_55.html'),
 (224, '挂花粉——适合各种麻将牌九，无光线要求，无色无味高隐蔽【视频】', 'http://m.yicl.net/mp4/挂花粉——适合各种麻将牌九，无光线要求，无色无味高隐蔽【视频】.mp4', '', ''),
 (225, '飞牌技术——手法教学【视频】', 'http://m.yicl.net/mp4/飞牌技术——手法教学【视频】.mp4', '', ''),
-(226, '发牌技巧——高技术、简单学，保证自己拿最大牌【视频】', 'http://m.yicl.net/mp4/发牌技巧——高技术、简单学，保证自己拿最大牌【视频】.mp4', '', ''),
+(226, '发牌技巧——高技术、简单学，保证自己拿最大牌【视频】', 'http://m.yicl.net/mp4/发牌技巧——高技术、简单学，保证自己拿最大牌【视频】.mp4', '1473345848', 'http://weixin-shipin.com/Public/weixin_video/html/20160908_22_44_08.html'),
 (227, '多花样招式洗牌——真人实力展示【视频】', 'http://m.yicl.net/mp4/多花样招式洗牌——真人实力展示【视频】.mp4', '', ''),
 (228, '最新闪电王动态镜头—— 一闪即报不用对牌【三公视频演示】', 'http://m.yicl.net/mp4/最新闪电王动态镜头—— 一闪即报不用对牌【三公视频演示】', '', ''),
-(229, '真钱钱币镜头——距离远，快速报牌，三公玩法【视频】', 'http://m.yicl.net/mp4/真钱钱币镜头——距离远，快速报牌，三公玩法【视频】.mp4', '', ''),
+(229, '真钱钱币镜头——距离远，快速报牌，三公玩法【视频】', 'http://m.yicl.net/mp4/真钱钱币镜头——距离远，快速报牌，三公玩法【视频】.mp4', '1473473981', 'http://weixin-shipin.com/Public/weixin_video/html/20160910_10_19_41.html'),
 (230, '远袖王——专为大台面定制的镜头', 'http://m.yicl.net/mp4/远袖王——专为大台面定制的镜头.mp4', '', ''),
-(231, '远袖王镜头——前后报牌30过分、效果很清晰【视频】', 'http://m.yicl.net/mp4/远袖王镜头——前后报牌30过分、效果很清晰【视频】.mp4', '', ''),
+(231, '远袖王镜头——前后报牌30过分、效果很清晰【视频】', 'http://m.yicl.net/mp4/远袖王镜头——前后报牌30过分、效果很清晰【视频】.mp4', '1473668794', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_16_26_34.html'),
 (232, '隐形无孔镜头桌——方形圆形可定制、半个小时也找不到镜头的位置【视频】', 'http://m.yicl.net/mp4/隐形无孔镜头桌——方形圆形可定制、半个小时也找不到镜头的位置【视频】.mp4', '', ''),
 (233, '一对一激光镜头——苹果真机【视频】', 'http://m.yicl.net/mp4/一对一激光镜头——苹果真机【视频】.mp4', '', ''),
 (234, '袖口近距离镜头——桌子上不用放任何东西【视频】', 'http://m.yicl.net/mp4/袖口近距离镜头——桌子上不用放任何东西【视频】.mp4', '', ''),
 (235, '新款阿拉丁外配镜头——三公玩法为例', 'http://m.yicl.net/mp4/新款阿拉丁外配镜头——三公玩法为例.mp4', '', ''),
 (236, '无影追踪爱马仕皮带镜头——超级好对、效果更快【视频】', 'http://m.yicl.net/mp4/无影追踪爱马仕皮带镜头——超级好对、效果更快【视频】.mp4', '', ''),
 (237, '威锋王皮带镜头——三公玩法，实战演示效果【视频】', 'http://m.yicl.net/mp4/威锋王皮带镜头——三公玩法，实战演示效果【视频】.mp4', '', ''),
-(238, '透明保温水杯镜头——视频演示', 'http://m.yicl.net/mp4/透明保温水杯镜头——视频演示.mp4', '', ''),
+(238, '透明保温水杯镜头——视频演示', 'http://m.yicl.net/mp4/透明保温水杯镜头——视频演示.mp4', '1473487398', 'http://weixin-shipin.com/Public/weixin_video/html/20160910_14_03_18.html'),
 (239, '双镜衣服镜头——可搭配市面任何一款主机使用【视频】', 'http://m.yicl.net/mp4/双镜衣服镜头——可搭配市面任何一款主机使用【视频】.mp4', '', ''),
 (240, '双镜双纽扣镜头——高清摄像头【视频】', 'http://m.yicl.net/mp4/双镜双纽扣镜头——高清摄像头【视频】.mp4', '', ''),
 (241, '手抓衣服镜头——手一拿牌即可报牌【视频】', 'http://m.yicl.net/mp4/手抓衣服镜头——手一拿牌即可报牌【视频】.mp4', '', ''),
@@ -1421,20 +1494,20 @@ INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
 (243, '闪电镜头——如何安装使用、真实效果演示【视频】', 'http://m.yicl.net/mp4/闪电镜头——如何安装使用、真实效果演示【视频】.mp4', '', ''),
 (244, '钱币动态镜头——远近距离秒报【视频】', 'http://m.yicl.net/mp4/钱币动态镜头——远近距离秒报【视频】.mp4', '', ''),
 (245, '钱包双镜镜头——可做一对一、斗牛玩法演示【视频】', 'http://m.yicl.net/mp4/钱包双镜镜头——可做一对一、斗牛玩法演示【视频】.mp4', '', ''),
-(246, '平面实木镜头桌——让你找不到镜头在哪的桌面镜头', 'http://m.yicl.net/mp4/平面实木镜头桌——让你找不到镜头在哪的桌面镜头.mp4', '', ''),
-(247, '迷你跟踪王镜头——体积小，距离远，无红光不发烫', 'http://m.yicl.net/mp4/迷你跟踪王镜头——体积小，距离远，无红光不发烫.mp4', '', ''),
+(246, '平面实木镜头桌——让你找不到镜头在哪的桌面镜头', 'http://m.yicl.net/mp4/平面实木镜头桌——让你找不到镜头在哪的桌面镜头.mp4', '1473400668', 'http://weixin-shipin.com/Public/weixin_video/html/20160909_13_57_48.html'),
+(247, '迷你跟踪王镜头——体积小，距离远，无红光不发烫', 'http://m.yicl.net/mp4/迷你跟踪王镜头——体积小，距离远，无红光不发烫.mp4', '1473659510', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_13_51_50.html'),
 (248, '迷你充电宝双镜镜头——实战演示效果【视频】', 'http://m.yicl.net/mp4/迷你充电宝双镜镜头——实战演示效果【视频】.mp4', '', ''),
 (249, '领口一对一看背镜头——高清效果', 'http://m.yicl.net/mp4/领口一对一看背镜头——高清效果.mp4', '', ''),
 (250, '夹子斜对手抓镜头——好对隐蔽', 'http://m.yicl.net/mp4/夹子斜对手抓镜头——好对隐蔽.mp4', '', ''),
 (251, '黄金条电弦打火机镜头——视频演示', 'http://m.yicl.net/mp4/黄金条电弦打火机镜头——视频演示.mp4', '', ''),
 (252, '红木桌桌面镜头——安全隐蔽实战【视频】', 'http://m.yicl.net/mp4/红木桌桌面镜头——安全隐蔽实战【视频】.mp4', '', ''),
-(253, '更大范围、更隐蔽的桌子镜头——连续工作10小时以上不发热【视频】', 'http://m.yicl.net/mp4/http://m.yicl.net/mp4/更大范围、更隐蔽的桌子镜头——连续工作10小时以上不发热【视频】.mp4', '', ''),
+(253, '更大范围、更隐蔽的桌子镜头——连续工作10小时以上不发热【视频】', 'http://m.yicl.net/mp4/http://m.yicl.net/mp4/更大范围、更隐蔽的桌子镜头——连续工作10小时以上不发热【视频】.mp4', '1473400358', 'http://weixin-shipin.com/Public/weixin_video/html/20160909_13_52_38.html'),
 (254, '高清针孔时尚单报皮带——闪亮登场【视频效果】', 'http://m.yicl.net/mp4/高清针孔时尚单报皮带——闪亮登场【视频效果】.mp4', '', ''),
 (255, '穿钱王动态镜头——实战利器，赢家的选择！【视频】', 'http://m.yicl.net/mp4/穿钱王动态镜头——实战利器，赢家的选择！【视频】.mp4', '1473239119', 'http://weixin-shipin.com/Public/weixin_video/html/20160907_17_05_19.html'),
 (256, '充电宝激光摄像头——玩硬币激光设备【视频】', 'http://m.yicl.net/mp4/充电宝激光摄像头——玩硬币激光设备【视频】.mp4', '', ''),
 (257, '衬衣领口镜头——看背一对一【视频】', 'http://m.yicl.net/mp4/衬衣领口镜头——看背一对一【视频】.mp4', '', ''),
 (258, '超薄高清镜头——可放在烟盒里面【视频】', 'http://m.yicl.net/mp4/超薄高清镜头——可放在烟盒里面【视频】.mp4', '', ''),
-(259, '侧面黄金苹果6镜头——操作随心所欲，打造手机镜头新标准【视频】', 'http://m.yicl.net/mp4/侧面黄金苹果6镜头——操作随心所欲，打造手机镜头新标准【视频】.mp4', '', ''),
+(259, '侧面黄金苹果6镜头——操作随心所欲，打造手机镜头新标准【视频】', 'http://m.yicl.net/mp4/侧面黄金苹果6镜头——操作随心所欲，打造手机镜头新标准【视频】.mp4', '1473313710', 'http://weixin-shipin.com/Public/weixin_video/html/20160908_13_48_30.html'),
 (260, '杯碗透视镜头——猜硬币玩大小【高清视频】', 'http://m.yicl.net/mp4/杯碗透视镜头——猜硬币玩大小【高清视频】.mp4', '', ''),
 (261, '爆炸式动态皮带镜头——距离远达60公分到1米2、自动捕捉对焦、无须后台【视', 'http://m.yicl.net/mp4/爆炸式动态皮带镜头——距离远达60公分到1米2、自动捕捉', '', ''),
 (262, 'cvk三星三镜充电宝镜头——扑克牌随便洗、主机无限接收、超快速报牌【视频】', 'http://m.yicl.net/mp4/cvk三星三镜充电宝镜头——扑克牌随便洗、主机无限接收、', '', ''),
@@ -1449,7 +1522,7 @@ INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
 (271, '普通扑克发牌软件——金花玩法【视频演示】', 'http://m.yicl.net/mp4/普通扑克发牌软件——金花玩法【视频演示】.mp4', '', ''),
 (272, '普通牌13张三打一——4G视频传输、智能识别100%准确', 'http://m.yicl.net/mp4/普通牌13张三打一——4G视频传输、智能识别100%准确', '', ''),
 (273, '扑克王普通扑克发牌软件——金花玩法【演示视频】', 'http://m.yicl.net/mp4/扑克王普通扑克发牌软件——金花玩法【演示视频】.mp4', '', ''),
-(274, '扑克王零零发——用了它，发牌就是这么任性【视频】', 'http://m.yicl.net/mp4/扑克王零零发——用了它，发牌就是这么任性【视频】.mp4', '', ''),
+(274, '扑克王零零发——用了它，发牌就是这么任性【视频】', 'http://m.yicl.net/mp4/扑克王零零发——用了它，发牌就是这么任性【视频】.mp4', '1473659674', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_13_54_34.html'),
 (275, '扑克王008零零发——360°发牌软件震撼上市【视频】', 'http://m.yicl.net/mp4/扑克王008零零发——360°发牌软件震撼上市【视频】.mp4', '1473151463', 'http://weixin-shipin.com/Public/weixin_video/html/20160906_16_44_23.html'),
 (276, '扑克王007——独家推出可一体可分体随意切换【视频】', 'http://m.yicl.net/mp4/扑克王007——独家推出可一体可分体随意切换【视频】.mp4', '', ''),
 (277, '扑克王“神眼“——让你在战场有如神助，百战百胜!!!【视频】', 'http://m.yicl.net/mp4/扑克王“神眼“——让你在战场有如神助，百战百胜!!!【视频】.mp4', '', ''),
@@ -1464,24 +1537,25 @@ INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
 (286, '阿拉丁智能极速王——金花玩法视频演示', 'http://m.yicl.net/mp4/阿拉丁智能极速王——金花玩法视频演示.mp4', '', ''),
 (287, '阿拉丁普通扑克——新款钱包镜头【视频效果】', 'http://m.yicl.net/mp4/阿拉丁普通扑克——新款钱包镜头【视频效果】.mp4', '', ''),
 (288, '阿拉丁普通扑克52张梭哈先发暗牌玩法——【视频演示】', 'http://m.yicl.net/mp4/阿拉丁普通扑克52张梭哈先发暗牌玩法——【视频演示】.mp4', '', ''),
-(289, '阿拉丁普通牌软件——三公打点保庄大【视频】', 'http://m.yicl.net/mp4/阿拉丁普通牌软件——三公打点保庄大【视频】.mp4', '', ''),
+(289, '阿拉丁普通牌软件——三公打点保庄大【视频】', 'http://m.yicl.net/mp4/阿拉丁普通牌软件——三公打点保庄大【视频】.mp4', '1473520195', 'http://weixin-shipin.com/Public/weixin_video/html/20160910_23_09_55.html'),
 (290, 'TTK普通扑克分析仪——使用方法演示【视频】', 'http://m.yicl.net/mp4/TTK普通扑克分析仪——使用方法演示【视频】.mp4', '', ''),
 (291, '最新激光打码扑克——【砂纸打磨视频效果】', 'http://m.yicl.net/mp4/最新激光打码扑克——【砂纸打磨视频效果】.mp4', '', ''),
-(292, '鱼虾蟹电波神器——让你直接知道结果的好产品、准确率100%【视频】', 'http://m.yicl.net/mp4/鱼虾蟹电波神器——让你直接知道结果的好产品、准确率100%【视频】.mp4', '', ''),
+(292, '鱼虾蟹电波神器——让你直接知道结果的好产品、准确率100%【视频】', 'http://m.yicl.net/mp4/鱼虾蟹电波神器——让你直接知道结果的好产品、准确率100%【视频】.mp4', '1473747131', 'http://weixin-shipin.com/Public/weixin_video/html/20160913_14_12_11.html'),
 (293, '押宝设备——安装与操作演示【视频】', 'http://m.yicl.net/mp4/押宝设备——安装与操作演示【视频】.mp4', '', ''),
 (294, '万能遥控屏蔽器——防止作弊被“出千”，实战效果测试【视频】', 'http://m.yicl.net/mp4/万能遥控屏蔽器——防止作弊被“出千”，实战效果测试【视频】.mp4', '', ''),
-(295, '全能赢微波感应——可玩单双，大小，硬币，猜宝【视频】', 'http://m.yicl.net/mp4/全能赢微波感应——可玩单双，大小，硬币，猜宝【视频】.mp4', '1473151446', 'http://weixin-shipin.com/Public/weixin_video/html/20160906_16_44_06.html'),
-(296, '猫眼监控透视碗——与普通碗没区别，效果明显【视频】', 'http://m.yicl.net/mp4/猫眼监控透视碗——与普通碗没区别，效果明显【视频】.mp4', '', ''),
+(295, '全能赢微波感应——可玩单双，大小，硬币，猜宝【视频】', 'http://m.yicl.net/mp4/全能赢微波感应——可玩单双，大小，硬币，猜宝【视频】.mp4', '1473151446', 'http://weixin-shipin.com/Public/weixin_video/html/20160906_16_44_06.html');
+INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
+(296, '猫眼监控透视碗——与普通碗没区别，效果明显【视频】', 'http://m.yicl.net/mp4/猫眼监控透视碗——与普通碗没区别，效果明显【视频】.mp4', '1473471006', 'http://weixin-shipin.com/Public/weixin_video/html/20160910_09_30_06.html'),
 (297, '老虎机退币器——效果非常好，实战演示【视频】', 'http://m.yicl.net/mp4/老虎机退币器——效果非常好，实战演示【视频】.mp4', '', ''),
 (298, '激光打码扑克牌——帮您赢遍天下【视频】', 'http://m.yicl.net/mp4/激光打码扑克牌——帮您赢遍天下【视频】.mp4', '', ''),
 (299, '激光打码牌——防水耐磨与普通牌无差别，用刀片刮一样报牌【视频】', 'http://m.yicl.net/mp4/激光打码牌——防水耐磨与普通牌无差别，用刀片刮一样报牌【视频】.mp4', '1473054379', 'http://weixin-shipin.com/Public/weixin_video/html/20160905_13_46_19.html'),
 (300, '感应杯碗——番摊神器【视频】', 'http://m.yicl.net/mp4/感应杯碗——番摊神器【视频】.mp4', '', ''),
 (301, '反遥控——控制干扰别人的程序【视频】', 'http://m.yicl.net/mp4/反遥控——控制干扰别人的程序【视频】.mp4', '', ''),
-(302, '动感硬币——移动中识别硬币正反、单双【视频】', 'http://m.yicl.net/mp4/动感硬币——移动中识别硬币正反、单双【视频】.mp4', '', ''),
+(302, '动感硬币——移动中识别硬币正反、单双【视频】', 'http://m.yicl.net/mp4/动感硬币——移动中识别硬币正反、单双【视频】.mp4', '1473744592', 'http://weixin-shipin.com/Public/weixin_video/html/20160913_13_29_52.html'),
 (303, '单人操作干扰器——想报就报，想停就停【视频】', 'http://m.yicl.net/mp4/单人操作干扰器——想报就报，想停就停【视频】.mp4', '', ''),
 (304, '单人操作反杀机2代——解决出正常音问题，牛牛玩法演示【视频】', 'http://m.yicl.net/mp4/单人操作反杀机2代——解决出正常音问题，牛牛玩法演示【视频】.mp4', '', ''),
 (305, '超强信号干扰器——遥控10米、干扰范围20米【主机克星】', 'http://m.yicl.net/mp4/超强信号干扰器——遥控10米、干扰范围20米【主机克星】.mp4', '', ''),
-(306, '猜硬币猜单双——设备小、简单操作【视频】', 'http://m.yicl.net/mp4/猜硬币猜单双——设备小、简单操作【视频】.mp4', '', ''),
+(306, '猜硬币猜单双——设备小、简单操作【视频】', 'http://m.yicl.net/mp4/猜硬币猜单双——设备小、简单操作【视频】.mp4', '1473744661', 'http://weixin-shipin.com/Public/weixin_video/html/20160913_13_31_01.html'),
 (307, '捕鱼干扰万能加分器——实战视频', 'http://m.yicl.net/mp4/捕鱼干扰万能加分器——实战视频.mp4', '', ''),
 (308, '便携式番摊主机——玩番摊必备【视频演示】', 'http://m.yicl.net/mp4/便携式番摊主机——玩番摊必备【视频演示】.mp4', '', ''),
 (309, 'CTK蓝牙衣领对讲——体积小、效果好【视频】', 'http://m.yicl.net/mp4/CTK蓝牙衣领对讲——体积小、效果好【视频】.mp4', '', ''),
@@ -1489,30 +1563,30 @@ INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
 (311, '知音震动手表——最安全简单的一对一报牌伴侣【视频】', 'http://m.yicl.net/mp4/知音震动手表——最安全简单的一对一报牌伴侣【视频】.mp4', '', ''),
 (312, '知音震动手表——教学视频', 'http://m.yicl.net/mp4/知音震动手表——教学视频.mp4', '', ''),
 (313, '一对一无声通牌器——绝不延迟、超远距离长达500米【视频】.mp4', 'http://m.yicl.net/mp4/一对一无声通牌器——绝不延迟、超远距离长达500米【视频】.mp4', '', ''),
-(314, '遥控板——简单操作用使用方法【视频】', 'http://m.yicl.net/mp4/遥控板——简单操作用使用方法【视频】.mp4', '', ''),
+(314, '遥控板——简单操作用使用方法【视频】', 'http://m.yicl.net/mp4/遥控板——简单操作用使用方法【视频】.mp4', '1473561416', 'http://weixin-shipin.com/Public/weixin_video/html/20160911_10_36_56.html'),
 (315, '新型脚踩振动器——一对一双振、单振、四振【视频】', 'http://m.yicl.net/mp4/新型脚踩振动器——一对一双振、单振、四振【视频】.mp4', '', ''),
-(316, '新款控色遥控桌——更大范围，安全隐蔽，准确率百分百', 'http://m.yicl.net/mp4/新款控色遥控桌——更大范围，安全隐蔽，准确率百分百.mp4', '', ''),
+(316, '新款控色遥控桌——更大范围，安全隐蔽，准确率百分百', 'http://m.yicl.net/mp4/新款控色遥控桌——更大范围，安全隐蔽，准确率百分百.mp4', '1473320276', 'http://weixin-shipin.com/Public/weixin_video/html/20160908_15_37_56.html'),
 (317, '万能过牌色子——升级版C518【实战视频】', 'http://m.yicl.net/mp4/万能过牌色子——升级版C518【实战视频】.mp4', '', ''),
 (318, '腿部弯磁六面控色——新产品上市，百发百中', 'http://m.yicl.net/mp4/腿部弯磁六面控色——新产品上市，百发百中.mp4', '1473005343', 'http://weixin-shipin.com/Public/weixin_video/html/20160905_00_09_03.html'),
 (319, '手控遥控包——效果非常准确，实战演示【视频】', 'http://m.yicl.net/mp4/手控遥控包——效果非常准确，实战演示【视频】.mp4', '', ''),
 (320, '神准色子——可控四门，准确率百分百', 'http://m.yicl.net/mp4/神准色子——可控四门，准确率百分百.mp4', '1473063050', 'http://weixin-shipin.com/Public/weixin_video/html/20160905_16_10_50.html'),
-(321, '色子单双新品——五米内可猜出单双，准确率百分百【视频】', 'http://m.yicl.net/mp4/色子单双新品——五米内可猜出单双，准确率百分百【视频】.mp4', '', ''),
+(321, '色子单双新品——五米内可猜出单双，准确率百分百【视频】', 'http://m.yicl.net/mp4/色子单双新品——五米内可猜出单双，准确率百分百【视频】.mp4', '1473744623', 'http://weixin-shipin.com/Public/weixin_video/html/20160913_13_30_23.html'),
 (322, '全球通007一对一数字耳机 ——创造耳机神话【视频】', 'http://m.yicl.net/mp4/全球通007一对一数字耳机 ——创造耳机神话【视频】.mp4', '', ''),
 (323, '钱币镜头看透色子——【视频效果】', 'http://m.yicl.net/mp4/钱币镜头看透色子——【视频效果】.mp4', '', ''),
-(324, '魔骰——无需任何辅助设备，各种工具场地都可摇出想要的点数', 'http://m.yicl.net/mp4/魔骰——无需任何辅助设备，各种工具场地都可摇出想要的点数.mp4', '', ''),
+(324, '魔骰——无需任何辅助设备，各种工具场地都可摇出想要的点数', 'http://m.yicl.net/mp4/魔骰——无需任何辅助设备，各种工具场地都可摇出想要的点数.mp4', '1473609625', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_00_00_25.html'),
 (325, '妙音钛合金尊贵版——专为高端客户定制的耳塞【视频】', 'http://m.yicl.net/mp4/妙音钛合金尊贵版——专为高端客户定制的耳塞【视频】.mp4', '', ''),
 (326, '密码色子——外表、准确度都秒杀市面所有密码色【视频】', 'http://m.yicl.net/mp4/密码色子——外表、准确度都秒杀市面所有密码色【视频】.mp4', '1473005388', 'http://weixin-shipin.com/Public/weixin_video/html/20160905_00_09_48.html'),
 (327, '两门色——砸开无异物，打六七视频效果', 'http://m.yicl.net/mp4/两门色——砸开无异物，打六七视频效果.mp4', '1473143467', 'http://weixin-shipin.com/Public/weixin_video/html/20160906_14_31_07.html'),
 (328, '横磁充电宝控色——【视频演示】', 'http://m.yicl.net/mp4/横磁充电宝控色——【视频演示】.mp4', '', ''),
-(329, '打色打点扑克——四面打点：千、后、顺、庄【视频】', 'http://m.yicl.net/mp4/打色打点扑克——四面打点：千、后、顺、庄【视频】.mp4', '', ''),
-(330, '打火机振动器——可打火抽烟正常使用【视频】', 'http://m.yicl.net/mp4/打火机振动器——可打火抽烟正常使用【视频】.mp4', '', ''),
+(329, '打色打点扑克——四面打点：千、后、顺、庄【视频】', 'http://m.yicl.net/mp4/打色打点扑克——四面打点：千、后、顺、庄【视频】.mp4', '1473659617', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_13_53_37.html'),
+(330, '打火机振动器——可打火抽烟正常使用【视频】', 'http://m.yicl.net/mp4/打火机振动器——可打火抽烟正常使用【视频】.mp4', '1473345795', 'http://weixin-shipin.com/Public/weixin_video/html/20160908_22_43_15.html'),
 (331, '车钥匙千米震动器——可按要求调节震动力度大小【视频介绍】', 'http://m.yicl.net/mp4/车钥匙千米震动器——可按要求调节震动力度大小【视频介绍】.mp4', '1472999861', 'http://weixin-shipin.com/Public/weixin_video/html/20160904_22_37_41.html'),
 (332, '超级搭档万能组合色——无碎孔无添补无夹层【视频】', 'http://m.yicl.net/mp4/超级搭档万能组合色——无碎孔无添补无夹层【视频】.mp4', '', ''),
 (333, 'cvk主机振动器——连接操作使用方法【视频】', 'http://m.yicl.net/mp4/cvk主机振动器——连接操作使用方法【视频】.mp4', '', ''),
 (334, '15x15小型遥控板——准确率百分百【视频】', 'http://m.yicl.net/mp4/15x15小型遥控板——准确率百分百【视频】.mp4', '1473145866', 'http://weixin-shipin.com/Public/weixin_video/html/20160906_15_11_06.html'),
 (335, '最新光感四代透视桌——高清效果【视频】', 'http://m.yicl.net/mp4/最新光感四代透视桌——高清效果【视频】.mp4', '1472975700', 'http://weixin-shipin.com/Public/weixin_video/html/20160904_15_55_00.html'),
 (336, '青光透视——真正做到一对一无色差【视频】', 'http://m.yicl.net/mp4/青光透视——真正做到一对一无色差【视频】.mp4', '1472979103', 'http://weixin-shipin.com/Public/weixin_video/html/20160904_16_51_43.html'),
-(337, '金花桌：超牛的实战新品，完全不怕验牌！【视频】', 'http://m.yicl.net/mp4/金花桌：超牛的实战新品，完全不怕验牌！【视频】.mp4', '', ''),
+(337, '金花桌：超牛的实战新品，完全不怕验牌！【视频】', 'http://m.yicl.net/mp4/金花桌：超牛的实战新品，完全不怕验牌！【视频】.mp4', '1473631018', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_05_56_58.html'),
 (338, '金花感应桌面——4人玩法为例【视频演示】', 'http://m.yicl.net/mp4/金花感应桌面——4人玩法为例【视频演示】.mp4', '', ''),
 (339, '黄光蓝光牌：清晰度最高的一对一透视牌！【视频】', 'http://m.yicl.net/mp4/黄光蓝光牌：清晰度最高的一对一透视牌！【视频】.mp4', '', ''),
 (340, '红木纹透视桌——适用于普通扑克、牌九、筒子，效果清晰【视频】', 'http://m.yicl.net/mp4/红木纹透视桌——适用于普通扑克、牌九、筒子，效果清晰【视频】.mp4', '1472983383', 'http://weixin-shipin.com/Public/weixin_video/html/20160904_18_03_03.html'),
@@ -1526,17 +1600,17 @@ INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
 (348, '三星S5通话变_牌王——无限通话，0.1秒速度，三招经典回顾【视频】', 'http://m.yicl.net/mp4/三星S5通话变_牌王——无限通话，0.1秒速度，三招经典回顾【视频】.mp4', '1472983344', 'http://weixin-shipin.com/Public/weixin_video/html/20160904_18_02_24.html'),
 (349, '扑克分析仪——桌面不放任何东西，斗牛玩法演示【视频】', 'http://m.yicl.net/mp4/扑克分析仪——桌面不放任何东西，斗牛玩法演示【视频】.mp4', '1473238515', 'http://weixin-shipin.com/Public/weixin_video/html/20160907_16_55_15.html'),
 (350, '德州扑克软件——无限距离，打破传统理念', 'http://m.yicl.net/mp4/德州扑克软件——无限距离，打破传统理念.mp4', '', ''),
-(351, '捕捉王——全方位扫描，技术再次突破，震撼上市', 'http://m.yicl.net/mp4/捕捉王——全方位扫描，技术再次突破，震撼上市.mp4', '', ''),
+(351, '捕捉王——全方位扫描，技术再次突破，震撼上市', 'http://m.yicl.net/mp4/捕捉王——全方位扫描，技术再次突破，震撼上市.mp4', '1473436906', 'http://weixin-shipin.com/Public/weixin_video/html/20160910_00_01_46.html'),
 (352, '捕_捉王——全方位扫描，技术再次突破，震撼上市', 'http://m.yicl.net/mp4/捕_捉王——全方位扫描，技术再次突破，震撼上市.mp4', '', ''),
 (353, 'K光一对一——效果清晰，报牌迅速，达到无与伦比的隐蔽性【视频】', 'http://m.yicl.net/mp4/K光一对一——效果清晰，报牌迅速，达到无与伦比的隐蔽性【视频】.mp4', '', ''),
-(354, 'K4主机——三公发明牌演示【视频】', 'http://m.yicl.net/mp4/K4主机——三公发明牌演示【视频】.mp4', '', ''),
+(354, 'K4主机——三公发明牌演示【视频】', 'http://m.yicl.net/mp4/K4主机——三公发明牌演示【视频】.mp4', '1473659436', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_13_50_36.html'),
 (355, 'I6D最薄、最大范围一体机——一机在手，走遍江湖【支持正反面报牌】', 'http://m.yicl.net/mp4/I6D最薄、最大范围一体机——一机在手，走遍江湖【支持正反面报牌】.mp4', '1473258950', 'http://weixin-shipin.com/Public/weixin_video/html/20160907_22_35_50.html'),
 (356, 'H1扑克王一体机——洗报速度位居市面主机之首，胜者之选【视频】', 'http://m.yicl.net/mp4/H1扑克王一体机——洗报速度位居市面主机之首，胜者之选【视频】.mp4', '1473058059', 'http://weixin-shipin.com/Public/weixin_video/html/20160905_14_47_39.html'),
 (357, 'ATT十三水记牌软件——视频演示', 'http://m.yicl.net/mp4/ATT十三水记牌软件——视频演示.mp4', '1473212499', 'http://weixin-shipin.com/Public/weixin_video/html/20160907_09_41_39.html'),
-(358, 'CVK730plus——大视角全景识别，解决错报、乱报、对牌难等问题【视频】', 'http://m.yicl.net/mp4/CVK730plus——大视角全景识别，解决错报、乱报、对牌难等问题【视频】.mp4', '', ''),
+(358, 'CVK730plus——大视角全景识别，解决错报、乱报、对牌难等问题【视频】', 'http://m.yicl.net/mp4/CVK730plus——大视角全景识别，解决错报、乱报、对牌难等问题【视频】.mp4', '1473313663', 'http://weixin-shipin.com/Public/weixin_video/html/20160908_13_47_43.html'),
 (359, 'cvk350一体机——演示常规三公报哪家最大【视频】', 'http://m.yicl.net/mp4/cvk350一体机——演示常规三公报哪家最大【视频】.mp4', '1473143497', 'http://weixin-shipin.com/Public/weixin_video/html/20160906_14_31_37.html'),
-(360, 'cvk350T一体机苹果外观——范围报牌演示，移动中报牌【视频】', 'http://m.yicl.net/mp4/cvk350T一体机苹果外观——范围报牌演示，移动中报牌【视频】.mp4', '', ''),
-(361, '美国二代做牌隐形药水——做牌神器一对一【视频】', 'http://m.yicl.net/mp4/美国二代做牌隐形药水——做牌神器一对一【视频】.mp4', '', ''),
+(360, 'cvk350T一体机苹果外观——范围报牌演示，移动中报牌【视频】', 'http://m.yicl.net/mp4/cvk350T一体机苹果外观——范围报牌演示，移动中报牌【视频】.mp4', '1473313638', 'http://weixin-shipin.com/Public/weixin_video/html/20160908_13_47_18.html'),
+(361, '美国二代做牌隐形药水——做牌神器一对一【视频】', 'http://m.yicl.net/mp4/美国二代做牌隐形药水——做牌神器一对一【视频】.mp4', '1473399510', 'http://weixin-shipin.com/Public/weixin_video/html/20160909_13_38_30.html'),
 (362, '后台监控高科技产品——无需带发射器、无需带电源、携带方便【视频】', 'http://m.yicl.net/mp4/后台监控高科技产品——无需带发射器、无需带电源、携带方便【视频】.mp4', '', ''),
 (363, '变牌智能手机——与普通手机功能完全一样，现场演示效果【视频】', 'http://m.yicl.net/mp4/变牌智能手机——与普通手机功能完全一样，现场演示效果【视频】.mp4', '1473231217', 'http://weixin-shipin.com/Public/weixin_video/html/20160907_14_53_37.html'),
 (364, '白光高清、蓝光一对一——效果对比【视频】', 'http://m.yicl.net/mp4/白光高清、蓝光一对一——效果对比【视频】.mp4', '1472972713', 'http://weixin-shipin.com/Public/weixin_video/html/20160904_15_05_13.html'),
@@ -1547,13 +1621,45 @@ INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
 (388, '普通扑克知点仪', '/Public/uploads/video/2016-09-04/57cbd4a79265b.mp4', '1472976125', 'http://weixin-shipin.com/Public/weixin_video/html/20160904_16_02_05.html'),
 (389, '小莫手机上传的视频', '/Public/uploads/video/2016-09-04/57cbd96bee1e4.mp4', '', ''),
 (390, '德州码盘扫描分析镜头', '/Public/uploads/video/2016-09-04/57cc39f17bb23.mp4', '1473045874', 'http://weixin-shipin.com/Public/weixin_video/html/20160905_11_24_34.html'),
-(391, 'K5震撼上市了--追求卓越、创造共赢', '/Public/uploads/video2016-09-05/57ccec7f220ed.mp4', '1473047713', 'http://weixin-shipin.com/Public/weixin_video/html/20160905_11_55_13.html'),
-(392, '2016马来西亚变牌衣', '/Public/uploads/video2016-09-05/57cd2d2088d27.mp4', '', ''),
 (393, '空调遥控器镜头---外观无任何破绽', '/Public/uploads/video2016-09-06/57ce31561b0ce.mp4', '1473209665', 'http://weixin-shipin.com/Public/weixin_video/html/20160907_08_54_25.html'),
 (394, '现场打麻将实战偷牌【视频】', '/Public/uploads/video2016-09-06/57ce6ae705924.mp4', '1473145819', 'http://weixin-shipin.com/Public/weixin_video/html/20160906_15_10_19.html'),
 (395, '2016火星单双色', '/Public/uploads/video2016-09-07/57cfc405532c0.mp4', '1473233937', 'http://weixin-shipin.com/Public/weixin_video/html/20160907_15_38_57.html'),
-(398, '天目传奇单人麻将分析仪', '/Public/uploads/video/2016-09-08/57d0c73f22b73.mp4', '', ''),
-(399, '天目传奇2', '/Public/uploads/video/2016-09-08/57d0ca4e21976.mp4', '1473301112', 'http://weixin-shipin.com/Public/weixin_video/html/20160908_10_18_32.html');
+(398, '天目传奇单人麻将分析仪', '/Public/uploads/video/2016-09-08/57d0c73f22b73.mp4', '1473383810', 'http://weixin-shipin.com/Public/weixin_video/html/20160909_09_16_50.html'),
+(399, '天目传奇2', '/Public/uploads/video/2016-09-08/57d0ca4e21976.mp4', '1473301112', 'http://weixin-shipin.com/Public/weixin_video/html/20160908_10_18_32.html'),
+(400, '北京赛车PK10实战演示', '/Public/uploads/video/2016-09-08/57d11f3fd662a.mp4', '1473583970', 'http://weixin-shipin.com/Public/weixin_video/html/20160911_16_52_50.html'),
+(401, '最新红包排雷软件', '/Public/uploads/video/2016-09-12/57d6262d0218d.mp4', '1473652294', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_11_51_34.html'),
+(402, '红包排雷---2016', '/Public/uploads/video/2016-09-12/57d6288181c9e.mp4', '1473652883', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_12_01_23.html'),
+(403, 'PK王筒子纽扣镜头+无敌骰子=完美组合', '/Public/uploads/video/2016-09-12/57d6640aa2a17.mp4', '1473668679', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_16_24_39.html'),
+(404, '普通扑克认牌技术——不限任何场地，张张认识', '/Public/uploads/video/2016-09-12/57d66449b3f6c.mp4', '1473668745', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_16_25_45.html'),
+(405, 'cvk560烟灰缸镜头——双镜高清大范围 ', '/Public/uploads/video/2016-09-12/57d6648e32751.mp4', '1473668628', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_16_23_48.html'),
+(406, '大理石红木纹透视桌', '/Public/uploads/video/2016-09-12/57d664da6c3c1.mp4', '1473668655', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_16_24_15.html'),
+(407, '侧对手表镜头——三公玩法现场效果展示', '/Public/uploads/video/2016-09-12/57d6653d3a415.mp4', '1473668661', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_16_24_21.html'),
+(408, '新款“手掌”镜头——报牌速度快，准确率达100%', '/Public/uploads/video/2016-09-12/57d66585df8e6.mp4', '1473668665', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_16_24_25.html'),
+(409, '无影变牌衣——随便搓揉，无任何东西，可一次性换多张【视频】', '/Public/uploads/video/2016-09-12/57d665ca21821.mp4', '1473668668', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_16_24_28.html'),
+(410, '扑克神探——超远距离，扑克撕开无异样', '/Public/uploads/video/2016-09-12/57d666036bcee.mp4', '1473668670', 'http://weixin-shipin.com/Public/weixin_video/html/20160912_16_24_30.html'),
+(411, '空调遥控器镜头---外观无任何破绽', 'http://m.yicl.net/mp4/空调遥控器镜头---外观无任何破绽.mp4', '', ''),
+(412, '硬币透视桌-----可定制各式各样桌子', 'http://m.yicl.net/mp4/硬币透视桌-----可定制各式各样桌子.mp4', '', ''),
+(413, '爱马仕手抓皮带镜头-—-一年四季都可用', 'http://m.yicl.net/mp4/爱马仕手抓皮带镜头-—-一年四季都可用.mp4', '1473745859', 'http://weixin-shipin.com/Public/weixin_video/html/20160913_13_50_59.html'),
+(414, '麻将镜头----可订做各种镜头', 'http://m.yicl.net/mp4/麻将镜头----可订做各种镜头.mp4', '1473745911', 'http://weixin-shipin.com/Public/weixin_video/html/20160913_13_51_51.html'),
+(415, '普通扑克认牌技术---不限任何场地', 'http://m.yicl.net/mp4/普通扑克认牌技术---不限任何场地.mp4', '', ''),
+(416, '2016最新麻将、筒子、牌九无影变牌--效果演示', 'http://m.yicl.net/mp4/2016最新麻将、筒子、牌九无影变牌--效果演示.mp4', '', ''),
+(417, '德州扑克码盘镜头----快速、隐蔽、实战', 'http://m.yicl.net/mp4/德州扑克码盘镜头----快速、隐蔽、实战.mp4', '', ''),
+(418, 'PK王筒子纽扣镜头+无敌骰完美组合---实战效果【视频】', 'http://m.yicl.net/mp4/PK王筒子纽扣镜头+无敌骰完美组合---实战效果【视频】.mp4', '1473745897', 'http://weixin-shipin.com/Public/weixin_video/html/20160913_13_51_37.html'),
+(419, '筒子主机----小牌九玩法展示【视频】', 'http://m.yicl.net/mp4/筒子主机----小牌九玩法展示【视频】.mp4', '', ''),
+(420, '拉丝牌---演示视频', 'http://m.yicl.net/mp4/拉丝牌---演示视频.mp4', '1473746219', 'http://weixin-shipin.com/Public/weixin_video/html/20160913_13_56_59.html'),
+(421, '双镜鞋子镜头--超隐蔽、超实用！', 'http://m.yicl.net/mp4/双镜鞋子镜头--超隐蔽、超实用！.mp4', '', ''),
+(422, '雀元帅二代豪华版--没有维修烦恼的程序机【震撼上市】', 'http://m.yicl.net/mp4/雀元帅二代豪华版--没有维修烦恼的程序机【震撼上市】.mp4', '', ''),
+(423, '现场打麻将____实战偷牌【视频】', 'http://m.yicl.net/mp4/现场打麻将____实战偷牌【视频】.mp4', '', ''),
+(424, '单手开花（玩对子）教程解说【视频】', 'http://m.yicl.net/mp4/单手开花（玩对子）教程解说【视频】.mp4', '', ''),
+(425, 'h1主机----三公玩法现场效果展示【视频】', 'http://m.yicl.net/mp4/h1主机----三公玩法现场效果展示【视频】.mp4', '', ''),
+(426, '最新万能打色药水【视频】', 'http://m.yicl.net/mp4/最新万能打色药水【视频】.mp4', '', ''),
+(427, '魔术表演：普通扑克认牌技术', 'http://m.yicl.net/mp4/魔术表演：普通扑克认牌技术.mp4', '1473751952', 'http://weixin-shipin.com/Public/weixin_video/html/20160913_15_32_32.html'),
+(428, '麻将机换牌桌— 现场使用操作【视频】', 'http://m.yicl.net/mp4/麻将机换牌桌— 现场使用操作【视频】.mp4', '', ''),
+(429, '大九主机_现场演示----速度快、准确率高', 'http://m.yicl.net/mp4/大九主机_现场演示----速度快、准确率高.mp4', '', ''),
+(430, '超隐蔽、超安全__麻将报牌器', 'http://m.yicl.net/mp4/超隐蔽、超安全__麻将报牌器.mp4', '1473750500', 'http://weixin-shipin.com/Public/weixin_video/html/20160913_15_08_20.html'),
+(431, '史上最牛充电宝 ！威锋王光速充电宝！！', 'http://m.yicl.net/mp4/史上最牛充电宝 ！威锋王光速充电宝！！.mp4', '', ''),
+(432, '观天下后台发射器----使用操作说明', 'http://m.yicl.net/mp4/观天下后台发射器----使用操作说明.mp4', '', ''),
+(433, '2016年夏季最新款---T恤变牌衣', 'http://m.yicl.net/mp4/2016年夏季最新款---T恤变牌衣.mp4', '1473746974', 'http://weixin-shipin.com/Public/weixin_video/html/20160913_14_09_34.html');
 
 -- --------------------------------------------------------
 
@@ -1562,13 +1668,14 @@ INSERT INTO `nx_video` (`id`, `title`, `url`, `ctime`, `link`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `nx_weixinfile` (
-  `id` smallint(6) NOT NULL,
+  `id` smallint(6) NOT NULL AUTO_INCREMENT,
   `filename` varchar(50) NOT NULL DEFAULT '',
   `title` varchar(22) NOT NULL,
   `ctime` int(11) NOT NULL DEFAULT '0',
   `username` varchar(20) NOT NULL DEFAULT '管理员',
-  `status` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=432 DEFAULT CHARSET=utf8;
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=432 ;
 
 --
 -- 转存表中的数据 `nx_weixinfile`
@@ -1980,7 +2087,7 @@ INSERT INTO `nx_weixinfile` (`id`, `filename`, `title`, `ctime`, `username`, `st
 --
 
 CREATE TABLE IF NOT EXISTS `nx_weixinkefu` (
-  `id` smallint(6) NOT NULL,
+  `id` smallint(6) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL DEFAULT 'null',
   `kefuname` varchar(50) NOT NULL DEFAULT '',
   `phone` varchar(15) NOT NULL DEFAULT '0',
@@ -1988,8 +2095,9 @@ CREATE TABLE IF NOT EXISTS `nx_weixinkefu` (
   `siteurl` varchar(50) NOT NULL DEFAULT '',
   `qq` varchar(15) NOT NULL DEFAULT '0',
   `weixin` varchar(20) NOT NULL,
-  `weixinimg` varchar(100) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+  `weixinimg` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- 转存表中的数据 `nx_weixinkefu`
@@ -2012,10 +2120,11 @@ INSERT INTO `nx_weixinkefu` (`id`, `username`, `kefuname`, `phone`, `author`, `s
 --
 
 CREATE TABLE IF NOT EXISTS `nx_weixintoken` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `token` varchar(512) DEFAULT NULL,
-  `time` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+  `time` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- 转存表中的数据 `nx_weixintoken`
@@ -2033,10 +2142,11 @@ INSERT INTO `nx_weixintoken` (`id`, `token`, `time`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `nx_words` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL DEFAULT '',
-  `title` varchar(500) NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+  `title` varchar(500) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
 --
 -- 转存表中的数据 `nx_words`
@@ -2068,305 +2178,6 @@ INSERT INTO `nx_words` (`id`, `username`, `title`) VALUES
 (23, 'xiaogao', '亲：如果您对技术感兴趣的话，您可以来我们公司先看专业老师现场为您演示技术效果、满意再学，包教包会、不会不收学费。价格是根据您所学的技术来收费，价格有几百至几千不等、详情您可以电话咨询了解：020-29830078；186-1317-9758.---高经理。'),
 (24, 'xiaogao', '您好：这里是广州专业娱乐牌具用品开发有限公司，您需要了解哪方面?很高兴为您解答 24小时咨询热线：186-1317-9758 高经理');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `nx_access`
---
-ALTER TABLE `nx_access`
-  ADD KEY `groupId` (`role_id`),
-  ADD KEY `nodeId` (`node_id`);
-
---
--- Indexes for table `nx_album`
---
-ALTER TABLE `nx_album`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `album_pid` (`pid`),
-  ADD KEY `album_path` (`path`);
-
---
--- Indexes for table `nx_article`
---
-ALTER TABLE `nx_article`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `article_title` (`title`),
-  ADD KEY `article_uid` (`uid`),
-  ADD KEY `article_pid` (`pid`),
-  ADD KEY `article_audit` (`audit`),
-  ADD KEY `article_recommend` (`recommend`),
-  ADD KEY `article_allow` (`allow`),
-  ADD KEY `article_keyword` (`keyword`);
-
---
--- Indexes for table `nx_chat`
---
-ALTER TABLE `nx_chat`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `nx_client`
---
-ALTER TABLE `nx_client`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `nx_column`
---
-ALTER TABLE `nx_column`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `column_pid` (`pid`),
-  ADD KEY `column_path` (`path`),
-  ADD KEY `column_audit` (`audit`),
-  ADD KEY `column_ord` (`ord`),
-  ADD KEY `column_display` (`display`),
-  ADD KEY `column_picid` (`picid`);
-
---
--- Indexes for table `nx_comment`
---
-ALTER TABLE `nx_comment`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `comment_aid` (`aid`),
-  ADD KEY `comment_uid` (`uid`);
-
---
--- Indexes for table `nx_dynamic`
---
-ALTER TABLE `nx_dynamic`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `dynamic_uid` (`uid`),
-  ADD KEY `dynamic_otype` (`otype`),
-  ADD KEY `dynamic_pid` (`pid`),
-  ADD KEY `dynamic_cid` (`cid`);
-
---
--- Indexes for table `nx_flink`
---
-ALTER TABLE `nx_flink`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `flink_list` (`list`),
-  ADD KEY `flink_audit` (`audit`),
-  ADD KEY `flink_ord` (`ord`);
-
---
--- Indexes for table `nx_group`
---
-ALTER TABLE `nx_group`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `nx_guest`
---
-ALTER TABLE `nx_guest`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `messgae_uid` (`phone`),
-  ADD KEY `message_revicename` (`weixin`),
-  ADD KEY `message_status` (`username`);
-
---
--- Indexes for table `nx_image`
---
-ALTER TABLE `nx_image`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `image_pid` (`pid`);
-
---
--- Indexes for table `nx_node`
---
-ALTER TABLE `nx_node`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `level` (`level`),
-  ADD KEY `pid` (`pid`),
-  ADD KEY `status` (`status`),
-  ADD KEY `name` (`name`);
-
---
--- Indexes for table `nx_notic`
---
-ALTER TABLE `nx_notic`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `notice_starttime` (`starttime`),
-  ADD KEY `notice_endtime` (`endtime`),
-  ADD KEY `notice_display` (`display`),
-  ADD KEY `notice_ord` (`ord`);
-
---
--- Indexes for table `nx_play`
---
-ALTER TABLE `nx_play`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `play_aid` (`aid`),
-  ADD KEY `play_picid` (`picid`),
-  ADD KEY `play_starttime` (`starttime`),
-  ADD KEY `play_endtime` (`endtime`),
-  ADD KEY `play_display` (`display`),
-  ADD KEY `play_ord` (`ord`);
-
---
--- Indexes for table `nx_role`
---
-ALTER TABLE `nx_role`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `pid` (`pid`),
-  ADD KEY `status` (`status`);
-
---
--- Indexes for table `nx_role_user`
---
-ALTER TABLE `nx_role_user`
-  ADD KEY `group_id` (`role_id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `nx_user`
---
-ALTER TABLE `nx_user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
-
---
--- Indexes for table `nx_video`
---
-ALTER TABLE `nx_video`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`id`);
-
---
--- Indexes for table `nx_weixinfile`
---
-ALTER TABLE `nx_weixinfile`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `nx_weixinkefu`
---
-ALTER TABLE `nx_weixinkefu`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `nx_weixintoken`
---
-ALTER TABLE `nx_weixintoken`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `nx_words`
---
-ALTER TABLE `nx_words`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `nx_album`
---
-ALTER TABLE `nx_album`
-  MODIFY `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `nx_article`
---
-ALTER TABLE `nx_article`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=167;
---
--- AUTO_INCREMENT for table `nx_chat`
---
-ALTER TABLE `nx_chat`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=163;
---
--- AUTO_INCREMENT for table `nx_client`
---
-ALTER TABLE `nx_client`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=201;
---
--- AUTO_INCREMENT for table `nx_column`
---
-ALTER TABLE `nx_column`
-  MODIFY `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
---
--- AUTO_INCREMENT for table `nx_comment`
---
-ALTER TABLE `nx_comment`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `nx_dynamic`
---
-ALTER TABLE `nx_dynamic`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=131;
---
--- AUTO_INCREMENT for table `nx_flink`
---
-ALTER TABLE `nx_flink`
-  MODIFY `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `nx_group`
---
-ALTER TABLE `nx_group`
-  MODIFY `id` smallint(4) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `nx_guest`
---
-ALTER TABLE `nx_guest`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
---
--- AUTO_INCREMENT for table `nx_image`
---
-ALTER TABLE `nx_image`
-  MODIFY `id` int(11) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `nx_node`
---
-ALTER TABLE `nx_node`
-  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=30;
---
--- AUTO_INCREMENT for table `nx_notic`
---
-ALTER TABLE `nx_notic`
-  MODIFY `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `nx_play`
---
-ALTER TABLE `nx_play`
-  MODIFY `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `nx_role`
---
-ALTER TABLE `nx_role`
-  MODIFY `id` smallint(6) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `nx_user`
---
-ALTER TABLE `nx_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `nx_video`
---
-ALTER TABLE `nx_video`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=400;
---
--- AUTO_INCREMENT for table `nx_weixinfile`
---
-ALTER TABLE `nx_weixinfile`
-  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=432;
---
--- AUTO_INCREMENT for table `nx_weixinkefu`
---
-ALTER TABLE `nx_weixinkefu`
-  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
---
--- AUTO_INCREMENT for table `nx_weixintoken`
---
-ALTER TABLE `nx_weixintoken`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `nx_words`
---
-ALTER TABLE `nx_words`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

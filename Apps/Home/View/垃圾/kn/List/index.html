@@ -1,0 +1,271 @@
+<include file='Public/head2' />
+<script type="text/javascript">
+<!--
+var timeout         = 50;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose; 
+// -->
+</script>
+<div class="AllWrapInside clearfix">
+	<div class="sideColumn1">
+    	<div class="Navigation">您当前的位置： {$position}</div>
+    </div>
+    <div class="clear"> </div>
+    <div class="liebiaoye">
+    	<div class="mainColumn">
+        	<div class="qinglby fl" style='width:981px; height:164px;'>
+            	<a href=""> <img src="__Res__/ad-106.jpg" alt="" width='980'></a>
+            </div>
+            <div class="gggh">
+            	<div class="clear"></div>
+                <div class="GoodsSearchWrap">
+                        	<div class="GoodsSelector division boxGray" style="display: block; ">
+                            	<div class="division boxBrown" style="display: block; ">
+                                	<table>
+                                    	<tbody>
+                                        	<tr>
+                                            	<td class="textright" style="padding-right:6px; width:72px; white-space:nowrap">最新上架：</td>
+
+                                                <td style="line-height:22px; white-space:normal; word-break:break-all">
+                                                    <volist name='hotVideo' id='vo' offset="20" length='15'>
+                                                      <a href="__APP__/article/index/aid/{$vo.id}">{$vo.title}</a>
+                                                    </volist></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+      			   <table width="100%" border="0" cellpadding="0" cellspacing="0" class="grid">
+                   	<tbody>
+                    	<tr valign="top">
+
+                            <volist name='list' id='vo'>
+                         <td id="list-334" width="28%;">
+                            	<div class="items-gallery ">
+                                	<div class="goodpic" style="height:200px; "> <a target="_blank" href="__APP__/article/index/aid/{$vo.id}" style="margin-top:10px;width:280px;height:220px;"> <img width='280' src="{$vo.thumbpic}" alt="{$vo.title}"> </a> </div>
+                                    <div class="goodinfo">
+                                    	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="entry-content">
+                                        	<tbody>
+                                            	<tr>
+                                                	<td colspan="2"><h6 style="height:30px;line-height:30px; "><a  href="__APP__/article/index/aid/{$vo.id}" title="{$vo.title}" class="entry-title">{$vo.title}</a></h6></td>
+                                                </tr>
+              <!--                                   <tr>
+                                                   	<td style="border: 1px solid #cccccc;  background-color: #d6d6d6;">
+                                                        <span class="fangdajing">点击右边放大镜看高清图</span>
+                                                    	<ul class="button">
+                                                            <li class="vdetail zoom"><a title="{$vo.title}" href="__APP__/article/index/aid/{$vo.id}" pic="" target="_blank" class="listact">查看详细</a></li>
+                                                       </ul>
+                                                    </td>
+                                                 </tr> -->
+                                             </tbody>
+                                          </table>
+                                      </div>
+                                </div>
+                            </td>
+</volist>
+
+                         </tr>
+                      </tbody>
+                  </table>
+                  <script>
+void function(){
+/*橱窗放大镜
+  author:litie[A]shopex.cn
+  [c]  ShopEx
+  last update : 2009年9月25日14:51:20
+*/
+    (new Image()).src = '/style/loading.gif';
+    var getAmongPos = function(size,to){
+                 var elpSize = $(to).getSize();
+                 return {
+                    'top':Math.abs((elpSize.y/2).toInt()-(size.height/2).toInt()+to.getPosition().y+elpSize.scroll.y),
+                    'left':Math.abs((elpSize.x/2).toInt()-(size.width/2).toInt()+to.getPosition().x+elpSize.scroll.x)
+                 };
+            };
+
+   $$('.grid .zoom a').addEvent('click',function(e){
+            e.stop();
+            if(this.retrieve('active'))return;
+            var _this = this;
+            _this.store('active',true);
+            var tpic = this.getParent('.items-gallery').getElement('.goodpic img');
+            var bpic_src = this.get('pic');
+           
+		   
+		   
+            var loading = new Element('div',{
+                 styles:{'background':'#fff url(/style/loading.gif) no-repeat 50% 50%',
+                         'width':40,
+                         'height':40,
+                         'border':'1px #e9e9e9 solid',
+                         'opacity':.5}}).inject(document.body).amongTo(tpic);
+            
+			
+            new Asset.image(bpic_src,{onload:function(img){
+                  
+				  
+				  
+                  loading.remove();
+                  var winsize = window.getSize();
+                  var imgSize = $(img).zoomImg(winsize.x,winsize.y,1);
+                  var fxv = $extend(getAmongPos(imgSize,window),imgSize);
+                  var imgFx = new Fx.Morph(img,{link:'cancel'});
+				  
+			
+				
+	
+				  
+				  
+                  img.setStyles($extend(tpic.getCis(),{opacity:0.5})).inject(document.body).addClass('img-zoom').addEvent('click',function(){
+				    
+                      imgFx.start(tpic.getCis()).chain(function(){this.element.remove();_this.store('active',false);
+					 if(window.ie6&&$chk($E('.filtmode select'))) {
+					  $E('.filtmode select').setStyle('visibility','visible'); }
+					  });
+                  });
+				  
+				if(window.ie6&&$chk($E('.filtmode select'))) {
+				 $E('.filtmode select').setStyle('visibility','hidden'); }
+                  imgFx.start($extend(fxv,{opacity:1}));
+				  
+				  
+                  document.addEvent('click',function(){
+                       
+                       img.fireEvent('click');
+                       document.removeEvent('click',arguments.callee);
+                  
+                  });
+            
+            },onerror:function(){
+                _this.store('active',false);
+                loading.remove();
+            }});
+            
+   
+   });
+   
+   
+   }();
+  
+</script>
+    <div class="clearfix">
+    <ul class=" pagelist" style='margin-top:20px;margin-left:20px;height:20px;'>
+        {$page}
+    </ul>
+    </div>
+</div>
+	</div>
+  </div>
+</div>
+<div class="sideColumn">
+    <div class="borderaa " id="widgets_271">
+        <div class="border-top"><h3>商品分类</h3></div>
+        <div class="border-body">
+            <div class="GoodsCategoryWrap">
+                <ul>
+                <li class="c-cat-depth-1">
+                   <a href="/">广州信诺娱乐牌具开发有限公司</a>
+                        <table class="c-cat-depth-2">
+                            <tbody>
+                            <volist name='hotVideo' id='vo' offset="1" length='5' >
+                                <tr>
+                                    <td><a href="__APP__/article/index/aid/{$vo.id}">{$vo.title}</a> </td>
+                                </tr>
+                            </volist>
+                                
+                              </tbody>
+                          </table>
+                      </li><li class="c-cat-depth-1">
+                        <a href="/">广州市白云区远景路842号</a>
+                        <table class="c-cat-depth-2">
+                            <tbody>
+                            
+                               <volist name='hotVideo' id='vo' offset="7" length='8' >
+                                <tr>
+                                    <td><a href="__APP__/article/index/aid/{$vo.id}">{$vo.title}</a> </td>
+                                </tr>
+                            </volist>
+                            
+                              </tbody>
+                          </table>
+                      </li>
+
+                     
+                 </ul>
+              </div>
+        </div>
+    </div>
+    <div class="bordercc " id="widgets_247">
+        <div class="border-top"><h3>热销排行榜</h3></div>
+        <div class="border-body">
+            <style> .itemsWrap{ *display:block; float:left; overflow:hidden; } </style>
+            <div class="GoodsListWrap">
+                <div class="GoodsList">
+
+                 <volist name='hotVideo' id='vo' offset="7" length='8' >
+               <div class="itemsWrap " style="width:99%;">
+                        <div class="item">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                    <tr>
+                                        <td><div class="goodsImg" style="overflow:hidden;text-align:center;vertical-align: middle;width:50px;height:50px;"><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}"><img src=" {$vo.thumbpic}" alt="" width="52"></a></div></td>
+                                        <td class="goodsDesc">  <h6><a href="__APP__/article/index/aid/{$vo.id}" target="_blank" title="{$vo.title}">{$vo.title}...</a></h6>  </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+ </volist>
+
+
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+</div>
+
+<div class="clear"> </div>
+<include file="Public/footer" />

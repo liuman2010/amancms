@@ -26,7 +26,7 @@
 			<div class="col-xs-12">
 
 					<div class="col-xs-12">
-					   <h5>广州天气：<span class="label label-warning">穿衣指数:<?php echo ($tipt1); ?>  感冒指数:<?php echo ($tipt2); ?></span></h5>
+					   <!-- <h5>广州天气：<span class="label label-warning">穿衣指数:<?php echo ($tipt1); ?>  感冒指数:<?php echo ($tipt2); ?></span></h5> -->
 					</div>
 
 					<div class="row">
@@ -57,9 +57,9 @@
 											<li><p>服务器地址：<span class='right'><a target="_blank" href="http://<?php echo ($info["IP_ADDER"]); ?>"><?php echo ($info["IP_ADDER"]); ?></a></span></p></li>
 											<li><p>我当前的登录次数：<span class='right'><?php echo ($info["num"]); ?></span></p></li>
 											<li><p>注册会员总数：<span class='right'><a href="<?php echo U('User/index');?>"><?php echo ($info["userCount"]); ?></a></p></li>
-											<li><p>上一次登录用户:<span class='right'><a target="_blank" href="">admin</a></span></p></li>
-											<li><p>上一次登录地区：<span class='right'><a target="_blank" href="">广州市电信</a></span></p></li>
-											<li><p>上一次登录时间：<span class='right'><a target="_blank" href="">2016-07-31 16:01:03</a></span></p></li>
+											<li><p>上一次登录用户:<span class='right'><a target="_blank" href=""><?php echo ($data["username"]); ?></a></span></p></li>
+											<li><p>上一次登录地区：<span class='right'><a target="_blank" href=""><?php echo ($data["addr"]); ?></a></span></p></li>
+											<li><p>上一次登录时间：<span class='right'><?php echo ($data["ctime"]); ?></span></p></li>
 											
 										</ul>
 								</div>
