@@ -71,7 +71,6 @@ class PublicController extends Controller
 
 			// 查询表单提交过来的用户名的用户信息
 			$userInfo = M('User')->where( array( 'username'=>$username ) )->field( 'status,num' )->find(); 
-			$_SESSION["oldNum"] = $userInfo['num'];
 
 			// 判断账户有没有被禁用
 			if( $userInfo['status'] === '0')
@@ -102,8 +101,8 @@ class PublicController extends Controller
 
 					// 保存当前的用户名密码到当前回话中，超过一个月就过期 3600*24*7*4
 					cookie("PHPSESSID",$_COOKIE["PHPSESSID"],3600*24*7);
-					session(array('name'=>'currentUserName','expire'=>3600*24*7));
-					session(array('name'=>'currentPassWord','expire'=>3600*24*7));
+					session(array('name'=>'currentUserName','expire'=>3600*3));
+					session(array('name'=>'currentPassWord','expire'=>3600*3));
 					session("currentUserName",$username);
 					session("currentPassWord",$password);
 
@@ -136,10 +135,7 @@ class PublicController extends Controller
 		$data['last_ip']      = getIp() ;
 		$data['last_area']    = $addrInfo['content']['address'];
 		$data['login_status'] = 1;
-		if(isset($_SESSION["oldNum"]))
-		{
-			$data['num']      = $_SESSION["oldNum"] + 1;
-		} 
+		$data["num"] 		  = M('User')->where( array("username"=>$username) )->getField('num') + 1 ;
 		M('User')->where( array("username"=>$username) )->save($data);
 	}//f
 

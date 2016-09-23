@@ -50,8 +50,6 @@ class ArticleController extends CommonController
   	// 显示添加文章界面
     public function add()
     { 
-      upload();
-      exit("asdf");
       i_array_column();
       $this->assign('data',D("Column")->getColumns());
     	$this->display();

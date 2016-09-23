@@ -1,0 +1,28 @@
+<include file='Index/head' />
+<hr>
+<div class="col-xs-12">
+	<label for="firstname" class="col-sm-4 control-label">内容：</label>
+	<textarea class="form-control content" name='desc' rows='8' placeholder="请输入栏目介绍"></textarea>
+	<br>
+	<button type="submit" class="btn btn-primary">发送</button>
+</div>
+
+
+	<script>
+		$(function(){
+			$(".btn").click(function(){
+					ws = new WebSocket("ws://192.168.2.103:2346");
+					ws.onopen = function() {
+						var content = $(".content").val();
+					    ws.send(content);
+					};
+					ws.onmessage = function(e) {
+					    alert("收到服务端的消息：" + e.data);
+					};
+			});
+		});
+</script>
+
+
+</body>
+</html>

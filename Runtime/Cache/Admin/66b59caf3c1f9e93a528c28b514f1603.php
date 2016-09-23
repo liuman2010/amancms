@@ -59,7 +59,7 @@
 											<li><p>注册会员总数：<span class='right'><a href="<?php echo U('User/index');?>"><?php echo ($info["userCount"]); ?></a></p></li>
 											<li><p>上一次登录用户:<span class='right'><a target="_blank" href=""><?php echo ($data["username"]); ?></a></span></p></li>
 											<li><p>上一次登录地区：<span class='right'><a target="_blank" href=""><?php echo ($data["addr"]); ?></a></span></p></li>
-											<li><p>上一次登录时间：<span class='right'><?php echo ($data["ctime"]); ?></span></p></li>
+											<li><p>上一次登录时间：<span class='right'><?php echo (date("Y-m-d H:i:s",$data["last_time"])); ?></span></p></li>
 											
 										</ul>
 								</div>

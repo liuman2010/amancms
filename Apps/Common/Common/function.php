@@ -80,12 +80,10 @@
 	 */
 	function upload($savePath='album')
 	{	
-		$arrs = C("ALLOW_TYPE");
-		var_dump($arrs);exit('df');
 		$upload = new \Think\Upload();
 		//上传文件大小的最大值
-		$upload->maxSize  = 0; 
-		$upload->exts     = array('jpg', 'gif', 'png', 'jpeg','mp4');
+		$upload->maxSize  = C("MAX_SIZE"); 
+		$upload->exts     = explode( "|",C("ALLOW_TYPE") );
 		$upload->rootPath = './Public/uploads/';
 		//文件上传的根目录 默认./Public/uploads
 		$upload->savePath = $savePath.'/'; 

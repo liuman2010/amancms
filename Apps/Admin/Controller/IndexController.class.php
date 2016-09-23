@@ -93,6 +93,7 @@ class IndexController extends CommonController
         $data['DB_PREFIX']          =        C('DB_PREFIX');
         $data['DB_CHARSET']         =        C('DB_CHARSET');
         $data['DB_DEBUG']           =        C('DB_DEBUG');
+        $data['WEBNAME']            =        C('WEBNAME');
         $this->assign('data',$data);
         $this->display();
     }

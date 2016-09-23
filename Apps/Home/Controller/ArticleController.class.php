@@ -31,6 +31,7 @@ class ArticleController extends ThemeController {
         $this->assign("next",$next);
         $this->assign("data",$data);
         $this->assign("title",$data["title"]);
+        $this->assign("webname",C("WEBNAME"));
         $this->assign("kefu",session('kefu'));
         $this->assign("position",$position);
         $this->display('article');
