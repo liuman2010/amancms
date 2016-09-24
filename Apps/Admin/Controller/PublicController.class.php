@@ -14,7 +14,7 @@ class PublicController extends Controller
 	// 访问公共模块显示登录首页
 	public function index()
 	{
-		$this->display('login');
+		$this->login();
 	}
 
 	// 显示登录界面
@@ -184,23 +184,5 @@ class PublicController extends Controller
 		$verify->entry();
 	}//f
 
-
-	public function test()
-	{
-		$t = '';
-		if(isset($t))
-		{
-			echo '真';
-		}
-		else
-		{
-			echo '假';
-		}
-	}
-
-
-
-
-	
 
 }//c

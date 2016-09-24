@@ -8,7 +8,7 @@ class ColumnController extends CommonController
   	// 显示栏目列表
   	public function index()
   	{ 
-  		$data = M("Column")->field("id,pid,path,title,ctime,description,display,concat(path,'-',id) as amanpath")->order('amanpath')->select();
+      $data = M("Column")->field("id,pid,path,title,ctime,description,display,concat(path,'-',id) as amanpath")->order('amanpath')->select();
       $this->assign("data",$data);
       $this->display();
   	}

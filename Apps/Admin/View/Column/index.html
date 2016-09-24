@@ -19,12 +19,12 @@
 
 						<tr>
 							<td style="width:80px;"><input id='id' type="checkbox" class='id attr removeAttr' name='ids[]' value='{$list.id}' /></td>
-							<td><a href="__URL__/mod/id/{$list.id}">{$list.title}</a></td>
+							<td><a href="__APP__/Article/index/pid/{$list.id}">{$list.title}</a></td>
 							<td>{$list.description}</td>
 							<td class='display'> 
 								<script>var a = {$list.display} ; if(a === 1){document.write('<span class="glyphicon glyphicon-ok"></span>')}else{document.write('<span class="glyphicon glyphicon-remove"></span>')}</script></td>
 							<td>{$list.ctime|date="Y-m-d",###}</td>
-								<td><span class='glyphicon glyphicon-pencil'></span> <a href="__URL__/mod/id/{$list.id}">修改</a>&nbsp;｜&nbsp;<span class='glyphicon glyphicon-trash'></span> <a href="__URL__/del/id/{$list.id}">删除</a>&nbsp;｜&nbsp;<span class='glyphicon glyphicon-globe'></span> <a href="__APP__/Article/index/id/{$list.id}">文章列表</a></td>
+								<td><span class='glyphicon glyphicon-pencil'></span> <a href="__URL__/mod/id/{$list.id}">修改</a>&nbsp;｜&nbsp;<span class='glyphicon glyphicon-trash'></span> <a href="__URL__/del/id/{$list.id}">删除</a>&nbsp;&nbsp;</td>
 						</tr>
 					</volist>
 				</table>
